@@ -648,59 +648,7 @@ Risk related to running specific services.
 
 ## Risk Management Procedures
 
-Processes and actions that should be defined to address risks and that cover the concrete procedures in case of related incidents. &#x20;
-
-### Risk Monitoring
-
-Leverage monitoring dashboards or systems to identify the risk and gain relevant data.
-
-#### Beacon Chain Monitoring
-
-* **Slashing Events:** Monitor the beacon chain for any slashing events.
-* **Anti-Slashing Database:** Regularly poll the local node to ensure the anti-slashing database is enabled and functioning correctly.
-* **Impact of Slashing:** Assess and monitor the broader impact of any slashing incidents on the network.
-* **Relay List Monitoring:** Monitor the relay list for availability metrics and load balance capabilities between various relayers for downtime conditions.
-* **Chain Reorganizations:** Track events and causes of chain reorganizations&#x20;
-* **Non-finalized Events:** Monitor events preventing the consensus layer from confirming finality
-* **Special Software Conditions:** Monitor major software upgrades requiring specific durations and   events that will conclude the upgrade
-
-#### Node and System Health
-
-* **Node Health Metrics:** Monitor key metrics like CPU, memory, restarts, and uptime of nodes.
-* **System Configuration:** Monitor system configuration settings in real-time and continuously.
-* **Key Usages:** Track the usage of critical system keys.
-* **App-specific:** App specific metrics  (e.g. metrics for Dirk & Vouch)
-
-#### Security and Compliance
-
-* **Access Control and Logs:** Keep an eye on access controls to nodes and abnormal configuration changes.
-* **Phishing and Endpoint Protection:** Monitor for phishing attacks and ensure the security of endpoint protection systems, both for employee devices and infrastructure nodes.
-* **Bastion Nodes:** If applicable, monitor bastion or connection nodes.
-* **Suspicious Internal Interactions:** Watch for any suspicious internal interactions with infrastructure, cloud security platforms, or network monitoring solutions.
-* **Access Patterns and Configurations:** Check for unusual access patterns and the configurations of VPNs and 2FA systems.
-* **Relay Compliance:** Monitor relay compliance aspects and availability metrics.
-
-#### Upgrade and Code Management
-
-* **Upgrade Process:** Monitor the upgrade process, including client code source, notification channels, bug reports, and community disclosures.
-* **Customized Code in Testnet:** Monitor any new custom code deployed in the testnet.
-
-#### Hardware and Network
-
-* **Baremetal and Network Equipment Health:** Monitor the health of bare metals and networking equipment, including internet and peering connectivity.
-* **Predictive Models:** Use predictive models for future malfunctions and equipment replacement needs.
-* **Capacity and Resource Usage:** Track capacity usage, processing memory, and CPU.
-* **Peering Connectivity:** Monitor both internal and external network peering connectivity.
-* **Firewall Configuration and Metrics:** Keep an eye on firewall configuration changes or unexpected increases in drop metrics.
-
-#### Cloud and Infrastructure
-
-* **Cloud Monitoring Solutions:** Utilize cloud monitoring solutions to keep track of uptime and internal issues.
-* **Cloud Service Notifications:** Stay informed about cloud service announcements regarding expected downtime and maintenance.
-
-<div class="info">
-Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md "mention") for tool examples to perform the monitoring of some of the metrics mentioned above.
-</div>
+Processes and actions that should be defined to address risks and that cover the concrete procedures in case of related incidents.
 
 ### Incident Response Plan
 
@@ -1417,16 +1365,29 @@ Analyzing images for potential CVEs is simple nowadays (use e.g. [Trivy](https:/
 
 ### Monitoring and Alerting
 
-Leverage monitoring dashboards or systems to identify risks and gain relevant data.
+Monitoring dashboards are an important tool to identify risks and gain relevant data.
+This is one reason that a requirement for monitoring is present in almost all compliance and security frameworks.
 
-Monitoring is present in almost all compliance and security frameworks.
+It is crucial to monitor not only high level business functions but all containers.
+In particular, proper log collection makes it possible to dynamically verify low-level requirements,
+e.g. a slashing database is actually being used, and used by the right signer.
 
-It is crucial that not only high level business functions are monitored, but also correct functionality of all containers. In particular, proper log collection allows to dynamically verify that e.g. a slashing database ist actually being used, and used by the right signer.
+Likewise, there needs to be useful and targeted alerting system based on the monitoring system.
+It is important to learn that a potential problem has been identified as soon as possible, and act on it.
+However, a system that overloads its watchers with alerts is likely to lead to <dfn>alert fatigue</dfn>,
+where the alerts are ignored in practice because too often they are not identifying a real problem.
+
+Alert systems can in turn drive automated emergency responses, ranging from capture of increased levels of detail,
+through requesting additional authorization beyond the normal requirements, to full system shutdowns.
+Again, there are important trade-offs between ensuring a highly responsive system, and one that is robust in the face of real-world variability.
+For example, a system that can automatically suspend multisig transactions unless they are authorized within a short time is not always appropriate,
+because it can interfere with normal operations over a high-latency network or where a number of individuals are expected to coordinate extensively,
+taking a significant amount of time, before authorizing a particular action.
 
 Main outline from the COSO principles:
 
 * Implements Detection Policies, Procedures, and Tools
-* Design and improve on Detection Measures — Ideally capture unauthorized access, suspicios traffic, etc.
+* Design and improve on Detection Measures — Ideally capture unauthorized access, suspicious traffic, etc.
 * Implement filters to not even let suspicious requests contact the back-end.
 * Check frequently if detection tools are working correctly.
 * Have one or more centralized dashboards to aggregate the data and present it in a digestible way to a human observer.
@@ -1438,24 +1399,24 @@ Main outline from the COSO principles:
 * **Anti-Slashing Database:** Regularly poll the local node to ensure the anti-slashing database is enabled and functioning correctly.
 * **Impact of Slashing:** Assess and monitor the broader impact of any slashing incidents on the network.
 * **Relay List Monitoring:** Monitor the relay list for availability metrics and load balance capabilities between various relayers for downtime conditions.
-* **Chain Reorganizations:** Track events and causes of chain reorganizations&#x20;
+* **Chain Reorganizations:** Track events and causes of chain reorganizations
 * **Non-finalized Events:** Monitor events preventing the consensus layer from confirming finality
-* **Special Software Conditions:** Monitor major software upgrades requiring specific durations and   events that will conclude the upgrade
+* **Special Software Conditions:** Monitor major software upgrades requiring specific durations and events that will conclude the upgrade
 
 #### Node and System Health
 
 * **Node Health Metrics:** Monitor key metrics like CPU, memory, restarts, and uptime of nodes.
 * **System Configuration:** Monitor system configuration settings in real-time and continuously.
 * **Key Usages:** Track the usage of critical system keys.
-* **App-specific:** App specific metrics  (e.g. metrics for Dirk & Vouch)
+* **App-specific:** App specific metrics  (e.g. metrics for Dirk, Vouch)
 
 #### Security and Compliance
 
-* **Access Control and Logs:** Keep an eye on access controls to nodes and abnormal configuration changes.
+* **Access Control and Logs:** Monitor access to nodes, with heightened attention to abnormal configuration changes or changes in sensitive systems
+such as 2FA configuration or VPNs.
 * **Phishing and Endpoint Protection:** Monitor for phishing attacks and ensure the security of endpoint protection systems, both for employee devices and infrastructure nodes.
 * **Bastion Nodes:** If applicable, monitor bastion or connection nodes.
 * **Suspicious Internal Interactions:** Watch for any suspicious internal interactions with infrastructure, cloud security platforms, or network monitoring solutions.
-* **Access Patterns and Configurations:** Check for unusual access patterns and the configurations of VPNs and 2FA systems.
 * **Relay Compliance:** Monitor relay compliance aspects and availability metrics.
 
 #### Upgrade and Code Management
@@ -1490,8 +1451,8 @@ Every component of your node operation is producing logs. These should be captur
 The alert systems should be automatically set up to take actions such as shutting nodes down (nuking).
 
 <div class="info">
-Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md "mention") for tool examples to perform the monitoring of some of the metrics mentioned above.
 
+Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md) for tool examples to perform the monitoring of some of the metrics mentioned above, as well as:
 
 * Cognito's [Userpool Addons for auditing authentications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html).
 * Filtering and anaysis of anomalies can be done in AWS using the [WAF module](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html).
@@ -1502,6 +1463,7 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 
 <div class="info">
+
 #### Relevant DUCK risks:
 
 * [SLS8](#risk-sls-8)
@@ -1543,39 +1505,71 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 This section contains controls material to Node Operator risks
 
-## Controls for Access Control
+### Controls for Access Control
+@@ link to relevant mitigation(s)
 
-### Authentication required for services
+#### Authentication required for services
 
 All requests for services REQUIRE appropriate authentication
 
 For example, a Node does not respond to anonymous requests on any port.
 
-@@ link to relevant mitigation(s)
-
-### Access to Nodes limited by Network
+#### Access to Nodes limited by Network
 
 Nodes MUST NOT respond to requests from outside a defined network.
 
-### Access to server rooms is limited
+#### Access to server rooms is limited
 
 Entry to physical server locations MUST require authorization
 
 For example, a biometric scan or the use of a keycard.
 
-### Access to server rooms is verified
+#### Access to server rooms is verified
 
 Entry to physical server locations MUST be reviewed periodically
 
 For example, comparing the number of people entering with the number of authorizations logged, or checking that the person who entered coresponds to the authorization used.
 
-### Relevant external controls
+#### Relevant external controls for Access Control
 
 * [OWASP A01:2022: Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
 * [ISO27001](#iso27001) Annex A 5.15
 * [SOC2](#soc2) Trust services Criteria CC 6.1
 * [SOC2](#soc2) Trust services Criteria CC 6.3
 * @@ NORS, BSSC NOS, Web3SOC, ...?
+
+<section id="con-auto-monitoring">
+
+### Controls for Automated Monitoring
+
+Risks that Automated Monitoring can help mitigate:
+
+* [DOW1](#risk-dow-1)
+
+#### Log privileged access
+
+Any operation that requires privileged access is logged. Any assignment of a key, or assignment of a role to or removal of a role from a particular key, MUST be logged.
+
+#### Log personnel changes
+
+Every change in the status of people who have access to any function of the Node, or physical access to any hardware, MUST be logged.
+
+#### Log slashing events
+
+Any event that results in slashing MUST be logged. There SHOULD be a procedure in place to determine whether there are repeating patterns,
+that identify a failure (e.g. software bugs, operating procedures) which can be rectified.
+
+#### Monitor hardware and network performance
+
+Logs MUST provide a sufficiently detailed view of hardware and network performance to enable upgrade needs to be forecast,
+and to alert if validators are operating with excess latency. Tools such as [Zabbix](tool-zabbix) can also display a live feed of CPU and memory usage of each compute instance.
+
+#### Relevant external controls for Automated Monitoring
+
+- [SOC2](#soc2) A 1.1
+- [ISO 27001](#iso-27001) Annex A 8.21
+
+</section>
 
 ## Summary of external controls
 
@@ -1628,9 +1622,6 @@ The following external controls correspond to controls defined in this specifica
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 9.2</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>A 1.1</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>PI 1.2</td></tr>
@@ -2020,27 +2011,7 @@ Main outline from the COSO principles:
 * [DOW19](#risk-dow-19)
 </div>
 
-### Maintain the right operative capacity
 
-Main outline from the COSO principles:
-
-* Measures Current Usage in terms of computational resources.
-* Have the ability to forecase capacity requirement changes.
-* Have the ability to increse/decrease capacity when needed.
-
-**References:**
-
-* A 1.1 of the Trust Services Criteria
-
-**Examples for best practices:**
-
-* Current monitoring tools can also display a live feed of CPU and memory usage of each compute instance ([Zabbix reference](https://www.zabbix.com/documentation/6.4/en/manual/appendix/items/activepassive?hl=CPU%2Cload))
-
-<div class="info">
-**Links to risks:**
-
-* [DOW1](#risk-dow-1)
-</div>
 
 ### Analyze system inputs for completeness and accuracy
 
@@ -2079,7 +2050,7 @@ Main outline from the COSO principles:
 
 * Ensure that all inputs are being captured and either rejected or processed (schema enforcement).
 * Data should be always referencable through a [unique ID](https://datatracker.ietf.org/doc/html/rfc4122).
-* Data should be[ examined for](https://www.npmjs.com/package/ajv)[ correctness and completeness](https://github.com/validatorjs/validator.js).
+* Data should be [examined for](https://www.npmjs.com/package/ajv) [correctness and completeness](https://github.com/validatorjs/validator.js).
 * For each individual user, it should be determined if they are capable of accessing data or not. Using some technologies, such as [Apache Ranger](https://ranger.apache.org), this can be done on a row-by-row basis on a table.
 
 <div class="info">
@@ -2272,7 +2243,6 @@ Main outline of the Information security controls reference:
 
 **Examples for best practices:**
 
-* If there is an application that requires privileged access, any execution of it should be audited in a log.
 * Access to this application should be granted only using a certificate-based authentication which as a timeout.
 
 <div class="info">
@@ -2723,7 +2693,7 @@ More:
 - [Trivy](https://github.com/aquasecurity/trivy)
 - [TypeORM](https://typeorm.io)
 - [vault SSH certificate mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates)
-- [Zabbix reference](https://www.zabbix.com/documentation/6.4/en/manual/appendix/items/activepassive?hl=CPU%2Cload)
+- <a id="tool-zabbix"></a>[Zabbix reference](https://www.zabbix.com/documentation/6.4/en/manual/appendix/items/activepassive?hl=CPU%2Cload)
 
 <section id="sec-sotd">
 
