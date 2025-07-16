@@ -705,38 +705,6 @@ Leverage monitoring dashboards or systems to identify the risk and gain relevant
 Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md "mention") for tool examples to perform the monitoring of some of the metrics mentioned above.
 </div>
 
-### Incident Response Plan
-
-
-Define Incident Response Plans (ICR) for all specific [risks](risks/ "mention") and store them in a central location with access for all relevant employees. ICRs establish plans for managing security incidents and events, and offer guidance for employees or incident responders who believe they have discovered, or are responding to, a security incident. Ensure that relevant employees are aware of the location. Simulations of an Incident Response Plan should be conducted at least once a year.
-
-<div class="info">
-Incident Response Plan template can be found here:
-[https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true](https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true)
-</div>
-
-### Disaster Recovery Plan
-
-
-A Disaster Recovery Plan gives guidance on recovering one or more information systems at an alternate facility in response to a major hardware or software failure or destruction of facilities. Simulations of a Disaster Recovery Plan should be conducted at least once a year in a test environment.
-
-<div class="info">
-Disaster Recovery Plan templates can be found here:
-
-* [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
-* [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
-</div>
-
-### Pre-Mortem
-
-Perform Pre-Mortems for specific risks. The article linked below provides instructions on how to use Pre-Mortems to prevent incidents. Example topics for a Pre-Mortem could be&#x20;
-
-* Unauthorized users could gain access to the servers
-* In the case of a security compromise it is not clear what to do
-* A specific scenario could result in downtime
-
-[https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a](https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a)
-
 
 
 ## Risk Assessment Procedures
@@ -1567,8 +1535,139 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 * Safety training
 * Central & accessible documentation of critical knowledge
 * Having a communication toolkit and process prepared
-* Having a incident response policy / strategy
 
+### Incident Response Plan
+@@@@
+### Analyze security events and learn from them
+
+Main outline from the COSO principles:
+
+* Have a proper incident response plan in place, and review it periodically.
+* Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
+* Develops and Implements Procedures to Analyze Security Incidents.
+
+
+<div class="info">
+
+#### Relevant Risks for @@
+
+* [DOW10](#risk-dow-10)
+* [GIR6](#risk-gir-6)
+* [GIR7](#risk-gir-7)
+</div>
+
+### Identify and respond to security incidents
+
+Main outline from the COSO principles:
+
+* Assigns Roles and Responsibilities in case of a security event.
+* Contains Security Incidents — Ideally incidents can be contained within a short period of time.
+* Communication protocols are in place to inform affected parties.
+* Identified vulnerabilities need to be identified.
+* Evaluate the identification and response on a regular basis.
+
+**References:**
+
+* CC 7.4 of the SOC 2 Trust services criteria
+
+**Examples for best practices:**
+
+* There are several incident response templates available. One example is [NIST SP 800-61](https://csrc.nist.gov/pubs/sp/800/61/r2/final).
+
+<div class="info">
+
+#### Relevant Risks for @@
+
+* [RER1](#risk-rer-1)
+* [RER3](#risk-rer-3)
+</div>
+@@@@
+Incident Response Plans document procedures for managing security incidents and events,
+as guidance for employees or incident responders who believe they have discovered, or are responding to, a security incident.
+A well-documented Incident Response Plan helps employees in a high-stress situation by providing a reminder of all important actions and considerations.
+To be useful, it is necessary that relevant employees know the plans exist, and how to find them.
+
+<div class="info">
+Incident Response Plan template can be found here:
+[https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true](https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true)
+</div>
+
+Best practices for Incident response plans include
+
+- Well-defined decision-making responsibilities.
+- Where possible, automating responses
+- Identify relevant participants in advance. Redundancy against specific failures such as a key employee being unavailable is important.
+- Clear information about how to investigate and triage incidents,
+  including when to notify and involve particular participants and how to escalate issues to the most appropriate person or team.
+- Defined procedures to follow, for specific sets of circumstances
+- Data collection and distribution to enable effective response, external communication, and "Post Mortem" analysis
+- Well-defined communication strategies, for both internal and external communications.
+
+#### Disaster Recovery Plan
+
+A Disaster Recovery Plan is an Incident Response Plan that gives guidance on recovering one or more information systems at an alternate facility,
+in response to a major hardware or software failure including the partial or complete destruction of facilities.
+
+Best practices include maintaining copies of production environments to enable fast restoration.
+
+<div class="info">
+Sample Disaster Recovery Plan templates:
+
+* [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
+* [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
+
+COSO principles:
+
+* Quick restoration of affected environments.
+* Whenever possible, determine the root cause.
+* Implement necessary changes to prevent similar disasters.
+
+##### External Controls for Disaster Recovery
+
+* [SOC2](#soc2) CC 7.5
+
+##### Risks related to Disaster Recovery Plans
+
+* [GIR19](#risk-gir-19)
+
+</div>
+
+#### Pre-Mortem
+
+Regular simulations of implementing an Incident Response Plan ensure that relevant personnel are familiar with them and can follow them when necessary.
+"Pre-Mortems", simulating or "war-gaming" a specific failure, not only ensures people are familiar with the procedures to follow for specific risks,
+and that those procedures are tested to give some idea of whether they are appropriate and adequate,
+but often motivate people to think about other risks, and whether appropriate procedures and mitigations are in place.
+Example topics for a Pre-Mortem could include
+
+* Unauthorized users gain access to the servers
+* A complex security compromise, where details are not immediately available
+* A specific scenario results in downtime
+
+Articles such as [Pre-mortem](https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a)
+offer further information on how to plan and implement simulations and how to derive the maximum benefit from them.
+
+#### Post-Mortem
+
+If any incident occurs necessitating an incident response, it is valuable to analyze the response, to identify possible improvements to existing plans,
+as well as new unit tests and similar procedures that will help mitigate or prevent future incidents.
+
+##### External Controls for Incident Post-Mortems
+
+* [SOC2](#soc2) CC 7.3
+
+##### Risks related to Incident Post-Mortems
+
+#### Incident Communication
+
+As well as direct financial losses, security incidents and disaster can also result in significant reputational damage.
+Appropriate communication with stakeholders can significantly mitigate this risk.
+
+It is important to note that inappropriate communication during an incident can increase the damage. External communication needs to balance
+stakeholders' desire for information that provides them security or the ability to respond in a well-informed manner against
+the importance of providing information that is fairly clear and certain, and will not later be contradicted.
+
+Best practice for external communication about an incident includes providing a detailed post-incident summary.
 
 ## Controls Catalog
 
@@ -1641,9 +1740,6 @@ The following external controls correspond to controls defined in this specifica
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 7.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 7.5</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 8.1</td></tr>
@@ -1901,85 +1997,6 @@ Main outline from the COSO principles:
 
 
 
-### Analyze security events and learn from them
-
-Main outline from the COSO principles:
-
-* Have a proper incident response plan in place, and review it periodically.
-* Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
-* Develops and Implements Procedures to Analyze Security Incidents.
-
-**References:**
-
-* CC 7.3 of the SOC 2 Trust services criteria.
-
-**Examples for best practices:**
-
-* Responses can and should also be automated. Ideally, high risk alerts cause the respective instances to be nuked.
-* Always have post-mortems, ideally resulting in more unit- and integration tests of the organization.
-
-<div class="info">
-
-#### Relevant Risks for @@
-
-* [DOW10](#risk-dow-10)
-* [GIR6](#risk-gir-6)
-* [GIR7](#risk-gir-7)
-</div>
-
-### Identify and respond to security incidents
-
-Main outline from the COSO principles:
-
-* Assigns Roles and Responsibilities in case of a security event.
-* Contains Security Incidents — Ideally incidents can be contained within a short period of time.
-* Communication protocols are in place to inform affected parties.
-* Identified vulnerabilities need to be identified.
-* Evaluate the identification and response on a regular basis.
-
-**References:**
-
-* CC 7.4 of the SOC 2 Trust services criteria
-
-**Examples for best practices:**
-
-* There are several incident response templates available. One example is [NIST SP 800-61](https://csrc.nist.gov/pubs/sp/800/61/r2/final).
-
-<div class="info">
-
-#### Relevant Risks for @@
-
-* [RER1](#risk-rer-1)
-* [RER3](#risk-rer-3)
-</div>
-
-### Disaster recovery
-
-This is by far the hardest to implement and to get right, but it is useful to not "train on an incident".
-
-Main outline from the COSO principles:
-
-* Quick restoration of affected enviroments.
-* When possible, determine the root cause.
-* Implement necessary changes to prevent similar disasters.
-* Implements Incident-Recovery Plan Testing periodically.
-
-**References:**
-
-* CC 7.5 of the SOC 2 Trust Services Criteria
-
-**Examples for best practices:**
-
-* Use Minikube or docker-compose to create a local copy of a production environment to perform incident recovery plan testing.
-* To restore affected environments and do all the automated events, one should run
-* Use Chaos monkey to put your environment through the ultimate test.
-
-<div class="info">
-
-**Links to Risks**
-
-* [GIR19](#risk-gir-19)
-</div>
 
 ### Proper change management
 
@@ -2663,65 +2680,6 @@ The **Stakeholder Register** is a key management document, listing all stakehold
 You can download the spreadsheet here: [https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true)
 
 
-### Incident Communication Protocols
-
-Incidents can lead to a massive impact on Node Operators and their stakeholders. They can result in far more than only direct financial losses but also in irreversible reputational and collateral damages. In order to minimize incident impacts and ensure effective analysis and communications, the standardized communication protocols in this section give a reference for relevant procedures.&#x20;
-
-The **Incident Communication Protocols** equip Node Operators with guidelines around predefined procedures that cover both internal and external procedures.&#x20;
-
-#### Internal Procedures
-
-##### Pre-Incident
-
-1. Define relevant internal teams and stakeholders for specific incidents in the respective [Incident Response Plan](@@)
-2. Define dedicated channels of communication in the case of an incident
-
-##### During Incident
-
-1. Create an incident async communication channel (Slack, Telegram, or similar).
-2. Initiate defined procedures in respective Incident Response Plan.
-3. Investigate the specific incident if the root cause is not clear:
-
-* Escalate to relevant team (based on the specific risk).
-* Collect generic data about the incident from the detection/monitoring system or the infrastructure.
-* Have “Involved teams” in Incident Response Plan depending on the triaged risk and invite the relevant stakeholders in the order defined.
-
-4. Collect data and create documentation for:
-
-* Executive summary and communication procedures
-* Technical details and sync of team members as the incident progresses
-* Optional: Incident response platform can be used to do that in a more efficient manner&#x20;
-
-5. Create a communication matrix what should or should not be communicated and the communication of information to departments inside the organization.
-
-##### Post-Incident
-
-1. Create internal post-incident summaries.
-2. Create summaries for executives and communications with next steps.
-3. Apply new monitoring and detection to limit future risk exposures.
-4. Perform extensive post-mortem analysis (see [post-mortem-analysis.md](templates-and-toolkits/post-mortem-analysis.md "mention")).
-
-#### External Procedures
-
-##### Pre-Incident
-
-* Define relevant external stakeholders for specific incidents in the respective Incident Response Plan
-* Define dedicated channels of communication in the case of an incident
-
-##### During Incident
-
-1. Involve relevant teams of legal, privacy, policy, and communication departments (if applicable).
-2. Update executive and internal teams before any external communication.
-3. Ensure to communicate only when things are certain and clear 100%.
-4. Handle the sharing of information based on the respective incident response plan.
-
-
-**NOTE:** Communicating as an incident is ongoing can result in further damage, only communicating about the root cause when it is identified and potentially resolved on a case-by-case basis.
-
-
-##### Post-Incident
-
-1. Decide on information and level of detail of the post-mortem analysis (see [post-mortem-analysis.md](templates-and-toolkits/post-mortem-analysis.md "mention")) to be shared with the different stakeholders across the communication channels.
 
 </section>
 
