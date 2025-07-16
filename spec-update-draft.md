@@ -4,18 +4,17 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 ## Editor's draft post version 1
 
-### Version 1: [https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base)
+<dl> Version 1: [https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base)
 
-### Contributors to this version:
+<dt>Contributors to this version:</dt>
 
-This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
+<dd>This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
 
-Oriol, Miguel, Ivan Ang, Sreepriya Kalarikka, Antonio Bartulovic, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven, ...
+Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven (This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
+</dd>
 
-(This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
-
-### Editor: Chaals Nevile
-
+<dt>Editor:</dt> <dd>Chaals Nevile</dd>
+</dl>
 
 
 ## Abstract
