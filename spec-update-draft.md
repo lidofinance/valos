@@ -4,17 +4,18 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 ## Editor's draft post version 1
 
-### Version 1: [https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base)
 
-### Contributors to this version:
+<dl> Version 1: [https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base)
 
-This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
+<dt>Contributors to this version:</dt>
 
-Oriol, Miguel, Ivan Ang, Sreepriya Kalarikka, Antonio Bartulovic, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven, ...
+<dd>This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
 
-(This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
+Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven (This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
+</dd>
 
-### Editor: Chaals Nevile
+<dt>Editor:</dt> <dd>Chaals Nevile</dd>
+</dl>
 
 
 
@@ -56,6 +57,8 @@ such as compromising the control of a node or actions that result in reduced eco
   - [Monitoring](#monitoring)
   - [General Measures](#general-measures)
 - [Controls Catalog](#controls-catalog)
+- [Communications Strategy](#sec-communications-strategy)
+- [References](#sec-references)
 - [Status and Feedback](#sec-sotd)
 
 
@@ -858,7 +861,8 @@ To avoid double signing, validators maintain a history of messages they signed, 
 * Prevent deletion
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS1](#risk-sls-1)
 * [SLS2](#risk-sls-2)
@@ -870,7 +874,8 @@ To avoid double signing, validators maintain a history of messages they signed, 
 While there are multiple measures possible to be taken to avoid two validator running with the same signing keys, one can also employ technologies that detect and prevent two validators running at the same time. This can be done using monitoring and alert systems, robust StatefulSet handling in Kubernetes to ensure no two containers with the same keys run at the same time, or pre-defined tools such as [DoppelBuster](https://github.com/SimplyStaking/DoppelBuster).
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS2](#risk-sls-2)
 </div>
@@ -886,7 +891,8 @@ Similar to the anti-slashing database, whenever used, a web3signer needs to be
 * Ensured that the failover is using the same web3signer
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS2](#risk-sls-2)
 * [SLS3](#risk-sls-3)
@@ -901,7 +907,8 @@ Similar to the anti-slashing database, whenever used, a web3signer needs to be
 Maintain a diverse set of clients for different protocols, in order to reduce blast radius in case one of the clients appears to have a protocol error or other bug. In some cases, migrate keys to different clients in case of a specific client error observed, such as startup issues after controlled update or bug in the latest version of the chosen client.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS6](#risk-sls-6)
 * [SLS7](#risk-sls-7)
@@ -914,7 +921,8 @@ Maintain a diverse set of clients for different protocols, in order to reduce bl
 In order to avoid the single-point of failure problem for a node-validator without risking a slashing incident, DVT has been developed.
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [SLS1](#risk-sls-1)
 * [SLS14](#risk-sls-14)
@@ -931,7 +939,8 @@ In order to avoid the single-point of failure problem for a node-validator witho
 In order to avoid loosing out on opportunity cost, Node operators need to develop and adhere to strict processes to properly exit validators, as they are otherwise put into a delinquent state. This results in monetary losses.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * SPS1
 </div>
@@ -947,7 +956,8 @@ Also, multi-sig wallets should be used where appropriate.
 Furthermore, access credentials for internal systems should also be stored inside those vaults, and key rotation managed from there.
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [SLS5](#risk-sls-5)
 * [KEC1](#risk-kec-1)
@@ -967,7 +977,8 @@ Furthermore, access credentials for internal systems should also be stored insid
 Many different components interplay while a staking operation is going on. It is crucial, since sensitive information may be transmitted, to ensure that data is stored and transmitted in an encrypted fashion.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS8](#risk-sls-8)
 * [KEC5](#risk-kec-5)
@@ -983,7 +994,8 @@ Many different components interplay while a staking operation is going on. It is
 Ideally, since these keys are not used often, it makes sense to store them in locations where data is not as often accessed. Ideally Air-Gapped.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [KEC5](#risk-kec-5)
 * [KEC6](#risk-kec-6)
@@ -995,7 +1007,8 @@ Ideally, since these keys are not used often, it makes sense to store them in lo
 Employees should not be able to delete signing keys and there should be a back-up for the signing keys. Modern vault systems can have policies where deletion is prevented by certain or all users. Signing keys should be only possible to be removed by the root-user or through some multi-signing mechanism.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [KEC10](#risk-kec-10)
 </div>
@@ -1005,7 +1018,8 @@ Employees should not be able to delete signing keys and there should be a back-u
 The use case where an employee would need to access a signing key is low, and this should only be possible with a clear protocol when a support case is required. Vault systems can be set up that only verifier container roles can access these keys.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [KEC2](#risk-kec-2)
 * [KEC11](#risk-kec-11)
@@ -1021,7 +1035,8 @@ Key rotation and a proper process around it is key to protect one's infrastructu
 * Any API keys for your cloud infrastructure
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS8](#risk-sls-8)
 * [GIR6](#risk-gir-6)
@@ -1043,7 +1058,8 @@ Each user should be assigned roles, and some are temporary. There should be a cl
 
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -1091,7 +1107,8 @@ Special considerations:
 * Uses of vault systems to manage credentials and encryption keys. Like AWS KMS.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [DOW7](#risk-dow-7)
 * [KEC4](#risk-kec-4)
@@ -1121,7 +1138,8 @@ Main outline from the COSO principles:
 * Use of roles on the API endpoint level to determine the correct authorization.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [KEC11](#risk-kec-11)
 * [GIR1](#risk-gir-1)
@@ -1135,7 +1153,8 @@ Main outline from the COSO principles:
 * [Webserver authentication configuration of Microsoft IIS servers.](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/) Observe how different authentication methods are possible to be set there. `anonymousAuthentication` would allow anyone to access as `anonymous`, which is rarely the intention except for the starting page. `basicAuthentication` is better than nothing, but makes user management not scalable. `clientCertificateMappingAuthentication` and `digestAuthentication` are the better ways to also implement RBAC.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR1](#risk-gir-1)
 * [GIR5](#risk-gir-5)
@@ -1147,7 +1166,8 @@ Main outline from the COSO principles:
 Even when employing RBAC, there are ways to log into containers as users and acquire larger privileges from there. Take `docker exec -uroot` as an example. These mechanisms can be disabled on the orchestration level (and should be).
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -1163,7 +1183,8 @@ Even when employing RBAC, there are ways to log into containers as users and acq
 Ensure that employees whose roles have changed do not have lingering credentials they can use or others can misuse to cause harm.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS10](#risk-sls-10)
 * [DOW17](#risk-dow-17)
@@ -1179,7 +1200,8 @@ Any web access should be proxied through a load-balancer that has a firewall, an
 As well as controlling physical access where possible, it is best practice to ensure that nodes are only responsive through restricted access networks. Further, it is important to ensure the hardware running nodes does not have extraneous software (that can increase the risk of monitoring), does not allow generic probing mechanisms such as open port scans that can help malicious parties learn the topology of target systems,   
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS12](#risk-sls-12)
 </div>
@@ -1189,7 +1211,8 @@ As well as controlling physical access where possible, it is best practice to en
 Use password policies to ensure that access control mechanisms are sufficiently strong at every layer of the infrastructure (i.e. DUCK123 should never be an allowed password ;-)). When users are authenticating, MFA should be used.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS13](#risk-sls-13)
 </div>
@@ -1243,7 +1266,8 @@ Best practices for lifecycle management include the ability to remotely pause, s
 * Thorough destruction of storage media.
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [DOW2](#risk-dow-2)
 * [DOW4](#risk-dow-4)
@@ -1271,7 +1295,8 @@ Ideally, metrics should be used to verify a high degree of testing culture. This
 * Architectural enforcement
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS4](#risk-sls-4)
 * [SLS5](#risk-sls-5)
@@ -1295,7 +1320,8 @@ Ideally, metrics should be used to verify a high degree of testing culture. This
 Validator software is open source, but in order to ensure that no protocol error occurs, the code should not be touched.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS7](#risk-sls-7)
 * [DOW13](#risk-dow-13)
@@ -1308,7 +1334,8 @@ Validator software is open source, but in order to ensure that no protocol error
 Unchecked inputs are a major cause for overflow attacks and brute force. Ideally, the load balancer in front of the node filters out all traffic that has too large headers and payloads. Additionally, if JSON payloads are being used, they should be checked to adhere to a certain schema.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR8](#risk-gir-8)
 </div>
@@ -1318,7 +1345,8 @@ Unchecked inputs are a major cause for overflow attacks and brute force. Ideally
 This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first, and then roll it out in a staged fashion. If it causes some slashing event, it is then contained to the few nodes that it was rolled out to.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR11](#risk-gir-11)
 * [DOW19](#risk-dow-19)
@@ -1330,7 +1358,8 @@ This minimizes a potential blast radius. It is important to run any change (even
 Follow their best practice recommendations. Their mechanisms are more than battle-tested in different environments. Any make-shift approach to do mechanisms such as fail-over by hand should be deemed insecure.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR23](#risk-gir-23)
 </div>
@@ -1340,7 +1369,8 @@ Follow their best practice recommendations. Their mechanisms are more than battl
 Human error is a real threat, and every process should at least follow an automated script that may or not be invoked by a human. The other risk of non-manual steps is the reduction of the risk of exposure of secrets. Everything should be done through pipelines and job-mechanisms (GitHub Actions, Apache Airflow, Apache Nifi)
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR16](#risk-gir-16)
 * [GIR18](#risk-gir-18)
@@ -1358,7 +1388,8 @@ Human error is a real threat, and every process should at least follow an automa
 Analyzing images for potential CVEs is simple nowadays (use e.g. [Trivy](https://github.com/aquasecurity/trivy)). Further configurations inside these images can be checked using [CoGuard](https://www.coguard.io). Any image used in your infrastructure should be checked this way.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR17](#risk-gir-17)
 </div>
@@ -1713,6 +1744,7 @@ Functionality to look out for when creating your application is:
 * In order to protect oneself from bad redirects, one can define proper [[CORS](#cors)] headers and a ContentSecurityPolicy[[CSP](#csp)]. Both are set in header fileds of your Web server or load balancer.
 
 <div class="info">
+
 **Links to risks**
 
 * [GIR8](#risk-gir-8)
@@ -1743,7 +1775,8 @@ Main outline from the COSO principles:
   * Do not allow uncontrolled inbound and outbound networking traffic to this specific service.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR5](#risk-gir-5)
 * [DOW18](#risk-dow-18)
@@ -1783,7 +1816,8 @@ Main outline from the COSO principles:
 * Outline directly which risks are a high priority, and which ones are more acceptable, and the scenarios where it applies. For example, downtime comes only with an opportunity cost for ETH stakers, but may cause a slashing event in Polkadot.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR24](#risk-gir-24)
 </div>
@@ -1814,7 +1848,8 @@ Main outline from the COSO principles:
 * Ensure that the latest version of TLS is being used, in combination with [secure algorithms](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4).
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [KEC1](#risk-kec-1)
 * [KEC2](#risk-kec-2)
@@ -1848,7 +1883,8 @@ Main outline from the COSO principles:
 * Configuration standards can be enforced by automated software (e.g. [CoGuard](https://www.coguard.io))
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [GIR4](#risk-gir-4)
 * [KEC8](#risk-kec-8)
@@ -1874,7 +1910,8 @@ Main outline from the COSO principles:
 * Always have post-mortems, ideally resulting in more unit- and integration tests of the organization.
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [DOW10](#risk-dow-10)
 * [GIR6](#risk-gir-6)
@@ -1900,7 +1937,8 @@ Main outline from the COSO principles:
 * There are several incident response templates available. One example is [NIST SP 800-61](https://csrc.nist.gov/pubs/sp/800/61/r2/final).
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [RER1](#risk-rer-1)
 * [RER3](#risk-rer-3)
@@ -1928,6 +1966,7 @@ Main outline from the COSO principles:
 * Use Chaos monkey to put your environment through the ultimate test.
 
 <div class="info">
+
 **Links to Risks**
 
 * [GIR19](#risk-gir-19)
@@ -1961,6 +2000,7 @@ Main outline from the COSO principles:
 * While this seems like a lot of points, most of them can be addressed by following the [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) to infrastructure.
 
 <div class="info">
+
 **Links to Risks**
 
 * [SLS6](#risk-sls-6)
@@ -1984,7 +2024,8 @@ Main outline from the COSO principles:
 * CC 9.1 of Trust Services Criteria
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [DOW6](#risk-dow-6)
 </div>
@@ -2003,14 +2044,15 @@ Main outline from the COSO principles:
 * CC 9.2 of Trust Services Criteria
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
 * [GIR5](#risk-gir-5)
+* [DOW1](#risk-dow-1)
 * [DOW19](#risk-dow-19)
 </div>
-
 
 
 ### Analyze system inputs for completeness and accuracy
@@ -2031,7 +2073,8 @@ Main outline from the COSO principles:
 * Always define minimum and maximum input sizes and MIME types ([Microsoft IIS example](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/mimemap)).
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [GIR8](#risk-gir-8)
 </div>
@@ -2054,7 +2097,8 @@ Main outline from the COSO principles:
 * For each individual user, it should be determined if they are capable of accessing data or not. Using some technologies, such as [Apache Ranger](https://ranger.apache.org), this can be done on a row-by-row basis on a table.
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [GIR16](#risk-gir-16)
 </div>
@@ -2064,7 +2108,8 @@ Main outline from the COSO principles:
 
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -2089,7 +2134,8 @@ Main outline of the Information security controls reference:
 * Potential use of 2FA
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -2110,7 +2156,8 @@ Main outline of the Information security controls reference:
 * Use of an [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) is preferred, and from there, all other secrets should be released to authorized users through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication) and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates).
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -2131,7 +2178,8 @@ Main outline of the Information security controls reference:
 * Role based access control should be used, and for each individual it needs to be automatically tested if their roles are set too wide, i.e. not minimal enough.
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -2155,7 +2203,8 @@ Main outline of the Information security controls reference:
 * [Impersonation mechanisms need to be audited (if it is enabled).](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc)
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [KEC11](#risk-kec-11)
 </div>
@@ -2175,7 +2224,8 @@ Main outline of the Information security controls reference:
 * All depencencies should be checked for latest [CVE entries.](https://cve.mitre.org)
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR15](#risk-gir-15)
 * [GIR17](#risk-gir-17)
@@ -2202,7 +2252,8 @@ Main outline of the Information security controls reference:
 * Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR3](#risk-gir-3)
 * [KEC8](#risk-kec-8)
@@ -2224,7 +2275,8 @@ Main outline of the Information security controls reference:
 * Use of thorough deletion mechanisms, such as [shred](https://man.archlinux.org/man/shred.1.en).
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [SLS10](#risk-sls-10)
 * [DOW17](#risk-dow-17)
@@ -2246,7 +2298,8 @@ Main outline of the Information security controls reference:
 * Access to this application should be granted only using a certificate-based authentication which as a timeout.
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [KEC11](#risk-kec-11)
 * [GIR6](#risk-gir-6)
@@ -2270,7 +2323,8 @@ Main outline of the Information security controls reference:
 * Use and enforcement of IP whitelists
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [DOW10](#risk-dow-10)
 </div>
@@ -2291,7 +2345,8 @@ Main outline of the Information security controls reference:
 * [Kubernetes Cluster Networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [DOW10](#risk-dow-10)
 * [GIR9](#risk-gir-9)
@@ -2316,7 +2371,8 @@ Main outline of the Information security controls reference:
 * Not allowing to directly push to the main branch
 
 <div class="info">
-**Links to Risks:**
+
+#### Relevant Risks for @@
 
 * [GIR8](#risk-gir-8)
 * [DOW19](#risk-dow-19)
@@ -2342,7 +2398,8 @@ Main outline of the Information security controls reference:
 * Integration tests
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR20](#risk-gir-20)
 * [GIR21](#risk-gir-21)
@@ -2366,7 +2423,8 @@ Main outline of the Information security controls reference:
 * Minimal access to do the job.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [GIR24](#risk-gir-24)
 </div>
@@ -2388,7 +2446,8 @@ Main outline of the Information security controls reference:
 * Have well-defined interfaces to pull part of the production data into a local database for testing.
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [SLS6](#risk-sls-6)
 * [SLS7](#risk-sls-7)
@@ -2412,111 +2471,112 @@ Main outline of the Information security controls reference:
 * Use database migration systems such as [Liquibase](https://www.liquibase.org).
 
 <div class="info">
-**Links to risks:**
+
+#### Relevant Risks for @@
 
 * [DOW2](#risk-dow-2)
 * [DOW11](#risk-dow-11)
 * [GIR25](#risk-gir-25)
 </div>
 
+<section id="sec-communications-strategy">
 
 ## Communications Strategy
 
-## Stakeholder Overview
+### Stakeholder Overview
 
-### 🙂 Known Stakeholders
+#### Known Stakeholders
 
 This type of stakeholders discloses the identity and provides contact details and channels for communication. Direct and close communication can be required.
 
-#### **Institutional Stakers**
+##### **Institutional Stakers**
 
 * High stake investors with potential of contractual obligations
 * Generally require close contact and channels for direct contact
 
-#### **Service Partners**
+##### **Service Partners**
 
 * Partners (e.g. Lido) operating and managing protocols and their respective Node Operator landscape and requiring governance votes
 * Generally require close contact and channels for direct contact
 * Emergency communication in case of incident
 
-#### **Infrastructure Partners**
+##### **Infrastructure Partners**
 
 * Partners involved in hosting, managing or operating infrastructure as part of the node operation setup
 * Need direct contact in case of emergency measure
 
-#### **Media**
+##### **Media**
 
 * Media channels, platforms, and accounts covering technical and non-technical news and reports
 * Need for monitoring of business relevant news
 * Need for close monitoring and engagement in case of incidents with business impact and public awareness
 
-#### **Core & Client Dev Teams**
+##### **Core & Client Dev Teams**
 
 * Teams developing and maintaining critical node operations software
 * Need for communication channel in case updates, maintenance and information around critical software components, especially in the event of software issues
 
-#### Other Node Operators
+##### Other Node Operators
 
 * Node Operators running validators and similar tech stack
 * Need for close monitoring of communication channels and alerting in case of published incidents with potential relevance for own setup
 
-#### **Optional: Service Customers**
+##### **Optional: Service Customers**
 
 * Individuals or organizations using additional service provided by Node Operators (e.g., API users, customers for white-label solutions etc.)
 * Need for direct customer service contact
 * Need for information & updates in case of incidents
 
-### 🫥 Mixed Stakeholders
+#### Mixed Stakeholders
 
-This type of stakeholders cover entities that do not necessarily disclose their identity information nor provide channels of contact to Node Operators. They might follow available public channels such as X(Twitter), Discord, or public Telegram groups but can also exists entirely independent.
+These are entities that do not necessarily disclose their identity information, nor have identified channels of contact with Node Operators. They might follow available public channels such as X(Twitter), Discord, or public Telegram groups but can also operate entirely independently.
 
-#### **Individual Stakers**
+##### **Individual Stakers**
 
 * Low stake investors
 * Need for communication of status and incident updates across all public channels
 
-#### **Communities**
+##### **Communities**
 
 * Individuals or organizations with diverse motivations (e.g., lobbyism, issues, questions, feedback, etc.)
 * Need for public and anonymous communication platform
 
-### Ecosystem Touchpoints
+#### Communication Channels
 
-Below you can find common channels and means of contacts used by Node Operators to enable tailored communications across the diverse types of stakeholders.
 
-{% hint style="info" %}
-Stakeholders highly individual and therefore preferences for communication channels can differ. These individual channel preferences need to be identified in advance.
-{% endhint %}
+Stakeholders' preferences for communication channels differ.
+Where possible for known stakeholders it is good practice to identify individual channel preferences in advance.
+It is important to include channels that enable mixed stakeholders to follow important developments.
 
-##### 🖥️ **Website**
+##### Website
 
 * Service offering
 * Contact details
 * Target Group: [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
 
-##### **@ Email**
+##### Email
 
 * Available for any means of contact
 * Target Group:  [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
 
-##### **🔔 Telegram (Public)**
+##### Telegram (Public)
 
 * Focus on community engagement, incident updates, and information sharing
 * Public accessibility to provide contact channels for anonymous stakeholders
 * Target Group: [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
 
-##### **🔔 Telegram (Private)**
+##### Telegram (Private)
 
 * Direct communication with relevant stakeholders
 * Target Group: [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention")
 
-##### **💬 Discord/Slack**
+##### Discord/Slack
 
 * Direct communication channels with relevant stakeholders
 * Focus on dialogue, community management, status updates, detailed updates in case of incidents and mitigations
 * Target Group:  [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
 
-##### **🗯️ X (Twitter)**
+##### X (Twitter)
 
 * Focus on marketing, high-level publication of updates, information in case of incidents, and mitigations
 * Target Group:  [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
@@ -2525,44 +2585,42 @@ Stakeholders highly individual and therefore preferences for communication chann
 
 #### General Procedures
 
-The following procedures shall ensure appropriate consideration and management of relevant stakeholders:
+The following procedures enable appropriate consideration and management of relevant stakeholders:
 
-1. Define all stakeholders that are relevant to your organization \
-   (Reference: [stakeholder-overview.md](stakeholder-overview.md "mention"))
-2. Define and align communciation channels that you intend to use for engagement with your stakeholders \
-   (Reference: [ecosystem-touchpoints.md](ecosystem-touchpoints.md "mention"))
-3. Perform a stakeholder mapping and define your individual ways of engagement with the different stakeholder groups (Reference: [#stakeholder-map](stakeholder-management.md#stakeholder-map "mention"))
-4. Document all defined stakeholders with the respective management measures in the stakeholder register (Reference: [#stakeholder-register](stakeholder-management.md#stakeholder-register "mention")). Also take best practices covering incident communication into account (Reference: [incident-communication-protocols.md](../incident-communication-protocols.md "mention")).
+1. Define all stakeholders that are relevant to your organization
+2. Define and align communciation channels that you intend to use for engagement with your stakeholders
+3. Perform a stakeholder mapping and define your individual ways of engagement with the different stakeholder groups
+4. Document all defined stakeholders with the respective management measures in the stakeholder register. Also take best practices covering incident communication into account.
 5. Define appropriate intervals to review accuracy and relevance of documented contents in the stakeholder register
 
 #### Stakeholder Map
 
 The **Stakeholder Map** provides guidance when categorizing the individual stakeholders into different communication groups. It can be used as an initial assessment for further review and adaption to your individual stakeholder landscape.
 
-{% hint style="info" %}
+
 Only use the Communication Map below as a reference! Review each your stakeholder individually and assess needed means of contact! You can find the template here: [stakeholder-map.md](../templates-and-toolkits/stakeholder-map.md "mention")
-{% endhint %}
+
 
 <figure><img src="../../.gitbook/assets/Stakeholder_Map (6).png" alt=""><figcaption><p>Stakeholder Map</p></figcaption></figure>
 
-##### **Manage Closely**
+##### Manage Closely
 
 * Establish direct communication channels (e.g., Telegram, Slack or similar)
 * Individual status reporting and communications
 * Perform immediate alignment in case of incidents
 
-##### **Keep Satisfied**
+##### Keep Satisfied
 
 * Establish public communication channels (e.g., Telegram, Discord, X)
 * Regular status reporting and engagement
 * Provide summary and updates in case of incidents
 
-##### **Keep Informed**
+##### Keep Informed
 
 * Establish direct or public communication channels depending on need for responsiveness (e.g., Mail, Discord, Telegram, Slack, X)
 * Provide summary and updates in case of incidents
 
-##### **Monitor**
+##### Monitor
 
 * Monitor activities and react to activities and requests
 
@@ -2570,13 +2628,9 @@ Only use the Communication Map below as a reference! Review each your stakeholde
 
 The **Stakeholder Register** is a key management document, listing all stakeholders with details about their roles, interests, and impact on the organization. It is essential for understanding and managing stakeholders, ensuring tailored and effective communication.
 
-{% hint style="info" %}
-You can download the spreadsheet here: [https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true)
-{% endhint %}
 
-{% embed url="https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?ouid=117284374075970906179&rtpof=true&sd=true&usp=sharing" %}
-Stakeholder Register
-{% endembed %}
+You can download the spreadsheet here: [https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true)
+
 
 ### Incident Communication Protocols
 
@@ -2586,12 +2640,12 @@ The **Incident Communication Protocols** equip Node Operators with guidelines ar
 
 #### Internal Procedures
 
-##### 📋 Pre-Incident
+##### Pre-Incident
 
-1. Define relevant internal teams and stakeholders for specific incidents in the respective Incident Response Plan (see [risk-management-procedures.md](../risk-framework/risk-management-procedures.md "mention"))
+1. Define relevant internal teams and stakeholders for specific incidents in the respective [Incident Response Plan](@@)
 2. Define dedicated channels of communication in the case of an incident
 
-##### 🚨 During Incident
+##### During Incident
 
 1. Create an incident async communication channel (Slack, Telegram, or similar).
 2. Initiate defined procedures in respective Incident Response Plan.
@@ -2609,7 +2663,7 @@ The **Incident Communication Protocols** equip Node Operators with guidelines ar
 
 5. Create a communication matrix what should or should not be communicated and the communication of information to departments inside the organization.
 
-##### 🔎 Post-Incident
+##### Post-Incident
 
 1. Create internal post-incident summaries.
 2. Create summaries for executives and communications with next steps.
@@ -2618,26 +2672,29 @@ The **Incident Communication Protocols** equip Node Operators with guidelines ar
 
 #### External Procedures
 
-##### 📋 Pre-Incident
+##### Pre-Incident
 
 * Define relevant external stakeholders for specific incidents in the respective Incident Response Plan
 * Define dedicated channels of communication in the case of an incident
 
-##### 🚨 During Incident
+##### During Incident
 
 1. Involve relevant teams of legal, privacy, policy, and communication departments (if applicable).
 2. Update executive and internal teams before any external communication.
 3. Ensure to communicate only when things are certain and clear 100%.
 4. Handle the sharing of information based on the respective incident response plan.
 
-{% hint style="info" %}
+
 **NOTE:** Communicating as an incident is ongoing can result in further damage, only communicating about the root cause when it is identified and potentially resolved on a case-by-case basis.
-{% endhint %}
 
-##### 🔎 Post-Incident
 
-1. Decide on information and level of detail of the post-mortem analysis (see [post-mortem-analysis.md](templates-and-toolkits/post-mortem-analysis.md "mention")) to be shared with the different stakeholders ([stakeholder-management.md](stakeholder-strategy/stakeholder-management.md "mention")) across the communication channels.
+##### Post-Incident
 
+1. Decide on information and level of detail of the post-mortem analysis (see [post-mortem-analysis.md](templates-and-toolkits/post-mortem-analysis.md "mention")) to be shared with the different stakeholders across the communication channels.
+
+</section>
+
+<section id="sec-references">
 
 ## References
 
@@ -2694,6 +2751,8 @@ More:
 - [TypeORM](https://typeorm.io)
 - [vault SSH certificate mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates)
 - <a id="tool-zabbix"></a>[Zabbix reference](https://www.zabbix.com/documentation/6.4/en/manual/appendix/items/activepassive?hl=CPU%2Cload)
+
+</section>
 
 <section id="sec-sotd">
 
