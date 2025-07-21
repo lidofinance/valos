@@ -1240,40 +1240,58 @@ In the inadvertent case, relevant mitigations include
 
 To minimize negligently allowed access, it is important to ensure that access systems are effectively maintained and managed to ensure there is no good reason to allow an unauthorized person access. This can range from the design of onboarding systems to the effectiveness of internal management feedback systems for discovering unanticipated problems faced by operators.
 
+Best practice is to ensure that physical access is managed by systems that can efficiently enable access to authorised parties (keycards, biometric scanners) and monitor actual access such as visual verification that the authorized party is the one entering.
+
+It is important to log and audit access sufficiently frequently to detect problems - see also [Monitoring](@@).
+
+### Protect Against Environmental Threats
+
 * Protect against environmental threats and utility failures
 
-Physical devices are subject to physical changes, including environmental issues such as temperature extremes that can cause damage, or utility failures such as power or internet failure.
+Physical devices are subject to physical changes, including environmental issues such as temperature extremes that can cause damage,
+and utility failures such as power or internet failure.
 
-Mitigation strategies include the use of redundant infrastructure with failure detection and failover systems, from  backup node servers in different geographical locations to backup power supply e.g. through local batteries or power generation. The level of mitigation that is appropriate depends on the level of risk, and the costs of both failure and mitigating failure. These calculations mean economies of scale will enable larger-scale operations to be more robust than smaller ones, for a given price.
+Mitigation strategies include the use of redundant infrastructure with failure detection and failover systems,
+from backup node servers in different geographical locations to backup power supply e.g. through local batteries or power generation.
+The level of mitigation that is appropriate depends on the level of risk, and the costs of both failure and mitigating failure.
+These calculations mean economies of scale will enable larger-scale operations to be more robust than smaller ones, for a given price.
 
-It is also important to ensure that facilities have appropriate protection from relevant environmental risks - whether fire, flooding, extremes of temperature or wind or even destructive physical attacks will depend in part on the specific location and nature of the facility.
+It is also important to ensure that facilities have appropriate protection from relevant environmental risks such as fire, flooding, or extreme wind,
+and destructive physical attacks. Appropriate mitigations will depend in part on the specific location and nature of the facility.
 
-* Maintain all equipment throughout a defined life-cycle.
+<div class="info">
+
+#### Relevant External Controls for Environmental Threats
+
+* [ISO 27001](#iso-27001) Annex A 7
+The lifecycle of equipment, most particularly node servers and computers used to access and manage them, is a determinant of overall security.
+
+#### Relevant Risks for Environmental Threats
+
+* SLS 14,15
+* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), 7-9
+</div>
+
+[Monitoring](#@@) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
+
+### Manage Equipment Life-cycle.
 
 The lifecycle of equipment, most particularly node servers and computers used to access and manage them, is a determinant of overall security.
 
 Best practices for lifecycle management include the ability to remotely pause, shut down, and wipe devices clean, although this needs to be considered in the context of the risk of malicious access to those capabilities.
 
-[Monitoring](#@@) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
-
-**References:**
-
-* ISO27001 Annex A 7
-
-**Examples for best practices:** //where do these fit?
-
-* Camera systems at doors.
-* Segregation of areas where people have access to.
-* Thorough destruction of storage media.
+[Monitoring](#sec-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Relevant External Controls for Equipment Life-cycle
 
-* [DOW2](#risk-dow-2)
-* [DOW4](#risk-dow-4)
-* [KEC6](#risk-kec-6)
-* [KEC8](#risk-kec-8)
+* [ISO 27001](#iso-27001) Annex A 7
+
+#### Relevant Risks for Equipment Life-cycle
+
+* [DOW3](#risk-dow-3)
+* KEC 1,5,[KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
 </div>
 
 ### Development and Update Process
@@ -1636,6 +1654,39 @@ and to alert if validators are operating with excess latency. Tools such as [Zab
 
 </section>
 
+### Controls for Environmental Threat Management
+
+#### Manage Environmental Threats
+
+Node Operators SHOULD have processes in place to manage environmental threats
+
+This includes monitoring for such threats and physically hardened facilities (e.g. fire- and flood-resistant server rooms),
+and physically decentralized infrastructure. It can also incorporate the use of DVT or related approaches to managing physical decentralization.
+
+##### Relevant External Controls for Environmental Threats
+
+* [ISO 27001](#iso-27001) Annex A 7
+
+##### Relevant Risks for Environmental Threats
+
+* SLS 14,15
+* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), 7-9
+
+#### Manage Equipment Lifecycles
+
+Node Operators SHOULD have processes in place to manage equipment lifecycles
+
+This includes monitoring performance and performing preventive maintenance, upgrades, or replacing equipment as appropriate,
+as well as processes that ensure equipment is correctly retired including removing data and any hardware-based authorization.
+
+##### Relevant External Controls for Equipment Lifecycles
+
+* [ISO 27001](#iso-27001) Annex A 7
+
+##### Relevant Risks for Equipment Lifecycles
+
+@@@@
+
 ## Summary of external controls
 
 The following external controls correspond to controls defined in this specification.
@@ -1700,9 +1751,6 @@ The following external controls correspond to controls defined in this specifica
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 5.17</td></tr>
 
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 7</td></tr>
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 8.2</td></tr>
