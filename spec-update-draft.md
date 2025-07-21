@@ -1031,7 +1031,7 @@ Special considerations:
 
 **Examples for best practices:**
 
-* Creation and continuous analysis of Software Bill of Materials ([SBOM](https://www.cisa.gov/sbom)).
+* Creation and continuous analysis of Software Bill of Materials [SBOM](#ref-sbom).
 * Use of Clients, roles and groups when using [AWS IAM](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html).
 * Have an internal virtual private network and only have well-defined endpoints be accessible from the web.
 
@@ -1585,7 +1585,7 @@ Example topics for a Pre-Mortem could include
 * A complex security compromise, where details are not immediately available
 * A specific scenario results in downtime
 
-Articles such as [Pre-mortem](https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a)
+Articles such as [Premortem](#ref-premortem)
 offer further information on how to plan and implement simulations and how to derive the maximum benefit from them.
 
 #### Post-Mortem
@@ -2128,16 +2128,6 @@ Main outline from the COSO principles:
 
 
 
-<div class="info">
-
-#### @@ helps address the following risks
-
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
-* [GIR1](#risk-gir-1)
-* [GIR5](#risk-gir-5)
-</div>
-
 ### Identity Management
 
 Main outline of the Information security controls reference:
@@ -2636,8 +2626,14 @@ ISO IEC 27001:2022 "Information security, cybersecurity and privacy protection â
 
 "Technical Guide to Information Security Testing and Assessment", Karen Scarfone, Murugiah Souppaya, Amanda Cody, and Angela Orebaugh. NIST 2008. [https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
 
-##### [Premortem]
+<a id="ref-premortem"></a>
+##### [Pre-mortem]
 
+"How to Use Pre-mortems to Prevent Problems, Blunders, and Disasters", Shreyas Doshi, 2020. [https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a](https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a)
+
+##### [SBOM]
+
+"Software Bill of Materials (SBOM)" CISA, 2024. [https://www.cisa.gov/sbom](https://www.cisa.gov/sbom)
 ##### [SOC2]
 
 "2017 Trust Services Criteria for Security, Availability, Processing Integrity, Confidentiality, and Privacy (With Revised Points of Focus â€” 2022)" AICPA 2022. [https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022](https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022) (requires AICPA membership)
@@ -2648,8 +2644,6 @@ More:
 - [NIST SP 800-61](https://csrc.nist.gov/pubs/sp/800/61/r2/final)
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/): [OWASP A01:2022: Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/), [OWASP A10:2021: Server Side Request Forgery](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_(SSRF%29/)
 - [RFC 1918](https://www.rfc-editor.org/rfc/rfc1918)
-- [SBOM](https://www.cisa.gov/sbom)
-- [@Shreyashere Blog post: Pre-mortems](https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a)
 
 ### Tools:
 
