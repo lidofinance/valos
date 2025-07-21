@@ -649,43 +649,6 @@ Risk related to running specific services.
   <td>Reputation damage due to mismanagement of Post-slashing, -downtime or access loss to keys</td>
 </tr></tbody></table>
 
-## Risk Management Procedures
-
-Processes and actions that should be defined to address risks and that cover the concrete procedures in case of related incidents.
-
-### Incident Response Plan
-
-
-Define Incident Response Plans (ICR) for all specific [risks](risks/ "mention") and store them in a central location with access for all relevant employees. ICRs establish plans for managing security incidents and events, and offer guidance for employees or incident responders who believe they have discovered, or are responding to, a security incident. Ensure that relevant employees are aware of the location. Simulations of an Incident Response Plan should be conducted at least once a year.
-
-<div class="info">
-Incident Response Plan template can be found here:
-[https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true](https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true)
-</div>
-
-### Disaster Recovery Plan
-
-
-A Disaster Recovery Plan gives guidance on recovering one or more information systems at an alternate facility in response to a major hardware or software failure or destruction of facilities. Simulations of a Disaster Recovery Plan should be conducted at least once a year in a test environment.
-
-<div class="info">
-Disaster Recovery Plan templates can be found here:
-
-* [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
-* [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
-</div>
-
-### Pre-Mortem
-
-Perform Pre-Mortems for specific risks. The article linked below provides instructions on how to use Pre-Mortems to prevent incidents. Example topics for a Pre-Mortem could be&#x20;
-
-* Unauthorized users could gain access to the servers
-* In the case of a security compromise it is not clear what to do
-* A specific scenario could result in downtime
-
-[https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a](https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a)
-
-
 
 ## Risk Assessment Procedures
 
@@ -759,9 +722,9 @@ Create a risk matrix to visually categorize risks based on their severity and li
 
 ### Introduction
 
-This document provides a guide for Ethereum node operators on the best practices for conducting IT security-related reviews and audits. It aims to ensure the security, efficiency, and compliance of the node operations within the Ethereum network.&#x20;
+This document provides a guide for Ethereum node operators on the best practices for conducting IT security-related reviews and audits. It aims to ensure the security, efficiency, and compliance of the node operations within the Ethereum network.
 
-See as well the NIST Technical guidance to Information Security Testing and Assessment : [https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
+See also the NIST Technical Guide to Information Security Testing and Assessment [NIST-800-115](#ref-nist-800-115).
 
 #### Internal Reviews vs External Audits
 
@@ -815,7 +778,7 @@ See as well the NIST Technical guidance to Information Security Testing and Asse
 
 #### Responsible Person:
 
-* Assign a dedicated team or individual responsible for conducting and overseeing the audit process.&#x20;
+* Assign a dedicated team or individual responsible for conducting and overseeing the audit process.
 * This role includes planning, executing, and following up on audit findings.
 
 #### Well-defined Checklist:
@@ -825,13 +788,13 @@ See as well the NIST Technical guidance to Information Security Testing and Asse
 
 #### Documentation Approach:
 
-* Establish a systematic approach for documenting the audit process.&#x20;
-* This should include the responsible person, types and dates of audits having been conducted, audit reports, methods used conducting the audit, scope of the audit and audit vendor.&#x20;
+* Establish a systematic approach for documenting the audit process.
+* This should include the responsible person, types and dates of audits having been conducted, audit reports, methods used conducting the audit, scope of the audit and audit vendor.
 
 #### Documentation of Results:
 
-* Create a structured format for reporting audit results.&#x20;
-* This should include detailed findings, recommendations, and any corrective actions taken.&#x20;
+* Create a structured format for reporting audit results.
+* This should include detailed findings, recommendations, and any corrective actions taken.
 * Ensure that these reports are accessible to relevant stakeholders for review and follow-up.
 
 ## Mitigation Strategies
@@ -839,14 +802,6 @@ See as well the NIST Technical guidance to Information Security Testing and Asse
 The Mitigation Strategiers section serves as a go-to resource for node operators, providing actionable insights and mitigation options to enhance the security, reliability, and efficiency of their operations.
 
 Most of the best practices that optimize up-time, access control and general stability directly apply to operating a node properly. However, there are a few risks that are very specific to running a node-operator, and to mitigate them, higher levels of process segregation need to be achieved.
-
-When analyzing the scope and the respective identified risks, we have found the best fit being a combination of control criteria from three frameworks:
-
-* [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-* [ISO 27001](#iso-27001)
-* [SOC2](#soc2)
-
-As with every audit, we put together the control criteria which are [material](https://us.aicpa.org/content/dam/aicpa/research/standards/auditattest/downloadabledocuments/au-c-00320.pdf) in the context of protecting node operators from their specific risks.
 
 
 ### Node-Operator Technology Stack Mitigations
@@ -862,7 +817,7 @@ To avoid double signing, validators maintain a history of messages they signed, 
 
 <div class="info">
 
-#### Relevant Risks for @@
+##### A Local anti-slashing database helps address the following risks
 
 * [SLS1](#risk-sls-1)
 * [SLS2](#risk-sls-2)
@@ -875,7 +830,7 @@ While there are multiple measures possible to be taken to avoid two validator ru
 
 <div class="info">
 
-#### Relevant Risks for @@
+##### Doppelgänger protection helps address the following risks
 
 * [SLS2](#risk-sls-2)
 </div>
@@ -892,7 +847,7 @@ Similar to the anti-slashing database, whenever used, a web3signer needs to be
 
 <div class="info">
 
-#### Relevant Risks for @@
+##### Use of a Web3Signer helps address the following risks
 
 * [SLS2](#risk-sls-2)
 * [SLS3](#risk-sls-3)
@@ -908,7 +863,7 @@ Maintain a diverse set of clients for different protocols, in order to reduce bl
 
 <div class="info">
 
-#### Relevant Risks for @@
+##### Client diversity helps address the following risks
 
 * [SLS6](#risk-sls-6)
 * [SLS7](#risk-sls-7)
@@ -922,7 +877,7 @@ In order to avoid the single-point of failure problem for a node-validator witho
 
 <div class="info">
 
-#### Relevant Risks for @@
+##### DVT helps address the following risks
 
 * [SLS1](#risk-sls-1)
 * [SLS14](#risk-sls-14)
@@ -934,30 +889,26 @@ In order to avoid the single-point of failure problem for a node-validator witho
 * [KEC6](#risk-kec-6)
 </div>
 
-#### Lido-specific: Handling of delinquent state&#x20;
+#### Lido-specific: Handling of delinquent state
 
 In order to avoid loosing out on opportunity cost, Node operators need to develop and adhere to strict processes to properly exit validators, as they are otherwise put into a delinquent state. This results in monetary losses.
 
 <div class="info">
 
-#### Relevant Risks for @@
+##### Handling delinquent state helps address the following risks
 
-* SPS1
+* [SPS1](#risk-sps-1)
 </div>
 
 ### Secret Management
 
 #### Controlled/audited secret access
 
-Any secret needs to be accessed and authorized through a vault system. In this way, everything is audited, and anomaly detection can be activated for those vaults.
-
-Also, multi-sig wallets should be used where appropriate.
-
-Furthermore, access credentials for internal systems should also be stored inside those vaults, and key rotation managed from there.
+Any secret, including access credentials for internal systems needs to be accessed and authorized through a vault system. In this way, everything is audited, and anomaly detection can be activated for those vaults. Using multi-sig wallets, requiring authorization from multiple parties for specific actions, helps to ensure both that relevant access is monitored and that it is correctly controlled.
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Secret access management helps address the following risks
 
 * [SLS5](#risk-sls-5)
 * [KEC1](#risk-kec-1)
@@ -978,7 +929,7 @@ Many different components interplay while a staking operation is going on. It is
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Data encryption helps address the following risks
 
 * [SLS8](#risk-sls-8)
 * [KEC5](#risk-kec-5)
@@ -986,48 +937,44 @@ Many different components interplay while a staking operation is going on. It is
 * [KEC7](#risk-kec-7)
 * [KEC10](#risk-kec-10)
 * [KEC11](#risk-kec-11)
-* GR10
+* [GIR10](#risk-GIR-10)
 </div>
 
-#### Store withdrawal keys in a cold location
+#### Cold Storage
 
-Ideally, since these keys are not used often, it makes sense to store them in locations where data is not as often accessed. Ideally Air-Gapped.
+Cold Storage, in particular "air-gapped" storage, can help protect information not used often such as withdrawal keys, private key generation materials, and the like.
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Cold storage helps address the following risks
 
 * [KEC5](#risk-kec-5)
 * [KEC6](#risk-kec-6)
 * [KEC7](#risk-kec-7)
 </div>
 
-#### Employees and signing keys
+#### Signing key management
 
-Employees should not be able to delete signing keys and there should be a back-up for the signing keys. Modern vault systems can have policies where deletion is prevented by certain or all users. Signing keys should be only possible to be removed by the root-user or through some multi-signing mechanism.
+It is important to protect signing keys from accidental or malicious misuse, and in particular deletion.
+It is not normal to provide broad acceess to unencrypted signing keys.
 
-<div class="info">
-
-#### Relevant Risks for @@
-
-* [KEC10](#risk-kec-10)
-</div>
-
-#### Access to unencrypted signing keys
-
-The use case where an employee would need to access a signing key is low, and this should only be possible with a clear protocol when a support case is required. Vault systems can be set up that only verifier container roles can access these keys.
+Best practices include ensuring that there are no single individuals with the capability to access or delete them, and having backups.
+Modern vault systems enable the enforcement of policies to ensure that access to keys is only available with verified roles, and deletion is managed according to established protocols.
 
 <div class="info">
 
-#### Relevant Risks for @@
+##### Signing key management helps address the following risks
 
 * [KEC2](#risk-kec-2)
+* [KEC10](#risk-kec-10)
 * [KEC11](#risk-kec-11)
 </div>
 
 #### Key rotation
 
-Key rotation and a proper process around it is key to protect one's infrastructure from a potential breach of credentials. When in doubt, keys should be rotated. This includes, but is not limited to:
+Key rotation following a proper process help protect infrastructure from a potential misuse of credentials.
+
+Best practise includes "When in doubt, rotate". Keys to rotate include, but are not limited to:
 
 * The Postgres database used by Web3Signer
 * The vault itself
@@ -1036,7 +983,7 @@ Key rotation and a proper process around it is key to protect one's infrastructu
 
 <div class="info">
 
-#### Relevant Risks for @@
+##### Key rotation helps address the following risks
 
 * [SLS8](#risk-sls-8)
 * [GIR6](#risk-gir-6)
@@ -1046,38 +993,18 @@ Key rotation and a proper process around it is key to protect one's infrastructu
 
 ### Access controls & access management
 
-Access Control covers at least 3 types of access
+Access Control covers physical access to devices and facilities, the ability to connect to servers through networks,
+and the ability to perform specific tasks, such as getting answers to requests.
 
-- Physical access to devices and facilities
-- The ability to connect to software through networks
-- Requiring defined authorization to perform any specific task, including getting answers to requests
-
-A core principle to follow in granting authorization is [**least privilege**](#def-least-privilege). This is usually achieved by using [role-based access control](#rbac), to grant users specific sets of access permissions as required, that are revoked or explicitly and deliberately renewed as often as possible. These enable specific tasks or responsibilities, with fine-grained roles defined throughout all processes of an organization.
-
-Each user should be assigned roles, and some are temporary. There should be a clear lifetime of a role, that is automatically enforced and can be extended when needed. On- and off-boarding should be simple, and every piece of the infrastructure should be secured from unauthenticated and unauthorized access.
-
-
-<div class="info">
-
-#### Relevant Risks for Access Control
-
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
-* [DOW16](#risk-dow-16)
-* [GIR1](#risk-gir-1)
-* [GIR7](#risk-gir-7)
-* [GIR22](#risk-gir-22)
-
-
-
-</div>
-
-
-When it comes to access control, there are three pillars that need to be considered:
+Three pillars of Access Control need to be considered:
 
 * Authentication: Ensure that no service accepts requests without some form of authentication.
 * Authorization: Clearly define who can read/write/update/delete resources. Ideally, this is not done on a per-user basis, but on a per-role basis.
-* Audit: Ensure that all access is logged so that you can alert on anomalies. Especially login failures should be logged.
+* Audit: Ensure that all access is logged so that you can alert on anomalies. This is particularly important for login failures.
+
+It is important that every piece of the infrastructure is secured from unauthenticated and unauthorized access.
+
+A core principle to follow in granting authorization is [**least privilege**](#def-least-privilege). This is usually achieved by using [role-based access control](#rbac).
 
 COSO Principles:
 1. Keep an inventory of information assets
@@ -1107,16 +1034,20 @@ Special considerations:
 * Creation and continuous analysis of Software Bill of Materials ([SBOM](https://www.cisa.gov/sbom)).
 * Use of Clients, roles and groups when using [AWS IAM](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html).
 * Have an internal virtual private network and only have well-defined endpoints be accessible from the web.
-* Uses of vault systems to manage credentials and encryption keys. Like AWS KMS.
 
 <div class="info">
 
-#### Relevant Risks for Access Control
+#### Access Control helps address the following risks
 
+* [SLS8](#risk-sls-8)
+* [SLS9](#risk-sls-9)
 * [DOW7](#risk-dow-7)
-* [KEC4](#risk-kec-4)
+* [DOW16](#risk-dow-16)
+* [GIR1](#risk-gir-1)
+* [GIR7](#risk-gir-7)
 * [GIR9](#risk-gir-9)
 * [GIR22](#risk-gir-22)
+* [KEC4](#risk-kec-4)
 
 #### External Controls For Access Management
 
@@ -1128,11 +1059,11 @@ Special considerations:
 
 ### Implement least privilege
 
-The core of <dfn id="def-least-privilege">Least Privilege</dfn> is that access is only granted to those who need it, and only for as long as it is relevant. This means that an individual user's privileges are likely to change over time - and in particular, most or all of them are rapidly revoked during any offboarding process.
+The core of <dfn id="def-least-privilege">Least Privilege</dfn> is that access is only granted to those who need it, and only for as long as it is relevant. This means that an individual user's privileges are likely to change over time, and in particular any offboarding process includes a rapid revocation of user's assigned roles.
 
 Almost all Least Privilege implementation is managed through role-based access control, where a set of roles are defined according to the tasks they need to perform.
 Access rights are then based on holding a particular role,
-with individual users assigned relevant roles that are revoked or deliberately renewed, to ensure that they can fulfil their designated tasks
+with individual users assigned relevant roles that are revoked or deliberately renewed on a timely basis, to ensure that they can fulfil their designated tasks
 without having authorizations they do not need.
 
 Main outline from the COSO principles:
@@ -1155,7 +1086,7 @@ Even when employing RBAC, there are ways to log into containers as users and acq
 
 <div class="info">
 
-#### Relevant Risks for Least Privilege
+#### Least Privilege helps address the following risks
 
 * [KEC11](#risk-kec-11)
 * [GIR1](#risk-gir-1)
@@ -1188,7 +1119,7 @@ Ensure that employees whose roles have changed do not have lingering credentials
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### @@ helps address the following risks
 
 * [SLS10](#risk-sls-10)
 * [DOW17](#risk-dow-17)
@@ -1205,7 +1136,7 @@ As well as controlling physical access where possible, it is best practice to en
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### @@ helps address the following risks
 
 * [SLS12](#risk-sls-12)
 </div>
@@ -1216,7 +1147,7 @@ Use password policies to ensure that access control mechanisms are sufficiently 
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### @@ helps address the following risks
 
 * [SLS13](#risk-sls-13)
 </div>
@@ -1240,40 +1171,56 @@ In the inadvertent case, relevant mitigations include
 
 To minimize negligently allowed access, it is important to ensure that access systems are effectively maintained and managed to ensure there is no good reason to allow an unauthorized person access. This can range from the design of onboarding systems to the effectiveness of internal management feedback systems for discovering unanticipated problems faced by operators.
 
-* Protect against environmental threats and utility failures
+Best practice is to ensure that physical access is managed by systems that can efficiently enable access to authorised parties (keycards, biometric scanners) and monitor actual access such as visual verification that the authorized party is the one entering.
 
-Physical devices are subject to physical changes, including environmental issues such as temperature extremes that can cause damage, or utility failures such as power or internet failure.
+It is important to log and audit access sufficiently frequently to detect problems - see also [Monitoring](@@).
 
-Mitigation strategies include the use of redundant infrastructure with failure detection and failover systems, from  backup node servers in different geographical locations to backup power supply e.g. through local batteries or power generation. The level of mitigation that is appropriate depends on the level of risk, and the costs of both failure and mitigating failure. These calculations mean economies of scale will enable larger-scale operations to be more robust than smaller ones, for a given price.
+### Protect Against Environmental Threats
 
-It is also important to ensure that facilities have appropriate protection from relevant environmental risks - whether fire, flooding, extremes of temperature or wind or even destructive physical attacks will depend in part on the specific location and nature of the facility.
+Physical devices are subject to physical changes, including environmental issues such as temperature extremes that can cause damage,
+and utility failures such as power or internet failure.
 
-* Maintain all equipment throughout a defined life-cycle.
+Mitigation strategies include the use of redundant infrastructure with failure detection and failover systems,
+from backup node servers in different geographical locations to backup power supply e.g. through local batteries or power generation.
+The level of mitigation that is appropriate depends on the level of risk, and the costs of both failure and mitigating failure.
+These calculations mean economies of scale will enable larger-scale operations to be more robust than smaller ones, for a given price.
+
+It is also important to ensure that facilities have appropriate protection from relevant environmental risks such as fire, flooding, or extreme wind,
+and destructive physical attacks. Appropriate mitigations will depend in part on the specific location and nature of the facility.
+
+<div class="info">
+
+#### Relevant External Controls for Environmental Threats
+
+* [ISO 27001](#iso-27001) Annex A 7
+The lifecycle of equipment, most particularly node servers and computers used to access and manage them, is a determinant of overall security.
+
+#### Environmental Threats helps address the following risks
+
+* SLS 14,15
+* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), 7-9
+</div>
+
+[Monitoring](#@@) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
+
+### Manage Equipment Life-cycle.
 
 The lifecycle of equipment, most particularly node servers and computers used to access and manage them, is a determinant of overall security.
 
 Best practices for lifecycle management include the ability to remotely pause, shut down, and wipe devices clean, although this needs to be considered in the context of the risk of malicious access to those capabilities.
 
-[Monitoring](#@@) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
-
-**References:**
-
-* ISO27001 Annex A 7
-
-**Examples for best practices:** //where do these fit?
-
-* Camera systems at doors.
-* Segregation of areas where people have access to.
-* Thorough destruction of storage media.
+[Monitoring](#sec-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Relevant External Controls for Equipment Life-cycle
 
-* [DOW2](#risk-dow-2)
-* [DOW4](#risk-dow-4)
-* [KEC6](#risk-kec-6)
-* [KEC8](#risk-kec-8)
+* [ISO 27001](#iso-27001) Annex A 7
+
+#### Equipment Life-cycle helps address the following risks
+
+* [DOW3](#risk-dow-3)
+* KEC 1,5,[KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
 </div>
 
 ### Development and Update Process
@@ -1297,7 +1244,7 @@ Ideally, metrics should be used to verify a high degree of testing culture. This
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Testing and code review helps address the following risks
 
 * [SLS4](#risk-sls-4)
 * [SLS5](#risk-sls-5)
@@ -1322,7 +1269,7 @@ Validator software is open source, but in order to ensure that no protocol error
 
 <div class="info">
 
-#### Relevant Risks for @@
+##### Not customising third-party software helps address the following risks
 
 * [SLS7](#risk-sls-7)
 * [DOW13](#risk-dow-13)
@@ -1336,7 +1283,7 @@ Unchecked inputs are a major cause for overflow attacks and brute force. Ideally
 
 <div class="info">
 
-#### Relevant Risks for @@
+##### Input checking helps address the following risks
 
 * [GIR8](#risk-gir-8)
 </div>
@@ -1347,7 +1294,7 @@ This minimizes a potential blast radius. It is important to run any change (even
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Test and staging environments help address the following risks
 
 * [GIR11](#risk-gir-11)
 * [DOW19](#risk-dow-19)
@@ -1360,7 +1307,7 @@ Follow their best practice recommendations. Their mechanisms are more than battl
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Containerized environments help address the following risks
 
 * [GIR23](#risk-gir-23)
 </div>
@@ -1371,7 +1318,7 @@ Human error is a real threat, and every process should at least follow an automa
 
 <div class="info">
 
-#### Relevant Risks for @@
+##### Automation helps address the following risks
 
 * [GIR16](#risk-gir-16)
 * [GIR18](#risk-gir-18)
@@ -1390,7 +1337,7 @@ Analyzing images for potential CVEs is simple nowadays (use e.g. [Trivy](https:/
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### @@ helps address the following risks
 
 * [GIR17](#risk-gir-17)
 </div>
@@ -1496,7 +1443,7 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 <div class="info">
 
-#### Relevant DUCK risks:
+#### Monitoring can help address the following risks:
 
 * [SLS8](#risk-sls-8)
 * [SLS16](#risk-sls-16)
@@ -1530,12 +1477,149 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 * Safety training
 * Central & accessible documentation of critical knowledge
 * Having a communication toolkit and process prepared
-* Having a incident response policy / strategy
 
+### Incident Response
+
+Incident Response Plans document procedures for managing security incidents and events,
+as guidance for employees or incident responders who believe they have discovered, or are responding to, a security incident.
+A well-documented Incident Response Plan helps employees in a high-stress situation by providing a reminder of all important actions and considerations.
+To be useful, it is necessary that relevant employees know the plans exist, and how to find them.
+
+
+Best practices for Incident response plans include
+
+- Well-defined decision-making responsibilities.
+- Where possible, automating responses
+- Identify relevant participants in advance. Redundancy against specific failures such as a key employee being unavailable is important.
+- Clear information about how to investigate and triage incidents,
+  including when to notify and involve particular participants and how to escalate issues to the most appropriate person or team.
+- Defined procedures to follow, for specific sets of circumstances
+- Data collection and distribution to enable effective response, external communication, and "Post Mortem" analysis
+- Well-defined communication strategies, for both internal and external communications.
+
+#### Identify and respond to security incidents
+
+Main outline from the COSO principles:
+
+* Assigns Roles and Responsibilities in case of a security event.
+* Contains Security Incidents — Ideally incidents can be contained within a short period of time.
+* Communication protocols are in place to inform affected parties.
+* Identified vulnerabilities need to be identified.
+* Evaluate the identification and response on a regular basis.
+
+**References:**
+
+* CC 7.4 of the SOC 2 Trust services criteria
+
+**Examples for best practices:**
+
+* There are several incident response templates available.
+  - One example is [NIST SP 800-61](https://csrc.nist.gov/pubs/sp/800/61/r2/final).
+  - Another can be found at:
+  [https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true](https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true)
+
+<div class="info">
+
+##### Identifying and responding to security incidents helps address the following risks
+
+* [RER1](#risk-rer-1)
+* [RER3](#risk-rer-3)
+</div>
+
+#### Analyze security events and learn from them
+
+Main outline from the COSO principles:
+
+* Have a proper incident response plan in place, and review it periodically.
+* Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
+* Develops and Implements Procedures to Analyze Security Incidents.
+
+
+<div class="info">
+
+##### Analyzing security events helps address the following risks
+
+* [DOW10](#risk-dow-10)
+* [GIR6](#risk-gir-6)
+* [GIR7](#risk-gir-7)
+</div>
+
+#### Disaster Recovery Plan
+
+A Disaster Recovery Plan is an Incident Response Plan that gives guidance on recovering one or more information systems at an alternate facility,
+in response to a major hardware or software failure including the partial or complete destruction of facilities.
+
+Best practices include maintaining copies of production environments to enable fast restoration.
+
+<div class="info">
+Sample Disaster Recovery Plan templates:
+
+* [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
+* [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
+
+COSO principles:
+
+* Quick restoration of affected environments.
+* Whenever possible, determine the root cause.
+* Implement necessary changes to prevent similar disasters.
+
+##### External Controls for Disaster Recovery
+
+* [SOC2](#soc2) CC 7.5
+
+##### Disaster Recovery Plans help address the following risks:
+
+* [GIR19](#risk-gir-19)
+
+</div>
+
+#### Pre-Mortem
+
+Regular simulations of implementing an Incident Response Plan ensure that relevant personnel are familiar with them and can follow them when necessary.
+"Pre-Mortems", simulating or "war-gaming" a specific failure, not only ensures people are familiar with the procedures to follow for specific risks,
+and that those procedures are tested to give some idea of whether they are appropriate and adequate,
+but often motivate people to think about other risks, and whether appropriate procedures and mitigations are in place.
+Example topics for a Pre-Mortem could include
+
+* Unauthorized users gain access to the servers
+* A complex security compromise, where details are not immediately available
+* A specific scenario results in downtime
+
+Articles such as [Pre-mortem](https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a)
+offer further information on how to plan and implement simulations and how to derive the maximum benefit from them.
+
+#### Post-Mortem
+
+If any incident occurs necessitating an incident response, it is valuable to analyze the response, to identify possible improvements to existing plans,
+as well as new unit tests and similar procedures that will help mitigate or prevent future incidents.
+
+##### External Controls for Incident Post-Mortems
+
+* [SOC2](#soc2) CC 7.3
+
+##### Incident Post-Mortems help address the following risks:
+
+#### Incident Communication
+
+As well as direct financial losses, security incidents and disaster can also result in significant reputational damage.
+Appropriate communication with stakeholders can significantly mitigate this risk.
+
+It is important to note that inappropriate communication during an incident can increase the damage. External communication needs to balance
+stakeholders' desire for information that provides them security or the ability to respond in a well-informed manner against
+the importance of providing information that is fairly clear and certain, and will not later be contradicted.
+
+Best practice for external communication about an incident includes providing a detailed post-incident summary.
 
 ## Controls Catalog
 
-This section contains controls material to Node Operator risks
+This section contains controls that are material to Node Operator risks.
+Some of these control criteria correspond to similar controls from at least three common frameworks.
+
+* [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+* [ISO 27001](#iso-27001)
+* [SOC2](#soc2)
+
+Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
 
 ### Controls for Access Control
 
@@ -1583,16 +1667,16 @@ Best practice for this review includes:
 
 #### Protect Data in Transit
 
-All data in transit MUST be encrypted, and SHOULD use the most direct transition available
+All data in transit MUST be encrypted, and SHOULD use the most direct transmission available.
 
 This covers all services that communicate data, such as Databases, Web servers, Load balancers, Authentication systems, CI/CD pipeline tools, etc.
 Best practices include ensuring that the latest version of TLS is being used, with secure algorithms.
 
 ##### Relevant Risks
 
-* SLS 11-13
-* DOW 18
-* GIR 10
+* [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13)
+* [DOW18](#risk-dow-18)
+* [GIR10](#risk-gir-10)
 * KEC 1-11
 
 ##### References
@@ -1636,6 +1720,39 @@ and to alert if validators are operating with excess latency. Tools such as [Zab
 
 </section>
 
+### Controls for Environmental Threat Management
+
+#### Manage Environmental Threats
+
+Node Operators SHOULD have processes in place to manage environmental threats
+
+This includes monitoring for such threats and physically hardened facilities (e.g. fire- and flood-resistant server rooms),
+and physically decentralized infrastructure. It can also incorporate the use of DVT or related approaches to managing physical decentralization.
+
+##### Relevant External Controls for Environmental Threats
+
+* [ISO 27001](#iso-27001) Annex A 7
+
+##### Environmental Threats helps address the following risks
+
+* SLS 14,15
+* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), 7-9
+
+#### Manage Equipment Lifecycles
+
+Node Operators SHOULD have processes in place to manage equipment lifecycles
+
+This includes monitoring performance and performing preventive maintenance, upgrades, or replacing equipment as appropriate,
+as well as processes that ensure equipment is correctly retired including removing data and any hardware-based authorization.
+
+##### Relevant External Controls for Equipment Lifecycles
+
+* [ISO 27001](#iso-27001) Annex A 7
+
+##### Managing Equipment Lifecycles helps address the following risks
+
+@@@@
+
 ## Summary of external controls
 
 The following external controls correspond to controls defined in this specification.
@@ -1671,9 +1788,6 @@ The following external controls correspond to controls defined in this specifica
 <td>CC 7.3</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
-<td>CC 7.5</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
 <td>CC 8.1</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
@@ -1700,9 +1814,6 @@ The following external controls correspond to controls defined in this specifica
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 5.17</td></tr>
 
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 7</td></tr>
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 8.2</td></tr>
@@ -1805,7 +1916,7 @@ Main outline from the COSO principles:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Assessment of activities' relevance helps address the following risks
 
 * [GIR5](#risk-gir-5)
 * [DOW18](#risk-dow-18)
@@ -1846,7 +1957,7 @@ Main outline from the COSO principles:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Internal risk assessment helps address the following risks
 
 * [GIR24](#risk-gir-24)
 </div>
@@ -1873,7 +1984,7 @@ Main outline from the COSO principles:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Managing configuration helps address the following risks
 
 * [GIR4](#risk-gir-4)
 * [KEC8](#risk-kec-8)
@@ -1881,85 +1992,6 @@ Main outline from the COSO principles:
 
 
 
-### Analyze security events and learn from them
-
-Main outline from the COSO principles:
-
-* Have a proper incident response plan in place, and review it periodically.
-* Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
-* Develops and Implements Procedures to Analyze Security Incidents.
-
-**References:**
-
-* CC 7.3 of the SOC 2 Trust services criteria.
-
-**Examples for best practices:**
-
-* Responses can and should also be automated. Ideally, high risk alerts cause the respective instances to be nuked.
-* Always have post-mortems, ideally resulting in more unit- and integration tests of the organization.
-
-<div class="info">
-
-#### Relevant Risks for @@
-
-* [DOW10](#risk-dow-10)
-* [GIR6](#risk-gir-6)
-* [GIR7](#risk-gir-7)
-</div>
-
-### Identify and respond to security incidents
-
-Main outline from the COSO principles:
-
-* Assigns Roles and Responsibilities in case of a security event.
-* Contains Security Incidents — Ideally incidents can be contained within a short period of time.
-* Communication protocols are in place to inform affected parties.
-* Identified vulnerabilities need to be identified.
-* Evaluate the identification and response on a regular basis.
-
-**References:**
-
-* CC 7.4 of the SOC 2 Trust services criteria
-
-**Examples for best practices:**
-
-* There are several incident response templates available. One example is [NIST SP 800-61](https://csrc.nist.gov/pubs/sp/800/61/r2/final).
-
-<div class="info">
-
-#### Relevant Risks for @@
-
-* [RER1](#risk-rer-1)
-* [RER3](#risk-rer-3)
-</div>
-
-### Disaster recovery
-
-This is by far the hardest to implement and to get right, but it is useful to not "train on an incident".
-
-Main outline from the COSO principles:
-
-* Quick restoration of affected enviroments.
-* When possible, determine the root cause.
-* Implement necessary changes to prevent similar disasters.
-* Implements Incident-Recovery Plan Testing periodically.
-
-**References:**
-
-* CC 7.5 of the SOC 2 Trust Services Criteria
-
-**Examples for best practices:**
-
-* Use Minikube or docker-compose to create a local copy of a production environment to perform incident recovery plan testing.
-* To restore affected environments and do all the automated events, one should run
-* Use Chaos monkey to put your environment through the ultimate test.
-
-<div class="info">
-
-**Links to Risks**
-
-* [GIR19](#risk-gir-19)
-</div>
 
 ### Proper change management
 
@@ -2014,7 +2046,7 @@ Main outline from the COSO principles:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Risk mitigation helps address the following risks
 
 * [DOW6](#risk-dow-6)
 </div>
@@ -2034,7 +2066,7 @@ Main outline from the COSO principles:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Counterparty management helps address the following risks
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -2063,7 +2095,7 @@ Main outline from the COSO principles:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Input analysis helps address the following risks
 
 * [GIR8](#risk-gir-8)
 </div>
@@ -2087,7 +2119,7 @@ Main outline from the COSO principles:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Output analysis helps address the following risks
 
 * [GIR16](#risk-gir-16)
 </div>
@@ -2098,7 +2130,7 @@ Main outline from the COSO principles:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### @@ helps address the following risks
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -2124,7 +2156,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Identity management helps address the following risks
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -2142,11 +2174,11 @@ Main outline of the Information security controls reference:
 
 **Examples for best practices:**
 
-* Use of an [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) is preferred, and from there, all other secrets should be released to authorized users through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication) and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates).
+* Use of a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) is preferred, and from there, all other secrets should be released to authorized users through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication) and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates).
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Access control management helps address the following risks
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -2165,11 +2197,11 @@ Main outline of the Information security controls reference:
 
 **Examples for best practices:**
 
-* All depencencies should be checked for latest [CVE entries.](https://cve.mitre.org)
+* All dependencies should be checked for latest [CVE entries.](https://cve.mitre.org)
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Malware protection helps address the following risks
 
 * [GIR15](#risk-gir-15)
 * [GIR17](#risk-gir-17)
@@ -2197,7 +2229,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Configuration Management helps address the following risks
 
 * [GIR3](#risk-gir-3)
 * [KEC8](#risk-kec-8)
@@ -2220,7 +2252,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Information Lifecycle management helps address the following risks
 
 * [SLS10](#risk-sls-10)
 * [DOW17](#risk-dow-17)
@@ -2243,7 +2275,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Access control management helps address the following risks
 
 * [KEC11](#risk-kec-11)
 * [GIR6](#risk-gir-6)
@@ -2268,7 +2300,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Network management helps address the following risks
 
 * [DOW10](#risk-dow-10)
 </div>
@@ -2290,7 +2322,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Network segmentation helps address the following risks
 
 * [DOW10](#risk-dow-10)
 * [GIR9](#risk-gir-9)
@@ -2316,7 +2348,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Managed seecurity in development helps address the following risks
 
 * [GIR8](#risk-gir-8)
 * [DOW19](#risk-dow-19)
@@ -2343,7 +2375,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Testing helps address the following risks
 
 * [GIR20](#risk-gir-20)
 * [GIR21](#risk-gir-21)
@@ -2368,7 +2400,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Counterparty management helps address the following risks
 
 * [GIR24](#risk-gir-24)
 </div>
@@ -2391,7 +2423,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### testing environments help address the following risks
 
 * [SLS6](#risk-sls-6)
 * [SLS7](#risk-sls-7)
@@ -2416,7 +2448,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Change management helps address the following risks
 
 * [DOW2](#risk-dow-2)
 * [DOW11](#risk-dow-11)
@@ -2576,65 +2608,6 @@ The **Stakeholder Register** is a key management document, listing all stakehold
 You can download the spreadsheet here: [https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true)
 
 
-### Incident Communication Protocols
-
-Incidents can lead to a massive impact on Node Operators and their stakeholders. They can result in far more than only direct financial losses but also in irreversible reputational and collateral damages. In order to minimize incident impacts and ensure effective analysis and communications, the standardized communication protocols in this section give a reference for relevant procedures.&#x20;
-
-The **Incident Communication Protocols** equip Node Operators with guidelines around predefined procedures that cover both internal and external procedures.&#x20;
-
-#### Internal Procedures
-
-##### Pre-Incident
-
-1. Define relevant internal teams and stakeholders for specific incidents in the respective [Incident Response Plan](@@)
-2. Define dedicated channels of communication in the case of an incident
-
-##### During Incident
-
-1. Create an incident async communication channel (Slack, Telegram, or similar).
-2. Initiate defined procedures in respective Incident Response Plan.
-3. Investigate the specific incident if the root cause is not clear:
-
-* Escalate to relevant team (based on the specific risk).
-* Collect generic data about the incident from the detection/monitoring system or the infrastructure.
-* Have “Involved teams” in Incident Response Plan depending on the triaged risk and invite the relevant stakeholders in the order defined.
-
-4. Collect data and create documentation for:
-
-* Executive summary and communication procedures
-* Technical details and sync of team members as the incident progresses
-* Optional: Incident response platform can be used to do that in a more efficient manner&#x20;
-
-5. Create a communication matrix what should or should not be communicated and the communication of information to departments inside the organization.
-
-##### Post-Incident
-
-1. Create internal post-incident summaries.
-2. Create summaries for executives and communications with next steps.
-3. Apply new monitoring and detection to limit future risk exposures.
-4. Perform extensive post-mortem analysis (see [post-mortem-analysis.md](templates-and-toolkits/post-mortem-analysis.md "mention")).
-
-#### External Procedures
-
-##### Pre-Incident
-
-* Define relevant external stakeholders for specific incidents in the respective Incident Response Plan
-* Define dedicated channels of communication in the case of an incident
-
-##### During Incident
-
-1. Involve relevant teams of legal, privacy, policy, and communication departments (if applicable).
-2. Update executive and internal teams before any external communication.
-3. Ensure to communicate only when things are certain and clear 100%.
-4. Handle the sharing of information based on the respective incident response plan.
-
-
-**NOTE:** Communicating as an incident is ongoing can result in further damage, only communicating about the root cause when it is identified and potentially resolved on a case-by-case basis.
-
-
-##### Post-Incident
-
-1. Decide on information and level of detail of the post-mortem analysis (see [post-mortem-analysis.md](templates-and-toolkits/post-mortem-analysis.md "mention")) to be shared with the different stakeholders across the communication channels.
 
 </section>
 
@@ -2642,35 +2615,41 @@ The **Incident Communication Protocols** equip Node Operators with guidelines ar
 
 ## References
 
-#### Specifications
 
-### [CSP]
+##### [CSP]
 
-"Content Security Policy", Mozilla Corporation. https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+"Content Security Policy", Mozilla Corporation. [https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 
-### [CORS]
+##### [CORS]
 
-"Cross-Origin Resource Sharing (CORS)", Mozilla Corporation. https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+"Cross-Origin Resource Sharing (CORS)", Mozilla Corporation. [https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
-### [ISO 27001]
+##### [CVE]
 
-ISO IEC 27001:2022 "Information security, cybersecurity and privacy protection — Information security management systems — Requirements" 3rd Ed. ISO, 2022. https://www.iso.org/standard/27001
+"CVE", Mitre, 1995-. [https://www.cve.org](https://www.cve.org)
 
-### [SOC2]
+##### [ISO 27001]
 
-"2017 Trust Services Criteria for Security, Availability, Processing Integrity, Confidentiality, and Privacy (With Revised Points of Focus — 2022)" AICPA 2022. https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022 (requires AICPA membership)
+ISO IEC 27001:2022 "Information security, cybersecurity and privacy protection — Information security management systems — Requirements" 3rd Ed. ISO, 2022. [https://www.iso.org/standard/27001](https://www.iso.org/standard/27001)
+
+##### [NIST-800-115]
+
+"Technical Guide to Information Security Testing and Assessment", Karen Scarfone, Murugiah Souppaya, Amanda Cody, and Angela Orebaugh. NIST 2008. [https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
+
+##### [Premortem]
+
+##### [SOC2]
+
+"2017 Trust Services Criteria for Security, Availability, Processing Integrity, Confidentiality, and Privacy (With Revised Points of Focus — 2022)" AICPA 2022. [https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022](https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022) (requires AICPA membership)
 
 More:
 
-- [CVE entries.](https://cve.mitre.org)
 - [NIST SP 800-34 Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 - [NIST SP 800-61](https://csrc.nist.gov/pubs/sp/800/61/r2/final)
-- [NIST SP 800-115](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/): [OWASP A01:2022: Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/), [OWASP A10:2021: Server Side Request Forgery](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_(SSRF%29/)
 - [RFC 1918](https://www.rfc-editor.org/rfc/rfc1918)
 - [SBOM](https://www.cisa.gov/sbom)
 - [@Shreyashere Blog post: Pre-mortems](https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a)
-- , [AICPA - material control criteria](https://us.aicpa.org/content/dam/aicpa/research/standards/auditattest/downloadabledocuments/au-c-00320.pdf)
 
 ### Tools:
 
