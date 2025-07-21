@@ -651,59 +651,7 @@ Risk related to running specific services.
 
 ## Risk Management Procedures
 
-Processes and actions that should be defined to address risks and that cover the concrete procedures in case of related incidents. &#x20;
-
-### Risk Monitoring
-
-Leverage monitoring dashboards or systems to identify the risk and gain relevant data.
-
-#### Beacon Chain Monitoring
-
-* **Slashing Events:** Monitor the beacon chain for any slashing events.
-* **Anti-Slashing Database:** Regularly poll the local node to ensure the anti-slashing database is enabled and functioning correctly.
-* **Impact of Slashing:** Assess and monitor the broader impact of any slashing incidents on the network.
-* **Relay List Monitoring:** Monitor the relay list for availability metrics and load balance capabilities between various relayers for downtime conditions.
-* **Chain Reorganizations:** Track events and causes of chain reorganizations&#x20;
-* **Non-finalized Events:** Monitor events preventing the consensus layer from confirming finality
-* **Special Software Conditions:** Monitor major software upgrades requiring specific durations and   events that will conclude the upgrade
-
-#### Node and System Health
-
-* **Node Health Metrics:** Monitor key metrics like CPU, memory, restarts, and uptime of nodes.
-* **System Configuration:** Monitor system configuration settings in real-time and continuously.
-* **Key Usages:** Track the usage of critical system keys.
-* **App-specific:** App specific metrics  (e.g. metrics for Dirk & Vouch)
-
-#### Security and Compliance
-
-* **Access Control and Logs:** Keep an eye on access controls to nodes and abnormal configuration changes.
-* **Phishing and Endpoint Protection:** Monitor for phishing attacks and ensure the security of endpoint protection systems, both for employee devices and infrastructure nodes.
-* **Bastion Nodes:** If applicable, monitor bastion or connection nodes.
-* **Suspicious Internal Interactions:** Watch for any suspicious internal interactions with infrastructure, cloud security platforms, or network monitoring solutions.
-* **Access Patterns and Configurations:** Check for unusual access patterns and the configurations of VPNs and 2FA systems.
-* **Relay Compliance:** Monitor relay compliance aspects and availability metrics.
-
-#### Upgrade and Code Management
-
-* **Upgrade Process:** Monitor the upgrade process, including client code source, notification channels, bug reports, and community disclosures.
-* **Customized Code in Testnet:** Monitor any new custom code deployed in the testnet.
-
-#### Hardware and Network
-
-* **Baremetal and Network Equipment Health:** Monitor the health of bare metals and networking equipment, including internet and peering connectivity.
-* **Predictive Models:** Use predictive models for future malfunctions and equipment replacement needs.
-* **Capacity and Resource Usage:** Track capacity usage, processing memory, and CPU.
-* **Peering Connectivity:** Monitor both internal and external network peering connectivity.
-* **Firewall Configuration and Metrics:** Keep an eye on firewall configuration changes or unexpected increases in drop metrics.
-
-#### Cloud and Infrastructure
-
-* **Cloud Monitoring Solutions:** Utilize cloud monitoring solutions to keep track of uptime and internal issues.
-* **Cloud Service Notifications:** Stay informed about cloud service announcements regarding expected downtime and maintenance.
-
-<div class="info">
-Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md "mention") for tool examples to perform the monitoring of some of the metrics mentioned above.
-</div>
+Processes and actions that should be defined to address risks and that cover the concrete procedures in case of related incidents.
 
 ### Incident Response Plan
 
@@ -1104,14 +1052,14 @@ Access Control covers at least 3 types of access
 - The ability to connect to software through networks
 - Requiring defined authorization to perform any specific task, including getting answers to requests
 
-A core principle to follow in granting authorization is [least privilege](#least-privilege). This is usually achieved by using [role-based access control](#rbac), to grant users specific sets of access permissions as required, that are revoked or explicitly and deliberately renewed as often as possible. These enable specific tasks or responsibilities, with fine-grained roles defined throughout all processes of an organization.
+A core principle to follow in granting authorization is [**least privilege**](#def-least-privilege). This is usually achieved by using [role-based access control](#rbac), to grant users specific sets of access permissions as required, that are revoked or explicitly and deliberately renewed as often as possible. These enable specific tasks or responsibilities, with fine-grained roles defined throughout all processes of an organization.
 
-Each user should be assigned roles, and some are temporary. There should be a clear lifetime of a role, that is automatically enforced and can be extended when needed.  On- and off-boarding should be simple, and every piece of the infrastructure should be secured from unauthenticated and unauthorized access.
+Each user should be assigned roles, and some are temporary. There should be a clear lifetime of a role, that is automatically enforced and can be extended when needed. On- and off-boarding should be simple, and every piece of the infrastructure should be secured from unauthenticated and unauthorized access.
 
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Relevant Risks for Access Control
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -1119,6 +1067,9 @@ Each user should be assigned roles, and some are temporary. There should be a cl
 * [GIR1](#risk-gir-1)
 * [GIR7](#risk-gir-7)
 * [GIR22](#risk-gir-22)
+
+
+
 </div>
 
 
@@ -1160,21 +1111,30 @@ Special considerations:
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Relevant Risks for Access Control
 
 * [DOW7](#risk-dow-7)
 * [KEC4](#risk-kec-4)
 * [GIR9](#risk-gir-9)
 * [GIR22](#risk-gir-22)
+
+#### External Controls For Access Management
+
+* [OWASP A01:2022: Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
+* [ISO27001](#iso27001) Annex A 5.15
+* [SOC2](#soc2) Trust services Criteria CC 6.1
+
 </div>
 
 ### Implement least privilege
 
-The core of <dfn>Least Privilege</dfn> is that access is only granted to those who need it, and only for as long as it is relevant. This means that an individual user's privileges are likely to change over time - and in particular, most or all of them are rapidly revoked during any offboarding process.
+The core of <dfn id="def-least-privilege">Least Privilege</dfn> is that access is only granted to those who need it, and only for as long as it is relevant. This means that an individual user's privileges are likely to change over time - and in particular, most or all of them are rapidly revoked during any offboarding process.
 
-Almost all Least Privilege implementation is managed through role-based access control, where a set of roles are defined that are disctinguished by the different tasks they need to perform. Access rights are then based on holding a particular role, with individual users assigned relevant roles that are revoked or deliberately renewed to maintain the
+Almost all Least Privilege implementation is managed through role-based access control, where a set of roles are defined according to the tasks they need to perform.
+Access rights are then based on holding a particular role,
+with individual users assigned relevant roles that are revoked or deliberately renewed, to ensure that they can fulfil their designated tasks
+without having authorizations they do not need.
 
-//the following is mostly relevant to RBAC not LP
 Main outline from the COSO principles:
 
 1. Creates or Modifies Access — Processes are in place to create or modify access.
@@ -1182,45 +1142,29 @@ Main outline from the COSO principles:
 3. Use Role-based access control (RBAC)
 4. Review of roles and permissions on a regular basis.
 
-**Examples for best practices:**
+**Example best practices:**
 
-* Credentials rotation needs to be in place to ensure that there is no interruption in the service when it is done.
+* Disable privilege escalation mechanisms ([like executing as root user inside a Docker container](https://docs.docker.com/engine/reference/commandline/container_exec/))
+* [Impersonation mechanisms need to be audited (if it is enabled).](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc)* Credentials rotation needs to be in place to ensure that there is no interruption in the service when it is done.
 * Off-boarding of a terminated employee should not take more than an hour. Ideally, one would only disable them inside a single-sign-on service such as [Cognito](https://aws.amazon.com/cognito/) or [Keycloak](https://www.keycloak.org).
 * Tools need to be in place to analyze the permissions of certain users/programs and determine if these are too wide.
 * Use of roles on the API endpoint level to determine the correct authorization.
-
-<div class="info">
-
-#### Relevant Risks for @@
-
-* [KEC11](#risk-kec-11)
-* [GIR1](#risk-gir-1)
-* [KEC8](#risk-kec-8)
-* [GIR25](#risk-gir-25)
-</div>
-
-
-#### Examples for best practices:
-
 * [Webserver authentication configuration of Microsoft IIS servers.](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/) Observe how different authentication methods are possible to be set there. `anonymousAuthentication` would allow anyone to access as `anonymous`, which is rarely the intention except for the starting page. `basicAuthentication` is better than nothing, but makes user management not scalable. `clientCertificateMappingAuthentication` and `digestAuthentication` are the better ways to also implement RBAC.
-
-<div class="info">
-
-#### Relevant Risks for @@
-
-* [GIR1](#risk-gir-1)
-* [GIR5](#risk-gir-5)
-* [GIR7](#risk-gir-7)
-* [GIR9](#risk-gir-9)
-</div>
-
 
 Even when employing RBAC, there are ways to log into containers as users and acquire larger privileges from there. Take `docker exec -uroot` as an example. These mechanisms can be disabled on the orchestration level (and should be).
 
 <div class="info">
 
-#### Relevant Risks for @@
+#### Relevant Risks for Least Privilege
 
+* [KEC11](#risk-kec-11)
+* [GIR1](#risk-gir-1)
+* [KEC8](#risk-kec-8)
+* [GIR25](#risk-gir-25)
+* [GIR1](#risk-gir-1)
+* [GIR5](#risk-gir-5)
+* [GIR7](#risk-gir-7)
+* [GIR9](#risk-gir-9)
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
 * [DOW16](#risk-dow-16)
@@ -1228,7 +1172,15 @@ Even when employing RBAC, there are ways to log into containers as users and acq
 * [GIR22](#risk-gir-22)
 * [KEC8](#risk-kec-8)
 * [GIR25](#risk-gir-25)
+
+#### External Controls for Least Privilege
+
+* [OWASP A01:2022: Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
+* [SOC2](#soc2) Trust services Criteria CC 6.3
+* [ISO 27001](#iso-27001) Annex A 8.2
+
 </div>
+
 
 ### Strict employment termination process in place
 
@@ -1245,9 +1197,9 @@ Ensure that employees whose roles have changed do not have lingering credentials
 
 ### Network access to nodes
 
-Following the principle of defense in depth and least privilege, it is important that nodes are not directly accessible without permission, and that they do not leak information to the Web that can help malicious parties gain unauthorized access.
+Following the principles of defense in depth and [**least privilege**](#def-least-privilege), it is important that nodes are not directly accessible without permission, and that they do not leak information to the Web that can help malicious parties gain unauthorized access.
 
-Any web access should be proxied through a load-balancer that has a firewall, and the need for remote access has to be clearly justified.
+Best practice includes restricting Web Access through a load-balancer that has a firewall, and ensuring any remote access capability is clearly justified.
 
 As well as controlling physical access where possible, it is best practice to ensure that nodes are only responsive through restricted access networks. Further, it is important to ensure the hardware running nodes does not have extraneous software (that can increase the risk of monitoring), does not allow generic probing mechanisms such as open port scans that can help malicious parties learn the topology of target systems,   
 
@@ -1269,19 +1221,22 @@ Use password policies to ensure that access control mechanisms are sufficiently 
 * [SLS13](#risk-sls-13)
 </div>
 
-### Prevent physical access to non-authorized persons
+### Prevent Unauthorized Physical Access
 
 This covers all physical devices that can access the Node, as well as all areas in which such devices are kept, whether "on-premises", distributed, hosted by a third party, or remote mobile devices such as laptops.
 
 * Manage and monitor entry to physical areas and physical access to assets.
 
-Best practice for managing physical access includes ensuring that authorization is granted as necessary, following the principles of [Least Privilege], meaning that some devices are physically segregated in areas where access is determined according to their function. Note that this covers the use of devices authorized to access the networks nodes operate on, and is particularly important for devices authorized to access management and analytical functions of nodes.
+Best practice for managing physical access includes ensuring that authorization is granted as necessary, following the principles of [Least Privilege](#def-least-privilege), meaning that some devices are physically segregated in areas where access is determined according to their function. Note that this covers the use of devices authorized to access the networks nodes operate on, and is particularly important for devices authorized to access management and analytical functions of nodes.
 
 Ideally all physical access to premises and facilities is monitored, particularly to deter, and determine whether the facility is subject to, <dfn>piggybacking</dfn>, where an unauthorized entrant is allowed in by someone who has a valid authorization for themselves. However, in the context of remote operators' access through a computer this is particularly challenging in practice.
 
 Piggybacking may occur inadvertently, through politely holding a door for someone without checking that they have current valid authorization to enter, negligently by allowing someone to enter for a legitimate purpose despite that person not having a valid authorization, or maliciously allowing someone to enter knowing that their purpose is nefarious.
 
-In the inadvertent case, relevant mitigations are to ensure all those with authorization understand the necessity to enforce phyiscal access control, and to provide simple and effective ways to check authorization, and to ensure that remote access devices as far as possible are dedicated to the defined purposes rather than authorizing on general-purpose laptops that can be subjected to attacks when being used for a different task such as general email, or playing games.
+In the inadvertent case, relevant mitigations include
+- ensuring that all those with authorization understand the necessity to enforce physical access control,
+- providing simple and effective ways to check authorization,
+- ensuring that remote access devices as far as possible are dedicated to the defined purposes (rather than allowing the use of general-purpose laptops that could be attacked when being used for a different task such as general email, or playing games).
 
 To minimize negligently allowed access, it is important to ensure that access systems are effectively maintained and managed to ensure there is no good reason to allow an unauthorized person access. This can range from the design of onboarding systems to the effectiveness of internal management feedback systems for discovering unanticipated problems faced by operators.
 
@@ -1290,6 +1245,8 @@ Best practice is to ensure that physical access is managed by systems that can e
 It is important to log and audit access sufficiently frequently to detect problems - see also [Monitoring](@@).
 
 ### Protect Against Environmental Threats
+
+* Protect against environmental threats and utility failures
 
 Physical devices are subject to physical changes, including environmental issues such as temperature extremes that can cause damage,
 and utility failures such as power or internet failure.
@@ -1307,6 +1264,7 @@ and destructive physical attacks. Appropriate mitigations will depend in part on
 #### Relevant External Controls for Environmental Threats
 
 * [ISO 27001](#iso-27001) Annex A 7
+The lifecycle of equipment, most particularly node servers and computers used to access and manage them, is a determinant of overall security.
 
 #### Relevant Risks for Environmental Threats
 
@@ -1314,6 +1272,7 @@ and destructive physical attacks. Appropriate mitigations will depend in part on
 * [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), 7-9
 </div>
 
+[Monitoring](#@@) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
 
 ### Manage Equipment Life-cycle.
 
@@ -1456,16 +1415,29 @@ Analyzing images for potential CVEs is simple nowadays (use e.g. [Trivy](https:/
 
 ### Monitoring and Alerting
 
-Leverage monitoring dashboards or systems to identify risks and gain relevant data.
+Monitoring dashboards are an important tool to identify risks and gain relevant data.
+This is one reason that a requirement for monitoring is present in almost all compliance and security frameworks.
 
-Monitoring is present in almost all compliance and security frameworks.
+It is crucial to monitor not only high level business functions but all containers.
+In particular, proper log collection makes it possible to dynamically verify low-level requirements,
+e.g. a slashing database is actually being used, and used by the right signer.
 
-It is crucial that not only high level business functions are monitored, but also correct functionality of all containers. In particular, proper log collection allows to dynamically verify that e.g. a slashing database ist actually being used, and used by the right signer.
+Likewise, there needs to be useful and targeted alerting system based on the monitoring system.
+It is important to learn that a potential problem has been identified as soon as possible, and act on it.
+However, a system that overloads its watchers with alerts is likely to lead to <dfn>alert fatigue</dfn>,
+where the alerts are ignored in practice because too often they are not identifying a real problem.
+
+Alert systems can in turn drive automated emergency responses, ranging from capture of increased levels of detail,
+through requesting additional authorization beyond the normal requirements, to full system shutdowns.
+Again, there are important trade-offs between ensuring a highly responsive system, and one that is robust in the face of real-world variability.
+For example, a system that can automatically suspend multisig transactions unless they are authorized within a short time is not always appropriate,
+because it can interfere with normal operations over a high-latency network or where a number of individuals are expected to coordinate extensively,
+taking a significant amount of time, before authorizing a particular action.
 
 Main outline from the COSO principles:
 
 * Implements Detection Policies, Procedures, and Tools
-* Design and improve on Detection Measures — Ideally capture unauthorized access, suspicios traffic, etc.
+* Design and improve on Detection Measures — Ideally capture unauthorized access, suspicious traffic, etc.
 * Implement filters to not even let suspicious requests contact the back-end.
 * Check frequently if detection tools are working correctly.
 * Have one or more centralized dashboards to aggregate the data and present it in a digestible way to a human observer.
@@ -1477,24 +1449,24 @@ Main outline from the COSO principles:
 * **Anti-Slashing Database:** Regularly poll the local node to ensure the anti-slashing database is enabled and functioning correctly.
 * **Impact of Slashing:** Assess and monitor the broader impact of any slashing incidents on the network.
 * **Relay List Monitoring:** Monitor the relay list for availability metrics and load balance capabilities between various relayers for downtime conditions.
-* **Chain Reorganizations:** Track events and causes of chain reorganizations&#x20;
+* **Chain Reorganizations:** Track events and causes of chain reorganizations
 * **Non-finalized Events:** Monitor events preventing the consensus layer from confirming finality
-* **Special Software Conditions:** Monitor major software upgrades requiring specific durations and   events that will conclude the upgrade
+* **Special Software Conditions:** Monitor major software upgrades requiring specific durations and events that will conclude the upgrade
 
 #### Node and System Health
 
 * **Node Health Metrics:** Monitor key metrics like CPU, memory, restarts, and uptime of nodes.
 * **System Configuration:** Monitor system configuration settings in real-time and continuously.
 * **Key Usages:** Track the usage of critical system keys.
-* **App-specific:** App specific metrics  (e.g. metrics for Dirk & Vouch)
+* **App-specific:** App specific metrics  (e.g. metrics for Dirk, Vouch)
 
 #### Security and Compliance
 
-* **Access Control and Logs:** Keep an eye on access controls to nodes and abnormal configuration changes.
+* **Access Control and Logs:** Monitor access to nodes, with heightened attention to abnormal configuration changes or changes in sensitive systems
+such as 2FA configuration or VPNs.
 * **Phishing and Endpoint Protection:** Monitor for phishing attacks and ensure the security of endpoint protection systems, both for employee devices and infrastructure nodes.
 * **Bastion Nodes:** If applicable, monitor bastion or connection nodes.
 * **Suspicious Internal Interactions:** Watch for any suspicious internal interactions with infrastructure, cloud security platforms, or network monitoring solutions.
-* **Access Patterns and Configurations:** Check for unusual access patterns and the configurations of VPNs and 2FA systems.
 * **Relay Compliance:** Monitor relay compliance aspects and availability metrics.
 
 #### Upgrade and Code Management
@@ -1529,8 +1501,8 @@ Every component of your node operation is producing logs. These should be captur
 The alert systems should be automatically set up to take actions such as shutting nodes down (nuking).
 
 <div class="info">
-Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md "mention") for tool examples to perform the monitoring of some of the metrics mentioned above.
 
+Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md) for tool examples to perform the monitoring of some of the metrics mentioned above, as well as:
 
 * Cognito's [Userpool Addons for auditing authentications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html).
 * Filtering and anaysis of anomalies can be done in AWS using the [WAF module](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html).
@@ -1541,6 +1513,7 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 
 <div class="info">
+
 #### Relevant DUCK risks:
 
 * [SLS8](#risk-sls-8)
@@ -1562,7 +1535,7 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 * General cyber security (Firewall, Intrusion Detection System, ....)
 * Check the uptime promise of cloud provider (minimum three 9s)
 * Failover system (also in different locations)
-* Keeping track of age and replacing appliances //currently in access control
+* Keeping track of age and replacing appliances //currently in access control and monitoring
 * Conduct an internal special study of failover and load balancer strategies
 * Being informed about the relevant natural catastrophes
 * Ensure stable Internet connection of the System (Cloud, Bare Metal, ....)
@@ -1582,39 +1555,104 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 This section contains controls material to Node Operator risks
 
-## Controls for Access Control
-
-### Authentication required for services
-
-All requests for services REQUIRE appropriate authentication
-
-For example, a Node does not respond to anonymous requests on any port.
+### Controls for Access Control
 
 @@ link to relevant mitigation(s)
 
-### Access to Nodes limited by Network
+
+#### Authentication required for services
+
+All requests for services MUST require appropriate authentication
+
+For example, a Node does not respond to anonymous requests on any port.
+
+#### Access to Nodes limited by Network
 
 Nodes MUST NOT respond to requests from outside a defined network.
 
-### Access to server rooms is limited
+#### Access to physical hardware is limited
 
 Entry to physical server locations MUST require authorization
 
 For example, a biometric scan or the use of a keycard.
 
-### Access to server rooms is verified
+#### Regularly Review Access Rights Management
 
-Entry to physical server locations MUST be reviewed periodically
+A review of Access Rights MUST take place regularly
 
-For example, comparing the number of people entering with the number of authorizations logged, or checking that the person who entered coresponds to the authorization used.
+This covers both the processes and tools for granting and revoking access rights, and verifying that they are effectively managing access rights
+according to the relevant principles ([**Least Privilege**](#def-least-privilege), [**Role-based management**](#@@)).
+Best practice for this review includes:
 
-### Relevant external controls
+- analyzing access logs for physical access to hardware, and ensuring authorized individuals are not given access to hardware
+- verifying access to signing keys is limited to individuals whose roles mean they need it, and that all who need that access have it
+- ensuring that processes are effectively followed and meet the Node Operator's business needs
 
-* [OWASP A01:2022: Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
-* [ISO27001](#iso27001) Annex A 5.15
-* [SOC2](#soc2) Trust services Criteria CC 6.1
-* [SOC2](#soc2) Trust services Criteria CC 6.3
-* @@ NORS, BSSC NOS, Web3SOC, ...?
+##### Relevant Risks
+
+* SLS 8-13
+* DOW 16-18
+* KEC 3,4,6-8, 10-11
+* GIR 1,5,7
+
+##### Relevant external controls
+
+* [ISO 27001](#iso-27001) Annex A 5.18
+
+#### Protect Data in Transit
+
+All data in transit MUST be encrypted, and SHOULD use the most direct transition available
+
+This covers all services that communicate data, such as Databases, Web servers, Load balancers, Authentication systems, CI/CD pipeline tools, etc.
+Best practices include ensuring that the latest version of TLS is being used, with secure algorithms.
+
+##### Relevant Risks
+
+* SLS 11-13
+* DOW 18
+* GIR 10
+* KEC 1-11
+
+##### References
+
+* [SOC2](#soc2) Trust services Criteria CC 6.7
+
+COSO principles:
+* Transmission of sensitive data needs to be restricted.
+* Data in transit needs to be encrypted.
+
+<section id="con-auto-monitoring">
+
+### Controls for Automated Monitoring
+
+Risks that Automated Monitoring can help mitigate:
+
+* [DOW1](#risk-dow-1)
+
+#### Log privileged access
+
+Any operation that requires privileged access is logged. Any assignment of a key, or assignment of a role to or removal of a role from a particular key, MUST be logged.
+
+#### Log personnel changes
+
+Every change in the status of people who have access to any function of the Node, or physical access to any hardware, MUST be logged.
+
+#### Log slashing events
+
+Any event that results in slashing MUST be logged. There SHOULD be a procedure in place to determine whether there are repeating patterns,
+that identify a failure (e.g. software bugs, operating procedures) which can be rectified.
+
+#### Monitor hardware and network performance
+
+Logs MUST provide a sufficiently detailed view of hardware and network performance to enable upgrade needs to be forecast,
+and to alert if validators are operating with excess latency. Tools such as [Zabbix](tool-zabbix) can also display a live feed of CPU and memory usage of each compute instance.
+
+#### Relevant external controls for Automated Monitoring
+
+- [SOC2](#soc2) A 1.1
+- [ISO 27001](#iso-27001) Annex A 8.21
+
+</section>
 
 ### Controls for Environmental Threat Management
 
@@ -1653,6 +1691,8 @@ as well as processes that ensure equipment is correctly retired including removi
 
 The following external controls correspond to controls defined in this specification.
 
+**NB: The following items are being consolidated into the Controls Section, above [Ed.]**
+
 <table><thead>
 <tr><th width="443">Framework</th><th>Criterion</th></tr></thead><tbody>
 <tr>
@@ -1670,9 +1710,7 @@ The following external controls correspond to controls defined in this specifica
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 6.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 6.7</td></tr>
+
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 7.1</td></tr>
@@ -1702,25 +1740,17 @@ The following external controls correspond to controls defined in this specifica
 <td>CC 9.2</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
-<td>A 1.1</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
 <td>PI 1.2</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>PI 1.3</td></tr>
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 5.15</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 5.16</td></tr>
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 5.17</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 5.18</td></tr>
+
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 8.2</td></tr>
@@ -1870,46 +1900,6 @@ Main outline from the COSO principles:
 </div>
 
 
-### Protection of Data in transit
-
-Data remains rarely in one place. It is accessed, displayed, and analyzed. For each such operation, it needs to be ensured that there is no weakest link in the chain, and that any data in transit is protected as well.
-
-Main outline from the COSO principles:
-
-* Transmission of sensitive data needs to be restricted.
-* Data in transit needs to be encrypted.
-
-**References:**
-
-* CC 6.7 of the trust services criteria
-
-**Examples for best practices:**
-
-* Ensuring that encrypted communication is enabled for each service. This includes, but is not limited to:
-  * Databases
-  * Web servers
-  * Streaming services
-  * Load balancers
-  * Authentication systems
-  * CI/CD pipeline tools
-* Ensure that the latest version of TLS is being used, in combination with [secure algorithms](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4).
-
-<div class="info">
-
-#### Relevant Risks for @@
-
-* [KEC1](#risk-kec-1)
-* [KEC2](#risk-kec-2)
-* [KEC3](#risk-kec-3)
-* [KEC4](#risk-kec-4)
-* [KEC5](#risk-kec-5)
-* [KEC6](#risk-kec-6)
-* [KEC7](#risk-kec-7)
-* [KEC8](#risk-kec-8)
-* [KEC9](#risk-kec-9)
-* [KEC10](#risk-kec-10)
-* [KEC11](#risk-kec-11)
-</div>
 
 ### Capture configuration changes vulnerabilities
 
@@ -2097,31 +2087,10 @@ Main outline from the COSO principles:
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
 * [GIR5](#risk-gir-5)
+* [DOW1](#risk-dow-1)
 * [DOW19](#risk-dow-19)
 </div>
 
-### Maintain the right operative capacity
-
-Main outline from the COSO principles:
-
-* Measures Current Usage in terms of computational resources.
-* Have the ability to forecase capacity requirement changes.
-* Have the ability to increse/decrease capacity when needed.
-
-**References:**
-
-* A 1.1 of the Trust Services Criteria
-
-**Examples for best practices:**
-
-* Current monitoring tools can also display a live feed of CPU and memory usage of each compute instance ([Zabbix reference](https://www.zabbix.com/documentation/6.4/en/manual/appendix/items/activepassive?hl=CPU%2Cload))
-
-<div class="info">
-
-#### Relevant Risks for @@
-
-* [DOW1](#risk-dow-1)
-</div>
 
 ### Analyze system inputs for completeness and accuracy
 
@@ -2161,7 +2130,7 @@ Main outline from the COSO principles:
 
 * Ensure that all inputs are being captured and either rejected or processed (schema enforcement).
 * Data should be always referencable through a [unique ID](https://datatracker.ietf.org/doc/html/rfc4122).
-* Data should be[ examined for](https://www.npmjs.com/package/ajv)[ correctness and completeness](https://github.com/validatorjs/validator.js).
+* Data should be [examined for](https://www.npmjs.com/package/ajv) [correctness and completeness](https://github.com/validatorjs/validator.js).
 * For each individual user, it should be determined if they are capable of accessing data or not. Using some technologies, such as [Apache Ranger](https://ranger.apache.org), this can be done on a row-by-row basis on a table.
 
 <div class="info">
@@ -2231,51 +2200,6 @@ Main outline of the Information security controls reference:
 * [SLS9](#risk-sls-9)
 </div>
 
-### Access Rights
-
-Main outline of the Information security controls reference:
-
-* Access rights (authorization) needs to be reviewed regularly, and set accordingly with the organization's policies.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 5.18
-
-**Examples for best practices:**
-
-* Role based access control should be used, and for each individual it needs to be automatically tested if their roles are set too wide, i.e. not minimal enough.
-
-<div class="info">
-
-#### Relevant Risks for @@
-
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
-</div>
-
-
-
-### Privileged access rights
-
-Main outline of the Information security controls reference:
-
-* Any allocation of privileged access needs to go through a proper review, audit and authorization process.
-
-**References:**
-
-* ISO27001 Annex A 8.2
-
-**Examples for best practices:**
-
-* Disable privilege escalation mechanisms ([like executing as root user inside a Docker container](https://docs.docker.com/engine/reference/commandline/container_exec/))
-* [Impersonation mechanisms need to be audited (if it is enabled).](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc)
-
-<div class="info">
-
-#### Relevant Risks for @@
-
-* [KEC11](#risk-kec-11)
-</div>
 
 ### Protection against malware
 
@@ -2363,7 +2287,6 @@ Main outline of the Information security controls reference:
 
 **Examples for best practices:**
 
-* If there is an application that requires privileged access, any execution of it should be audited in a log.
 * Access to this application should be granted only using a certificate-based authentication which as a timeout.
 
 <div class="info">
@@ -2819,7 +2742,7 @@ More:
 - [Trivy](https://github.com/aquasecurity/trivy)
 - [TypeORM](https://typeorm.io)
 - [vault SSH certificate mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates)
-- [Zabbix reference](https://www.zabbix.com/documentation/6.4/en/manual/appendix/items/activepassive?hl=CPU%2Cload)
+- <a id="tool-zabbix"></a>[Zabbix reference](https://www.zabbix.com/documentation/6.4/en/manual/appendix/items/activepassive?hl=CPU%2Cload)
 
 </section>
 
