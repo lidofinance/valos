@@ -1786,9 +1786,7 @@ The following external controls correspond to controls defined in this specifica
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 7.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 8.1</td></tr>
+
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 8.2</td></tr>
@@ -1850,9 +1848,8 @@ The following external controls correspond to controls defined in this specifica
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 8.31</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.32</td></tr></tbody></table>
+
+</tbody></table>
 
 ## OWASP
 
@@ -1964,36 +1961,11 @@ Main outline from the COSO principles:
 
 
 
-### Capture configuration changes vulnerabilities
-
-Main outline from the COSO principles:
-
-* Uses defined Configuration Standards, monitor and enforce them.
-* Detect configuration drift.
-* Detect unwanted sofware installed on nodes.
-* Conducts Vulnerability and Configuration security Scans.
-
-**References:**
-
-* CC 7.1 Trust services criteria
-
-**Examples for best practices:**
-
-* Many software pieces have defined configuration standards provided by [CIS benchmarks](https://www.cisecurity.org).
-* Configuration standards can be enforced by automated software (e.g. [CoGuard](https://www.coguard.io))
-
-<div class="info">
-
-#### Managing configuration helps address the following risks
-
-* [GIR4](#risk-gir-4)
-* [KEC8](#risk-kec-8)
-</div>
 
 
 
 
-### Proper change management
+### Manage Software Updates
 
 This is challenging for classically set up IT operations, but is straightforward if modern Infrastructure as Code principles are being used.
 
@@ -2012,17 +1984,20 @@ Main outline from the COSO principles:
 * Have breaking-glass change mechanisms in place for emergency situations.
 * Protect confidential information to be leaked or accidentally accessed in the change management system.
 
-**References:**
+#### Relevant External Controls for Managed Software Updates
 
-* CC 8.1 of the SOC 2 Trust Services Criteria
+* [SOC2](#ref-soc2)CC 8.1 of the SOC 2 Trust Services Criteria
+* [ISO 27001](#iso-27001) Annex A 8.32
 
 **Examples for best practices:**
 
-* While this seems like a lot of points, most of them can be addressed by following the [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) to infrastructure.
+* A lot of these points can be addressed by following the [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) to infrastructure.
+* Using GIT also for infrastructure code and configurations.
+* Use database migration systems such as [Liquibase](https://www.liquibase.org).
 
 <div class="info">
 
-**Links to Risks**
+#### Managing Software Updates helps mitigate the following Risks
 
 * [SLS6](#risk-sls-6)
 * [SLS7](#risk-sls-7)
@@ -2030,9 +2005,48 @@ Main outline from the COSO principles:
 * [GIR18](#risk-gir-18)
 * [GIR20](#risk-gir-20)
 * [GIR21](#risk-gir-21)
+* [GIR25](#risk-gir-25)
+* [DOW2](#risk-dow-2)
+* [DOW11](#risk-dow-11)
 * [DOW19](#risk-dow-19)
 * [DOW20](#risk-dow-20)
 </div>
+
+#### Capture configuration changes vulnerabilities
+
+Main outline from the COSO principles:
+
+* Uses defined Configuration Standards, monitor and enforce them.
+* Detect configuration drift.
+* Detect unwanted sofware installed on nodes.
+* Conducts Vulnerability and Configuration security Scans.
+
+**References:**
+
+* [SOC2](#ref-soc2) CC 7.1
+* [ISO 27001](#iso-27001) Annex A 8.9
+
+**Examples for best practices:**
+
+* Many software pieces have defined configuration standards provided by [CIS benchmarks](https://www.cisecurity.org).
+* Configuration standards can be enforced by automated software (e.g. [CoGuard](https://www.coguard.io))
+* This includes, but is not limited to:
+  * Firewall configurations
+  * Docker image setups
+  * Container orchestration configurations
+  * Database configurations
+  * Webserver/Load balancer configurations
+* Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
+
+<div class="info">
+
+##### Managing configuration helps address the following risks
+
+* [GIR3](#risk-gir-3)
+* [GIR4](#risk-gir-4)
+* [KEC8](#risk-kec-8)
+</div>
+
 
 ### Develop Risk Mitigation Activities
 
@@ -2197,33 +2211,8 @@ Main outline of the Information security controls reference:
 * [GIR17](#risk-gir-17)
 </div>
 
-### Configuration Management
 
-Main outline of the Information security controls reference:
 
-* Any configurations of infrastructure components need to be documented, implemented, monitored and reviewed.
-
-**References:**
-
-* ISO27001 Annex A 8.9
-
-**Examples:**
-
-* This includes, but is not limited to:
-  * Firewall configurations
-  * Docker image setups
-  * Container orchestration configurations
-  * Database configurations
-  * Webserver/Load balancer configurations
-* Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
-
-<div class="info">
-
-#### Configuration Management helps address the following risks
-
-* [GIR3](#risk-gir-3)
-* [KEC8](#risk-kec-8)
-</div>
 
 ### Information deletion
 
@@ -2421,29 +2410,6 @@ Main outline of the Information security controls reference:
 * [GIR18](#risk-gir-18)
 </div>
 
-### Change management
-
-Main outline of the Information security controls reference:
-
-* Use change management systems (e.g. GIT) for any information processing changes (infrastructure and software).
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.32
-
-**Examples for best practices:**
-
-* Using GIT also for infrastructure code and configurations.
-* Use database migration systems such as [Liquibase](https://www.liquibase.org).
-
-<div class="info">
-
-#### Change management helps address the following risks
-
-* [DOW2](#risk-dow-2)
-* [DOW11](#risk-dow-11)
-* [GIR25](#risk-gir-25)
-</div>
 
 <section id="sec-communications-strategy">
 
