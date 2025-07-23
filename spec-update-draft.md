@@ -1752,6 +1752,35 @@ as well as processes that ensure equipment is correctly retired including removi
 ##### Managing Equipment Lifecycles helps address the following risks
 
 @@@@
+### Controls for Incident Response Planning
+
+##### Relevant External Controls for Incident Response planning
+
+* [SOC2](#ref-soc2) CC 9.1 of Trust Services Criteria
+
+##### Incident Response Planning helps address all risks
+
+#### Document Adequate Incident Response plans
+
+The Node Operator MUST have documented [Incident Response Plans](#def-incident-response-plan) corresponding to all risks identified in this specification.
+
+#### Document Disaster Recovery Plans
+
+The Node Operator MUST have documented [Disaster Recovery Plans](#def-disaster-recovery-plan) corresponding to risks identified in this specification
+that lead to destruction of crucial data or loss of assets.
+
+#### Plan Incident Follow-up
+
+[Incident Response](def-incident-response-plan)
+and [Disaster Recovery](#def-disaster-recovery-plan) plans MUST include revising the relevant plans whenever they are activated, based on lessons learned.
+
+This covers both responses to real incidents and Simulated activation, or "pre-mortems".
+
+#### Perform Regular Incident Response Simulations
+
+Node Operators MUST perform a simulated Incident and activation of the associate [Incident Response](def-incident-response-plan)
+or [Disaster Recovery](#def-disaster-recovery-plan) plans at least twice per year.
+
 
 ## Summary of external controls
 
@@ -1795,9 +1824,7 @@ The following external controls correspond to controls defined in this specifica
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 8.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 9.1</td></tr>
+
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 9.2</td></tr>
@@ -2034,22 +2061,6 @@ Main outline from the COSO principles:
 * [DOW20](#risk-dow-20)
 </div>
 
-### Develop Risk Mitigation Activities
-
-Main outline from the COSO principles:
-
-* Regularly develop and improve Mitigation of Risks of Business Disruption -- This should be automated where possible.
-
-**References:**
-
-* CC 9.1 of Trust Services Criteria
-
-<div class="info">
-
-#### Risk mitigation helps address the following risks
-
-* [DOW6](#risk-dow-6)
-</div>
 
 ### Vendors and business partners risk management
 
