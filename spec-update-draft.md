@@ -39,11 +39,6 @@ such as compromising the control of a node or actions that result in reduced eco
   - [Service Partner Specific Risk](#service-partner-specific-risk)
   - [Downtime Risks](#downtime-risks)
   - [Reputational Risk](#reputational-risk)
-- [Risk Management Procedures](#risk-management-procedures)
-  - [Risk Monitoring](#risk-monitoring)
-  - [Incident Response Plan](#incident-response-plan)
-  - [Disaster Recovery Plan](#disaster-recovery-plan)
-  - [Pre-Mortem](#pre-mortem)
 - [Risk Assessment Procedures](#risk-assessment-procedures)
   - [Financial Loss](#financial-loss)
   - [Occurrence Probability](#occurrence-probability)
@@ -1755,9 +1750,8 @@ as well as processes that ensure equipment is correctly retired including removi
 
 ## Summary of external controls
 
-The following external controls correspond to controls defined in this specification.
-
-**NB: The following items are being consolidated into the Controls Section, above [Ed.]**
+<section style="background-color:#fdd">
+**NB: The following items are being consolidated into the [Controls Catalog](#controls-catalog) Section, above [Ed.]**
 
 <table><thead>
 <tr><th width="443">Framework</th><th>Criterion</th></tr></thead><tbody>
@@ -2444,7 +2438,7 @@ Main outline of the Information security controls reference:
 * [DOW11](#risk-dow-11)
 * [GIR25](#risk-gir-25)
 </div>
-
+</section>
 <section id="sec-communications-strategy">
 
 ## Communications Strategy
