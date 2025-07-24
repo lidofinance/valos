@@ -1119,7 +1119,7 @@ Ensure that employees whose roles have changed do not have lingering credentials
 
 <div class="info">
 
-#### @@ helps address the following risks
+#### Employee authorization process helps address the following risks
 
 * [SLS10](#risk-sls-10)
 * [DOW17](#risk-dow-17)
@@ -1305,9 +1305,71 @@ Ideally, metrics should be used to verify a high degree of testing culture. This
 * [DOW20](#risk-dow-20)
 </div>
 
-#### No custom changes to the validator software
+#### Sanitize inputs
 
-Validator software is open source, but in order to ensure that no protocol error occurs, the code should not be touched.
+Unchecked inputs are a major cause for overflow attacks and brute force. Ideally, the load balancer in front of the node filters out all traffic that has too large headers and payloads. Additionally, if JSON payloads are being used, they should be checked to adhere to a certain schema.
+
+<div class="info">
+
+##### Input checking helps address the following risks
+
+* [GIR8](#risk-gir-8)
+</div>
+
+<section id="sec-manage-updates">
+
+### Manage Software Updates
+
+This is challenging for classically set up IT operations, but is straightforward if modern Infrastructure as Code principles are being used.
+
+Main outline from the COSO principles:
+
+* Manages Changes Throughout the System Life Cycle — To support system availability and processing integrity, any changes need to go through a well-defined process.
+* Only perform authorized changes.
+* Use a version control system for infrastructure.
+* Maintain configuration of software in a code-base.
+* Tests are in place for system changes.
+* Have a ticketing system in place to document and review suggested changes.
+* Have a controlled deployment.
+* Certificate management for internal and external communication.
+* Have a way to directly identify historical changes to the infrastructure.
+* A templated configuration of IT and control systems is created and maintained.
+* Have breaking-glass change mechanisms in place for emergency situations.
+* Protect confidential information to be leaked or accidentally accessed in the change management system.
+
+#### Relevant External Controls for Managed Software Updates
+
+* [SOC2](#ref-soc2) CC 8.1 of the SOC 2 Trust Services Criteria
+* [ISO 27001](#iso-27001) Annex A 8.32
+
+**Examples for best practices:**
+
+* A lot of these points can be addressed by following the [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) to infrastructure.
+* Using GIT also for infrastructure code and configurations.
+* Use database migration systems such as [Liquibase](https://www.liquibase.org).
+
+<div class="info">
+
+#### Managing Software Updates helps mitigate the following Risks
+
+* [SLS6](#risk-sls-6)
+* [SLS7](#risk-sls-7)
+* [GIR3](#risk-gir-3)
+* [GIR18](#risk-gir-18)
+* [GIR20](#risk-gir-20)
+* [GIR21](#risk-gir-21)
+* [GIR25](#risk-gir-25)
+* [DOW2](#risk-dow-2)
+* [DOW11](#risk-dow-11)
+* [DOW19](#risk-dow-19)
+* [DOW20](#risk-dow-20)
+</div>
+
+#### Avoid Customizing Third-party Software
+
+Validator software, and other software validators use, is very often open source.
+However, customising software can introduce errors.
+In addition customizations can produce incompatibilities when software is updated.
 
 <div class="info">
 
@@ -1319,15 +1381,60 @@ Validator software is open source, but in order to ensure that no protocol error
 * [DOW20](#risk-dow-20)
 </div>
 
-#### Sanitize inputs
+#### Capture configuration changes vulnerabilities
 
-Unchecked inputs are a major cause for overflow attacks and brute force. Ideally, the load balancer in front of the node filters out all traffic that has too large headers and payloads. Additionally, if JSON payloads are being used, they should be checked to adhere to a certain schema.
+Main outline from the COSO principles:
+
+* Uses defined Configuration Standards, monitor and enforce them.
+* Detect configuration drift.
+* Detect unwanted sofware installed on nodes.
+* Conducts Vulnerability and Configuration security Scans.
+
+**References:**
+
+* [SOC2](#ref-soc2) CC 7.1
+* [ISO 27001](#iso-27001) Annex A 8.9
+
+**Examples for best practices:**
+
+* This includes, but is not limited to:
+  * Firewall configurations
+  * Docker image setups
+  * Container orchestration configurations
+  * Database configurations
+  * Webserver/Load balancer configurations
+* Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
+* Many pieces of software has defined configuration standards provided by [CIS benchmarks](https://www.cisecurity.org).
 
 <div class="info">
 
-##### Input checking helps address the following risks
+##### Managing configuration helps address the following risks
 
-* [GIR8](#risk-gir-8)
+* [GIR3](#risk-gir-3)
+* [GIR4](#risk-gir-4)
+* [KEC8](#risk-kec-8)
+</div>
+
+#### Protect against malware
+
+Main outline of the Information security controls reference:
+
+* Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
+
+##### Relevant External Controls
+
+* [ISO27001](#ref-iso-27001) Annex A 8.7
+
+**Examples for best practices:**
+
+* Regularly check the latest [CVE entries.](https://cve.mitre.org), regarding all software tools used. Tools such as [Trivy](https://github.com/aquasecurity/trivy) can help with this. // -> monitoring?
+
+<div class="info">
+
+##### Malware protection helps address the following risks
+
+* [GIR15](#risk-gir-15)
+* [GIR17](#risk-gir-17)
 </div>
 
 #### Pre-deployment testing environments
@@ -1367,9 +1474,13 @@ Containerized and orchestrated environments are designed to reinforce security b
 * [GIR23](#risk-gir-23)
 </div>
 
-#### Automation where possible
+#### Automate where possible
 
-Human error is always a risk. An automated script, whether or not invoked by a human, . The other risk of non-manual steps is the reduction of the risk of exposure of secrets. Pipelines and job-mechanisms such as GitHub Actions, Apache Airflow, or Apache Nifi can significantly reduce the potential for inadvertent errors to create problems
+Human error is always a risk. An automated script, whether or not invoked by a human, can help minimise indavertent errors.
+
+Another benefit of properly set up automation is to reduce the risk of exposing secrets.
+
+When correctly configured pipelines and job-mechanisms such as GitHub Actions, Apache Airflow, or Apache Nifi can significantly reduce the potential for inadvertent errors to create problems
 
 <div class="info">
 
@@ -1386,7 +1497,7 @@ Human error is always a risk. An automated script, whether or not invoked by a h
 * [GIR25](#risk-gir-25)
 </div>
 
-
+</section>
 
 ### Monitoring and Alerting
 
@@ -2011,109 +2122,6 @@ Main outline from the COSO principles:
 
 
 
-### Manage Software Updates
-
-This is challenging for classically set up IT operations, but is straightforward if modern Infrastructure as Code principles are being used.
-
-Main outline from the COSO principles:
-
-* Manages Changes Throughout the System Life Cycle — To support system availability and processing integrity, any changes need to go through a well-defined process.
-* Only perform authorized changes.
-* Use a version control system for infrastructure.
-* Maintain configuration of software in a code-base.
-* Tests are in place for system changes.
-* Have a ticketing system in place to document and review suggested changes.
-* Have a controlled deployment.
-* Certificate management for internal and external communication.
-* Have a way to directly identify historical changes to the infrastructure.
-* A templated configuration of IT and control systems is created and maintained.
-* Have breaking-glass change mechanisms in place for emergency situations.
-* Protect confidential information to be leaked or accidentally accessed in the change management system.
-
-#### Relevant External Controls for Managed Software Updates
-
-* [SOC2](#ref-soc2)CC 8.1 of the SOC 2 Trust Services Criteria
-* [ISO 27001](#iso-27001) Annex A 8.32
-
-**Examples for best practices:**
-
-* A lot of these points can be addressed by following the [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) to infrastructure.
-* Using GIT also for infrastructure code and configurations.
-* Use database migration systems such as [Liquibase](https://www.liquibase.org).
-
-<div class="info">
-
-#### Managing Software Updates helps mitigate the following Risks
-
-* [SLS6](#risk-sls-6)
-* [SLS7](#risk-sls-7)
-* [GIR3](#risk-gir-3)
-* [GIR18](#risk-gir-18)
-* [GIR20](#risk-gir-20)
-* [GIR21](#risk-gir-21)
-* [GIR25](#risk-gir-25)
-* [DOW2](#risk-dow-2)
-* [DOW11](#risk-dow-11)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-</div>
-
-#### Capture configuration changes vulnerabilities
-
-Main outline from the COSO principles:
-
-* Uses defined Configuration Standards, monitor and enforce them.
-* Detect configuration drift.
-* Detect unwanted sofware installed on nodes.
-* Conducts Vulnerability and Configuration security Scans.
-
-**References:**
-
-* [SOC2](#ref-soc2) CC 7.1
-* [ISO 27001](#iso-27001) Annex A 8.9
-
-**Examples for best practices:**
-
-* Many software pieces have defined configuration standards provided by [CIS benchmarks](https://www.cisecurity.org).
-* Configuration standards can be enforced by automated software (e.g. [CoGuard](https://www.coguard.io))
-* This includes, but is not limited to:
-  * Firewall configurations
-  * Docker image setups
-  * Container orchestration configurations
-  * Database configurations
-  * Webserver/Load balancer configurations
-* Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
-
-<div class="info">
-
-##### Managing configuration helps address the following risks
-
-* [GIR3](#risk-gir-3)
-* [GIR4](#risk-gir-4)
-* [KEC8](#risk-kec-8)
-</div>
-
-#### Protect against malware
-
-Main outline of the Information security controls reference:
-
-* Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
-
-##### Relevant External Controls
-
-* [ISO27001](#ref-iso-27001) Annex A 8.7
-
-**Examples for best practices:**
-
-* Regularly check the latest [CVE entries.](https://cve.mitre.org), regarding all software tools used. Tools such as [Trivy](https://github.com/aquasecurity/trivy) can help with this. // -> monitoring?
-
-<div class="info">
-
-#### Malware protection helps address the following risks
-
-* [GIR15](#risk-gir-15)
-* [GIR17](#risk-gir-17)
-</div>
 
 
 ### Develop Risk Mitigation Activities
