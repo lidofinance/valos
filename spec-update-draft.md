@@ -1225,8 +1225,50 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 ### Development and Update Process
 
+#### Secure development life cycle
+
+Main outline of the Information security controls reference:
+
+* Use best practices to ensure that software development is happening in a secure and monitored way.
+
+##### Relevant External Controls for Secure Development Lifecycle
+
+* [ISO 27001](#iso-27001) Annex A 8.25
+
+**Examples for best practices:**
+
+* Use of CI/CD pipelines like GitHub Actions
+* Use of Linters
+* Use of enforced review processes
+* Not allowing to directly push to the main branch
+
+<div class="info">
+
+#### Secure Development Lifecycle helps address the following risks
+
+* [GIR8](#risk-gir-8)
+* [DOW19](#risk-dow-19)
+* [DOW20](#risk-dow-20)
+* [KEC8](#risk-kec-8)
+* [GIR25](#risk-gir-25)
+</div>
+
+@@ Software development (check inputs and outputs, audit, follow secure dev guidelines, etc) and Upgrade processes/Change management (test environments, proper review between upgrades, ...)
+
 
 #### Testing and review of all changes to infrastructure code
+
+Use all possible tests (dynamic, static) in the CI/CD pipeline of your development lifecycle.
+
+**References:**
+
+* [ISO 27001](#iso-27001) Annex A 8.29
+
+**Examples  for best practices:**
+
+* Unit tests
+* Dynamic tests
+* Integration tests
 
 
 Anything on the infrastructure should be captured in a code repository, and changes managed through a versioning system such as Git. No direct push to the main branch should be possible; everything should go through pull requests and review.
@@ -1288,22 +1330,35 @@ Unchecked inputs are a major cause for overflow attacks and brute force. Ideally
 * [GIR8](#risk-gir-8)
 </div>
 
-#### Use of separate tests and staging environments
+#### Pre-deployment testing environments
+
+Use separate tests and staging environments
 
 This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first, and then roll it out in a staged fashion. If it causes some slashing event, it is then contained to the few nodes that it was rolled out to.
 
+
+
 <div class="info">
+##### Relevant external controls for Pre-Deployment Testing
 
-#### Test and staging environments help address the following risks
+* [ISO 27001](#iso-27001) Annex A 8.31
 
+##### Pre-deployment Testing helps address the following risks
+
+
+* [SLS6](#risk-sls-6)
+* [SLS7](#risk-sls-7)
 * [GIR11](#risk-gir-11)
+* [GIR18](#risk-gir-18)
+* [GIR20](#risk-gir-20)
+* [GIR21](#risk-gir-21)
 * [DOW19](#risk-dow-19)
 * [DOW20](#risk-dow-20)
 </div>
 
-#### Use containerized and orchestrated environments only.
+#### Use containerized and orchestrated environments
 
-Follow their best practice recommendations. Their mechanisms are more than battle-tested in different environments. Any make-shift approach to do mechanisms such as fail-over by hand should be deemed insecure.
+Containerized and orchestrated environments are designed to reinforce security by automating many good practices, with mechanisms that have been widely tested in diverse environments. As tools that can be used well or badly, their best practice recommendations are important to ensure the the full benefits are realised.
 
 <div class="info">
 
@@ -1314,7 +1369,7 @@ Follow their best practice recommendations. Their mechanisms are more than battl
 
 #### Automation where possible
 
-Human error is a real threat, and every process should at least follow an automated script that may or not be invoked by a human. The other risk of non-manual steps is the reduction of the risk of exposure of secrets. Everything should be done through pipelines and job-mechanisms (GitHub Actions, Apache Airflow, Apache Nifi)
+Human error is always a risk. An automated script, whether or not invoked by a human, . The other risk of non-manual steps is the reduction of the risk of exposure of secrets. Pipelines and job-mechanisms such as GitHub Actions, Apache Airflow, or Apache Nifi can significantly reduce the potential for inadvertent errors to create problems
 
 <div class="info">
 
@@ -1331,16 +1386,7 @@ Human error is a real threat, and every process should at least follow an automa
 * [GIR25](#risk-gir-25)
 </div>
 
-#### Minimize CVEs in images
 
-Analyzing images for potential CVEs is simple nowadays (use e.g. [Trivy](https://github.com/aquasecurity/trivy)). Further configurations inside these images can be checked using [CoGuard](https://www.coguard.io). Any image used in your infrastructure should be checked this way.
-
-<div class="info">
-
-#### @@ helps address the following risks
-
-* [GIR17](#risk-gir-17)
-</div>
 
 ### Monitoring and Alerting
 
@@ -2047,6 +2093,28 @@ Main outline from the COSO principles:
 * [KEC8](#risk-kec-8)
 </div>
 
+#### Protect against malware
+
+Main outline of the Information security controls reference:
+
+* Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
+
+##### Relevant External Controls
+
+* [ISO27001](#ref-iso-27001) Annex A 8.7
+
+**Examples for best practices:**
+
+* Regularly check the latest [CVE entries.](https://cve.mitre.org), regarding all software tools used. Tools such as [Trivy](https://github.com/aquasecurity/trivy) can help with this. // -> monitoring?
+
+<div class="info">
+
+#### Malware protection helps address the following risks
+
+* [GIR15](#risk-gir-15)
+* [GIR17](#risk-gir-17)
+</div>
+
 
 ### Develop Risk Mitigation Activities
 
@@ -2189,28 +2257,6 @@ Main outline of the Information security controls reference:
 </div>
 
 
-### Protection against malware
-
-Main outline of the Information security controls reference:
-
-* Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
-
-**References:**
-
-* ISO27001 Annex A 8.7
-
-**Examples for best practices:**
-
-* All dependencies should be checked for latest [CVE entries.](https://cve.mitre.org)
-
-<div class="info">
-
-#### Malware protection helps address the following risks
-
-* [GIR15](#risk-gir-15)
-* [GIR17](#risk-gir-17)
-</div>
-
 
 
 
@@ -2308,59 +2354,8 @@ Main outline of the Information security controls reference:
 * [KEC8](#risk-kec-8)
 </div>
 
-### Secure development life cycle
 
-Main outline of the Information security controls reference:
 
-* Use best practices to ensure that software development is happening in a secure and monitored way.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.25
-
-**Examples for best practices:**
-
-* Use of CI/CD pipelines like GitHub Actions
-* Use of Linters
-* Use of enforced review processes
-* Not allowing to directly push to the main branch
-
-<div class="info">
-
-#### Managed seecurity in development helps address the following risks
-
-* [GIR8](#risk-gir-8)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-* [KEC8](#risk-kec-8)
-* [GIR25](#risk-gir-25)
-</div>
-
-### Testing
-
-Main outline of the Information security controls reference:
-
-* Use all possible tests (dynamic, static) in the CI/CD pipeline of your development lifecycle.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.29
-
-**Examples  for best practices:**
-
-* Unit tests
-* Dynamic tests
-* Integration tests
-
-<div class="info">
-
-#### Testing helps address the following risks
-
-* [GIR20](#risk-gir-20)
-* [GIR21](#risk-gir-21)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-</div>
 
 ### Outsourced development
 
@@ -2384,31 +2379,6 @@ Main outline of the Information security controls reference:
 * [GIR24](#risk-gir-24)
 </div>
 
-### Separation of development, test and production environments
-
-Main outline of the Information security controls reference:
-
-* Development, testing and production environments shall be separated and secured. Additionally, they should be virtually the same minus DNS, credentials and IP addresses.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.31
-
-**Examples for best practices:**
-
-* Use [docker-compose](https://docs.docker.com/compose/) or [minikube](https://minikube.sigs.k8s.io/docs/) to define local-production-like environments.
-* Use infrastructure as code to be able to spin up and tear down test environments.
-* Have well-defined interfaces to pull part of the production data into a local database for testing.
-
-<div class="info">
-
-#### testing environments help address the following risks
-
-* [SLS6](#risk-sls-6)
-* [SLS7](#risk-sls-7)
-* [GIR11](#risk-gir-11)
-* [GIR18](#risk-gir-18)
-</div>
 
 
 <section id="sec-communications-strategy">
