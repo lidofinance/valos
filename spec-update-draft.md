@@ -1446,9 +1446,6 @@ This minimizes a potential blast radius. It is important to run any change (even
 
 
 <div class="info">
-##### Relevant external controls for Pre-Deployment Testing
-
-* [ISO 27001](#iso-27001) Annex A 8.31
 
 ##### Pre-deployment Testing helps address the following risks
 
@@ -1910,6 +1907,40 @@ as well as processes that ensure equipment is correctly retired including removi
 
 @@@@
 
+### Controls for Update Process
+
+#### Use Code Repositories
+
+Source code MUST be managed in a repository
+
+Deployed production code MUST NOT be directly editable
+
+This covers all changes to code, including when it is necessary to roll back an upgrade.
+
+#### Check Third-party Code for Vulnerabilities before Updating
+
+Updates to third-party software MUST be checked for vulnerabilities before deployment
+
+This covers verifying that all software updates, including validators and other nodes, have been audited to ensure they are not introducing known or new vulnerabilities.
+
+#### Test All Interactions Impacted by Software Updates
+
+Updates MUST include an Audit of ALL Code or User Interactions they impact
+
+This means testing not just the new code deployed, but also existing code that interacts with anything the update changes, to ensure that integration is not introducing a vulnerability. This extends to non-blockchain code used to interact with the Validator, where applicable.
+
+#### Deploy via staging test environments
+
+Updates MUST be tested on a realistic staging environment before deployment as "production" on a live network.
+
+##### Relevant external controls for Pre-Deployment Testing
+
+* [ISO 27001](#iso-27001) Annex A 8.31
+
+#### Maintain Emergency rollback procedures
+
+Node Operators MUST have a process to enable emergency rollback of upgrades
+
 ## Summary of external controls
 
 The following external controls correspond to controls defined in this specification.
@@ -2002,9 +2033,7 @@ The following external controls correspond to controls defined in this specifica
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 8.30</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.31</td></tr>
+
 
 </tbody></table>
 
