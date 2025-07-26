@@ -1909,6 +1909,10 @@ as well as processes that ensure equipment is correctly retired including removi
 
 ### Controls for Update Process
 
+#### Follow Update Procedures
+
+Node Operators MUST document procedures for updates to code
+
 #### Use Code Repositories
 
 Source code MUST be managed in a repository
@@ -1925,7 +1929,7 @@ This covers verifying that all software updates, including validators and other 
 
 #### Test All Interactions Impacted by Software Updates
 
-Updates MUST include an Audit of ALL Code or User Interactions they impact
+Updates MUST include an Audit of ALL Code and User Interactions they impact
 
 This means testing not just the new code deployed, but also existing code that interacts with anything the update changes, to ensure that integration is not introducing a vulnerability. This extends to non-blockchain code used to interact with the Validator, where applicable.
 
@@ -2083,7 +2087,6 @@ Main outline from the COSO principles:
 
 1. **Technology Infrastructure Control** — Stakeholders develop control activities over the technology infrastructure, ensuring accuracy, availability and completeness of data.
 2. **Security Access Control** — External threats are analyzed and access rights are properly defined.
-3. **Third Party tool integration** — Integration, management, and updates of third party tools is closely monitored.
 
 **References:**
 
@@ -2091,7 +2094,6 @@ Main outline from the COSO principles:
 
 **Examples for best practices:**
 
-* Every third party software that is brought in needs to be known, and proper change management applied to it.
 * Every third party software needs to be analyzed for the correct access rights with respect to users who can access it, but also the privileges it needs on the system it runs on. \
   Examples for this are:
   * Do not run main processes as root, since a compromised software can then execute privileged operations.
