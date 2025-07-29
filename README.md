@@ -2,7 +2,7 @@
 
 ## What is ValOS?
 
-ValOS describes risks that Node Operators face, mitigation strategies, how to assess whether the risks are adequately managed by a Node Operator.
+The Validator Operations Standard (ValOS) describes risks that Node Operators face, and mitigation and control strategies, how to assess whether the risks are adequately managed.
 
 ValOS is the next stage evolution of the [D.U.C.K Knowledge Base](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base),
 bringing the core content together in a specification that is updated and maintained through a transparent process
