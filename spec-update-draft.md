@@ -39,11 +39,6 @@ such as compromising the control of a node or actions that result in reduced eco
   - [Service Partner Specific Risk](#service-partner-specific-risk)
   - [Downtime Risks](#downtime-risks)
   - [Reputational Risk](#reputational-risk)
-- [Risk Management Procedures](#risk-management-procedures)
-  - [Risk Monitoring](#risk-monitoring)
-  - [Incident Response Plan](#incident-response-plan)
-  - [Disaster Recovery Plan](#disaster-recovery-plan)
-  - [Pre-Mortem](#pre-mortem)
 - [Risk Assessment Procedures](#risk-assessment-procedures)
   - [Financial Loss](#financial-loss)
   - [Occurrence Probability](#occurrence-probability)
@@ -902,9 +897,13 @@ In order to avoid loosing out on opportunity cost, Node operators need to develo
 
 ### Secret Management
 
-#### Controlled/audited secret access
+#### Controlled and audited secret access
 
-Any secret, including access credentials for internal systems needs to be accessed and authorized through a vault system. In this way, everything is audited, and anomaly detection can be activated for those vaults. Using multi-sig wallets, requiring authorization from multiple parties for specific actions, helps to ensure both that relevant access is monitored and that it is correctly controlled.
+Best practise for credential management is to use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) ssytem, that gives users authorised access to secrets through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication), and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates).
+
+In this way, everything is audited, and anomaly detection can be activated for those vaults.
+
+Using multi-sig wallets, requiring authorization from multiple parties for specific actions, helps to ensure both that relevant access is monitored and that it is correctly controlled.
 
 <div class="info">
 
@@ -923,7 +922,7 @@ Any secret, including access credentials for internal systems needs to be access
 * [GIR25](#risk-gir-25)
 </div>
 
-#### Encryption of data at rest/in transit
+#### Encryption of Data
 
 Many different components interplay while a staking operation is going on. It is crucial, since sensitive information may be transmitted, to ensure that data is stored and transmitted in an encrypted fashion.
 
@@ -1034,6 +1033,7 @@ Special considerations:
 * Creation and continuous analysis of Software Bill of Materials [SBOM](#ref-sbom).
 * Use of Clients, roles and groups when using [AWS IAM](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html).
 * Have an internal virtual private network and only have well-defined endpoints be accessible from the web.
+* Use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) mechanism.
 
 <div class="info">
 
@@ -1615,25 +1615,51 @@ Some of these control criteria correspond to similar controls from at least thre
 Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
 
 ### Controls for Access Control
-
-@@ link to relevant mitigation(s)
-
-
+@@@@
 #### Authentication required for services
 
-All requests for services MUST require appropriate authentication
+All services MUST require appropriate authentication privileges.
 
-For example, a Node does not respond to anonymous requests on any port.
+For example, a Node does not respond to anonymous requests from an unknown user.
 
-#### Access to Nodes limited by Network
+#### Segment Networks to Limit Access
 
-Nodes MUST NOT respond to requests from outside a defined network.
+Networks SHOULD be segmented, to restrict access to systems that are identified as needing it.
+
+Nodes MUST NOT respond to requests from outside a defined network, except those that are explicitly defined as necessary.
+
+Fulfilling this requirement means maintaining a whitelist of individual services that are authorized to respond to requests from broader networks.
+
+##### Relevant Risks
+
+* [DOW10](#risk-dow-10)
+* [GIR9](#risk-gir-9)
+* [KEC8](#risk-kec-8)
+
+##### Relevant external controls
+
+* [ISO 27001](#iso-27001) Annex A 8.22
 
 #### Access to physical hardware is limited
 
 Entry to physical server locations MUST require authorization
 
 For example, a biometric scan or the use of a keycard.
+
+#### Least Privilege is applied to individuals and software
+
+Software MUST NOT run with, and a user MUST not have a higher level of privilege than necessary.
+
+For example, check that software does not run as root, that users do not log in directly with root privileges, and software and users are granted fine-grained access based on need rather than broad-based access for simplicity.
+
+##### Relevant risks
+
+* [KEC11](#risk-kec-11)
+* [GIR7](#risk-gir-7)
+
+##### Relevant external controls
+
+* [ISO 27001](#iso-27001) Annex A 8.18
 
 #### Regularly Review Access Rights Management
 
@@ -1646,6 +1672,7 @@ Best practice for this review includes:
 - analyzing access logs for physical access to hardware, and ensuring authorized individuals are not given access to hardware
 - verifying access to signing keys is limited to individuals whose roles mean they need it, and that all who need that access have it
 - ensuring that processes are effectively followed and meet the Node Operator's business needs
+- verify that software is run in a way that minimises its access
 
 ##### Relevant Risks
 
@@ -1656,7 +1683,9 @@ Best practice for this review includes:
 
 ##### Relevant external controls
 
+* [ISO 27001](#iso-27001) Annex A 5.17
 * [ISO 27001](#iso-27001) Annex A 5.18
+* [ISO 27001](#iso-27001) Annex A 8.18
 
 #### Protect Data in Transit
 
@@ -1690,7 +1719,15 @@ Risks that Automated Monitoring can help mitigate:
 
 #### Log privileged access
 
-Any operation that requires privileged access is logged. Any assignment of a key, or assignment of a role to or removal of a role from a particular key, MUST be logged.
+Any operation that requires privileged access MUST be logged.
+
+Any assignment of a key, or assignment of a role to or removal of a role from a particular key, MUST be logged.
+
+This includes monitoring software that has privileged access.
+
+##### Relevant external controls
+
+* [ISO 27001](#iso-27001) Annex A 8.18
 
 #### Log personnel changes
 
@@ -1743,6 +1780,7 @@ as well as processes that ensure equipment is correctly retired including removi
 * [ISO 27001](#iso-27001) Annex A 7
 
 ##### Managing Equipment Lifecycles helps address the following risks
+
 
 @@@@
 ### Controls for Incident Response Planning
@@ -1798,11 +1836,11 @@ Node Operators MUST document [Incident Communication](#def-incident-communicatio
 
 This requirement includes internal and external communication, both during and after incidents.
 
+
 ## Summary of external controls
 
-The following external controls correspond to controls defined in this specification.
-
-**NB: The following items are being consolidated into the Controls Section, above [Ed.]**
+<section style="background-color:#fdd">
+**NB: The following items are being consolidated into the [Controls Catalog](#controls-catalog) Section, above [Ed.]**
 
 <table><thead>
 <tr><th width="443">Framework</th><th>Criterion</th></tr></thead><tbody>
@@ -2179,27 +2217,7 @@ Main outline of the Information security controls reference:
 * [SLS9](#risk-sls-9)
 </div>
 
-### Authentication Information
 
-Main outline of the Information security controls reference:
-
-* Setting, revoking and updating access control and authentication needs to be a highly controlled managed process.
-
-**References:**
-
-* ISO27001 Annex A 5.17
-
-**Examples for best practices:**
-
-* Use of a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) is preferred, and from there, all other secrets should be released to authorized users through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication) and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates).
-
-<div class="info">
-
-#### Access control management helps address the following risks
-
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
-</div>
 
 
 ### Protection against malware
@@ -2276,28 +2294,6 @@ Main outline of the Information security controls reference:
 </div>
 
 
-### Privileged utility programs
-
-Main outline of the Information security controls reference:
-
-* Any software in place that requires high privileges to run should be closely monitored, and as isolated as possible.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.18
-
-**Examples for best practices:**
-
-* Access to this application should be granted only using a certificate-based authentication which as a timeout.
-
-<div class="info">
-
-#### Access control management helps address the following risks
-
-* [KEC11](#risk-kec-11)
-* [GIR6](#risk-gir-6)
-* [GIR7](#risk-gir-7)
-</div>
 
 ### Network services
 
@@ -2322,29 +2318,6 @@ Main outline of the Information security controls reference:
 * [DOW10](#risk-dow-10)
 </div>
 
-### Segregation of networks
-
-Main outline of the Information security controls reference:
-
-* Use private subnets where possible, and minimize the systems that belong to a given subnet.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.22
-
-**Examples for best practices:**
-
-* [RFC 1918](https://www.rfc-editor.org/rfc/rfc1918)
-* [Kubernetes Cluster Networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
-
-<div class="info">
-
-#### Network segmentation helps address the following risks
-
-* [DOW10](#risk-dow-10)
-* [GIR9](#risk-gir-9)
-* [KEC8](#risk-kec-8)
-</div>
 
 ### Secure development life cycle
 
@@ -2471,7 +2444,7 @@ Main outline of the Information security controls reference:
 * [DOW11](#risk-dow-11)
 * [GIR25](#risk-gir-25)
 </div>
-
+</section>
 <section id="sec-communications-strategy">
 
 ## Communications Strategy
