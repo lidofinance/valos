@@ -39,11 +39,6 @@ such as compromising the control of a node or actions that result in reduced eco
   - [Service Partner Specific Risk](#service-partner-specific-risk)
   - [Downtime Risks](#downtime-risks)
   - [Reputational Risk](#reputational-risk)
-- [Risk Management Procedures](#risk-management-procedures)
-  - [Risk Monitoring](#risk-monitoring)
-  - [Incident Response Plan](#incident-response-plan)
-  - [Disaster Recovery Plan](#disaster-recovery-plan)
-  - [Pre-Mortem](#pre-mortem)
 - [Risk Assessment Procedures](#risk-assessment-procedures)
   - [Financial Loss](#financial-loss)
   - [Occurrence Probability](#occurrence-probability)
@@ -1119,7 +1114,7 @@ Ensure that employees whose roles have changed do not have lingering credentials
 
 <div class="info">
 
-#### @@ helps address the following risks
+#### Employee authorization process helps address the following risks
 
 * [SLS10](#risk-sls-10)
 * [DOW17](#risk-dow-17)
@@ -1225,8 +1220,50 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 ### Development and Update Process
 
+#### Secure development life cycle
+
+Main outline of the Information security controls reference:
+
+* Use best practices to ensure that software development is happening in a secure and monitored way.
+
+##### Relevant External Controls for Secure Development Lifecycle
+
+* [ISO 27001](#iso-27001) Annex A 8.25
+
+**Examples for best practices:**
+
+* Use of CI/CD pipelines like GitHub Actions
+* Use of Linters
+* Use of enforced review processes
+* Not allowing to directly push to the main branch
+
+<div class="info">
+
+#### Secure Development Lifecycle helps address the following risks
+
+* [GIR8](#risk-gir-8)
+* [DOW19](#risk-dow-19)
+* [DOW20](#risk-dow-20)
+* [KEC8](#risk-kec-8)
+* [GIR25](#risk-gir-25)
+</div>
+
+@@ Software development (check inputs and outputs, audit, follow secure dev guidelines, etc) and Upgrade processes/Change management (test environments, proper review between upgrades, ...)
+
 
 #### Testing and review of all changes to infrastructure code
+
+Use all possible tests (dynamic, static) in the CI/CD pipeline of your development lifecycle.
+
+**References:**
+
+* [ISO 27001](#iso-27001) Annex A 8.29
+
+**Examples  for best practices:**
+
+* Unit tests
+* Dynamic tests
+* Integration tests
 
 
 Anything on the infrastructure should be captured in a code repository, and changes managed through a versioning system such as Git. No direct push to the main branch should be possible; everything should go through pull requests and review.
@@ -1263,20 +1300,6 @@ Ideally, metrics should be used to verify a high degree of testing culture. This
 * [DOW20](#risk-dow-20)
 </div>
 
-#### No custom changes to the validator software
-
-Validator software is open source, but in order to ensure that no protocol error occurs, the code should not be touched.
-
-<div class="info">
-
-##### Not customising third-party software helps address the following risks
-
-* [SLS7](#risk-sls-7)
-* [DOW13](#risk-dow-13)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-</div>
-
 #### Sanitize inputs
 
 Unchecked inputs are a major cause for overflow attacks and brute force. Ideally, the load balancer in front of the node filters out all traffic that has too large headers and payloads. Additionally, if JSON payloads are being used, they should be checked to adhere to a certain schema.
@@ -1288,22 +1311,153 @@ Unchecked inputs are a major cause for overflow attacks and brute force. Ideally
 * [GIR8](#risk-gir-8)
 </div>
 
-#### Use of separate tests and staging environments
+<section id="sec-manage-updates">
 
-This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first, and then roll it out in a staged fashion. If it causes some slashing event, it is then contained to the few nodes that it was rolled out to.
+### Manage Software Updates
+
+This is challenging for classically set up IT operations, but is straightforward if modern Infrastructure as Code principles are being used.
+
+Main outline from the COSO principles:
+
+* Manages Changes Throughout the System Life Cycle — To support system availability and processing integrity, any changes need to go through a well-defined process.
+* Only perform authorized changes.
+* Use a version control system for infrastructure.
+* Maintain configuration of software in a code-base.
+* Tests are in place for system changes.
+* Have a ticketing system in place to document and review suggested changes.
+* Have a controlled deployment.
+* Certificate management for internal and external communication.
+* Have a way to directly identify historical changes to the infrastructure.
+* A templated configuration of IT and control systems is created and maintained.
+* Have breaking-glass change mechanisms in place for emergency situations.
+* Protect confidential information to be leaked or accidentally accessed in the change management system.
+
+#### Relevant External Controls for Managed Software Updates
+
+* [SOC2](#ref-soc2) CC 8.1 of the SOC 2 Trust Services Criteria
+* [ISO 27001](#iso-27001) Annex A 8.32
+
+**Examples for best practices:**
+
+* A lot of these points can be addressed by following the [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) to infrastructure.
+* Using GIT also for infrastructure code and configurations.
+* Use database migration systems such as [Liquibase](https://www.liquibase.org).
 
 <div class="info">
 
-#### Test and staging environments help address the following risks
+#### Managing Software Updates helps mitigate the following Risks
 
-* [GIR11](#risk-gir-11)
+* [SLS6](#risk-sls-6)
+* [SLS7](#risk-sls-7)
+* [GIR3](#risk-gir-3)
+* [GIR18](#risk-gir-18)
+* [GIR20](#risk-gir-20)
+* [GIR21](#risk-gir-21)
+* [GIR25](#risk-gir-25)
+* [DOW2](#risk-dow-2)
+* [DOW11](#risk-dow-11)
 * [DOW19](#risk-dow-19)
 * [DOW20](#risk-dow-20)
 </div>
 
-#### Use containerized and orchestrated environments only.
+#### Avoid Customizing Third-party Software
 
-Follow their best practice recommendations. Their mechanisms are more than battle-tested in different environments. Any make-shift approach to do mechanisms such as fail-over by hand should be deemed insecure.
+Validator software, and other software validators use, is very often open source.
+However, customising software can introduce errors.
+In addition customizations can produce incompatibilities when software is updated.
+
+<div class="info">
+
+##### Not customising third-party software helps address the following risks
+
+* [SLS7](#risk-sls-7)
+* [DOW13](#risk-dow-13)
+* [DOW19](#risk-dow-19)
+* [DOW20](#risk-dow-20)
+</div>
+
+#### Capture configuration changes vulnerabilities
+
+Main outline from the COSO principles:
+
+* Uses defined Configuration Standards, monitor and enforce them.
+* Detect configuration drift.
+* Detect unwanted sofware installed on nodes.
+* Conducts Vulnerability and Configuration security Scans.
+
+**References:**
+
+* [SOC2](#ref-soc2) CC 7.1
+* [ISO 27001](#iso-27001) Annex A 8.9
+
+**Examples for best practices:**
+
+* This includes, but is not limited to:
+  * Firewall configurations
+  * Docker image setups
+  * Container orchestration configurations
+  * Database configurations
+  * Webserver/Load balancer configurations
+* Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
+* Many pieces of software has defined configuration standards provided by [CIS benchmarks](https://www.cisecurity.org).
+
+<div class="info">
+
+##### Managing configuration helps address the following risks
+
+* [GIR3](#risk-gir-3)
+* [GIR4](#risk-gir-4)
+* [KEC8](#risk-kec-8)
+</div>
+
+#### Protect against malware
+
+Main outline of the Information security controls reference:
+
+* Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
+
+##### Relevant External Controls
+
+* [ISO27001](#ref-iso-27001) Annex A 8.7
+
+**Examples for best practices:**
+
+* Regularly check the latest [CVE entries.](https://cve.mitre.org), regarding all software tools used. Tools such as [Trivy](https://github.com/aquasecurity/trivy) can help with this. // -> monitoring?
+
+<div class="info">
+
+##### Malware protection helps address the following risks
+
+* [GIR15](#risk-gir-15)
+* [GIR17](#risk-gir-17)
+</div>
+
+#### Pre-deployment testing environments
+
+Use separate tests and staging environments
+
+This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first, and then roll it out in a staged fashion. If it causes some slashing event, it is then contained to the few nodes that it was rolled out to.
+
+
+
+<div class="info">
+
+##### Pre-deployment Testing helps address the following risks
+
+
+* [SLS6](#risk-sls-6)
+* [SLS7](#risk-sls-7)
+* [GIR11](#risk-gir-11)
+* [GIR18](#risk-gir-18)
+* [GIR20](#risk-gir-20)
+* [GIR21](#risk-gir-21)
+* [DOW19](#risk-dow-19)
+* [DOW20](#risk-dow-20)
+</div>
+
+#### Use containerized and orchestrated environments
+
+Containerized and orchestrated environments are designed to reinforce security by automating many good practices, with mechanisms that have been widely tested in diverse environments. As tools that can be used well or badly, their best practice recommendations are important to ensure the the full benefits are realised.
 
 <div class="info">
 
@@ -1312,9 +1466,13 @@ Follow their best practice recommendations. Their mechanisms are more than battl
 * [GIR23](#risk-gir-23)
 </div>
 
-#### Automation where possible
+#### Automate where possible
 
-Human error is a real threat, and every process should at least follow an automated script that may or not be invoked by a human. The other risk of non-manual steps is the reduction of the risk of exposure of secrets. Everything should be done through pipelines and job-mechanisms (GitHub Actions, Apache Airflow, Apache Nifi)
+Human error is always a risk. An automated script, whether or not invoked by a human, can help minimise indavertent errors.
+
+Another benefit of properly set up automation is to reduce the risk of exposing secrets.
+
+When correctly configured pipelines and job-mechanisms such as GitHub Actions, Apache Airflow, or Apache Nifi can significantly reduce the potential for inadvertent errors to create problems
 
 <div class="info">
 
@@ -1331,16 +1489,7 @@ Human error is a real threat, and every process should at least follow an automa
 * [GIR25](#risk-gir-25)
 </div>
 
-#### Minimize CVEs in images
-
-Analyzing images for potential CVEs is simple nowadays (use e.g. [Trivy](https://github.com/aquasecurity/trivy)). Further configurations inside these images can be checked using [CoGuard](https://www.coguard.io). Any image used in your infrastructure should be checked this way.
-
-<div class="info">
-
-#### @@ helps address the following risks
-
-* [GIR17](#risk-gir-17)
-</div>
+</section>
 
 ### Monitoring and Alerting
 
@@ -1753,11 +1902,48 @@ as well as processes that ensure equipment is correctly retired including removi
 
 @@@@
 
+### Controls for Update Process
+
+#### Follow Update Procedures
+
+Node Operators MUST document procedures for updates to code
+
+#### Use Code Repositories
+
+Source code MUST be managed in a repository
+
+Deployed production code MUST NOT be directly editable
+
+This covers all changes to code, including when it is necessary to roll back an upgrade.
+
+#### Check Third-party Code for Vulnerabilities before Updating
+
+Updates to third-party software MUST be checked for vulnerabilities before deployment
+
+This covers verifying that all software updates, including validators and other nodes, have been audited to ensure they are not introducing known or new vulnerabilities.
+
+#### Test All Interactions Impacted by Software Updates
+
+Updates MUST include an Audit of ALL Code and User Interactions they impact
+
+This means testing not just the new code deployed, but also existing code that interacts with anything the update changes, to ensure that integration is not introducing a vulnerability. This extends to non-blockchain code used to interact with the Validator, where applicable.
+
+#### Deploy via staging test environments
+
+Updates MUST be tested on a realistic staging environment before deployment as "production" on a live network.
+
+##### Relevant external controls for Pre-Deployment Testing
+
+* [ISO 27001](#iso-27001) Annex A 8.31
+
+#### Maintain Emergency rollback procedures
+
+Node Operators MUST have a process to enable emergency rollback of upgrades
+
 ## Summary of external controls
 
-The following external controls correspond to controls defined in this specification.
-
-**NB: The following items are being consolidated into the Controls Section, above [Ed.]**
+<section style="background-color:#fdd">
+**NB: The following items are being consolidated into the [Controls Catalog](#controls-catalog) Section, above [Ed.]**
 
 <table><thead>
 <tr><th width="443">Framework</th><th>Criterion</th></tr></thead><tbody>
@@ -1786,9 +1972,7 @@ The following external controls correspond to controls defined in this specifica
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 7.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 8.1</td></tr>
+
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 8.2</td></tr>
@@ -1847,12 +2031,9 @@ The following external controls correspond to controls defined in this specifica
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 8.30</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.31</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.32</td></tr></tbody></table>
+
+
+</tbody></table>
 
 ## OWASP
 
@@ -1900,7 +2081,6 @@ Main outline from the COSO principles:
 
 1. **Technology Infrastructure Control** — Stakeholders develop control activities over the technology infrastructure, ensuring accuracy, availability and completeness of data.
 2. **Security Access Control** — External threats are analyzed and access rights are properly defined.
-3. **Third Party tool integration** — Integration, management, and updates of third party tools is closely monitored.
 
 **References:**
 
@@ -1908,7 +2088,6 @@ Main outline from the COSO principles:
 
 **Examples for best practices:**
 
-* Every third party software that is brought in needs to be known, and proper change management applied to it.
 * Every third party software needs to be analyzed for the correct access rights with respect to users who can access it, but also the privileges it needs on the system it runs on. \
   Examples for this are:
   * Do not run main processes as root, since a compromised software can then execute privileged operations.
@@ -1964,75 +2143,11 @@ Main outline from the COSO principles:
 
 
 
-### Capture configuration changes vulnerabilities
-
-Main outline from the COSO principles:
-
-* Uses defined Configuration Standards, monitor and enforce them.
-* Detect configuration drift.
-* Detect unwanted sofware installed on nodes.
-* Conducts Vulnerability and Configuration security Scans.
-
-**References:**
-
-* CC 7.1 Trust services criteria
-
-**Examples for best practices:**
-
-* Many software pieces have defined configuration standards provided by [CIS benchmarks](https://www.cisecurity.org).
-* Configuration standards can be enforced by automated software (e.g. [CoGuard](https://www.coguard.io))
-
-<div class="info">
-
-#### Managing configuration helps address the following risks
-
-* [GIR4](#risk-gir-4)
-* [KEC8](#risk-kec-8)
-</div>
 
 
 
 
-### Proper change management
 
-This is challenging for classically set up IT operations, but is straightforward if modern Infrastructure as Code principles are being used.
-
-Main outline from the COSO principles:
-
-* Manages Changes Throughout the System Life Cycle — To support system availability and processing integrity, any changes need to go through a well-defined process.
-* Only perform authorized changes.
-* Use a version control system for infrastructure.
-* Maintain configuration of software in a code-base.
-* Tests are in place for system changes.
-* Have a ticketing system in place to document and review suggested changes.
-* Have a controlled deployment.
-* Certificate management for internal and external communication.
-* Have a way to directly identify historical changes to the infrastructure.
-* A templated configuration of IT and control systems is created and maintained.
-* Have breaking-glass change mechanisms in place for emergency situations.
-* Protect confidential information to be leaked or accidentally accessed in the change management system.
-
-**References:**
-
-* CC 8.1 of the SOC 2 Trust Services Criteria
-
-**Examples for best practices:**
-
-* While this seems like a lot of points, most of them can be addressed by following the [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) to infrastructure.
-
-<div class="info">
-
-**Links to Risks**
-
-* [SLS6](#risk-sls-6)
-* [SLS7](#risk-sls-7)
-* [GIR3](#risk-gir-3)
-* [GIR18](#risk-gir-18)
-* [GIR20](#risk-gir-20)
-* [GIR21](#risk-gir-21)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-</div>
 
 ### Develop Risk Mitigation Activities
 
@@ -2175,55 +2290,8 @@ Main outline of the Information security controls reference:
 </div>
 
 
-### Protection against malware
 
-Main outline of the Information security controls reference:
 
-* Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
-
-**References:**
-
-* ISO27001 Annex A 8.7
-
-**Examples for best practices:**
-
-* All dependencies should be checked for latest [CVE entries.](https://cve.mitre.org)
-
-<div class="info">
-
-#### Malware protection helps address the following risks
-
-* [GIR15](#risk-gir-15)
-* [GIR17](#risk-gir-17)
-</div>
-
-### Configuration Management
-
-Main outline of the Information security controls reference:
-
-* Any configurations of infrastructure components need to be documented, implemented, monitored and reviewed.
-
-**References:**
-
-* ISO27001 Annex A 8.9
-
-**Examples:**
-
-* This includes, but is not limited to:
-  * Firewall configurations
-  * Docker image setups
-  * Container orchestration configurations
-  * Database configurations
-  * Webserver/Load balancer configurations
-* Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
-
-<div class="info">
-
-#### Configuration Management helps address the following risks
-
-* [GIR3](#risk-gir-3)
-* [KEC8](#risk-kec-8)
-</div>
 
 ### Information deletion
 
@@ -2319,59 +2387,8 @@ Main outline of the Information security controls reference:
 * [KEC8](#risk-kec-8)
 </div>
 
-### Secure development life cycle
 
-Main outline of the Information security controls reference:
 
-* Use best practices to ensure that software development is happening in a secure and monitored way.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.25
-
-**Examples for best practices:**
-
-* Use of CI/CD pipelines like GitHub Actions
-* Use of Linters
-* Use of enforced review processes
-* Not allowing to directly push to the main branch
-
-<div class="info">
-
-#### Managed seecurity in development helps address the following risks
-
-* [GIR8](#risk-gir-8)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-* [KEC8](#risk-kec-8)
-* [GIR25](#risk-gir-25)
-</div>
-
-### Testing
-
-Main outline of the Information security controls reference:
-
-* Use all possible tests (dynamic, static) in the CI/CD pipeline of your development lifecycle.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.29
-
-**Examples  for best practices:**
-
-* Unit tests
-* Dynamic tests
-* Integration tests
-
-<div class="info">
-
-#### Testing helps address the following risks
-
-* [GIR20](#risk-gir-20)
-* [GIR21](#risk-gir-21)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-</div>
 
 ### Outsourced development
 
@@ -2395,55 +2412,6 @@ Main outline of the Information security controls reference:
 * [GIR24](#risk-gir-24)
 </div>
 
-### Separation of development, test and production environments
-
-Main outline of the Information security controls reference:
-
-* Development, testing and production environments shall be separated and secured. Additionally, they should be virtually the same minus DNS, credentials and IP addresses.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.31
-
-**Examples for best practices:**
-
-* Use [docker-compose](https://docs.docker.com/compose/) or [minikube](https://minikube.sigs.k8s.io/docs/) to define local-production-like environments.
-* Use infrastructure as code to be able to spin up and tear down test environments.
-* Have well-defined interfaces to pull part of the production data into a local database for testing.
-
-<div class="info">
-
-#### testing environments help address the following risks
-
-* [SLS6](#risk-sls-6)
-* [SLS7](#risk-sls-7)
-* [GIR11](#risk-gir-11)
-* [GIR18](#risk-gir-18)
-</div>
-
-### Change management
-
-Main outline of the Information security controls reference:
-
-* Use change management systems (e.g. GIT) for any information processing changes (infrastructure and software).
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.32
-
-**Examples for best practices:**
-
-* Using GIT also for infrastructure code and configurations.
-* Use database migration systems such as [Liquibase](https://www.liquibase.org).
-
-<div class="info">
-
-#### Change management helps address the following risks
-
-* [DOW2](#risk-dow-2)
-* [DOW11](#risk-dow-11)
-* [GIR25](#risk-gir-25)
-</div>
 
 <section id="sec-communications-strategy">
 
