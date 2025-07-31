@@ -5,7 +5,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 ## Editor's draft post version 1
 
 
-<<dl>
+<dl>
 <dt>This draft date:</dt>
 <dd>2025-07-31</dd>
 
