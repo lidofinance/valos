@@ -80,4 +80,5 @@ Issues and Pull Requests are assigned at least one milestone, which refers to a 
 
 Items on the milestone will be published to the Telegram Community on Fridays. If there is no objection raised, they will be merged into the `staging` brnch, or closed as proposed, on the following Wednesday.
 
-When all the approved items have been merged into th staging branch, a Pull Request will be raised to merge that update to the `main` brnach.
+When all the approved items have been merged into the staging branch, a Pull Request will be raised to merge that update to the `main` branch.
+
