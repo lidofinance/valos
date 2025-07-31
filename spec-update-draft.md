@@ -2085,6 +2085,7 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 <td>[SOC2](#soc2)</td>
 <td>PI 1.3</td></tr>
 <tr>
+
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 5.16</td></tr>
 <tr>
