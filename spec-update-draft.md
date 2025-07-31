@@ -1781,8 +1781,8 @@ as well as processes that ensure equipment is correctly retired including removi
 
 ##### Managing Equipment Lifecycles helps address the following risks
 
+to do: add content here
 
-@@@@
 ### Controls for Incident Response Planning
 
 ##### Relevant External Controls for Incident Response planning
