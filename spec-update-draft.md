@@ -25,7 +25,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 </dl>
 
 
-
+<a id="sec-abstract"></a>
 ## Abstract
 
 This specification defines risks that can apply when operating a blockchain node.
@@ -37,9 +37,9 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
 
 ## Table of Contents
 
-- [Abstract](#abstract)
-- [Introduction](#introduction)
-- [Abstract](#abstract)
+- [Abstract](#sec-abstract)
+- [Introduction](#sec-introduction)
+  - [Purpose](#sec-purpose)
 - [Risks](#risks)
   - [Slashing Risk](#slashing-risk)
   - [Downtime Risk](#downtime-risk)
@@ -56,18 +56,20 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
 - [Mitigation Strategies](#mitigation-strategies)
   - [Node-Operator Technology Stack Mitigations](#node-operator-technology-stack-mitigations)
   - [Secret Management](#secret-management)
-  - [Access Management](#access-management)
-  - [Development and Update Process](#development-and-update-process)
-  - [Monitoring](#monitoring)
-  - [General Measures](#general-measures)
+  - [Access Management](#sec-mitigations-access-management)
+  - [Development and Update Process](#sec-mitigations-development-and-update)
+  - [Monitoring](#sec-mitigations-monitoring)
+  - [Incident Response](#sec-mitigations-incident-response)
+  - [General Measures](#sec-mitigations-general)
 - [Controls Catalog](#controls-catalog)
 - [Communications Strategy](#sec-communications-strategy)
 - [References](#sec-references)
 - [Status and Feedback](#sec-sotd)
 
-
+<a id="sec-introduction"></a>
 ## Introduction
 
+<a id="sec-purpose"></a>
 ### Purpose
 
 This specification builds on the DUCK knowledge base as an evolution. In addition to the risk framework, updated based on feedback from practitioners,
@@ -904,6 +906,7 @@ In order to avoid loosing out on opportunity cost, Node operators need to develo
 * [SPS1](#risk-sps-1)
 </div>
 
+<a id="sec-mitigations-secret-management"></a>
 ### Secret Management
 
 #### Controlled and audited secret access
@@ -999,7 +1002,8 @@ Best practise includes "When in doubt, rotate". Keys to rotate include, but are 
 </div>
 
 
-### Access controls & access management
+<a id="sec-mitigations-access-management"></a>
+### Access Controls and Access Management
 
 Access Control covers physical access to devices and facilities, the ability to connect to servers through networks,
 and the ability to perform specific tasks, such as getting answers to requests.
@@ -1022,11 +1026,6 @@ COSO Principles:
 5. Manage Points of Access — Access to nodes inside the segmented area need to be controlled with authentication and authorization methods.
 6. Proper credentials management for infrastructure software — A clear definition of each credential life-time is established and enforced.
 
-COSO principle
-//Does this belong in secret maangement?
-7. Protects Encryption Keys — Processes are in place to protect encryption keys for their lifetime.
-
-This is covered by [secret management](#secret-management)
 
 Special considerations:
 
@@ -1238,6 +1237,7 @@ Best practices for lifecycle management include the ability to remotely pause, s
 * [KEC1](#risk-kec-1), [KEC5](#risk-kec-), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
 </div>
 
+<a id="sec-mitigations-development-and-updates-"></a>
 ### Development and Update Process
 
 #### Secure development life cycle
@@ -1508,6 +1508,7 @@ When correctly configured pipelines and job-mechanisms such as GitHub Actions, A
 
 </section>
 
+<a id="sec-mitigations-monitoring"></a>
 ### Monitoring and Alerting
 
 Monitoring dashboards are an important tool to identify risks and gain relevant data.
@@ -1621,6 +1622,7 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 </div>
 
+<a id="sec-mitigations-incident-response"></a>
 ### Incident Response
 
 An <dfn id="def-incident-response-plan">Incident Response Plan</dfn> documents procedures for managing security incidents and events,
@@ -1737,15 +1739,16 @@ offer further information on how to plan and implement simulations, and how to d
 
 #### Incident Communication
 
-As well as direct financial losses, security incidents can also result in significant reputational damage.
-Appropriate <dfn id="def-incident-communication">communication with stakeholders about security incidents</dfn>, both during and after the relevant incident, can significantly mitigate this risk.
+As well as direct financial losses, security incidents can also result in substantial reputational damage.
+Appropriate <dfn id="def-incident-communication">Incident Communication</dfn> with stakeholders about security incidents, both during and after the relevant incident, can significantly mitigate this risk.
 
-It is important to note that inappropriate communication during an incident can increase the damage. External communication has to balance
-stakeholders' need for information that enables them to respond in a well-informed manner against
-the importance of providing clear information with as much certainty as feasible that it will not later be contradicted.
+It is important to note that inappropriate communication during an incident can increase the damage.
+External communication has to balance stakeholders' need for information that enables them to respond in a well-informed manner
+against the importance of providing clear information with as much certainty as feasible that it will not later be contradicted.
 
 Best practice for external communication about an incident includes providing a detailed post-incident summary.
 
+<a id="sec-mitigations-general"></a>
 ### General Measures
 
 * General cyber security (Firewall, Intrusion Detection System, ....)
