@@ -2051,7 +2051,6 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 6.3</td></tr>
-
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 7.1</td></tr>
@@ -2061,14 +2060,12 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 7.3</td></tr>
-
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 8.2</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 8.3</td></tr>
-
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 9.2</td></tr>
@@ -2079,6 +2076,7 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 <td>[SOC2](#soc2)</td>
 <td>PI 1.3</td></tr>
 <tr>
+
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 5.16</td></tr>
 <tr>
