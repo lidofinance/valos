@@ -1935,8 +1935,8 @@ as well as processes that ensure equipment is correctly retired including removi
 
 ##### Managing Equipment Lifecycles helps address the following risks
 
+to do: add content here
 
-@@@@
 ### Controls for Incident Response Planning
 
 ##### Relevant External Controls for Incident Response planning
@@ -2019,7 +2019,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 #### Deploy via staging test environments
 
-Updates MUST be tested on a realistic staging environment before deployment as "production" on a live network.
+Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network.
 
 ##### Relevant external controls for Pre-Deployment Testing
 
@@ -2051,7 +2051,6 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 6.3</td></tr>
-
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 7.1</td></tr>
@@ -2061,14 +2060,12 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 7.3</td></tr>
-
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 8.2</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 8.3</td></tr>
-
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 9.2</td></tr>
@@ -2079,6 +2076,7 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 <td>[SOC2](#soc2)</td>
 <td>PI 1.3</td></tr>
 <tr>
+
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 5.16</td></tr>
 <tr>
