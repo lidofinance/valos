@@ -1930,7 +1930,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 #### Deploy via staging test environments
 
-Updates MUST be tested on a realistic staging environment before deployment as "production" on a live network.
+Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network.
 
 ##### Relevant external controls for Pre-Deployment Testing
 
