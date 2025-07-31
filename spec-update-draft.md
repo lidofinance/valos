@@ -1480,7 +1480,7 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 ### Incident Response
 
-Incident Response Plans document procedures for managing security incidents and events,
+An <dfn id="def-incident-response-plan">Incident Response Plan</dfn> documents procedures for managing security incidents and events,
 as guidance for employees or incident responders who believe they have discovered, or are responding to, a security incident.
 A well-documented Incident Response Plan helps employees in a high-stress situation by providing a reminder of all important actions and considerations.
 To be useful, it is necessary that relevant employees know the plans exist, and how to find them.
@@ -1488,14 +1488,14 @@ To be useful, it is necessary that relevant employees know the plans exist, and 
 
 Best practices for Incident response plans include
 
-- Well-defined decision-making responsibilities.
-- Where possible, automating responses
-- Identify relevant participants in advance. Redundancy against specific failures such as a key employee being unavailable is important.
+- Identify relevant participants in advance, with well-defined decision-making responsibilities.
+  Redundancy against specific failures such as a key employee being unavailable is important.
 - Clear information about how to investigate and triage incidents,
   including when to notify and involve particular participants and how to escalate issues to the most appropriate person or team.
-- Defined procedures to follow, for specific sets of circumstances
+- Define clear procedures to follow for specific sets of circumstances. Where it is possible and appropriate, automated responses and alerting triggered by
+  [Monitoring]() can help ensure rapid response.
 - Data collection and distribution to enable effective response, external communication, and "Post Mortem" analysis
-- Well-defined communication strategies, for both internal and external communications.
+- Identify relevant Stakeholders and define communication strategies for both internal and external communications
 
 #### Identify and respond to security incidents
 
@@ -1504,8 +1504,10 @@ Main outline from the COSO principles:
 * Assigns Roles and Responsibilities in case of a security event.
 * Contains Security Incidents — Ideally incidents can be contained within a short period of time.
 * Communication protocols are in place to inform affected parties.
-* Identified vulnerabilities need to be identified.
-* Evaluate the identification and response on a regular basis.
+* Vulnerabilities need to be identified.
+* Have a proper incident response plan in place, and review it periodically.
+* Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
+* Evaluate the identification of and response to incidents on a regular basis.
 
 **References:**
 
@@ -1528,12 +1530,14 @@ Main outline from the COSO principles:
 
 #### Analyze security events and learn from them
 
+This is often referred to as a "<dfn id="def-post-mortem">Post-Mortem</dfn>",
+and is used to learn from the event and improve relevant Incident Response Plans
+
 Main outline from the COSO principles:
 
-* Have a proper incident response plan in place, and review it periodically.
-* Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
 * Develops and Implements Procedures to Analyze Security Incidents.
-
+* Whenever possible, determine the root cause.
+* Implement necessary changes to prevent similar disasters.
 
 <div class="info">
 
@@ -1563,50 +1567,39 @@ COSO principles:
 * Whenever possible, determine the root cause.
 * Implement necessary changes to prevent similar disasters.
 
-##### External Controls for Disaster Recovery
-
-* [SOC2](#soc2) CC 7.5
-
 ##### Disaster Recovery Plans help address the following risks:
 
 * [GIR19](#risk-gir-19)
 
 </div>
 
-#### Pre-Mortem
+#### Incident Simulations
+
+These are also known as "<dfn id="def-pre-mortem">Pre-Mortems</dfn>.
 
 Regular simulations of implementing an Incident Response Plan ensure that relevant personnel are familiar with them and can follow them when necessary.
 "Pre-Mortems", simulating or "war-gaming" a specific failure, not only ensures people are familiar with the procedures to follow for specific risks,
 and that those procedures are tested to give some idea of whether they are appropriate and adequate,
 but often motivate people to think about other risks, and whether appropriate procedures and mitigations are in place.
-Example topics for a Pre-Mortem could include
 
-* Unauthorized users gain access to the servers
+There are many possible approaches to an incident simulation, and may eventualities that they can cover. As well as a highly detailed scenario, example topics could include variations on themes such as
+
+* Unauthorized users gain access to the servers and set about making mischief
 * A complex security compromise, where details are not immediately available
-* A specific scenario results in downtime
+* A specific scenario (environmental disaster, utility failure, operational error) results in downtime
+
 
 Articles such as [Premortem](#ref-premortem)
-offer further information on how to plan and implement simulations and how to derive the maximum benefit from them.
-
-#### Post-Mortem
-
-If any incident occurs necessitating an incident response, it is valuable to analyze the response, to identify possible improvements to existing plans,
-as well as new unit tests and similar procedures that will help mitigate or prevent future incidents.
-
-##### External Controls for Incident Post-Mortems
-
-* [SOC2](#soc2) CC 7.3
-
-##### Incident Post-Mortems help address the following risks:
+offer further information on how to plan and implement simulations, and how to derive the maximum benefit from them.
 
 #### Incident Communication
 
-As well as direct financial losses, security incidents and disaster can also result in significant reputational damage.
-Appropriate communication with stakeholders can significantly mitigate this risk.
+As well as direct financial losses, security incidents can also result in significant reputational damage.
+Appropriate <dfn id="def-incident-communication">communication with stakeholders about security incidents</dfn>, both during and after the relevant incident, can significantly mitigate this risk.
 
-It is important to note that inappropriate communication during an incident can increase the damage. External communication needs to balance
-stakeholders' desire for information that provides them security or the ability to respond in a well-informed manner against
-the importance of providing information that is fairly clear and certain, and will not later be contradicted.
+It is important to note that inappropriate communication during an incident can increase the damage. External communication has to balance
+stakeholders' need for information that enables them to respond in a well-informed manner against
+the importance of providing clear information with as much certainty as feasible that it will not later be contradicted.
 
 Best practice for external communication about an incident includes providing a detailed post-incident summary.
 
@@ -1788,7 +1781,61 @@ as well as processes that ensure equipment is correctly retired including removi
 
 ##### Managing Equipment Lifecycles helps address the following risks
 
-@@
+to do: add content here
+
+### Controls for Incident Response Planning
+
+##### Relevant External Controls for Incident Response planning
+
+* [SOC2](#ref-soc2) CC 9.1 of Trust Services Criteria
+
+##### Incident Response Planning helps address all risks
+
+#### Document Adequate Incident Response plans
+
+The Node Operator MUST have documented [Incident Response Plans](#def-incident-response-plan) corresponding to all risks identified in this specification.
+
+#### Document Disaster Recovery Plans
+
+The Node Operator MUST have documented [Disaster Recovery Plans](#def-disaster-recovery-plan) corresponding to risks identified in this specification
+that lead to destruction of crucial data or loss of assets.
+
+##### Relevant External Controls for Disaster Recovery Plans
+
+* [SOC2](#soc2) CC 7.5
+
+##### Disaster Recovery Plans help address the following risks:
+
+* [GIR19](#risk-gir-19)
+
+#### Plan Incident Follow-up
+
+[Incident Response](def-incident-response-plan)
+and [Disaster Recovery](#def-disaster-recovery-plan) plans MUST include revising the relevant plans whenever they are activated, based on lessons learned.
+
+This covers both responses to real incidents and Simulated activation, or "pre-mortems".
+
+##### Analyzing security events helps address the following risks
+
+* [DOW10](#risk-dow-10)
+* [GIR6](#risk-gir-6)
+* [GIR7](#risk-gir-7)
+
+##### Relevant External Controls for Analyzing security events
+
+* [SOC2](#soc2) CC 7.3
+
+#### Perform Regular Incident Response Simulations
+
+Node Operators MUST perform a simulated Incident and activation of the associate [Incident Response](def-incident-response-plan)
+or [Disaster Recovery](#def-disaster-recovery-plan) plans at least twice per year.
+
+#### Plan Incident Communication
+
+Node Operators MUST document [Incident Communication](#def-incident-communication) strategies or policies
+
+This requirement includes internal and external communication, both during and after incidents.
+
 
 ## Summary of external controls
 
@@ -1831,9 +1878,7 @@ as well as processes that ensure equipment is correctly retired including removi
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 8.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 9.1</td></tr>
+
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 9.2</td></tr>
@@ -2070,22 +2115,6 @@ Main outline from the COSO principles:
 * [DOW20](#risk-dow-20)
 </div>
 
-### Develop Risk Mitigation Activities
-
-Main outline from the COSO principles:
-
-* Regularly develop and improve Mitigation of Risks of Business Disruption -- This should be automated where possible.
-
-**References:**
-
-* CC 9.1 of Trust Services Criteria
-
-<div class="info">
-
-#### Risk mitigation helps address the following risks
-
-* [DOW6](#risk-dow-6)
-</div>
 
 ### Vendors and business partners risk management
 
