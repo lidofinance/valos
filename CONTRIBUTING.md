@@ -55,6 +55,8 @@ If no existing issue covers your topic, please do raise a new issue.
 
 ### How to propose a solution?
 
+**By making the contribution you accept the [conditions of contributing](#terms-and-conditions)**.
+
 You can describe the proposed changes in an Issue comment. The Editor (or someone else who wants to) can convert this to a Pull Request, as long as the explanation is clear enough.
 
 Please understand that as we have a community governance model, all such proposals will be discussed rather than automatically adopted, as they may impact other users in different ways.
@@ -62,8 +64,7 @@ This discussion can lead to changes, or even not adopting the proposed solution,
 
 You can also make a Pull Request. If you do:
 
-- **By making the contribution you accept the [conditions of contributing](#terms-and-conditions)**.
-- Please work on a temporary branch and make a Pull Request against the `main` branch, which is the working branch for the next replacement version.
+- Please work on a temporary branch and make a Pull Request against the `staging` branch, which is the working branch for the next replacement version.
   If it is a typo or other fix that should also be taken into the existing DUCK v1, the editorial team will cherry-pick it.
 - Please provide the name you wish to be acknowledged by, if you are not already an acknowledged contributor.
 - In general, smaller Pull Requests that each address one issue are preferable to a single large Pull Request that touches multiple parts of the document.
@@ -75,18 +76,8 @@ even if you do not have time to understand and replicate the various conventions
 
 ## What happens next?
 
-Issues and Pull Requests are assigned at least one milestone, which refers to a meeting at which they can be discussed and decided.
+Issues and Pull Requests are assigned at least one milestone, which refers to a decision point at which they can be approved, or returned for more discussion.
 
-If they seem to contribute in a direction that is already clearly settled, they are likely to be labeled
-"[Bulk Resolution](https://github.com/lidofinance/valos/labels/bulk%20resolution)"
-with the expectation that no formal discussion will be needed to approve them. If someone objects at the meeting or in comments,
-this automatic adoption will not happen.
+Items on the milestone will be published to the Telegram Community on Fridays. If there is no objection raised, they will be merged into the `staging` brnch, or closed as proposed, on the following Wednesday.
 
-Otherwise they are likely to be labeled "[Question](https://github.com/lidofinance/valos/labels/question)", and discussed, with likely possible outcomes including:
-- the item can be closed with no plans to continue discussion, or
-- accepted "as is", or
-- accepted with some changes that seem to match the spirit, or
-- returned for further work and/or discussion.
-
-If they are labeled "[Help Wanted](https://github.com/lidofinance/valos/labels/help%20wanted)", it generally means that more information is sought.
-That might include further explanation or more specific work.
+When all the approved items have been merged into th staging branch, a Pull Request will be raised to merge that update to the `main` brnach.

@@ -2423,103 +2423,54 @@ Main outline of the Information security controls reference:
 
 ## Communications Strategy
 
+There are two core parts to a Nore Operator's communication strategy:
+Normal <dfn>Operational Communication</dfn> provides information about ongoing operations, to ensure coinfidence in and transparency of everyday operations.
+<dfn>Incident Communication</dfn> is the collection of communications processes that occur when an exceptional security incident occurs that could adversely affect the normal operations, or the users of a system.
+
+Both rely on understanding the Stakeholders, and developing approriate communication channels and procedures to ensure those stakeholders have timely access to relevant information.
+
 ### Stakeholder Overview
 
-#### Known Stakeholders
+Some key stakeholders are <dfn>Known Stakeholders</dfn>, who have an identity known to the Node Operator
+that includes at least one direct communications cannel such as messaging, email, or telephone. These typically include
 
-This type of stakeholders discloses the identity and provides contact details and channels for communication. Direct and close communication can be required.
-
-##### **Institutional Stakers**
-
-* High stake investors with potential of contractual obligations
-* Generally require close contact and channels for direct contact
-
-##### **Service Partners**
-
-* Partners (e.g. Lido) operating and managing protocols and their respective Node Operator landscape and requiring governance votes
-* Generally require close contact and channels for direct contact
-* Emergency communication in case of incident
-
-##### **Infrastructure Partners**
-
-* Partners involved in hosting, managing or operating infrastructure as part of the node operation setup
-* Need direct contact in case of emergency measure
-
-##### **Media**
-
+* High stake investors - with whom the Operator could have contractual obligations
+* Service Partners, who might be involved in operating and managing protocols and requiring governance votes, or hosting, managing or operating infrastructure as part of the node operation setup
 * Media channels, platforms, and accounts covering technical and non-technical news and reports
-* Need for monitoring of business relevant news
-* Need for close monitoring and engagement in case of incidents with business impact and public awareness
-
-##### **Core & Client Dev Teams**
-
-* Teams developing and maintaining critical node operations software
-* Need for communication channel in case updates, maintenance and information around critical software components, especially in the event of software issues
-
-##### Other Node Operators
-
-* Node Operators running validators and similar tech stack
-* Need for close monitoring of communication channels and alerting in case of published incidents with potential relevance for own setup
-
-##### **Optional: Service Customers**
-
+* Other Node Operators running validators on the same network
+* Staff such as those developing and maintaining critical node operations software
 * Individuals or organizations using additional service provided by Node Operators (e.g., API users, customers for white-label solutions etc.)
-* Need for direct customer service contact
-* Need for information & updates in case of incidents
+* Corporate Regulators - who can require that Node Operators provide them with specific information, but do not necessarily communnicate with Node Operators on an individual basis
 
-#### Mixed Stakeholders
+Node operators will almost certainly also have <dfn>Anonymous Stakeholders</dfn>, who might follow a Node Operator's public information channels,
+or operate independently, but who do not provide individual communication information to Operators.
 
-These are entities that do not necessarily disclose their identity information, nor have identified channels of contact with Node Operators. They might follow available public channels such as X(Twitter), Discord, or public Telegram groups but can also operate entirely independently.
+These can include
 
-##### **Individual Stakers**
+* Low stake investors and potential investors
+* Communities involved in the ecosystem for motives as diverse as lobbying regulators, developing technical standards,
 
-* Low stake investors
-* Need for communication of status and incident updates across all public channels
+As well as many of the types of Stakeholder who also become Known Stakeholders, such as High stake investors, Media and  Other Node Operators.
 
-##### **Communities**
-
-* Individuals or organizations with diverse motivations (e.g., lobbyism, issues, questions, feedback, etc.)
-* Need for public and anonymous communication platform
-
-#### Communication Channels
-
+### Communication Channels
 
 Stakeholders' preferences for communication channels differ.
-Where possible for known stakeholders it is good practice to identify individual channel preferences in advance.
-It is important to include channels that enable mixed stakeholders to follow important developments.
+Where possible for Known Stakeholders it is good practice to identify them, and their individual channel preferences in advance.
+However it is also important to note that a number of jurisdictions (such as the EU, with the [[GDPR](#ref-gdpr)]) regulate the use of information about individuals
+that includes communication channel information.
+It is important to include channels that enable Anonymous Stakeholders to follow important developments.
 
-##### Website
+Boradly, communication channels can be considered two-way, enabling communication with an individual Known Stakeholder or with all of them at once, or boradcast, providing a mechanism available to Anonymous Stakeholders to receive important information. Additionally, some mechanisms allow for persistent information, while others are only temporary; A website can be maintained long-term or the information can be removed, information sent by email can easily be retained by the recipient in perpetuity, while information in e.g. a Slack or Telegram channel could be deleted after a matter of days or weeks
 
-* Service offering
-* Contact details
-* Target Group: [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
+It is also important, especially for services used for two-way communication with Known Stakeholders, to consider the security and privacy of the channels used.
+While channels such as Telegram or Whatsapp use encryption, in the case of the former all communication is decoded at some unknnown centralized point, in the latter large amounts of metadata are available to the service provider.
 
-##### Email
+While many messaging services can behave in either manner, some such as websites are well-suited to broadcast communication
+while others are specifically suited to individual two-way communication.
 
-* Available for any means of contact
-* Target Group:  [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
+Common communication tools that Stakeholders are likely to find familiar and actively use include Websites, email, message-based services such as Telegram, Discord, Slack, Signal, Whatsapp and "post"-oriented services such as X (the former Twitter), BlueSky, Facebook/Instagram, and the like.
 
-##### Telegram (Public)
 
-* Focus on community engagement, incident updates, and information sharing
-* Public accessibility to provide contact channels for anonymous stakeholders
-* Target Group: [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
-
-##### Telegram (Private)
-
-* Direct communication with relevant stakeholders
-* Target Group: [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention")
-
-##### Discord/Slack
-
-* Direct communication channels with relevant stakeholders
-* Focus on dialogue, community management, status updates, detailed updates in case of incidents and mitigations
-* Target Group:  [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
-
-##### X (Twitter)
-
-* Focus on marketing, high-level publication of updates, information in case of incidents, and mitigations
-* Target Group:  [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
 
 ### Stakeholder Management
 
