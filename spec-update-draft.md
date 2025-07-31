@@ -39,11 +39,6 @@ such as compromising the control of a node or actions that result in reduced eco
   - [Service Partner Specific Risk](#service-partner-specific-risk)
   - [Downtime Risks](#downtime-risks)
   - [Reputational Risk](#reputational-risk)
-- [Risk Management Procedures](#risk-management-procedures)
-  - [Risk Monitoring](#risk-monitoring)
-  - [Incident Response Plan](#incident-response-plan)
-  - [Disaster Recovery Plan](#disaster-recovery-plan)
-  - [Pre-Mortem](#pre-mortem)
 - [Risk Assessment Procedures](#risk-assessment-procedures)
   - [Financial Loss](#financial-loss)
   - [Occurrence Probability](#occurrence-probability)
@@ -902,9 +897,13 @@ In order to avoid loosing out on opportunity cost, Node operators need to develo
 
 ### Secret Management
 
-#### Controlled/audited secret access
+#### Controlled and audited secret access
 
-Any secret, including access credentials for internal systems needs to be accessed and authorized through a vault system. In this way, everything is audited, and anomaly detection can be activated for those vaults. Using multi-sig wallets, requiring authorization from multiple parties for specific actions, helps to ensure both that relevant access is monitored and that it is correctly controlled.
+Best practise for credential management is to use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) ssytem, that gives users authorised access to secrets through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication), and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates).
+
+In this way, everything is audited, and anomaly detection can be activated for those vaults.
+
+Using multi-sig wallets, requiring authorization from multiple parties for specific actions, helps to ensure both that relevant access is monitored and that it is correctly controlled.
 
 <div class="info">
 
@@ -923,7 +922,7 @@ Any secret, including access credentials for internal systems needs to be access
 * [GIR25](#risk-gir-25)
 </div>
 
-#### Encryption of data at rest/in transit
+#### Encryption of Data
 
 Many different components interplay while a staking operation is going on. It is crucial, since sensitive information may be transmitted, to ensure that data is stored and transmitted in an encrypted fashion.
 
@@ -1034,6 +1033,7 @@ Special considerations:
 * Creation and continuous analysis of Software Bill of Materials [SBOM](#ref-sbom).
 * Use of Clients, roles and groups when using [AWS IAM](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html).
 * Have an internal virtual private network and only have well-defined endpoints be accessible from the web.
+* Use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) mechanism.
 
 <div class="info">
 
@@ -1119,7 +1119,7 @@ Ensure that employees whose roles have changed do not have lingering credentials
 
 <div class="info">
 
-#### @@ helps address the following risks
+#### Employee authorization process helps address the following risks
 
 * [SLS10](#risk-sls-10)
 * [DOW17](#risk-dow-17)
@@ -1225,8 +1225,50 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 ### Development and Update Process
 
+#### Secure development life cycle
+
+Main outline of the Information security controls reference:
+
+* Use best practices to ensure that software development is happening in a secure and monitored way.
+
+##### Relevant External Controls for Secure Development Lifecycle
+
+* [ISO 27001](#iso-27001) Annex A 8.25
+
+**Examples for best practices:**
+
+* Use of CI/CD pipelines like GitHub Actions
+* Use of Linters
+* Use of enforced review processes
+* Not allowing to directly push to the main branch
+
+<div class="info">
+
+#### Secure Development Lifecycle helps address the following risks
+
+* [GIR8](#risk-gir-8)
+* [DOW19](#risk-dow-19)
+* [DOW20](#risk-dow-20)
+* [KEC8](#risk-kec-8)
+* [GIR25](#risk-gir-25)
+</div>
+
+@@ Software development (check inputs and outputs, audit, follow secure dev guidelines, etc) and Upgrade processes/Change management (test environments, proper review between upgrades, ...)
+
 
 #### Testing and review of all changes to infrastructure code
+
+Use all possible tests (dynamic, static) in the CI/CD pipeline of your development lifecycle.
+
+**References:**
+
+* [ISO 27001](#iso-27001) Annex A 8.29
+
+**Examples  for best practices:**
+
+* Unit tests
+* Dynamic tests
+* Integration tests
 
 
 Anything on the infrastructure should be captured in a code repository, and changes managed through a versioning system such as Git. No direct push to the main branch should be possible; everything should go through pull requests and review.
@@ -1263,20 +1305,6 @@ Ideally, metrics should be used to verify a high degree of testing culture. This
 * [DOW20](#risk-dow-20)
 </div>
 
-#### No custom changes to the validator software
-
-Validator software is open source, but in order to ensure that no protocol error occurs, the code should not be touched.
-
-<div class="info">
-
-##### Not customising third-party software helps address the following risks
-
-* [SLS7](#risk-sls-7)
-* [DOW13](#risk-dow-13)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-</div>
-
 #### Sanitize inputs
 
 Unchecked inputs are a major cause for overflow attacks and brute force. Ideally, the load balancer in front of the node filters out all traffic that has too large headers and payloads. Additionally, if JSON payloads are being used, they should be checked to adhere to a certain schema.
@@ -1288,22 +1316,153 @@ Unchecked inputs are a major cause for overflow attacks and brute force. Ideally
 * [GIR8](#risk-gir-8)
 </div>
 
-#### Use of separate tests and staging environments
+<section id="sec-manage-updates">
 
-This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first, and then roll it out in a staged fashion. If it causes some slashing event, it is then contained to the few nodes that it was rolled out to.
+### Manage Software Updates
+
+This is challenging for classically set up IT operations, but is straightforward if modern Infrastructure as Code principles are being used.
+
+Main outline from the COSO principles:
+
+* Manages Changes Throughout the System Life Cycle — To support system availability and processing integrity, any changes need to go through a well-defined process.
+* Only perform authorized changes.
+* Use a version control system for infrastructure.
+* Maintain configuration of software in a code-base.
+* Tests are in place for system changes.
+* Have a ticketing system in place to document and review suggested changes.
+* Have a controlled deployment.
+* Certificate management for internal and external communication.
+* Have a way to directly identify historical changes to the infrastructure.
+* A templated configuration of IT and control systems is created and maintained.
+* Have breaking-glass change mechanisms in place for emergency situations.
+* Protect confidential information to be leaked or accidentally accessed in the change management system.
+
+#### Relevant External Controls for Managed Software Updates
+
+* [SOC2](#ref-soc2) CC 8.1 of the SOC 2 Trust Services Criteria
+* [ISO 27001](#iso-27001) Annex A 8.32
+
+**Examples for best practices:**
+
+* A lot of these points can be addressed by following the [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) to infrastructure.
+* Using GIT also for infrastructure code and configurations.
+* Use database migration systems such as [Liquibase](https://www.liquibase.org).
 
 <div class="info">
 
-#### Test and staging environments help address the following risks
+#### Managing Software Updates helps mitigate the following Risks
 
-* [GIR11](#risk-gir-11)
+* [SLS6](#risk-sls-6)
+* [SLS7](#risk-sls-7)
+* [GIR3](#risk-gir-3)
+* [GIR18](#risk-gir-18)
+* [GIR20](#risk-gir-20)
+* [GIR21](#risk-gir-21)
+* [GIR25](#risk-gir-25)
+* [DOW2](#risk-dow-2)
+* [DOW11](#risk-dow-11)
 * [DOW19](#risk-dow-19)
 * [DOW20](#risk-dow-20)
 </div>
 
-#### Use containerized and orchestrated environments only.
+#### Avoid Customizing Third-party Software
 
-Follow their best practice recommendations. Their mechanisms are more than battle-tested in different environments. Any make-shift approach to do mechanisms such as fail-over by hand should be deemed insecure.
+Validator software, and other software validators use, is very often open source.
+However, customising software can introduce errors.
+In addition customizations can produce incompatibilities when software is updated.
+
+<div class="info">
+
+##### Not customising third-party software helps address the following risks
+
+* [SLS7](#risk-sls-7)
+* [DOW13](#risk-dow-13)
+* [DOW19](#risk-dow-19)
+* [DOW20](#risk-dow-20)
+</div>
+
+#### Capture configuration changes vulnerabilities
+
+Main outline from the COSO principles:
+
+* Uses defined Configuration Standards, monitor and enforce them.
+* Detect configuration drift.
+* Detect unwanted sofware installed on nodes.
+* Conducts Vulnerability and Configuration security Scans.
+
+**References:**
+
+* [SOC2](#ref-soc2) CC 7.1
+* [ISO 27001](#iso-27001) Annex A 8.9
+
+**Examples for best practices:**
+
+* This includes, but is not limited to:
+  * Firewall configurations
+  * Docker image setups
+  * Container orchestration configurations
+  * Database configurations
+  * Webserver/Load balancer configurations
+* Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
+* Many pieces of software has defined configuration standards provided by [CIS benchmarks](https://www.cisecurity.org).
+
+<div class="info">
+
+##### Managing configuration helps address the following risks
+
+* [GIR3](#risk-gir-3)
+* [GIR4](#risk-gir-4)
+* [KEC8](#risk-kec-8)
+</div>
+
+#### Protect against malware
+
+Main outline of the Information security controls reference:
+
+* Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
+
+##### Relevant External Controls
+
+* [ISO27001](#ref-iso-27001) Annex A 8.7
+
+**Examples for best practices:**
+
+* Regularly check the latest [CVE entries.](https://cve.mitre.org), regarding all software tools used. Tools such as [Trivy](https://github.com/aquasecurity/trivy) can help with this. // -> monitoring?
+
+<div class="info">
+
+##### Malware protection helps address the following risks
+
+* [GIR15](#risk-gir-15)
+* [GIR17](#risk-gir-17)
+</div>
+
+#### Pre-deployment testing environments
+
+Use separate tests and staging environments
+
+This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first, and then roll it out in a staged fashion. If it causes some slashing event, it is then contained to the few nodes that it was rolled out to.
+
+
+
+<div class="info">
+
+##### Pre-deployment Testing helps address the following risks
+
+
+* [SLS6](#risk-sls-6)
+* [SLS7](#risk-sls-7)
+* [GIR11](#risk-gir-11)
+* [GIR18](#risk-gir-18)
+* [GIR20](#risk-gir-20)
+* [GIR21](#risk-gir-21)
+* [DOW19](#risk-dow-19)
+* [DOW20](#risk-dow-20)
+</div>
+
+#### Use containerized and orchestrated environments
+
+Containerized and orchestrated environments are designed to reinforce security by automating many good practices, with mechanisms that have been widely tested in diverse environments. As tools that can be used well or badly, their best practice recommendations are important to ensure the the full benefits are realised.
 
 <div class="info">
 
@@ -1312,9 +1471,13 @@ Follow their best practice recommendations. Their mechanisms are more than battl
 * [GIR23](#risk-gir-23)
 </div>
 
-#### Automation where possible
+#### Automate where possible
 
-Human error is a real threat, and every process should at least follow an automated script that may or not be invoked by a human. The other risk of non-manual steps is the reduction of the risk of exposure of secrets. Everything should be done through pipelines and job-mechanisms (GitHub Actions, Apache Airflow, Apache Nifi)
+Human error is always a risk. An automated script, whether or not invoked by a human, can help minimise indavertent errors.
+
+Another benefit of properly set up automation is to reduce the risk of exposing secrets.
+
+When correctly configured pipelines and job-mechanisms such as GitHub Actions, Apache Airflow, or Apache Nifi can significantly reduce the potential for inadvertent errors to create problems
 
 <div class="info">
 
@@ -1331,16 +1494,7 @@ Human error is a real threat, and every process should at least follow an automa
 * [GIR25](#risk-gir-25)
 </div>
 
-#### Minimize CVEs in images
-
-Analyzing images for potential CVEs is simple nowadays (use e.g. [Trivy](https://github.com/aquasecurity/trivy)). Further configurations inside these images can be checked using [CoGuard](https://www.coguard.io). Any image used in your infrastructure should be checked this way.
-
-<div class="info">
-
-#### @@ helps address the following risks
-
-* [GIR17](#risk-gir-17)
-</div>
+</section>
 
 ### Monitoring and Alerting
 
@@ -1480,7 +1634,7 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 ### Incident Response
 
-Incident Response Plans document procedures for managing security incidents and events,
+An <dfn id="def-incident-response-plan">Incident Response Plan</dfn> documents procedures for managing security incidents and events,
 as guidance for employees or incident responders who believe they have discovered, or are responding to, a security incident.
 A well-documented Incident Response Plan helps employees in a high-stress situation by providing a reminder of all important actions and considerations.
 To be useful, it is necessary that relevant employees know the plans exist, and how to find them.
@@ -1488,14 +1642,14 @@ To be useful, it is necessary that relevant employees know the plans exist, and 
 
 Best practices for Incident response plans include
 
-- Well-defined decision-making responsibilities.
-- Where possible, automating responses
-- Identify relevant participants in advance. Redundancy against specific failures such as a key employee being unavailable is important.
+- Identify relevant participants in advance, with well-defined decision-making responsibilities.
+  Redundancy against specific failures such as a key employee being unavailable is important.
 - Clear information about how to investigate and triage incidents,
   including when to notify and involve particular participants and how to escalate issues to the most appropriate person or team.
-- Defined procedures to follow, for specific sets of circumstances
+- Define clear procedures to follow for specific sets of circumstances. Where it is possible and appropriate, automated responses and alerting triggered by
+  [Monitoring]() can help ensure rapid response.
 - Data collection and distribution to enable effective response, external communication, and "Post Mortem" analysis
-- Well-defined communication strategies, for both internal and external communications.
+- Identify relevant Stakeholders and define communication strategies for both internal and external communications
 
 #### Identify and respond to security incidents
 
@@ -1504,8 +1658,10 @@ Main outline from the COSO principles:
 * Assigns Roles and Responsibilities in case of a security event.
 * Contains Security Incidents — Ideally incidents can be contained within a short period of time.
 * Communication protocols are in place to inform affected parties.
-* Identified vulnerabilities need to be identified.
-* Evaluate the identification and response on a regular basis.
+* Vulnerabilities need to be identified.
+* Have a proper incident response plan in place, and review it periodically.
+* Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
+* Evaluate the identification of and response to incidents on a regular basis.
 
 **References:**
 
@@ -1528,12 +1684,14 @@ Main outline from the COSO principles:
 
 #### Analyze security events and learn from them
 
+This is often referred to as a "<dfn id="def-post-mortem">Post-Mortem</dfn>",
+and is used to learn from the event and improve relevant Incident Response Plans
+
 Main outline from the COSO principles:
 
-* Have a proper incident response plan in place, and review it periodically.
-* Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
 * Develops and Implements Procedures to Analyze Security Incidents.
-
+* Whenever possible, determine the root cause.
+* Implement necessary changes to prevent similar disasters.
 
 <div class="info">
 
@@ -1563,50 +1721,39 @@ COSO principles:
 * Whenever possible, determine the root cause.
 * Implement necessary changes to prevent similar disasters.
 
-##### External Controls for Disaster Recovery
-
-* [SOC2](#soc2) CC 7.5
-
 ##### Disaster Recovery Plans help address the following risks:
 
 * [GIR19](#risk-gir-19)
 
 </div>
 
-#### Pre-Mortem
+#### Incident Simulations
+
+These are also known as "<dfn id="def-pre-mortem">Pre-Mortems</dfn>.
 
 Regular simulations of implementing an Incident Response Plan ensure that relevant personnel are familiar with them and can follow them when necessary.
 "Pre-Mortems", simulating or "war-gaming" a specific failure, not only ensures people are familiar with the procedures to follow for specific risks,
 and that those procedures are tested to give some idea of whether they are appropriate and adequate,
 but often motivate people to think about other risks, and whether appropriate procedures and mitigations are in place.
-Example topics for a Pre-Mortem could include
 
-* Unauthorized users gain access to the servers
+There are many possible approaches to an incident simulation, and may eventualities that they can cover. As well as a highly detailed scenario, example topics could include variations on themes such as
+
+* Unauthorized users gain access to the servers and set about making mischief
 * A complex security compromise, where details are not immediately available
-* A specific scenario results in downtime
+* A specific scenario (environmental disaster, utility failure, operational error) results in downtime
+
 
 Articles such as [Premortem](#ref-premortem)
-offer further information on how to plan and implement simulations and how to derive the maximum benefit from them.
-
-#### Post-Mortem
-
-If any incident occurs necessitating an incident response, it is valuable to analyze the response, to identify possible improvements to existing plans,
-as well as new unit tests and similar procedures that will help mitigate or prevent future incidents.
-
-##### External Controls for Incident Post-Mortems
-
-* [SOC2](#soc2) CC 7.3
-
-##### Incident Post-Mortems help address the following risks:
+offer further information on how to plan and implement simulations, and how to derive the maximum benefit from them.
 
 #### Incident Communication
 
-As well as direct financial losses, security incidents and disaster can also result in significant reputational damage.
-Appropriate communication with stakeholders can significantly mitigate this risk.
+As well as direct financial losses, security incidents can also result in significant reputational damage.
+Appropriate <dfn id="def-incident-communication">communication with stakeholders about security incidents</dfn>, both during and after the relevant incident, can significantly mitigate this risk.
 
-It is important to note that inappropriate communication during an incident can increase the damage. External communication needs to balance
-stakeholders' desire for information that provides them security or the ability to respond in a well-informed manner against
-the importance of providing information that is fairly clear and certain, and will not later be contradicted.
+It is important to note that inappropriate communication during an incident can increase the damage. External communication has to balance
+stakeholders' need for information that enables them to respond in a well-informed manner against
+the importance of providing clear information with as much certainty as feasible that it will not later be contradicted.
 
 Best practice for external communication about an incident includes providing a detailed post-incident summary.
 
@@ -1622,25 +1769,51 @@ Some of these control criteria correspond to similar controls from at least thre
 Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
 
 ### Controls for Access Control
-
-@@ link to relevant mitigation(s)
-
-
+@@@@
 #### Authentication required for services
 
-All requests for services MUST require appropriate authentication
+All services MUST require appropriate authentication privileges.
 
-For example, a Node does not respond to anonymous requests on any port.
+For example, a Node does not respond to anonymous requests from an unknown user.
 
-#### Access to Nodes limited by Network
+#### Segment Networks to Limit Access
 
-Nodes MUST NOT respond to requests from outside a defined network.
+Networks SHOULD be segmented, to restrict access to systems that are identified as needing it.
+
+Nodes MUST NOT respond to requests from outside a defined network, except those that are explicitly defined as necessary.
+
+Fulfilling this requirement means maintaining a whitelist of individual services that are authorized to respond to requests from broader networks.
+
+##### Relevant Risks
+
+* [DOW10](#risk-dow-10)
+* [GIR9](#risk-gir-9)
+* [KEC8](#risk-kec-8)
+
+##### Relevant external controls
+
+* [ISO 27001](#iso-27001) Annex A 8.22
 
 #### Access to physical hardware is limited
 
 Entry to physical server locations MUST require authorization
 
 For example, a biometric scan or the use of a keycard.
+
+#### Least Privilege is applied to individuals and software
+
+Software MUST NOT run with, and a user MUST not have a higher level of privilege than necessary.
+
+For example, check that software does not run as root, that users do not log in directly with root privileges, and software and users are granted fine-grained access based on need rather than broad-based access for simplicity.
+
+##### Relevant risks
+
+* [KEC11](#risk-kec-11)
+* [GIR7](#risk-gir-7)
+
+##### Relevant external controls
+
+* [ISO 27001](#iso-27001) Annex A 8.18
 
 #### Regularly Review Access Rights Management
 
@@ -1653,6 +1826,7 @@ Best practice for this review includes:
 - analyzing access logs for physical access to hardware, and ensuring authorized individuals are not given access to hardware
 - verifying access to signing keys is limited to individuals whose roles mean they need it, and that all who need that access have it
 - ensuring that processes are effectively followed and meet the Node Operator's business needs
+- verify that software is run in a way that minimises its access
 
 ##### Relevant Risks
 
@@ -1663,7 +1837,9 @@ Best practice for this review includes:
 
 ##### Relevant external controls
 
+* [ISO 27001](#iso-27001) Annex A 5.17
 * [ISO 27001](#iso-27001) Annex A 5.18
+* [ISO 27001](#iso-27001) Annex A 8.18
 
 #### Protect Data in Transit
 
@@ -1697,7 +1873,15 @@ Risks that Automated Monitoring can help mitigate:
 
 #### Log privileged access
 
-Any operation that requires privileged access is logged. Any assignment of a key, or assignment of a role to or removal of a role from a particular key, MUST be logged.
+Any operation that requires privileged access MUST be logged.
+
+Any assignment of a key, or assignment of a role to or removal of a role from a particular key, MUST be logged.
+
+This includes monitoring software that has privileged access.
+
+##### Relevant external controls
+
+* [ISO 27001](#iso-27001) Annex A 8.18
 
 #### Log personnel changes
 
@@ -1751,13 +1935,104 @@ as well as processes that ensure equipment is correctly retired including removi
 
 ##### Managing Equipment Lifecycles helps address the following risks
 
-@@@@
+to do: add content here
+
+### Controls for Incident Response Planning
+
+##### Relevant External Controls for Incident Response planning
+
+* [SOC2](#ref-soc2) CC 9.1 of Trust Services Criteria
+
+##### Incident Response Planning helps address all risks
+
+#### Document Adequate Incident Response plans
+
+The Node Operator MUST have documented [Incident Response Plans](#def-incident-response-plan) corresponding to all risks identified in this specification.
+
+#### Document Disaster Recovery Plans
+
+The Node Operator MUST have documented [Disaster Recovery Plans](#def-disaster-recovery-plan) corresponding to risks identified in this specification
+that lead to destruction of crucial data or loss of assets.
+
+##### Relevant External Controls for Disaster Recovery Plans
+
+* [SOC2](#soc2) CC 7.5
+
+##### Disaster Recovery Plans help address the following risks:
+
+* [GIR19](#risk-gir-19)
+
+#### Plan Incident Follow-up
+
+[Incident Response](def-incident-response-plan)
+and [Disaster Recovery](#def-disaster-recovery-plan) plans MUST include revising the relevant plans whenever they are activated, based on lessons learned.
+
+This covers both responses to real incidents and Simulated activation, or "pre-mortems".
+
+##### Analyzing security events helps address the following risks
+
+* [DOW10](#risk-dow-10)
+* [GIR6](#risk-gir-6)
+* [GIR7](#risk-gir-7)
+
+##### Relevant External Controls for Analyzing security events
+
+* [SOC2](#soc2) CC 7.3
+
+#### Perform Regular Incident Response Simulations
+
+Node Operators MUST perform a simulated Incident and activation of the associate [Incident Response](def-incident-response-plan)
+or [Disaster Recovery](#def-disaster-recovery-plan) plans at least twice per year.
+
+#### Plan Incident Communication
+
+Node Operators MUST document [Incident Communication](#def-incident-communication) strategies or policies
+
+This requirement includes internal and external communication, both during and after incidents.
+
+
+### Controls for Update Process
+
+#### Follow Update Procedures
+
+Node Operators MUST document procedures for updates to code
+
+#### Use Code Repositories
+
+Source code MUST be managed in a repository
+
+Deployed production code MUST NOT be directly editable
+
+This covers all changes to code, including when it is necessary to roll back an upgrade.
+
+#### Check Third-party Code for Vulnerabilities before Updating
+
+Updates to third-party software MUST be checked for vulnerabilities before deployment
+
+This covers verifying that all software updates, including validators and other nodes, have been audited to ensure they are not introducing known or new vulnerabilities.
+
+#### Test All Interactions Impacted by Software Updates
+
+Updates MUST include an Audit of ALL Code and User Interactions they impact
+
+This means testing not just the new code deployed, but also existing code that interacts with anything the update changes, to ensure that integration is not introducing a vulnerability. This extends to non-blockchain code used to interact with the Validator, where applicable.
+
+#### Deploy via staging test environments
+
+Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network.
+
+##### Relevant external controls for Pre-Deployment Testing
+
+* [ISO 27001](#iso-27001) Annex A 8.31
+
+#### Maintain Emergency rollback procedures
+
+Node Operators MUST have a process to enable emergency rollback of upgrades
 
 ## Summary of external controls
 
-The following external controls correspond to controls defined in this specification.
-
-**NB: The following items are being consolidated into the Controls Section, above [Ed.]**
+<section style="background-color:#fdd">
+**NB: The following items are being consolidated into the [Controls Catalog](#controls-catalog) Section, above [Ed.]**
 
 <table><thead>
 <tr><th width="443">Framework</th><th>Criterion</th></tr></thead><tbody>
@@ -1776,7 +2051,6 @@ The following external controls correspond to controls defined in this specifica
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 6.3</td></tr>
-
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 7.1</td></tr>
@@ -1788,16 +2062,10 @@ The following external controls correspond to controls defined in this specifica
 <td>CC 7.3</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
-<td>CC 8.1</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
 <td>CC 8.2</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 8.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 9.1</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 9.2</td></tr>
@@ -1808,6 +2076,7 @@ The following external controls correspond to controls defined in this specifica
 <td>[SOC2](#soc2)</td>
 <td>PI 1.3</td></tr>
 <tr>
+
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 5.16</td></tr>
 <tr>
@@ -1847,12 +2116,9 @@ The following external controls correspond to controls defined in this specifica
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 8.30</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.31</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.32</td></tr></tbody></table>
+
+
+</tbody></table>
 
 ## OWASP
 
@@ -1900,7 +2166,6 @@ Main outline from the COSO principles:
 
 1. **Technology Infrastructure Control** — Stakeholders develop control activities over the technology infrastructure, ensuring accuracy, availability and completeness of data.
 2. **Security Access Control** — External threats are analyzed and access rights are properly defined.
-3. **Third Party tool integration** — Integration, management, and updates of third party tools is closely monitored.
 
 **References:**
 
@@ -1908,7 +2173,6 @@ Main outline from the COSO principles:
 
 **Examples for best practices:**
 
-* Every third party software that is brought in needs to be known, and proper change management applied to it.
 * Every third party software needs to be analyzed for the correct access rights with respect to users who can access it, but also the privileges it needs on the system it runs on. \
   Examples for this are:
   * Do not run main processes as root, since a compromised software can then execute privileged operations.
@@ -1964,92 +2228,12 @@ Main outline from the COSO principles:
 
 
 
-### Capture configuration changes vulnerabilities
-
-Main outline from the COSO principles:
-
-* Uses defined Configuration Standards, monitor and enforce them.
-* Detect configuration drift.
-* Detect unwanted sofware installed on nodes.
-* Conducts Vulnerability and Configuration security Scans.
-
-**References:**
-
-* CC 7.1 Trust services criteria
-
-**Examples for best practices:**
-
-* Many software pieces have defined configuration standards provided by [CIS benchmarks](https://www.cisecurity.org).
-* Configuration standards can be enforced by automated software (e.g. [CoGuard](https://www.coguard.io))
-
-<div class="info">
-
-#### Managing configuration helps address the following risks
-
-* [GIR4](#risk-gir-4)
-* [KEC8](#risk-kec-8)
-</div>
 
 
 
 
-### Proper change management
 
-This is challenging for classically set up IT operations, but is straightforward if modern Infrastructure as Code principles are being used.
 
-Main outline from the COSO principles:
-
-* Manages Changes Throughout the System Life Cycle — To support system availability and processing integrity, any changes need to go through a well-defined process.
-* Only perform authorized changes.
-* Use a version control system for infrastructure.
-* Maintain configuration of software in a code-base.
-* Tests are in place for system changes.
-* Have a ticketing system in place to document and review suggested changes.
-* Have a controlled deployment.
-* Certificate management for internal and external communication.
-* Have a way to directly identify historical changes to the infrastructure.
-* A templated configuration of IT and control systems is created and maintained.
-* Have breaking-glass change mechanisms in place for emergency situations.
-* Protect confidential information to be leaked or accidentally accessed in the change management system.
-
-**References:**
-
-* CC 8.1 of the SOC 2 Trust Services Criteria
-
-**Examples for best practices:**
-
-* While this seems like a lot of points, most of them can be addressed by following the [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) to infrastructure.
-
-<div class="info">
-
-**Links to Risks**
-
-* [SLS6](#risk-sls-6)
-* [SLS7](#risk-sls-7)
-* [GIR3](#risk-gir-3)
-* [GIR18](#risk-gir-18)
-* [GIR20](#risk-gir-20)
-* [GIR21](#risk-gir-21)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-</div>
-
-### Develop Risk Mitigation Activities
-
-Main outline from the COSO principles:
-
-* Regularly develop and improve Mitigation of Risks of Business Disruption -- This should be automated where possible.
-
-**References:**
-
-* CC 9.1 of Trust Services Criteria
-
-<div class="info">
-
-#### Risk mitigation helps address the following risks
-
-* [DOW6](#risk-dow-6)
-</div>
 
 ### Vendors and business partners risk management
 
@@ -2152,78 +2336,11 @@ Main outline of the Information security controls reference:
 * [SLS9](#risk-sls-9)
 </div>
 
-### Authentication Information
-
-Main outline of the Information security controls reference:
-
-* Setting, revoking and updating access control and authentication needs to be a highly controlled managed process.
-
-**References:**
-
-* ISO27001 Annex A 5.17
-
-**Examples for best practices:**
-
-* Use of a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) is preferred, and from there, all other secrets should be released to authorized users through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication) and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates).
-
-<div class="info">
-
-#### Access control management helps address the following risks
-
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
-</div>
 
 
-### Protection against malware
 
-Main outline of the Information security controls reference:
 
-* Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
 
-**References:**
-
-* ISO27001 Annex A 8.7
-
-**Examples for best practices:**
-
-* All dependencies should be checked for latest [CVE entries.](https://cve.mitre.org)
-
-<div class="info">
-
-#### Malware protection helps address the following risks
-
-* [GIR15](#risk-gir-15)
-* [GIR17](#risk-gir-17)
-</div>
-
-### Configuration Management
-
-Main outline of the Information security controls reference:
-
-* Any configurations of infrastructure components need to be documented, implemented, monitored and reviewed.
-
-**References:**
-
-* ISO27001 Annex A 8.9
-
-**Examples:**
-
-* This includes, but is not limited to:
-  * Firewall configurations
-  * Docker image setups
-  * Container orchestration configurations
-  * Database configurations
-  * Webserver/Load balancer configurations
-* Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
-
-<div class="info">
-
-#### Configuration Management helps address the following risks
-
-* [GIR3](#risk-gir-3)
-* [KEC8](#risk-kec-8)
-</div>
 
 ### Information deletion
 
@@ -2249,28 +2366,6 @@ Main outline of the Information security controls reference:
 </div>
 
 
-### Privileged utility programs
-
-Main outline of the Information security controls reference:
-
-* Any software in place that requires high privileges to run should be closely monitored, and as isolated as possible.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.18
-
-**Examples for best practices:**
-
-* Access to this application should be granted only using a certificate-based authentication which as a timeout.
-
-<div class="info">
-
-#### Access control management helps address the following risks
-
-* [KEC11](#risk-kec-11)
-* [GIR6](#risk-gir-6)
-* [GIR7](#risk-gir-7)
-</div>
 
 ### Network services
 
@@ -2295,83 +2390,9 @@ Main outline of the Information security controls reference:
 * [DOW10](#risk-dow-10)
 </div>
 
-### Segregation of networks
 
-Main outline of the Information security controls reference:
 
-* Use private subnets where possible, and minimize the systems that belong to a given subnet.
 
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.22
-
-**Examples for best practices:**
-
-* [RFC 1918](https://www.rfc-editor.org/rfc/rfc1918)
-* [Kubernetes Cluster Networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
-
-<div class="info">
-
-#### Network segmentation helps address the following risks
-
-* [DOW10](#risk-dow-10)
-* [GIR9](#risk-gir-9)
-* [KEC8](#risk-kec-8)
-</div>
-
-### Secure development life cycle
-
-Main outline of the Information security controls reference:
-
-* Use best practices to ensure that software development is happening in a secure and monitored way.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.25
-
-**Examples for best practices:**
-
-* Use of CI/CD pipelines like GitHub Actions
-* Use of Linters
-* Use of enforced review processes
-* Not allowing to directly push to the main branch
-
-<div class="info">
-
-#### Managed seecurity in development helps address the following risks
-
-* [GIR8](#risk-gir-8)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-* [KEC8](#risk-kec-8)
-* [GIR25](#risk-gir-25)
-</div>
-
-### Testing
-
-Main outline of the Information security controls reference:
-
-* Use all possible tests (dynamic, static) in the CI/CD pipeline of your development lifecycle.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.29
-
-**Examples  for best practices:**
-
-* Unit tests
-* Dynamic tests
-* Integration tests
-
-<div class="info">
-
-#### Testing helps address the following risks
-
-* [GIR20](#risk-gir-20)
-* [GIR21](#risk-gir-21)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-</div>
 
 ### Outsourced development
 
@@ -2395,157 +2416,59 @@ Main outline of the Information security controls reference:
 * [GIR24](#risk-gir-24)
 </div>
 
-### Separation of development, test and production environments
-
-Main outline of the Information security controls reference:
-
-* Development, testing and production environments shall be separated and secured. Additionally, they should be virtually the same minus DNS, credentials and IP addresses.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.31
-
-**Examples for best practices:**
-
-* Use [docker-compose](https://docs.docker.com/compose/) or [minikube](https://minikube.sigs.k8s.io/docs/) to define local-production-like environments.
-* Use infrastructure as code to be able to spin up and tear down test environments.
-* Have well-defined interfaces to pull part of the production data into a local database for testing.
-
-<div class="info">
-
-#### testing environments help address the following risks
-
-* [SLS6](#risk-sls-6)
-* [SLS7](#risk-sls-7)
-* [GIR11](#risk-gir-11)
-* [GIR18](#risk-gir-18)
-</div>
-
-### Change management
-
-Main outline of the Information security controls reference:
-
-* Use change management systems (e.g. GIT) for any information processing changes (infrastructure and software).
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.32
-
-**Examples for best practices:**
-
-* Using GIT also for infrastructure code and configurations.
-* Use database migration systems such as [Liquibase](https://www.liquibase.org).
-
-<div class="info">
-
-#### Change management helps address the following risks
-
-* [DOW2](#risk-dow-2)
-* [DOW11](#risk-dow-11)
-* [GIR25](#risk-gir-25)
-</div>
 
 <section id="sec-communications-strategy">
 
 ## Communications Strategy
 
+There are two core parts to a Nore Operator's communication strategy:
+Normal <dfn>Operational Communication</dfn> provides information about ongoing operations, to ensure coinfidence in and transparency of everyday operations.
+<dfn>Incident Communication</dfn> is the collection of communications processes that occur when an exceptional security incident occurs that could adversely affect the normal operations, or the users of a system.
+
+Both rely on understanding the Stakeholders, and developing approriate communication channels and procedures to ensure those stakeholders have timely access to relevant information.
+
 ### Stakeholder Overview
 
-#### Known Stakeholders
+Some key stakeholders are <dfn>Known Stakeholders</dfn>, who have an identity known to the Node Operator
+that includes at least one direct communications cannel such as messaging, email, or telephone. These typically include
 
-This type of stakeholders discloses the identity and provides contact details and channels for communication. Direct and close communication can be required.
-
-##### **Institutional Stakers**
-
-* High stake investors with potential of contractual obligations
-* Generally require close contact and channels for direct contact
-
-##### **Service Partners**
-
-* Partners (e.g. Lido) operating and managing protocols and their respective Node Operator landscape and requiring governance votes
-* Generally require close contact and channels for direct contact
-* Emergency communication in case of incident
-
-##### **Infrastructure Partners**
-
-* Partners involved in hosting, managing or operating infrastructure as part of the node operation setup
-* Need direct contact in case of emergency measure
-
-##### **Media**
-
+* High stake investors - with whom the Operator could have contractual obligations
+* Service Partners, who might be involved in operating and managing protocols and requiring governance votes, or hosting, managing or operating infrastructure as part of the node operation setup
 * Media channels, platforms, and accounts covering technical and non-technical news and reports
-* Need for monitoring of business relevant news
-* Need for close monitoring and engagement in case of incidents with business impact and public awareness
-
-##### **Core & Client Dev Teams**
-
-* Teams developing and maintaining critical node operations software
-* Need for communication channel in case updates, maintenance and information around critical software components, especially in the event of software issues
-
-##### Other Node Operators
-
-* Node Operators running validators and similar tech stack
-* Need for close monitoring of communication channels and alerting in case of published incidents with potential relevance for own setup
-
-##### **Optional: Service Customers**
-
+* Other Node Operators running validators on the same network
+* Staff such as those developing and maintaining critical node operations software
 * Individuals or organizations using additional service provided by Node Operators (e.g., API users, customers for white-label solutions etc.)
-* Need for direct customer service contact
-* Need for information & updates in case of incidents
+* Corporate Regulators - who can require that Node Operators provide them with specific information, but do not necessarily communnicate with Node Operators on an individual basis
 
-#### Mixed Stakeholders
+Node operators will almost certainly also have <dfn>Anonymous Stakeholders</dfn>, who might follow a Node Operator's public information channels,
+or operate independently, but who do not provide individual communication information to Operators.
 
-These are entities that do not necessarily disclose their identity information, nor have identified channels of contact with Node Operators. They might follow available public channels such as X(Twitter), Discord, or public Telegram groups but can also operate entirely independently.
+These can include
 
-##### **Individual Stakers**
+* Low stake investors and potential investors
+* Communities involved in the ecosystem for motives as diverse as lobbying regulators, developing technical standards,
 
-* Low stake investors
-* Need for communication of status and incident updates across all public channels
+As well as many of the types of Stakeholder who also become Known Stakeholders, such as High stake investors, Media and  Other Node Operators.
 
-##### **Communities**
-
-* Individuals or organizations with diverse motivations (e.g., lobbyism, issues, questions, feedback, etc.)
-* Need for public and anonymous communication platform
-
-#### Communication Channels
-
+### Communication Channels
 
 Stakeholders' preferences for communication channels differ.
-Where possible for known stakeholders it is good practice to identify individual channel preferences in advance.
-It is important to include channels that enable mixed stakeholders to follow important developments.
+Where possible for Known Stakeholders it is good practice to identify them, and their individual channel preferences in advance.
+However it is also important to note that a number of jurisdictions (such as the EU, with the [[GDPR](#ref-gdpr)]) regulate the use of information about individuals
+that includes communication channel information.
+It is important to include channels that enable Anonymous Stakeholders to follow important developments.
 
-##### Website
+Boradly, communication channels can be considered two-way, enabling communication with an individual Known Stakeholder or with all of them at once, or boradcast, providing a mechanism available to Anonymous Stakeholders to receive important information. Additionally, some mechanisms allow for persistent information, while others are only temporary; A website can be maintained long-term or the information can be removed, information sent by email can easily be retained by the recipient in perpetuity, while information in e.g. a Slack or Telegram channel could be deleted after a matter of days or weeks
 
-* Service offering
-* Contact details
-* Target Group: [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
+It is also important, especially for services used for two-way communication with Known Stakeholders, to consider the security and privacy of the channels used.
+While channels such as Telegram or Whatsapp use encryption, in the case of the former all communication is decoded at some unknnown centralized point, in the latter large amounts of metadata are available to the service provider.
 
-##### Email
+While many messaging services can behave in either manner, some such as websites are well-suited to broadcast communication
+while others are specifically suited to individual two-way communication.
 
-* Available for any means of contact
-* Target Group:  [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
+Common communication tools that Stakeholders are likely to find familiar and actively use include Websites, email, message-based services such as Telegram, Discord, Slack, Signal, Whatsapp and "post"-oriented services such as X (the former Twitter), BlueSky, Facebook/Instagram, and the like.
 
-##### Telegram (Public)
 
-* Focus on community engagement, incident updates, and information sharing
-* Public accessibility to provide contact channels for anonymous stakeholders
-* Target Group: [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
-
-##### Telegram (Private)
-
-* Direct communication with relevant stakeholders
-* Target Group: [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention")
-
-##### Discord/Slack
-
-* Direct communication channels with relevant stakeholders
-* Focus on dialogue, community management, status updates, detailed updates in case of incidents and mitigations
-* Target Group:  [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
-
-##### X (Twitter)
-
-* Focus on marketing, high-level publication of updates, information in case of incidents, and mitigations
-* Target Group:  [#known-stakeholders](stakeholder-overview.md#known-stakeholders "mention"), [#mixed-stakeholders](stakeholder-overview.md#mixed-stakeholders "mention")
 
 ### Stakeholder Management
 
