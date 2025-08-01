@@ -7,7 +7,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 <dl>
 <dt>This draft date:</dt>
-<dd>2025-07-31</dd>
+<dd>2025-08-01</dd>
 
 <dt>Version 1 URL:</dt>
 <dd><a href="https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base">https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base</a></dd>
@@ -16,7 +16,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 <dd>This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
 
-<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella, Isidoros, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven
+<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella S, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven
 
 <br>(This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
 </dd>
@@ -628,7 +628,7 @@ Risk related to running specific services.
 <tr>
   <td id="risk-sps-1">SPS1</td>
   <td>Process</td>
-  <td>Exit Risk - Deliguent state</td>
+  <td>Exit Risk - Delinquent state</td>
   <td><ul><li>No new stake will be allocated to the Node Operator (happens automatically)</li><li>the daily rewards sent to the Node Operator will be halved (with the remaining half sent towards that day’s rebase) (happens automatically)</li><li>reduced rewards will continue for the duration of a cooldown period long enough to determine whether, immediately after service restoration by the Node Operator, subsequently received validator exit requests are processed in a timely manner.</li></ul></td>
 </tr></tbody></table>
 
@@ -821,9 +821,9 @@ However, there are a few risks that are very specific to running a node-operator
 higher levels of process segregation need to be achieved.
 
 <a id="sec-mitigations-tech-stack"></a>
-### Technology Stack Mitigations
+### Technology Stack
 
-#### Local anti-slashing database
+#### Local Anti-Slashing Database
 
 
 To avoid double signing, validators maintain a history of messages they signed, usually stored in of a database.
@@ -835,14 +835,14 @@ In some cases, this feature is enabled by an external web3signer. The maintenanc
 
 <div class="info">
 
-##### A Local anti-slashing database helps address the following risks
+##### A local anti-slashing database helps address the following risks
 
 * [SLS1](#risk-sls-1)
 * [SLS2](#risk-sls-2)
 * [SLS3](#risk-sls-3)
 </div>
 
-#### Doppelgänger protection
+#### Doppelgänger Protection
 
 While there are multiple measures possible to be taken to avoid two validator running with the same signing keys, one can also employ technologies that detect and prevent two validators running at the same time. This can be done using monitoring and alert systems, robust StatefulSet handling in Kubernetes to ensure no two containers with the same keys run at the same time, or pre-defined tools such as [DoppelBuster](https://github.com/SimplyStaking/DoppelBuster).
 
@@ -875,7 +875,7 @@ Similar to the anti-slashing database, whenever used, a web3signer needs to be
 * [KEC6](#risk-kec-6)
 </div>
 
-#### Client diversity
+#### Client Diversity
 
 Maintain a diverse set of clients for different protocols, in order to reduce blast radius in case one of the clients appears to have a protocol error or other bug. In some cases, migrate keys to different clients in case of a specific client error observed, such as startup issues after controlled update or bug in the latest version of the chosen client.
 
@@ -907,7 +907,7 @@ In order to avoid the single-point of failure problem for a node-validator witho
 * [KEC6](#risk-kec-6)
 </div>
 
-#### Lido-specific: Handling of delinquent state
+#### Lido-specific: Handling of Delinquent State
 
 Node operators need to withdraw validators correctly, as they are otherwise put into a delinquent state. This results in an opportunity cost realised as monetary losses.
 
@@ -921,7 +921,7 @@ Node operators need to withdraw validators correctly, as they are otherwise put 
 <a id="sec-mitigations-secret-management"></a>
 ### Secret Management
 
-#### Controlled and audited secret access
+#### Controlled and Audited Secret Access
 
 Best practise for credential management is to use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) system,
 that gives users authorised access to secrets through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication),
@@ -978,7 +978,7 @@ Cold Storage, in particular "air-gapped" storage, can help protect information n
 * [KEC7](#risk-kec-7)
 </div>
 
-#### Signing key management
+#### Signing Key Management
 
 It is important to protect signing keys from accidental or malicious misuse, and in particular deletion.
 It is not normal to provide broad access to unencrypted signing keys.
@@ -995,7 +995,7 @@ Modern vault systems enable the enforcement of policies to ensure that access to
 * [KEC11](#risk-kec-11)
 </div>
 
-#### Key rotation
+#### Key Rotation
 
 Key rotation following a proper process help protect infrastructure from a potential misuse of credentials.
 
@@ -1059,7 +1059,7 @@ Special considerations:
 
 <div class="info">
 
-#### Access Control helps address the following risks
+#### Access control helps address the following risks
 
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
@@ -1102,7 +1102,7 @@ Main outline from the COSO principles:
 
 <div class="info">
 
-##### Least Privilege helps address the following risks
+##### Least privilege helps address the following risks
 
 * [KEC11](#risk-kec-11)
 * [GIR1](#risk-gir-1)
@@ -1124,7 +1124,7 @@ Main outline from the COSO principles:
 </div>
 
 
-#### Employee authorization management
+#### Employee Authorization Management
 
 Ensuring that employees whose roles have changed do not have lingering credentials reduces the risk they others can misuse those credentials to cause harm.
 
@@ -1158,7 +1158,7 @@ and does not allow generic probing mechanisms such as open port scans that can h
 * [SLS12](#risk-sls-12)
 </div>
 
-#### Authentication policies
+#### Authentication Policies
 
 Best practice is to use password and related authentication policies to ensure that access control mechanisms are sufficiently strong at every layer of the infrastructure. This can include appropriate requirements for the strength of passwords and the use of Multi-Factor Authentication as well as Multi-Signature requirements.
 
@@ -1198,8 +1198,8 @@ In the inadvertent case, relevant mitigations include
 To minimize negligently allowed access, it is important to ensure that access systems are effectively maintained and managed to ensure there is no good reason to allow an unauthorized person access.
 This can range from the design of onboarding systems to the effectiveness of internal management feedback systems for discovering unanticipated problems faced by operators.
 
-Best practice is to ensure that physical access is managed by systems that can efficiently enable access to authorised parties (keycards, biometric scanners),
-and to monitor actual access such as visual verification that the authorized party is the one entering.
+Best practice includes managing physical access with systems that can efficiently enable access to authorised parties (keycards, biometric scanners),
+and monitor actual access such as visual verification that the authorized party is the one entering.
 
 It is important to log and audit access sufficiently frequently to detect problems - see also [Monitoring](#sec-mitigations-monitoring).
 
@@ -1219,7 +1219,7 @@ and destructive physical attacks. Appropriate mitigations will depend in part on
 
 <div class="info">
 
-##### Protection against Environmental Threats helps address the following risks
+##### Protection against environmental threats helps address the following risks
 
 * [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
 * [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW8](#risk-dow-8), [DOW9](#risk-dow-9)
@@ -1238,7 +1238,7 @@ Best practices for lifecycle management include the ability to remotely pause, s
 <div class="info">
 
 
-#### Equipment Life-cycle Management helps address the following risks
+#### Equipment life-cycle management helps address the following risks
 
 * [DOW3](#risk-dow-3)
 * [KEC1](#risk-kec-1), [KEC5](#risk-kec-), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
@@ -1247,7 +1247,7 @@ Best practices for lifecycle management include the ability to remotely pause, s
 <a id="sec-mitigations-development-and-updates-"></a>
 ### Software Development and Update Process
 
-#### Secure development life cycle
+#### Secure Development Life Cycle
 
 Main outline of the Information security controls reference:
 
@@ -1266,7 +1266,7 @@ Main outline of the Information security controls reference:
 
 <div class="info">
 
-#### Secure Development Lifecycle helps address the following risks
+#### Secure development lifecycle helps address the following risks
 
 * [GIR8](#risk-gir-8)
 * [DOW19](#risk-dow-19)
@@ -1309,7 +1309,7 @@ help ensure that coverage is sufficiently comprehensive to detect errors that ca
 * [DOW20](#risk-dow-20)
 </div>
 
-#### Sanitize inputs
+#### Sanitize Inputs
 
 Unchecked inputs are a major cause for overflow attacks and brute force. Ideally, the load balancer in front of the node filters out all traffic that has too large headers and payloads. Additionally, if JSON payloads are being used, it is important to validate them against the relevant schema.
 
@@ -1350,7 +1350,7 @@ Main outline from the COSO principles:
 
 <div class="info">
 
-#### Managing Software Updates helps mitigate the following Risks
+#### Managing software updates helps mitigate the following Risks
 
 * [SLS6](#risk-sls-6)
 * [SLS7](#risk-sls-7)
@@ -1449,7 +1449,7 @@ This minimizes a potential blast radius. It is important to run any change (even
 
 <div class="info">
 
-##### Pre-deployment Testing helps address the following risks
+##### Pre-deployment testing helps address the following risks
 
 
 * [SLS6](#risk-sls-6)
@@ -1627,7 +1627,7 @@ Best practices for Incident response plans include
 - Identify relevant Stakeholders and define communication strategies for both internal and external communications
 
 <a id="sec-mitigations-response"></a>
-#### Identify and respond to security incidents
+#### Identify and Respond to Security Incidents
 
 Main outline from the COSO principles:
 
@@ -1656,7 +1656,7 @@ Main outline from the COSO principles:
 * [RER3](#risk-rer-3)
 </div>
 
-#### Analyze security events and learn from them
+#### Analyze Security Events and Learn from Them
 
 This is often referred to as a "<dfn id="def-post-mortem">Post-Mortem</dfn>",
 and is used to learn from the event and improve relevant Incident Response Plans
@@ -1695,7 +1695,7 @@ COSO principles:
 * Whenever possible, determine the root cause.
 * Implement necessary changes to prevent similar disasters.
 
-##### Disaster Recovery Plans help address the following risks:
+##### Disaster recovery plans help address the following risks:
 
 * [GIR19](#risk-gir-19)
 
@@ -1895,13 +1895,17 @@ Every change in the status of people who have access to any function of the Node
 
 #### Log slashing events
 
-Any event that results in slashing MUST be logged. There SHOULD be a procedure in place to determine whether there are repeating patterns,
+Any event that results in slashing MUST be logged.
+
+There SHOULD be a procedure in place to determine whether there are repeating patterns,
 that identify a failure (e.g. software bugs, operating procedures) which can be rectified.
 
 #### Monitor hardware and network performance
 
 Logs MUST provide a sufficiently detailed view of hardware and network performance to enable upgrade needs to be forecast,
-and to alert if validators are operating with excess latency. Tools such as [Zabbix](tool-zabbix) can also display a live feed of CPU and memory usage of each compute instance.
+and to alert if validators are operating with excess latency.
+
+Tools such as [Zabbix](tool-zabbix) can also display a live feed of CPU and memory usage of each compute instance.
 
 #### Relevant external controls for Automated Monitoring
 
@@ -1922,11 +1926,11 @@ Node Operators SHOULD have processes in place to manage environmental threats
 This includes monitoring for such threats and physically hardened facilities (e.g. fire- and flood-resistant server rooms),
 and physically decentralized infrastructure. It can also incorporate the use of DVT or related approaches to managing physical decentralization.
 
-##### Relevant External Controls for Environmental Threats
+##### Relevant external controls for environmental threats
 
 * [ISO 27001](#iso-27001) Annex A 7
 
-##### Environmental Threats helps address the following risks
+##### Environmental threat management helps address the following risks
 
 * [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
 * [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW8](#risk-dow-8), [DOW9](#risk-dow-9)
@@ -1938,11 +1942,11 @@ Node Operators SHOULD have processes in place to manage equipment lifecycles
 This includes monitoring performance and performing preventive maintenance, upgrades, or replacing equipment as appropriate,
 as well as processes that ensure equipment is correctly retired including removing data and any hardware-based authorization.
 
-##### Relevant External Controls for Equipment Lifecycles
+##### Relevant external controls for equipment lifecycles
 
 * [ISO 27001](#iso-27001) Annex A 7
 
-#### Equipment Life-cycle Management helps address the following risks
+#### Equipment life-cycle management helps address the following risks
 
 * [DOW3](#risk-dow-3)
 * [KEC1](#risk-kec-1), [KEC5](#risk-kec-), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
@@ -1951,7 +1955,7 @@ as well as processes that ensure equipment is correctly retired including removi
 <a id="sec-controls-updates"></a>
 ### Controls for Update Process
 
-#### Relevant External Controls for Managed Software Updates
+#### Relevant external controls for managed software updates
 
 * [SOC2](#ref-soc2) CC 8.1 of the SOC 2 Trust Services Criteria
 * [ISO 27001](#iso-27001) Annex A 8.32
@@ -1975,7 +1979,7 @@ Updates to third-party software MUST be checked for vulnerabilities before deplo
 
 This covers verifying that all software updates, including validators and other nodes, have been audited to ensure they are not introducing known or new vulnerabilities.
 
-##### External Controls for checking third-party software
+##### External controls for checking third-party software
 
 * [ISO27001](#ref-iso-27001) Annex A 8.7
 * [ISO27001](#ref-iso-27001) Annex A 8.30
@@ -1988,7 +1992,7 @@ Node Operators MUST have thorough test coverage of their software and operating 
 There is no magic percentage figure, but ideally unit tests and integration tests cover every funtionality and interaction
 managed by code the Node Operator uses, whether self-managed or provided by a third party.
 
-##### Relevant External Controls for Test Coverage
+##### Relevant external controls for test coverage
 
 * [ISO 27001](#iso-27001) Annex A 8.29
 
@@ -2002,25 +2006,25 @@ This means testing not just the new code deployed, but also existing code that i
 
 Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network.
 
-##### Relevant external controls for Pre-Deployment Testing
+##### Relevant external controls for pre-deployment testing
 
 * [ISO 27001](#iso-27001) Annex A 8.31
 
-#### Maintain Emergency rollback procedures
+#### Maintain Emergency Rollback Procedures
 
 Node Operators MUST have a process to enable emergency rollback of upgrades
 
 <a id="sec-controls-response"></a>
 ### Controls for Incident Response Planning
 
-#### Relevant External Controls for Incident Response planning
+#### Relevant external controls for incident response planning
 
 * [SOC2](#soc2) CC 7.4
 * [SOC2](#ref-soc2) CC 9.1 of Trust Services Criteria
 
 Incident Response Planning helps address almost all risks faced by Node Operators
 
-#### Document Adequate Incident Response plans
+#### Document Adequate Incident Response Plans
 
 The Node Operator MUST have documented [Incident Response Plans](#def-incident-response-plan) corresponding to all risks identified in this specification.
 
@@ -2029,11 +2033,11 @@ The Node Operator MUST have documented [Incident Response Plans](#def-incident-r
 The Node Operator MUST have documented [Disaster Recovery Plans](#def-disaster-recovery-plan) corresponding to risks identified in this specification
 that lead to destruction of crucial data or loss of assets.
 
-##### Relevant External Controls for Disaster Recovery Plans
+##### Relevant external controls for disaster recovery plans
 
 * [SOC2](#soc2) CC 7.5
 
-##### Disaster Recovery Plans help address the following risks:
+##### Disaster recovery plans help address the following risks:
 
 * [GIR19](#risk-gir-19)
 
@@ -2050,7 +2054,7 @@ This covers both responses to real incidents and Simulated activation, or "pre-m
 * [GIR6](#risk-gir-6)
 * [GIR7](#risk-gir-7)
 
-##### Relevant External Controls for Analyzing security events
+##### Relevant external controls for analyzing security events
 
 * [SOC2](#soc2) CC 7.3
 
