@@ -41,6 +41,7 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
 - [Introduction](#sec-introduction)
   - [Purpose](#sec-purpose)
 - [Risks](#risks)
+  - [Financial and Regulatory Risk](#sec-financial-risk)
   - [Slashing Risk](#slashing-risk)
   - [Downtime Risk](#downtime-risk)
   - [Key Management Risk](#key-custody-risk)
@@ -91,7 +92,70 @@ and to simplify the process of assessing against those standards Node Operators 
 
 ## Risks
 
-This specification divides risk into 6 categories for Node Operators to consider in ensuring the quality of their overall setup.
+This specification divides risk into seven categories for Node Operators to consider in ensuring the quality of their overall setup.
+
+<a id="sec-financial-risk">
+### Financial and Regulatory Risk
+
+<table role="table">
+<thead>
+<tr>
+<th width="96">ID</th>
+<th width="138">Risk Group</th>
+<th width="232">Risk Vectors</th>
+<th>Risk Vector Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td id="risk-fin-1">FIN1</td>
+<td>Process</td>
+<td>Onboarding</td>
+<td>Onboarded entities are not adequately vetted to ensure financial, operational, regulatory, or reputational appropriateness, resulting in potential financial, legal, or reputational damage</td>
+</tr>
+<tr>
+<td id="risk-fin-2">FIN2</td>
+<td>Infrastructure</td>
+<td>Deposit</td>
+<td>Fiat and digital assets deposited are not received in the appropriate currency, address, or fiat account, leading to financial loss</td>
+</tr>
+<tr>
+<td id="risk-fin-3">FIN3</td>
+<td>Infrastructure</td>
+<td>Deposit</td>
+<td>Fiat and digital assets are not correctly processed and assets are misallocated to individuals, entities, or operational addresses leading to financial loss</td>
+</tr>
+<tr>
+<td id="risk-fin-4">FIN4</td>
+<td>Process</td>
+<td>Withdrawal</td>
+<td>Fiat and digital assets are not correctly disbursed to individuals, entities, or addresses, leading to financial and reputational loss</td>
+</tr>
+<tr>
+<td id="risk-fin-5">FIN5</td>
+<td>Infrastructure</td>
+<td>Withdrawal</td>
+<td>Staking withdrawal requests cannot be met efficiently, leading to delays in payment processing causing financial and reputational loss</td>
+</tr>
+<tr>
+<td id="risk-fin-6">FIN6</td>
+<td>Infrastructure</td>
+<td>Compounding</td>
+<td>Staking rewards are not appropriately collected, governed, restaked, compounded, or allocated to clients leading to financial loss</td>
+</tr>
+<tr>
+<td id="risk-fin-7">FIN7</td>
+<td>Process</td>
+<td>Reporting</td>
+<td>Financial reporting requirements are not adhered to or inconsistently applied, leading to regulatory, legal, and financial consequences</td>
+</tr>
+<tr>
+<td id="risk-fin-8">FIN8</td>
+<td>Process</td>
+<td>Reporting</td>
+<td>Reconciliation of deposits, rewards, fees, and distributions are incorrectly maintained causing incomplete and inaccurate financial data, leading to financial, legal, and regulatory repercussions</td>
+</tr>
+</tbody>
+</table>
 
 ### Slashing Risk
 
@@ -116,7 +180,7 @@ Performing slashable actions leading to penalties.
   <td id="risk-sls-2">SLS2</td>
   <td>Infrastructure</td>
   <td>Operational Failure: Shutting down validator only temporarily</td>
-  <td>Validator shuts (temporary) down. System spins up a new validator with the same key</td>
+  <td>Validator shuts down temporarily. System spins up a new validator with the same key</td>
 </tr>
 <tr>
   <td id="risk-sls-3">SLS3</td>
@@ -146,7 +210,7 @@ Performing slashable actions leading to penalties.
   <td id="risk-sls-7">SLS7</td>
   <td>Software</td>
   <td>Software Bug (e.g. Validator Client) through software customization</td>
-  <td><br>New versions of a validator client may cause errors that lead to slashing</td>
+  <td>New versions of a validator client has errors that lead to slashing</td>
 </tr>
 <tr>
   <td id="risk-sls-8">SLS8</td>
@@ -164,7 +228,7 @@ Performing slashable actions leading to penalties.
   <td id="risk-sls-10">SLS10</td>
   <td>People</td>
   <td>Malicious Ex-Employee intentionally causes a slashing incident</td>
-  <td>A Ex-Employee can still have access to the system when his acces is not blocked or removed</td>
+  <td>A former employee whose access is not blocked or removed </td>
 </tr>
 <tr>
   <td id="risk-sls-11">SLS11</td>
@@ -182,7 +246,7 @@ Performing slashable actions leading to penalties.
   <td id="risk-sls-13">SLS13</td>
   <td>People</td>
   <td>Malicious External Hacker intentionally causes operational failure through authentication access</td>
-  <td>Malicious External Hacker can get access through by-passing or brut-forcing authentication systems</td>
+  <td>Malicious External Hacker can get access through by-passing or brute-forcing authentication systems</td>
 </tr>
 <tr>
   <td id="risk-sls-14">SLS14</td>
@@ -200,7 +264,7 @@ Performing slashable actions leading to penalties.
   <td id="risk-sls-16">SLS16</td>
   <td>Process</td>
   <td>Operational Failure: Slashing monitoring does not prevent system shut down</td>
-  <td>Slashing events keep ongoing on because no slashing monitoring system in place</td>
+  <td>Slashing events continue because no slashing monitoring system in place</td>
 </tr>
 <tr>
   <td id="risk-sls-17">SLS17</td>
