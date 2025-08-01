@@ -40,6 +40,7 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
 - [Abstract](#sec-abstract)
 - [Introduction](#sec-introduction)
   - [Purpose](#sec-purpose)
+  - [Conformance](#sec-conformance)
 - [Risks](#risks)
   - [Slashing Risk](#slashing-risk)
   - [Downtime Risk](#downtime-risk)
@@ -88,6 +89,14 @@ they often include more general requirements than this specification, reflecting
 The relevant controls from several such standards are explicitly linked to the controls in this specification. The purpose of this is twofold:
 to simplify the process of certifying conformance to this specification for Operators who have already undergone testing against those standards,
 and to simplify the process of assessing against those standards Node Operators who have been certified as conforming to this specification.
+
+<a id="sec-conformance"></a>
+### Conformance
+
+Conformance to this specification is based on meeting the requirements expressed in the [Controls Catalog](#sec-controls-catalog).
+
+The key words "MUST", "SHOULD", and "MAY" in this document MUST be interpreted as described in [[RFC2119](#ref-rfc2119)] as modified by [[RFC8174](#ref-rfc8174)]
+when they appear in all capitals, as shown here.
 
 ## Risks
 
@@ -2556,8 +2565,17 @@ ISO IEC 27001:2022 "Information security, cybersecurity and privacy protection â
 
 <a id="ref-premortem"></a>
 ##### [Pre-mortem]
-
 "How to Use Pre-mortems to Prevent Problems, Blunders, and Disasters", Shreyas Doshi, 2020. [https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a](https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a)
+
+<a id="ref-rfc2119"></a>
+### RFC2119
+"Key words for use in RFCs to Indicate Requirement Levels", S. Bradner, IETF 1997.
+[https://www.rfc-editor.org/rfc/rfc2119.html](https://www.rfc-editor.org/rfc/rfc2119.html)
+
+<a id="ref-rfc8174"></a>
+### RFC8174
+"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", B. Leiba, IETF 2017.
+[https://www.rfc-editor.org/rfc/rfc8174.html](https://www.rfc-editor.org/rfc/rfc8174.html)
 
 <a id="ref-sbom"></a>
 ##### [SBOM]
