@@ -16,7 +16,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 <dd>This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
 
-<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven
+<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella, Isidoros, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven
 
 <br>(This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
 </dd>
@@ -805,9 +805,12 @@ See also the NIST Technical Guide to Information Security Testing and Assessment
 
 ## Mitigation Strategies
 
-The Mitigation Strategiers section serves as a go-to resource for node operators, providing actionable insights and mitigation options to enhance the security, reliability, and efficiency of their operations.
+The Mitigation Strategies section serves as a go-to resource for node operators,
+providing actionable insights and mitigation options to enhance the security, reliability, and efficiency of their operations.
 
-Most of the best practices that optimize up-time, access control and general stability directly apply to operating a node properly. However, there are a few risks that are very specific to running a node-operator, and to mitigate them, higher levels of process segregation need to be achieved.
+Most of the best practices that optimize up-time, access control and general stability directly apply to operating a node properly.
+However, there are a few risks that are very specific to running a node-operator, and to mitigate them,
+higher levels of process segregation need to be achieved.
 
 
 ### Node-Operator Technology Stack Mitigations
@@ -815,11 +818,12 @@ Most of the best practices that optimize up-time, access control and general sta
 #### Local anti-slashing database
 
 
-To avoid double signing, validators maintain a history of messages they signed, and this is usually stored inside of a database. In some cases, this feature is enabled by an external web3signer. The maintenance and protection of this database is crucial, as inconsistencies in this database may cause a double-signing event. The following items need to be in place:
+To avoid double signing, validators maintain a history of messages they signed, usually stored in of a database.
+In some cases, this feature is enabled by an external web3signer. The maintenance and protection of this database is crucial, as inconsistencies in this database may cause a double-signing event. The following items need to be in place:
 
 * Persistence of anti-slashing database: Ensure that a persistent, not a temporary storage is used for the anti-slashing database.
-* Ensure that slashing databases are always connected: It is possible to run a validator and a database, but never connect those two. Verify via monitoring that they interact.
-* Prevent deletion
+* Assurance that slashing databases are connected and interacting properly.
+* Protection against deletion of information, or the database itself.
 
 <div class="info">
 
@@ -897,7 +901,7 @@ In order to avoid the single-point of failure problem for a node-validator witho
 
 #### Lido-specific: Handling of delinquent state
 
-In order to avoid loosing out on opportunity cost, Node operators need to develop and adhere to strict processes to properly exit validators, as they are otherwise put into a delinquent state. This results in monetary losses.
+Node operators need to withdraw validators correctly, as they are otherwise put into a delinquent state. This results in an opportunity cost realised as monetary losses.
 
 <div class="info">
 
@@ -911,7 +915,9 @@ In order to avoid loosing out on opportunity cost, Node operators need to develo
 
 #### Controlled and audited secret access
 
-Best practise for credential management is to use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) ssytem, that gives users authorised access to secrets through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication), and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates).
+Best practise for credential management is to use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) system,
+that gives users authorised access to secrets through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication),
+and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates).
 
 In this way, everything is audited, and anomaly detection can be activated for those vaults.
 
@@ -936,7 +942,7 @@ Using multi-sig wallets, requiring authorization from multiple parties for speci
 
 #### Encryption of Data
 
-Many different components interplay while a staking operation is going on. It is crucial, since sensitive information may be transmitted, to ensure that data is stored and transmitted in an encrypted fashion.
+Many different components interplay while a staking operation is going on. It is crucial, since sensitive information may be transmitted, to ensure that data is only stored and transmitted in an encrypted state.
 
 <div class="info">
 
@@ -967,7 +973,7 @@ Cold Storage, in particular "air-gapped" storage, can help protect information n
 #### Signing key management
 
 It is important to protect signing keys from accidental or malicious misuse, and in particular deletion.
-It is not normal to provide broad acceess to unencrypted signing keys.
+It is not normal to provide broad access to unencrypted signing keys.
 
 Best practices include ensuring that there are no single individuals with the capability to access or delete them, and having backups.
 Modern vault systems enable the enforcement of policies to ensure that access to keys is only available with verified roles, and deletion is managed according to established protocols.
@@ -1057,15 +1063,10 @@ Special considerations:
 * [GIR22](#risk-gir-22)
 * [KEC4](#risk-kec-4)
 
-#### External Controls For Access Management
-
-* [OWASP A01:2022: Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
-* [ISO27001](#iso27001) Annex A 5.15
-* [SOC2](#soc2) Trust services Criteria CC 6.1
 
 </div>
 
-### Implement least privilege
+### Least Privilege
 
 The core of <dfn id="def-least-privilege">Least Privilege</dfn> is that access is only granted to those who need it, and only for as long as it is relevant. This means that an individual user's privileges are likely to change over time, and in particular any offboarding process includes a rapid revocation of user's assigned roles.
 
@@ -1112,11 +1113,6 @@ Even when employing RBAC, there are ways to log into containers as users and acq
 * [KEC8](#risk-kec-8)
 * [GIR25](#risk-gir-25)
 
-#### External Controls for Least Privilege
-
-* [OWASP A01:2022: Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
-* [SOC2](#soc2) Trust services Criteria CC 6.3
-* [ISO 27001](#iso-27001) Annex A 8.2
 
 </div>
 
@@ -1214,8 +1210,8 @@ and destructive physical attacks. Appropriate mitigations will depend in part on
 
 #### Protection against Environmental Threats helps address the following risks
 
-* SLS 14,15
-* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), 7-9
+* [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
+* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW8](#risk-dow-8), [DOW9](#risk-dow-9)
 </div>
 
 [Monitoring](#sec-mitigations-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
@@ -1238,7 +1234,7 @@ Best practices for lifecycle management include the ability to remotely pause, s
 </div>
 
 <a id="sec-mitigations-development-and-updates-"></a>
-### Development and Update Process
+### Software Development and Update Process
 
 #### Secure development life cycle
 
@@ -1247,7 +1243,7 @@ Main outline of the Information security controls reference:
 * Use best practices to ensure that software development is happening in a secure and monitored way.
 
 ##### Relevant External Controls for Secure Development Lifecycle
-
+//add matching control
 * [ISO 27001](#iso-27001) Annex A 8.25
 
 **Examples for best practices:**
@@ -1271,30 +1267,15 @@ Main outline of the Information security controls reference:
 
 #### Comprehensive Testing for Changes to Code
 
-A comprehensive test suite, incorporating static and dynamic testing in the CI/CD pipeline for code development
-can help ensure that changes do not introduce new vulnerabilities or situations that lead to operational failures.
-
+A comprehensive test suite helps ensure changes do not introduce new vulnerabilities or situations that lead to operational failures.
 Equally, it is important that someone other than the developer who produces Code changes reviews them.
 
-**Examples  for best practices:**
+Best practices is to enable this through a code repository, incorporating static and dynamic testing in the integration pipeline for code development.
 
-* Unit tests
-* Dynamic tests
-* Integration tests
+Static and Dynamic analysis is important, as well as user testing wherever changes impact user interface or user-generated content.
 
-
-Anything on the infrastructure should be captured in a code repository, and changes managed through a versioning system such as Git. No direct push to the main branch should be possible; everything should go through pull requests and review.
-
-All code should go through static and dynamic analysis tools to minimize risk.
-
-There should be custom tests created, and a strict testing policy before pushing to prod needs to be in place.
-
-Ideally, metrics should be used to verify a high degree of testing culture. This includes, but is not limited to:
-
-* Line coverage
-* Endpoint coverage
-* Accidental human error detection
-* Architectural enforcement
+Measuring test coverage, and requiring new tests that are reviewed as part of and code review,
+help ensure that coverage is sufficiently comprehensive to detect errors that can arise through later changes.
 
 <div class="info">
 
@@ -1349,10 +1330,6 @@ Main outline from the COSO principles:
 * Have breaking-glass change mechanisms in place for emergency situations.
 * Protect confidential information to be leaked or accidentally accessed in the change management system.
 
-#### Relevant External Controls for Managed Software Updates
-
-* [SOC2](#ref-soc2) CC 8.1 of the SOC 2 Trust Services Criteria
-* [ISO 27001](#iso-27001) Annex A 8.32
 
 **Examples for best practices:**
 
@@ -1382,6 +1359,12 @@ Main outline from the COSO principles:
 Validator software, and other software validators use, is very often open source.
 However, customising software can introduce errors.
 In addition customizations can produce incompatibilities when software is updated.
+
+This means that any customization introduces a need for continued extra testing,
+in particular whenever relevant software is updated.
+Customization also increases the risk that test coverage is inadequate,
+so that a future error will not be found in pre-deployment testing and only discovered through a failure operating in production,
+with attendant risks of reputational damage, direct losses, and increased cost for incident management.
 
 <div class="info">
 
@@ -1431,10 +1414,6 @@ Main outline from the COSO principles:
 
 Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
 
-##### Relevant External Controls
-
-* [ISO27001](#ref-iso-27001) Annex A 8.7
-* [ISO27001](#ref-iso-27001) Annex A 8.30
 
 **Examples for best practices:**
 
@@ -1654,9 +1633,7 @@ Main outline from the COSO principles:
 * Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
 * Evaluate the identification of and response to incidents on a regular basis.
 
-**References:**
 
-* CC 7.4 of the SOC 2 Trust services criteria
 
 **Examples for best practices:**
 
@@ -1720,12 +1697,12 @@ COSO principles:
 
 #### Incident Simulations
 
-These are also known as "<dfn id="def-pre-mortem">Pre-Mortems</dfn>.
+These are also known as "<dfn id="def-pre-mortem">Pre-Mortems</dfn>".
 
 Regular simulations of implementing an Incident Response Plan ensure that relevant personnel are familiar with them and can follow them when necessary.
-"Pre-Mortems", simulating or "war-gaming" a specific failure, not only ensures people are familiar with the procedures to follow for specific risks,
-and that those procedures are tested to give some idea of whether they are appropriate and adequate,
-but often motivate people to think about other risks, and whether appropriate procedures and mitigations are in place.
+"Pre-Mortems" simulating or "war-gaming" a specific failure also
+tests that those procedures are tested to give some idea of whether they are appropriate and adequate,
+and often motivates people to think about other risks, and whether appropriate procedures and mitigations are in place.
 
 There are many possible approaches to an incident simulation, and may eventualities that they can cover. As well as a highly detailed scenario, example topics could include variations on themes such as
 
@@ -1781,6 +1758,12 @@ Where relevant, corresponding controls from those frameworks are identified and 
 
 ### Controls for Access Control
 
+#### External Controls For Access Management - General
+
+* [OWASP Access Control](#ref-owasp-access-control)
+* [ISO27001](#iso27001) Annex A 5.15
+* [SOC2](#soc2) Trust services Criteria CC 6.1
+
 #### Authentication required for services
 
 All services MUST require appropriate authentication privileges.
@@ -1822,16 +1805,20 @@ For example, check that software does not run as root, that users do not log in 
 * [KEC11](#risk-kec-11)
 * [GIR7](#risk-gir-7)
 
-##### Relevant external controls
 
+#### External Controls for Least Privilege
+
+* [SOC2](#soc2) Trust services Criteria CC 6.3
+* [ISO 27001](#iso-27001) Annex A 8.2
 * [ISO 27001](#iso-27001) Annex A 8.18
+
 
 #### Regularly Review Access Rights Management
 
 A review of Access Rights MUST take place regularly
 
 This covers both the processes and tools for granting and revoking access rights, and verifying that they are effectively managing access rights
-according to the relevant principles ([**Least Privilege**](#def-least-privilege), [**Role-based management**](#@@)).
+according to the relevant principles ([**Least Privilege**](#def-least-privilege), [**Role-based management**](#rba)).
 Best practice for this review includes:
 
 - analyzing access logs for physical access to hardware, and ensuring authorized individuals are not given access to hardware
@@ -1852,7 +1839,7 @@ Best practice for this review includes:
 * [ISO 27001](#iso-27001) Annex A 5.18
 * [ISO 27001](#iso-27001) Annex A 8.18
 
-#### Protect Data in Transit
+#### Protect Data in Transit and Storage
 
 All data in transit MUST be encrypted, and SHOULD use the most direct transmission available.
 
@@ -1864,9 +1851,9 @@ Best practices include ensuring that the latest version of TLS is being used, wi
 * [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13)
 * [DOW18](#risk-dow-18)
 * [GIR10](#risk-gir-10)
-* KEC 1-11
+* [KEC1](#risk-kec-1), [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
 
-##### References
+##### External Controls for Encrypted Data
 
 * [SOC2](#soc2) Trust services Criteria CC 6.7
 
@@ -1932,8 +1919,8 @@ and physically decentralized infrastructure. It can also incorporate the use of 
 
 ##### Environmental Threats helps address the following risks
 
-* SLS 14,15
-* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), 7-9
+* [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
+* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW8](#risk-dow-8), [DOW9](#risk-dow-9)
 
 #### Manage Equipment Lifecycles
 
@@ -1952,11 +1939,12 @@ to do: add content here
 
 ### Controls for Incident Response Planning
 
-##### Relevant External Controls for Incident Response planning
+#### Relevant External Controls for Incident Response planning
 
+* [SOC2](#soc2) CC 7.4
 * [SOC2](#ref-soc2) CC 9.1 of Trust Services Criteria
 
-##### Incident Response Planning helps address all risks
+Incident Response Planning helps address almost all risks faced by Node Operators
 
 #### Document Adequate Incident Response plans
 
@@ -2006,6 +1994,12 @@ This requirement includes internal and external communication, both during and a
 
 ### Controls for Update Process
 
+#### Relevant External Controls for Managed Software Updates
+
+* [SOC2](#ref-soc2) CC 8.1 of the SOC 2 Trust Services Criteria
+* [ISO 27001](#iso-27001) Annex A 8.32
+
+
 #### Follow Update Procedures
 
 Node Operators MUST document procedures for updates to code
@@ -2023,6 +2017,12 @@ This covers all changes to code, including when it is necessary to roll back an 
 Updates to third-party software MUST be checked for vulnerabilities before deployment
 
 This covers verifying that all software updates, including validators and other nodes, have been audited to ensure they are not introducing known or new vulnerabilities.
+
+##### External Controls for checking third-party software
+
+* [ISO27001](#ref-iso-27001) Annex A 8.7
+* [ISO27001](#ref-iso-27001) Annex A 8.30
+
 
 #### Ensure Good Test Coverage
 
@@ -2062,9 +2062,6 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 <tr><th width="443">Framework</th><th>Criterion</th></tr></thead><tbody>
 <tr>
 <td>OWASP</td>
-<td><a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">A01:2022: Broken Access Control</a></td></tr>
-<tr>
-<td>OWASP</td>
 <td><a href="https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_(SSRF%29/">A10:2021: Server Side Request Forgery</a></td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
@@ -2091,10 +2088,6 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 8.10</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.30 counterparties (development)</td></tr>
-
 
 </tbody></table>
 
@@ -2531,6 +2524,15 @@ ISO IEC 27001:2022 "Information security, cybersecurity and privacy protection �
 
 "Technical Guide to Information Security Testing and Assessment", Karen Scarfone, Murugiah Souppaya, Amanda Cody, and Angela Orebaugh. NIST 2008. [https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
 
+<a id="ref-owasp-access-control"></a>
+##### [OWASP Access Control]
+"OWASP Top 10: A01:2021 - Broken Access Control", OWASP 2021. [https://owasp.org/Top10/A01_2021-Broken_Access_Control/](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
+
+<a id="ref-owasp-ssrf"></a>
+##### [OWASP SSRF]
+"OWASP Top 10: A10:2021 - Server-Side Request Forgery (SSRF)", OWASP 2021. [https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/)
+
+
 <a id="ref-premortem"></a>
 ##### [Pre-mortem]
 
@@ -2550,8 +2552,6 @@ More:
 
 - [NIST SP 800-34 Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 - [NIST SP 800-61](https://csrc.nist.gov/pubs/sp/800/61/r2/final)
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/): [OWASP A01:2022: Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/), [OWASP A10:2021: Server Side Request Forgery](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_(SSRF%29/)
-- [RFC 1918](https://www.rfc-editor.org/rfc/rfc1918)
 
 ### Tools:
 
