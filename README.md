@@ -1,5 +1,11 @@
 # Introduction
 
+## What is this `advanced staging` branch?
+
+This branch is used to collect pull requests that the editor expects will be merged, and can thus be used to view a snapshot of the "latest stage" of development, according to the editor's **expectations**.
+
+(Beware, those expectations are not always met in practice)
+
 ## What is ValOS?
 
 The Validator Operations Standard (ValOS) describes risks that Node Operators face, and mitigation and control strategies, how to assess whether the risks are adequately managed.
