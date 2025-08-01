@@ -1249,13 +1249,7 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 #### Secure Development Life Cycle
 
-Main outline of the Information security controls reference:
 
-* Use best practices to ensure that software development is happening in a secure and monitored way.
-
-##### Relevant External Controls for Secure Development Lifecycle
-//add matching control
-* [ISO 27001](#iso-27001) Annex A 8.25
 
 **Examples for best practices:**
 
@@ -1309,7 +1303,7 @@ help ensure that coverage is sufficiently comprehensive to detect errors that ca
 * [DOW20](#risk-dow-20)
 </div>
 
-#### Sanitize Inputs
+#### Validated Inputs and Outputs
 
 Unchecked inputs are a major cause for overflow attacks and brute force. Ideally, the load balancer in front of the node filters out all traffic that has too large headers and payloads. Additionally, if JSON payloads are being used, it is important to validate them against the relevant schema.
 
@@ -1952,14 +1946,44 @@ as well as processes that ensure equipment is correctly retired including removi
 * [KEC1](#risk-kec-1), [KEC5](#risk-kec-), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
 
 
+
 <a id="sec-controls-updates"></a>
-### Controls for Update Process
+### Controls for Development and Update Process
 
 #### Relevant external controls for managed software updates
 
-* [SOC2](#ref-soc2) CC 8.1 of the SOC 2 Trust Services Criteria
-* [ISO 27001](#iso-27001) Annex A 8.32
+* [[SOC2](#ref-soc2)] CC 8.1
+* [[ISO 27001](#iso-27001)] Annex A 8.32
 
+#### Develop Software as Secure by Design
+
+Code development MUST follow processes to avoid introducing security risks
+
+This is a broad area. A few specific controls are included in this specification, but this requirement is intended to ensure a general production philosophy.
+
+##### Relevant external controls for secure development
+* [[ISO 27001](#iso-27001)] Annex A 8.25
+
+### Verify Outsourced Development
+
+Main outline of the Information security controls reference:
+
+Node Operators MUST review custom-developed code provided by third parties
+
+Best practice is to perform both internal and independent external audit, and to ensure the identity of the coders is known.
+Likewise, in best practice third-party code developers are only given access to code they need to do their work, are held to high standards of confidentiality,
+and work with a well-defined set of expectations
+
+##### Relevant external controls for verifying outsourced development
+
+* [ISO 27001](#iso-27001) Annex A 8.30
+
+<div class="info">
+
+#### Verifying outsourced development helps address the following risks
+
+* [GIR24](#risk-gir-24)
+</div>
 
 #### Follow Update Procedures
 
@@ -1983,6 +2007,39 @@ This covers verifying that all software updates, including validators and other 
 
 * [ISO27001](#ref-iso-27001) Annex A 8.7
 * [ISO27001](#ref-iso-27001) Annex A 8.30
+
+### Validate Inputs and outputs
+
+Code MUST verify that input is safe before operating on it
+
+Code MUST NOT produce invalid outputs
+
+Components SHOULD use [[CORS](#ref-cors)] and [[CSP](#ref-csp)] to protect against Server Side Request Forgery
+
+These requirements ensure that data passed between software components can be handled safely by the receiving component. It includes data entered manually by users.
+
+Best practice includes using JSON [schema](https://json-schema.org) and [schema evolution techniques](https://en.wikipedia.org/wiki/Schema_evolution),
+and defined minimum and maximum input sizes and MIME types ([Microsoft IIS example](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/mimemap)).
+
+Multiple tools can help meet thsese requirements, including
+* [ajv](https://www.npmjs.com/package/ajv), [validatorjs](https://github.com/validatorjs/validator.js), [Apache Ranger](https://ranger.apache.org)
+* ORM systems exist for almost all programming languages and frameworks. Some of the most common ones are [Hibernate](https://hibernate.org/orm/documentation/getting-started/), [TypeORM](https://typeorm.io) and [SQLAlchemy](https://www.sqlalchemy.org).
+* In the Apache web-server, one can control the request size of different pieces of the request:
+  * [LimitRequestBody](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestbody)
+  * [LimitRequestFields](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestfields)
+
+
+##### External controls for validating data passed between components
+
+* [[OWASP SSRF](#ref-owasp-ssrf)]
+* [[SOC2](#ref-soc2)] PI 1.2
+* [[SOC2](#ref-soc2)] PI 1.3
+
+#### Data validation helps address the following risks
+
+* [GIR8](#risk-gir-8), [GIR16](#risk-gir-16)
+
+</div>
 
 
 #### Ensure Good Test Coverage
@@ -2078,9 +2135,7 @@ This requirement includes internal and external communication, both during and a
 <table><thead>
 <tr><th width="443">Framework</th><th>Criterion</th></tr></thead><tbody>
 <tr>
-<td>OWASP</td>
-<td><a href="https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_(SSRF%29/">A10:2021: Server Side Request Forgery</a></td></tr>
-<tr>
+
 <td>[SOC2](#soc2)</td>
 <td>CC 5.2</td></tr>
 <tr>
@@ -2092,12 +2147,7 @@ This requirement includes internal and external communication, both during and a
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 9.2  counterparties</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>PI 1.2</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>PI 1.3</td></tr>
+
 <tr>
 
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
@@ -2108,41 +2158,7 @@ This requirement includes internal and external communication, both during and a
 
 </tbody></table>
 
-## OWASP
 
-
-### Server-side request forgery mitigations
-
-An often overlooked aspect of attack vectors is server-side request forgery. In essence, an attacker sends (almost) random messages to the server and analyzes the response. Based on that, they are able to deduce behavioral patterns that can be used for a successful attack.
-
-The most common goal of such attacks is to create some form of an overflow. Modern load-balancers and web-servers have built-in functionality that serve as a first line of defense against such mechanisms.
-
-Functionality to look out for when creating your application is:
-
-* Validate the user input against a given schema where possible.
-* Limit the request size that the server accepts. This includes payload and header.
-* Do not use redirections or symbolic links unless absolutely necessary.
-* Use rate limits to make this attack infeasible.
-* When writing user-input into a database, always use Object Relational Mappers to achieve maximal protection against SQL injection.
-
-**References:**
-
-* [OWASP A10:2021: Server Side Request Forgery](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_\(SSRF\)/)
-
-**Examples for best practices:**
-
-* ORM systems exist for almost all programming languages and frameworks. Some of the most common ones are [Hibernate](https://hibernate.org/orm/documentation/getting-started/), [TypeORM](https://typeorm.io) and [SQLAlchemy](https://www.sqlalchemy.org).
-* In the Apache web-server, one can control the request size of different pieces of the request:
-  * [LimitRequestBody](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestbody)
-  * [LimitRequestFields](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestfields)
-* In order to protect oneself from bad redirects, one can define proper [[CORS](#cors)] headers and a ContentSecurityPolicy[[CSP](#csp)]. Both are set in header fileds of your Web server or load balancer.
-
-<div class="info">
-
-**Links to risks**
-
-* [GIR8](#risk-gir-8)
-</div>
 
 ## SOC 2
 
@@ -2248,56 +2264,6 @@ Main outline from the COSO principles:
 </div>
 
 
-### Analyze system inputs for completeness and accuracy
-
-Main outline from the COSO principles:
-
-* Defines Characteristics of Processing Inputs, such as schemas.
-* Evaluates Processing Inputs with defined requirements and compliance.
-* Monitor the system inputs.
-
-**References:**
-
-* PI 1.2 of The Trust Services Criteria
-
-**Examples for best practices:**
-
-* Use [schema](https://json-schema.org) and [schema evolution techniques](https://en.wikipedia.org/wiki/Schema_evolution) to keep your data-flow clean.
-* Always define minimum and maximum input sizes and MIME types ([Microsoft IIS example](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/mimemap)).
-
-<div class="info">
-
-#### Input analysis helps address the following risks
-
-* [GIR8](#risk-gir-8)
-</div>
-
-### Analyze System outputs for completeness and accuracy
-
-Main outline from the COSO principles:
-
-* Inputs are processed completely, accurately, and timely.
-
-**References:**
-
-* PI 1.3 of the trust services criteria
-
-**Examples for best practices:**
-
-* Ensure that all inputs are being captured and either rejected or processed (schema enforcement).
-* Data should be always referencable through a [unique ID](https://datatracker.ietf.org/doc/html/rfc4122).
-* Data should be [examined for](https://www.npmjs.com/package/ajv) [correctness and completeness](https://github.com/validatorjs/validator.js).
-* For each individual user, it should be determined if they are capable of accessing data or not. Using some technologies, such as [Apache Ranger](https://ranger.apache.org), this can be done on a row-by-row basis on a table.
-
-<div class="info">
-
-#### Output analysis helps address the following risks
-
-* [GIR16](#risk-gir-16)
-</div>
-
-## ISO 27001
-
 
 
 ### Identity Management
@@ -2382,27 +2348,6 @@ Main outline of the Information security controls reference:
 
 
 
-### Outsourced development
-
-Main outline of the Information security controls reference:
-
-* Any outsourced development needs to be controlled, monitored and closely reviewed.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.30
-
-**Examples for best practices:**
-
-* Proper ticketing system with clear expectations.
-* Minimal access to do the job.
-
-<div class="info">
-
-#### Counterparty management helps address the following risks
-
-* [GIR24](#risk-gir-24)
-</div>
 
 
 <section id="sec-communications-strategy">
