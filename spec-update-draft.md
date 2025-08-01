@@ -5,31 +5,41 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 ## Editor's draft post version 1
 
 
-<dl> Version 1: [https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base)
+<dl>
+<dt>This draft date:</dt>
+<dd>2025-07-31</dd>
+
+<dt>Version 1 URL:</dt>
+<dd><a href="https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base">https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base</a></dd>
 
 <dt>Contributors to this version:</dt>
 
 <dd>This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
 
-Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven (This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
+<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven
+
+<br>(This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
 </dd>
 
 <dt>Editor:</dt> <dd>Chaals Nevile</dd>
 </dl>
 
 
-
+<a id="sec-abstract"></a>
 ## Abstract
 
-This specification defines a series of risks that can apply when operating a blockchain node.
-It provides a series of mitigations that can minimise the likelihood that particular risks will be realised and cause a problem,
-such as compromising the control of a node or actions that result in reduced economic rewards, or penalties such as slashing.
+This specification defines risks that can apply when operating a blockchain node.
+
+It describes mitigations that can minimise the likelihood that particular risks will be realised and cause a problem,
+such as compromising the ability to manage a node or actions that result in reduced economic rewards, or penalties such as slashing.
+
+Finally, it provides a set of controls to verify that a Node Operator is appropriately managing the relevant risks.
 
 ## Table of Contents
 
-- [Abstract](#abstract)
-- [Introduction](#introduction)
-- [Abstract](#abstract)
+- [Abstract](#sec-abstract)
+- [Introduction](#sec-introduction)
+  - [Purpose](#sec-purpose)
 - [Risks](#risks)
   - [Slashing Risk](#slashing-risk)
   - [Downtime Risk](#downtime-risk)
@@ -37,7 +47,6 @@ such as compromising the control of a node or actions that result in reduced eco
   - [Withdrawal Key Custody Risk](#withdrawal-key-custody-risk)
   - [General Infrastructure Risk](#general-infrastructure-risk)
   - [Service Partner Specific Risk](#service-partner-specific-risk)
-  - [Downtime Risks](#downtime-risks)
   - [Reputational Risk](#reputational-risk)
 - [Risk Assessment Procedures](#risk-assessment-procedures)
   - [Financial Loss](#financial-loss)
@@ -47,18 +56,20 @@ such as compromising the control of a node or actions that result in reduced eco
 - [Mitigation Strategies](#mitigation-strategies)
   - [Node-Operator Technology Stack Mitigations](#node-operator-technology-stack-mitigations)
   - [Secret Management](#secret-management)
-  - [Access Management](#access-management)
-  - [Development and Update Process](#development-and-update-process)
-  - [Monitoring](#monitoring)
-  - [General Measures](#general-measures)
+  - [Access Management](#sec-mitigations-access-management)
+  - [Development and Update Process](#sec-mitigations-development-and-update)
+  - [Monitoring](#sec-mitigations-monitoring)
+  - [Incident Response](#sec-mitigations-incident-response)
+  - [General Measures](#sec-mitigations-general)
 - [Controls Catalog](#controls-catalog)
 - [Communications Strategy](#sec-communications-strategy)
 - [References](#sec-references)
 - [Status and Feedback](#sec-sotd)
 
-
+<a id="sec-introduction"></a>
 ## Introduction
 
+<a id="sec-purpose"></a>
 ### Purpose
 
 This specification builds on the DUCK knowledge base as an evolution. In addition to the risk framework, updated based on feedback from practitioners,
@@ -895,6 +906,7 @@ In order to avoid loosing out on opportunity cost, Node operators need to develo
 * [SPS1](#risk-sps-1)
 </div>
 
+<a id="sec-mitigations-secret-management"></a>
 ### Secret Management
 
 #### Controlled and audited secret access
@@ -990,7 +1002,8 @@ Best practise includes "When in doubt, rotate". Keys to rotate include, but are 
 </div>
 
 
-### Access controls & access management
+<a id="sec-mitigations-access-management"></a>
+### Access Controls and Access Management
 
 Access Control covers physical access to devices and facilities, the ability to connect to servers through networks,
 and the ability to perform specific tasks, such as getting answers to requests.
@@ -1013,11 +1026,6 @@ COSO Principles:
 5. Manage Points of Access — Access to nodes inside the segmented area need to be controlled with authentication and authorization methods.
 6. Proper credentials management for infrastructure software — A clear definition of each credential life-time is established and enforced.
 
-COSO principle
-//Does this belong in secret maangement?
-7. Protects Encryption Keys — Processes are in place to protect encryption keys for their lifetime.
-
-This is covered by [secret management](#secret-management)
 
 Special considerations:
 
@@ -1126,56 +1134,70 @@ Ensure that employees whose roles have changed do not have lingering credentials
 * [GIR25](#risk-gir-25)
 </div>
 
-### Network access to nodes
+### Managed Network Access to Nodes
 
 Following the principles of defense in depth and [**least privilege**](#def-least-privilege), it is important that nodes are not directly accessible without permission, and that they do not leak information to the Web that can help malicious parties gain unauthorized access.
 
-Best practice includes restricting Web Access through a load-balancer that has a firewall, and ensuring any remote access capability is clearly justified.
 
-As well as controlling physical access where possible, it is best practice to ensure that nodes are only responsive through restricted access networks. Further, it is important to ensure the hardware running nodes does not have extraneous software (that can increase the risk of monitoring), does not allow generic probing mechanisms such as open port scans that can help malicious parties learn the topology of target systems,   
+As well as controlling physical access where possible, it is best practice to ensure that nodes are only responsive through restricted access networks,
+for example restricting web access through a VPN, and load-balancer that has a firewall,
+as well as ensuring any remote access capability is clearly justified.
+Further, it is important to ensure the hardware running nodes does not have extraneous software,
+and does not allow generic probing mechanisms such as open port scans that can help malicious parties learn the topology of target systems.   
 
 <div class="info">
 
-#### @@ helps address the following risks
+#### Managed network access helps address the following risks
 
 * [SLS12](#risk-sls-12)
 </div>
 
-### Strong authentication
+### Authentication policies
 
-Use password policies to ensure that access control mechanisms are sufficiently strong at every layer of the infrastructure (i.e. DUCK123 should never be an allowed password ;-)). When users are authenticating, MFA should be used.
+Best practice is to use password and related authentication policies to ensure that access control mechanisms are sufficiently strong at every layer of the infrastructure. This can include appropriate requirements for the strength of passwords and the use of Multi-Factor Authentication as well as Multi-Signature requirements.
 
 <div class="info">
 
-#### @@ helps address the following risks
+#### Authentication policy helps address the following risks
 
 * [SLS13](#risk-sls-13)
 </div>
 
-### Prevent Unauthorized Physical Access
+### Managed Physical Access
 
-This covers all physical devices that can access the Node, as well as all areas in which such devices are kept, whether "on-premises", distributed, hosted by a third party, or remote mobile devices such as laptops.
+This covers all physical devices that can access the Node, as well as all areas in which such devices are kept,
+whether "on-premises", distributed, hosted by a third party, or remote mobile devices such as laptops.
 
-* Manage and monitor entry to physical areas and physical access to assets.
+Best practice for managing physical access includes ensuring that authorization is only granted as necessary,
+following the principles of [Least Privilege](#def-least-privilege).
+Generally this means some devices are physically segregated in areas where access is restricted according to function.
+Note that this covers the use of devices authorized to access the networks that nodes operate on,
+and is particularly important for devices authorized to access management and analytical functions of nodes.
 
-Best practice for managing physical access includes ensuring that authorization is granted as necessary, following the principles of [Least Privilege](#def-least-privilege), meaning that some devices are physically segregated in areas where access is determined according to their function. Note that this covers the use of devices authorized to access the networks nodes operate on, and is particularly important for devices authorized to access management and analytical functions of nodes.
+Ideally all physical access to premises and facilities is monitored, to deter and determine whether the facility is subject to <dfn>piggybacking</dfn>.
+This term refers to the situation where an unauthorized entrant is allowed in by someone who has a valid authorization for themselves.
+In the context of remote operators' access through a computer, controlling this is particularly challenging in practice.
 
-Ideally all physical access to premises and facilities is monitored, particularly to deter, and determine whether the facility is subject to, <dfn>piggybacking</dfn>, where an unauthorized entrant is allowed in by someone who has a valid authorization for themselves. However, in the context of remote operators' access through a computer this is particularly challenging in practice.
-
-Piggybacking may occur inadvertently, through politely holding a door for someone without checking that they have current valid authorization to enter, negligently by allowing someone to enter for a legitimate purpose despite that person not having a valid authorization, or maliciously allowing someone to enter knowing that their purpose is nefarious.
+Piggybacking may occur inadvertently through politely holding a door for someone without checking that they have current valid authorization to enter,
+negligently by allowing someone to enter for a legitimate purpose despite knowing that person does not have valid authorization,
+or maliciously allowing someone to enter knowing that their purpose is nefarious.
 
 In the inadvertent case, relevant mitigations include
+
 - ensuring that all those with authorization understand the necessity to enforce physical access control,
 - providing simple and effective ways to check authorization,
-- ensuring that remote access devices as far as possible are dedicated to the defined purposes (rather than allowing the use of general-purpose laptops that could be attacked when being used for a different task such as general email, or playing games).
+- ensuring that remote access devices as far as possible are dedicated to the defined purposes
+(rather than allowing the use of general-purpose laptops that could be attacked when being used for a different task such as general email, or playing games).
 
-To minimize negligently allowed access, it is important to ensure that access systems are effectively maintained and managed to ensure there is no good reason to allow an unauthorized person access. This can range from the design of onboarding systems to the effectiveness of internal management feedback systems for discovering unanticipated problems faced by operators.
+To minimize negligently allowed access, it is important to ensure that access systems are effectively maintained and managed to ensure there is no good reason to allow an unauthorized person access.
+This can range from the design of onboarding systems to the effectiveness of internal management feedback systems for discovering unanticipated problems faced by operators.
 
-Best practice is to ensure that physical access is managed by systems that can efficiently enable access to authorised parties (keycards, biometric scanners) and monitor actual access such as visual verification that the authorized party is the one entering.
+Best practice is to ensure that physical access is managed by systems that can efficiently enable access to authorised parties (keycards, biometric scanners),
+and to monitor actual access such as visual verification that the authorized party is the one entering.
 
-It is important to log and audit access sufficiently frequently to detect problems - see also [Monitoring](@@).
+It is important to log and audit access sufficiently frequently to detect problems - see also [Monitoring](#sec-mitigations-monitoring).
 
-### Protect Against Environmental Threats
+### Protection against Environmental Threats
 
 Physical devices are subject to physical changes, including environmental issues such as temperature extremes that can cause damage,
 and utility failures such as power or internet failure.
@@ -1190,18 +1212,13 @@ and destructive physical attacks. Appropriate mitigations will depend in part on
 
 <div class="info">
 
-#### Relevant External Controls for Environmental Threats
-
-* [ISO 27001](#iso-27001) Annex A 7
-The lifecycle of equipment, most particularly node servers and computers used to access and manage them, is a determinant of overall security.
-
-#### Environmental Threats helps address the following risks
+#### Protection against Environmental Threats helps address the following risks
 
 * SLS 14,15
 * [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), 7-9
 </div>
 
-[Monitoring](#@@) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
+[Monitoring](#sec-mitigations-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
 
 ### Manage Equipment Life-cycle.
 
@@ -1209,20 +1226,18 @@ The lifecycle of equipment, most particularly node servers and computers used to
 
 Best practices for lifecycle management include the ability to remotely pause, shut down, and wipe devices clean, although this needs to be considered in the context of the risk of malicious access to those capabilities.
 
-[Monitoring](#sec-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
+[Monitoring](#sec-mitigations-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
 
 <div class="info">
 
-#### Relevant External Controls for Equipment Life-cycle
-
-* [ISO 27001](#iso-27001) Annex A 7
 
 #### Equipment Life-cycle helps address the following risks
 
 * [DOW3](#risk-dow-3)
-* KEC 1,5,[KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
+* [KEC1](#risk-kec-1), [KEC5](#risk-kec-), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
 </div>
 
+<a id="sec-mitigations-development-and-updates-"></a>
 ### Development and Update Process
 
 #### Secure development life cycle
@@ -1253,16 +1268,13 @@ Main outline of the Information security controls reference:
 * [GIR25](#risk-gir-25)
 </div>
 
-@@ Software development (check inputs and outputs, audit, follow secure dev guidelines, etc) and Upgrade processes/Change management (test environments, proper review between upgrades, ...)
 
+#### Comprehensive Testing for Changes to Code
 
-#### Testing and review of all changes to infrastructure code
+A comprehensive test suite, incorporating static and dynamic testing in the CI/CD pipeline for code development
+can help ensure that changes do not introduce new vulnerabilities or situations that lead to operational failures.
 
-Use all possible tests (dynamic, static) in the CI/CD pipeline of your development lifecycle.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.29
+Equally, it is important that someone other than the developer who produces Code changes reviews them.
 
 **Examples  for best practices:**
 
@@ -1316,7 +1328,7 @@ Unchecked inputs are a major cause for overflow attacks and brute force. Ideally
 * [GIR8](#risk-gir-8)
 </div>
 
-<section id="sec-manage-updates">
+<section id="sec-mitigations-manage-updates">
 
 ### Manage Software Updates
 
@@ -1381,7 +1393,7 @@ In addition customizations can produce incompatibilities when software is update
 * [DOW20](#risk-dow-20)
 </div>
 
-#### Capture configuration changes vulnerabilities
+#### Managed Configuration Changes
 
 Main outline from the COSO principles:
 
@@ -1415,23 +1427,23 @@ Main outline from the COSO principles:
 * [KEC8](#risk-kec-8)
 </div>
 
-#### Protect against malware
+#### Protection against Supply-chain Malware
 
-Main outline of the Information security controls reference:
-
-* Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
+Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
 
 ##### Relevant External Controls
 
 * [ISO27001](#ref-iso-27001) Annex A 8.7
+* [ISO27001](#ref-iso-27001) Annex A 8.30
 
 **Examples for best practices:**
 
-* Regularly check the latest [CVE entries.](https://cve.mitre.org), regarding all software tools used. Tools such as [Trivy](https://github.com/aquasecurity/trivy) can help with this. // -> monitoring?
+- Regularly check the latest [CVE entries.](https://cve.mitre.org), to cover all software tools used. Tools such as [Trivy](https://github.com/aquasecurity/trivy) can help with this.
+- Specifically check for any announcements of vulnerabilities before upgrading any software component
 
 <div class="info">
 
-##### Malware protection helps address the following risks
+##### Protection against supply-chain malware helps address the following risks
 
 * [GIR15](#risk-gir-15)
 * [GIR17](#risk-gir-17)
@@ -1460,7 +1472,7 @@ This minimizes a potential blast radius. It is important to run any change (even
 * [DOW20](#risk-dow-20)
 </div>
 
-#### Use containerized and orchestrated environments
+#### Containerized and Orchestrated Environments
 
 Containerized and orchestrated environments are designed to reinforce security by automating many good practices, with mechanisms that have been widely tested in diverse environments. As tools that can be used well or badly, their best practice recommendations are important to ensure the the full benefits are realised.
 
@@ -1471,7 +1483,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 * [GIR23](#risk-gir-23)
 </div>
 
-#### Automate where possible
+#### Process Automation
 
 Human error is always a risk. An automated script, whether or not invoked by a human, can help minimise indavertent errors.
 
@@ -1481,7 +1493,7 @@ When correctly configured pipelines and job-mechanisms such as GitHub Actions, A
 
 <div class="info">
 
-##### Automation helps address the following risks
+##### Process automation helps address the following risks
 
 * [GIR16](#risk-gir-16)
 * [GIR18](#risk-gir-18)
@@ -1496,6 +1508,7 @@ When correctly configured pipelines and job-mechanisms such as GitHub Actions, A
 
 </section>
 
+<a id="sec-mitigations-monitoring"></a>
 ### Monitoring and Alerting
 
 Monitoring dashboards are an important tool to identify risks and gain relevant data.
@@ -1606,32 +1619,10 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 * [GIR4](#risk-gir-4)
 * [GIR13](#risk-gir-13)
 
-#### Equivalent External Controls
-
-* [SOC2](#soc2) Trust Services Criteria CC 7.2
-* [ISO 27001](#iso-27001) Annex A 8.16
 
 </div>
 
-### General Measures
-
-* General cyber security (Firewall, Intrusion Detection System, ....)
-* Check the uptime promise of cloud provider (minimum three 9s)
-* Failover system (also in different locations)
-* Keeping track of age and replacing appliances //currently in access control and monitoring
-* Conduct an internal special study of failover and load balancer strategies
-* Being informed about the relevant natural catastrophes
-* Ensure stable Internet connection of the System (Cloud, Bare Metal, ....)
-* Ensure stable Power connection of the System (Cloud, Bare Metal, ....)
-* Ensure proper load-balancer and firewall at the front
-* Only necessary software on the relevant servers
-* Being able to switch the relayer or disconnect from the relay
-* Back-Up/DR / BC Policies
-* Validate cloud, data center or infrastructure provider regarding security
-* Safety training
-* Central & accessible documentation of critical knowledge
-* Having a communication toolkit and process prepared
-
+<a id="sec-mitigations-incident-response"></a>
 ### Incident Response
 
 An <dfn id="def-incident-response-plan">Incident Response Plan</dfn> documents procedures for managing security incidents and events,
@@ -1647,7 +1638,7 @@ Best practices for Incident response plans include
 - Clear information about how to investigate and triage incidents,
   including when to notify and involve particular participants and how to escalate issues to the most appropriate person or team.
 - Define clear procedures to follow for specific sets of circumstances. Where it is possible and appropriate, automated responses and alerting triggered by
-  [Monitoring]() can help ensure rapid response.
+  [Monitoring](#sec-mitigations-monitoring) can help ensure rapid response.
 - Data collection and distribution to enable effective response, external communication, and "Post Mortem" analysis
 - Identify relevant Stakeholders and define communication strategies for both internal and external communications
 
@@ -1748,14 +1739,34 @@ offer further information on how to plan and implement simulations, and how to d
 
 #### Incident Communication
 
-As well as direct financial losses, security incidents can also result in significant reputational damage.
-Appropriate <dfn id="def-incident-communication">communication with stakeholders about security incidents</dfn>, both during and after the relevant incident, can significantly mitigate this risk.
+As well as direct financial losses, security incidents can also result in substantial reputational damage.
+Appropriate <dfn id="def-incident-communication">Incident Communication</dfn> with stakeholders about security incidents, both during and after the relevant incident, can significantly mitigate this risk.
 
-It is important to note that inappropriate communication during an incident can increase the damage. External communication has to balance
-stakeholders' need for information that enables them to respond in a well-informed manner against
-the importance of providing clear information with as much certainty as feasible that it will not later be contradicted.
+It is important to note that inappropriate communication during an incident can increase the damage.
+External communication has to balance stakeholders' need for information that enables them to respond in a well-informed manner
+against the importance of providing clear information with as much certainty as feasible that it will not later be contradicted.
 
 Best practice for external communication about an incident includes providing a detailed post-incident summary.
+
+<a id="sec-mitigations-general"></a>
+### General Measures
+
+* General cyber security (Firewall, Intrusion Detection System, ....)
+* Check the uptime promise of cloud provider (minimum three 9s)
+* Failover system (also in different locations)
+* Keeping track of age and replacing appliances //currently in access control and monitoring
+* Conduct an internal special study of failover and load balancer strategies
+* Being informed about the relevant natural catastrophes
+* Ensure stable Internet connection of the System (Cloud, Bare Metal, ....)
+* Ensure stable Power connection of the System (Cloud, Bare Metal, ....)
+* Ensure proper load-balancer and firewall at the front
+* Only necessary software on the relevant servers
+* Being able to switch the relayer or disconnect from the relay
+* Back-Up/DR / BC Policies
+* Validate cloud, data center or infrastructure provider regarding security
+* Safety training
+* Central & accessible documentation of critical knowledge
+* Having a communication toolkit and process prepared
 
 ## Controls Catalog
 
@@ -1769,7 +1780,7 @@ Some of these control criteria correspond to similar controls from at least thre
 Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
 
 ### Controls for Access Control
-@@@@
+
 #### Authentication required for services
 
 All services MUST require appropriate authentication privileges.
@@ -1900,6 +1911,8 @@ and to alert if validators are operating with excess latency. Tools such as [Zab
 #### Relevant external controls for Automated Monitoring
 
 - [SOC2](#soc2) A 1.1
+- [SOC2](#soc2) CC 7.2
+- [ISO 27001](#iso-27001) Annex A 8.16
 - [ISO 27001](#iso-27001) Annex A 8.21
 
 </section>
@@ -2011,6 +2024,17 @@ Updates to third-party software MUST be checked for vulnerabilities before deplo
 
 This covers verifying that all software updates, including validators and other nodes, have been audited to ensure they are not introducing known or new vulnerabilities.
 
+#### Ensure Good Test Coverage
+
+Node Operators MUST have thorough test coverage of their software and operating procedures
+
+There is no magic percentage figure, but ideally unit tests and integration tests cover every funtionality and interaction
+managed by code the Node Operator uses, whether self-managed or provided by a third party.
+
+##### Relevant External Controls for Test Coverage
+
+* [ISO 27001](#iso-27001) Annex A 8.29
+
 #### Test All Interactions Impacted by Software Updates
 
 Updates MUST include an Audit of ALL Code and User Interactions they impact
@@ -2047,28 +2071,13 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 <td>CC 5.2</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
-<td>CC 6.1</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 6.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 7.1</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 7.2</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 7.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
 <td>CC 8.2</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>CC 8.3</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
-<td>CC 9.2</td></tr>
+<td>CC 9.2  counterparties</td></tr>
 <tr>
 <td>[SOC2](#soc2)</td>
 <td>PI 1.2</td></tr>
@@ -2081,41 +2090,10 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 <td>Annex A 5.16</td></tr>
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 5.17</td></tr>
-
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.2</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.7</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.9</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
 <td>Annex A 8.10</td></tr>
 <tr>
 <td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.16</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.18</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.21</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.22</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.25</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.29</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.30</td></tr>
+<td>Annex A 8.30 counterparties (development)</td></tr>
 
 
 </tbody></table>
@@ -2528,23 +2506,27 @@ You can download the spreadsheet here: [https://docs.google.com/spreadsheets/d/1
 
 ## References
 
-
+<a id="ref-csp"></a>
 ##### [CSP]
 
 "Content Security Policy", Mozilla Corporation. [https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 
+<a id="ref-cors"></a>
 ##### [CORS]
 
 "Cross-Origin Resource Sharing (CORS)", Mozilla Corporation. [https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
+<a id="ref-cve"></a>
 ##### [CVE]
 
 "CVE", Mitre, 1995-. [https://www.cve.org](https://www.cve.org)
 
+<a id="ref-iso-27001"></a>
 ##### [ISO 27001]
 
 ISO IEC 27001:2022 "Information security, cybersecurity and privacy protection — Information security management systems — Requirements" 3rd Ed. ISO, 2022. [https://www.iso.org/standard/27001](https://www.iso.org/standard/27001)
 
+<a id="ref-nist-800-115"></a>
 ##### [NIST-800-115]
 
 "Technical Guide to Information Security Testing and Assessment", Karen Scarfone, Murugiah Souppaya, Amanda Cody, and Angela Orebaugh. NIST 2008. [https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
@@ -2554,9 +2536,12 @@ ISO IEC 27001:2022 "Information security, cybersecurity and privacy protection �
 
 "How to Use Pre-mortems to Prevent Problems, Blunders, and Disasters", Shreyas Doshi, 2020. [https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a](https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a)
 
+<a id="ref-sbom"></a>
 ##### [SBOM]
 
 "Software Bill of Materials (SBOM)" CISA, 2024. [https://www.cisa.gov/sbom](https://www.cisa.gov/sbom)
+
+<a id="ref-soc2"></a>
 ##### [SOC2]
 
 "2017 Trust Services Criteria for Security, Availability, Processing Integrity, Confidentiality, and Privacy (With Revised Points of Focus — 2022)" AICPA 2022. [https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022](https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022) (requires AICPA membership)
