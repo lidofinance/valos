@@ -58,7 +58,7 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
 - [Review and Audit Procedures](#review-and-audit-procedures)
 - [Mitigation Strategies](#mitigation-strategies)
   - [Technology Stack](#sec-mitigations-tech-stack)
-  - [Secret Management](#secret-management)
+  - [Information and Secret Management](#secret-management)
   - [Access Management](#sec-mitigations-access-management)
   - [Software Development and Update Process](#sec-mitigations-development-and-update)
   - [Monitoring](#sec-mitigations-monitoring)
@@ -1000,7 +1000,9 @@ Node operators need to withdraw validators correctly, as they are otherwise put 
 </div>
 
 <a id="sec-mitigations-secret-management"></a>
-### Secret Management
+### Information and Secret Management
+
+Information management can mitigate many risks. One aspect is the management of highly confidential information, such as the management of signing keys or withdrawal keys, but it is also important to manage operational information.
 
 #### Controlled and Audited Secret Access
 
@@ -1031,37 +1033,35 @@ Using multi-sig wallets, requiring authorization from multiple parties for speci
 
 #### Encryption of Data
 
-Many different components interplay while a staking operation is going on. It is crucial, since sensitive information may be transmitted, to ensure that data is only stored and transmitted in an encrypted state.
+Many different components interplay while a staking operation is going on.
+If confidential information is not protected by encryption, it can be intercepted and read during transmission.
+There is also a risk of accidental or malicious leaking of stored information, which can be somewhat mitigated if that information is stored in encrypted form.
+
+It is therefore crucial to ensure that confidential data is only stored and transmitted in an encrypted state.
 
 <div class="info">
 
 #### Data encryption helps address the following risks
 
 * [SLS8](#risk-sls-8)
-* [KEC5](#risk-kec-5)
-* [KEC6](#risk-kec-6)
-* [KEC7](#risk-kec-7)
-* [KEC10](#risk-kec-10)
-* [KEC11](#risk-kec-11)
-* [GIR10](#risk-GIR-10)
+* [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11), [GIR10](#risk-GIR-10)
 </div>
 
 #### Cold Storage
 
-Cold Storage, in particular "air-gapped" storage, can help protect information not used often such as withdrawal keys, private key generation materials, and the like.
+Cold Storage, in particular "air-gapped" storage, can help protect information not used often such as withdrawal keys, private key generation materials, and the like,
+by making it more difficult for malicious entities to access the information and by reducing the chance that it will be leaked in the event of accidentally publishing data.
 
 <div class="info">
 
 #### Cold storage helps address the following risks
 
-* [KEC5](#risk-kec-5)
-* [KEC6](#risk-kec-6)
-* [KEC7](#risk-kec-7)
+* [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7)
 </div>
 
-#### Signing Key Management
+#### Key Management
 
-It is important to protect signing keys from accidental or malicious misuse, and in particular deletion.
+It is important to protect private keys from accidental or malicious misuse, and in particular deletion.
 It is not normal to provide broad access to unencrypted signing keys.
 
 Best practices include ensuring that there are no single individuals with the capability to access or delete them, and having backups.
@@ -1069,18 +1069,19 @@ Modern vault systems enable the enforcement of policies to ensure that access to
 
 <div class="info">
 
-##### Signing key management helps address the following risks
+##### Key management helps address the following risks
 
-* [KEC2](#risk-kec-2)
-* [KEC10](#risk-kec-10)
-* [KEC11](#risk-kec-11)
+* [KEC2](#risk-kec-2), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
 </div>
 
 #### Key Rotation
 
 Key rotation following a proper process help protect infrastructure from a potential misuse of credentials.
 
-Best practise includes "When in doubt, rotate". Keys to rotate include, but are not limited to:
+Best practise is generally "When in doubt, rotate". It is important to rotate keys whenever a data breach occurs,
+but it is widely considered a good practise to require periodic key rotation to mitigate against exposure in the event that a data breach is undetected.
+
+Keys to rotate include, but are not limited to:
 
 * The Postgres database used by Web3Signer
 * The vault itself
@@ -1092,10 +1093,48 @@ Best practise includes "When in doubt, rotate". Keys to rotate include, but are 
 ##### Key rotation helps address the following risks
 
 * [SLS8](#risk-sls-8)
-* [GIR6](#risk-gir-6)
-* [GIR7](#risk-gir-7)
+* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7)
 </div>
 
+#### Operational Information Management
+
+Node operators are likely to  rely on a wide range of operational information,
+including internal procedures, understanding software configurations, plans for future development, and employee management.
+
+Best practise includes ensuring there is no single point of failure due to centralized information being held by a single external provider
+or only being known to a single employee.
+
+Documentation, even if rarely actively read by those responsible for operations (who presumably know their job), is important for many reasons including
+- to enable onboarding new employees and service partners, or helping employees take on new roles
+- to ensure smooth continued operation in the case that a key employee's role changes, particularly where they leave the organisation
+- to enable accurate reporting as necessary
+- to enable monitoring of operations and investigation of security incidents and other failures
+
+##### Operational information management helps address the following risks:
+
+* [FIN1](#risk-fin-1), [FIN7](#risk-fin-7), [FIN8](#risk-fin-8)
+* [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS14](#risk-sls-14)
+* [DOW1](#risk-dow-1), [DOW4](#risk-dow-4), [DOW16](#risk-dow-18), [DOW16](#risk-dow-18)
+* [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC6](#risk-kec-6), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
+* [GIR4](#risk-gir-4), [GIR2](#risk-gir-25)
+* [SPS0](#risk-sps-0)
+* [RER1](#risk-rer-1), [RER3](#risk-rer-3)
+
+##### Deletion protection
+
+Loss of important information, in particular keys, can have a crippling impact. It is important to have mechanisms to preotect against, and recover from,
+unintentional or malicious deletion of important data.
+
+Best Practise includes having journaled backups of important information.
+
+#### Deletion Protection helps address the following risks:
+
+* [FIN7](#risk-fin-7)
+* [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12)
+* [DOW16](#risk-dow-18), [DOW16](#risk-dow-18)
+* [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
+* [GIR4](#risk-kec-4), [GIR13](#risk-gir-13)
+* [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 
 <a id="sec-mitigations-access-management"></a>
 ### Access Controls and Access Management
@@ -1483,7 +1522,6 @@ Main outline from the COSO principles:
 
 Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
 
-
 **Examples for best practices:**
 
 - Regularly check the latest [CVE entries.](https://cve.mitre.org), to cover all software tools used. Tools such as [Trivy](https://github.com/aquasecurity/trivy) can help with this.
@@ -1816,6 +1854,107 @@ Some of these control criteria correspond to similar controls from at least thre
 * [SOC2](#soc2)
 
 Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
+
+<a id="sec-controls-info-secrets"></a>
+### Controls for Information and Secret Management
+
+#### Key Management
+
+Node Operators MUST implement appropriate key management procedures
+
+Best Practise includes following a commonly recognised key management standard such as
+
+- [[CCSS](#ref-ccss)]: a set of requirements for securing Cryptocurrency systems, focusing on Key Management. Certification for systems is available at three levels, and is granted by certified CCSS Auditors.
+- [[BSSC KMS](#ref-bssc-kms)] a set of requirements for Key Management designed for organisations working in blockchain, allowing self-attestation of conformance.
+
+#### Identity Management
+
+Node Operators MUST track identity and roles of employees and service partners
+
+This includes off-boarding mechanisms, tracking assigned roles, and ensuring compliance with privacy regulations
+
+##### Relevant external controls for identity management
+
+* [ISO 27001](#iso-27001) Annex A 5.16
+
+<div class="info">
+
+#### Identity management helps address the following risks
+* [SLS8](#risk-sls-8)
+* [SLS9](#risk-sls-9)
+</div>
+
+### Document Vendors and Partner Risk
+
+Node Operators MUST implement documented procedures for evaluating and reviewing counterparty risks from vendors and partners
+
+* Establishes Requirements for Vendor and Business Partner Engagements.
+* Assesses Vendor and Business Partner Risks - A process is in place to evaluate existing vendors.
+* Ensure that previously identified issues with vendors are fixed and regressions may be identified.
+* Implements Procedures for Terminating Vendor Relationships.
+
+##### Relevant external controls for counterparty risk management
+
+* [[SOC2](#ref-soc-2)] CC 9.2
+
+<div class="info">
+
+#### Counterparty risk management helps address the following risks
+
+* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
+* [GIR5](#risk-gir-5)
+* [DOW1](#risk-dow-1), [DOW19](#risk-dow-19)
+</div>
+
+### Manage Information Lifecycles
+
+
+Node Operators MUST document and follow information lifecycle processes for important operational information
+
+This includes the definition and enforcement of retention periods, and the use of thorough deletion mechanisms, such as [shred](https://man.archlinux.org/man/shred.1.en).
+
+<div class="info">
+
+##### Relevant external controls for information lifecycles:
+* [ISO 27001](#iso-27001) Annex A 8.10
+
+#### Information Lifecycle management helps address the following risks:
+* [SLS10](#risk-sls-10)
+* [DOW17](#risk-dow-17)
+</div>
+
+#### Backup and Protect Data against Loss
+
+Node Operators MUST implement backup procedures, at minimum daily, for important operational data
+
+Backup Procedures SHOULD produce journaled backups covering relevant retention periods.
+
+Node Operators MUST implement protection against accidental or malicious deletion of data.
+
+These requirements cover all information required by controls in this specification.
+
+##### Protection against information loss helps address the following risks:
+* [FIN7](#risk-fin-7)
+* [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12)
+* [DOW16](#risk-dow-18), [DOW16](#risk-dow-18)
+* [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
+* [GIR4](#risk-kec-4), [GIR13](#risk-gir-13)
+* [RER1](#risk-rer-1), [RER3](#risk-rer-3)
+
+#### Record Important Operational Knowledge
+
+Node Operators MUST record and maintain important operational information
+
+Best practice is to use a documentation management system. While this is likely to have different levels of access control, it is important that no information is available to only one employee.
+
+##### Recording operational knowledge helps address the following risks:
+* [FIN1](#risk-fin-1), [FIN7](#risk-fin-7), [FIN8](#risk-fin-8)
+* [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS14](#risk-sls-14)
+* [DOW1](#risk-dow-1), [DOW4](#risk-dow-4), [DOW16](#risk-dow-18), [DOW16](#risk-dow-18)
+* [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC6](#risk-kec-6), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
+* [GIR4](#risk-gir-4), [GIR2](#risk-gir-25)
+* [SPS0](#risk-sps-0)
+* [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 
 <a id="sec-controls-access"></a>
 ### Controls for Access Control
@@ -2176,11 +2315,6 @@ Service agreements MUST specify termination procedures and obligations
 <td>PI 1.3</td></tr>
 <tr>
 
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 5.16</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.10</td></tr>
 
 </tbody></table>
 
@@ -2299,17 +2433,6 @@ Main outline from the COSO principles:
 
 
 
-### Vendors and business partners risk management
-
-Main outline from the COSO principles:
-
-* Establishes Requirements for Vendor and Business Partner Engagements.
-* Assesses Vendor and Business Partner Risks - A process is in place to evaluate existing vendors.
-* Ensure that previously identified issues with vendors are fixed and regressions may be identified.
-* Implements Procedures for Terminating Vendor Relationships.
-
-**References:**
-</div>
 
 
 ### Analyze system inputs for completeness and accuracy
@@ -2364,29 +2487,6 @@ Main outline from the COSO principles:
 
 
 
-### Identity Management
-
-Main outline of the Information security controls reference:
-
-* The full life-cycle of a user or service identity needs to be managed.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 5.16
-
-**Examples for best practices:**
-
-* Token lifetime.
-* Off-boarding mechanisms.
-* Potential use of 2FA
-
-<div class="info">
-
-#### Identity management helps address the following risks
-
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
-</div>
 
 
 
@@ -2394,28 +2494,6 @@ Main outline of the Information security controls reference:
 
 
 
-### Information deletion
-
-Main outline of the Information security controls reference:
-
-* Information which is no longer required needs to be safely deleted.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.10
-
-**Examples for best practices:**
-
-* Definition and enforcement of retention periods.
-* Use of thorough deletion mechanisms, such as [shred](https://man.archlinux.org/man/shred.1.en).
-
-<div class="info">
-
-#### Information Lifecycle management helps address the following risks
-
-* [SLS10](#risk-sls-10)
-* [DOW17](#risk-dow-17)
-</div>
 
 
 
@@ -2557,29 +2635,31 @@ You can download the spreadsheet here: [https://docs.google.com/spreadsheets/d/1
 
 ## References
 
+#### [BSSC KMS]
+"Key Management Standard v1", J Kemp and M Nesbitt eds., Blockchain Standards Security Council 2025. [https://specs.blockchainssc.org/kms/v1/](https://specs.blockchainssc.org/kms/v1/)
+
+<a id="ref-ccss"></a>
+#### [CCSS]
+"CCSS v9.0 Table", C4 2025. [https://cryptoconsortium.org/ccss-table-v9/](https://cryptoconsortium.org/ccss-table-v9/)
+
 <a id="ref-csp"></a>
 ##### [CSP]
-
 "Content Security Policy", Mozilla Corporation. [https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 
 <a id="ref-cors"></a>
 ##### [CORS]
-
 "Cross-Origin Resource Sharing (CORS)", Mozilla Corporation. [https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 <a id="ref-cve"></a>
 ##### [CVE]
-
 "CVE", Mitre, 1995-. [https://www.cve.org](https://www.cve.org)
 
 <a id="ref-iso-27001"></a>
 ##### [ISO 27001]
-
 ISO IEC 27001:2022 "Information security, cybersecurity and privacy protection — Information security management systems — Requirements" 3rd Ed. ISO, 2022. [https://www.iso.org/standard/27001](https://www.iso.org/standard/27001)
 
 <a id="ref-nist-800-115"></a>
 ##### [NIST-800-115]
-
 "Technical Guide to Information Security Testing and Assessment", Karen Scarfone, Murugiah Souppaya, Amanda Cody, and Angela Orebaugh. NIST 2008. [https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
 
 <a id="ref-owasp-access-control"></a>
@@ -2611,12 +2691,10 @@ ISO IEC 27001:2022 "Information security, cybersecurity and privacy protection �
 
 <a id="ref-sbom"></a>
 ##### [SBOM]
-
 "Software Bill of Materials (SBOM)" CISA, 2024. [https://www.cisa.gov/sbom](https://www.cisa.gov/sbom)
 
 <a id="ref-soc2"></a>
 ##### [SOC2]
-
 "2017 Trust Services Criteria for Security, Availability, Processing Integrity, Confidentiality, and Privacy (With Revised Points of Focus — 2022)" AICPA 2022. [https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022](https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022) (requires AICPA membership)
 
 More:
