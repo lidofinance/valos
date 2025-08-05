@@ -104,7 +104,8 @@ when they appear in all capitals, as shown here.
 
 This specification divides risk into seven categories for Node Operators to consider in ensuring the quality of their overall setup.
 
-<a id="sec-financial-risk">
+<a id="sec-financial-risk"></a>
+
 ### Financial and Regulatory Risk
 
 <table role="table">
