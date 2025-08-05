@@ -1853,7 +1853,7 @@ All data in transit MUST be encrypted, and SHOULD use the most direct transmissi
 This covers all services that communicate data, such as Databases, Web servers, Load balancers, Authentication systems, CI/CD pipeline tools, etc.
 Best practices include ensuring that the latest version of TLS is being used, with secure algorithms.
 
-##### Relevant Risks
+##### Risks that data encryption can help mitigate:
 
 * [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13)
 * [DOW18](#risk-dow-18)
@@ -1873,9 +1873,22 @@ COSO principles:
 
 ### Controls for Automated Monitoring
 
-Risks that Automated Monitoring can help mitigate:
 
-* [DOW1](#risk-dow-1)
+##### Risks that Automated Monitoring can help mitigate:
+
+* [SLS16](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
+* [DOW1](#risk-dow-1), [DOW10](#risk-dow-10), [DOW18](#risk-dow-18)
+* [GIR10](#risk-gir-10)
+* [KEC1](#risk-kec-1), [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
+
+#### Log and Analyze Network Traffic
+
+Node Operators MUST log network traffic, and analyze the logs for anomalous behaviour.
+
+##### Relevant risks for Traffic Log Analysis
+
+- SLS 8-9, SLS 10, SLS 11-13, SLS 14-15
+- [DOW1](#risk-dow-1)
 
 #### Log privileged access
 
@@ -2355,28 +2368,6 @@ Main outline of the Information security controls reference:
 
 
 
-### Network services
-
-Main outline of the Information security controls reference:
-
-* Any traffic needs to be monitored, analyzed and potentially alerted on.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.21
-
-**Examples for best practices:**
-
-* Segmentation of networks using security groups and subnets.
-* Encryption in transit should always be enabled.
-* Use and enforcement of IP whitelists
-
-<div class="info">
-
-#### Network management helps address the following risks
-
-* [DOW10](#risk-dow-10)
-</div>
 
 
 
