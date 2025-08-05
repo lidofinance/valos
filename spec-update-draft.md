@@ -7,7 +7,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 <dl>
 <dt>This draft date:</dt>
-<dd>2025-08-01</dd>
+<dd>2025-08-08</dd>
 
 <dt>Version 1 URL:</dt>
 <dd><a href="https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base">https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base</a></dd>
@@ -16,7 +16,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 <dd>This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
 
-<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella S, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven
+<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella S, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven, Lucas
 
 <br>(This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
 </dd>
@@ -57,8 +57,9 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
   - [Risk Matrix](#risk-matrix)
 - [Review and Audit Procedures](#review-and-audit-procedures)
 - [Mitigation Strategies](#mitigation-strategies)
+  - [Risk Management](#sec-mitigations-risk=management)
   - [Technology Stack](#sec-mitigations-tech-stack)
-  - [Information and Secret Management](#secret-management)
+  - [Secret Management](#sec-mitigations-secret-management)
   - [Access Management](#sec-mitigations-access-management)
   - [Software Development and Update Process](#sec-mitigations-development-and-update)
   - [Monitoring](#sec-mitigations-monitoring)
@@ -746,154 +747,9 @@ Risk related to running specific services.
 </tr></tbody></table>
 
 
-## Risk Assessment Procedures
-
-This Risk Assessment Procedure provides a systematic approach for Ethereum
-node operators to assess the financial loss and the probability for each
-identified scenario.
-
-### Financial Loss
-
-First, it is important to assess the likely financial loss for any given risk scenario.
-
-#### Direct Monetary Losses from a Slashing Event
-Assess the losses directly linked to the slashing event. This can include:
-
-* Direct slashing penalty due to double signing (currently 1 ETH)
-* "Correlated slashing penalty" occurs 18 days after the initial slashing
-* Slashing leads to validator downtime until the slashed validator is exited
-* Missed rewards
-* Possible recoveries from insurance payments
 
 
-
-
-#### Direct Monetary Losses from a Downtime Event
-Assess the losses directly from the downtime event. This can include:
-
-* Downtime penalties until the validator is exited
-* Missed rewards
-* Possible recoveries from insurance payments
-
-#### Reputational Risks
-Determine the monetary loss from reputational damage. This includes:
-
-* Reduction in earnings due to the depletion of presently staked assets
-* Loss of anticipated earnings due to the diminishment of future staked assets
-
-#### Losses from the Event Investigation
-Indirect losses can arise from the investigation of the slashing or downtime event. This can include:
-
-* Costs associated with conducting an internal investigation
-* Expenses for external investigative services
-* Replacement or upgrading of hardware and software
-
-#### Legal Disputes and Liabilities
-Additional costs can come from legal disputes and liabilities. This can include:
-
-* Obligation for slashing or downtime events as stated in Service Level Agreements
-* Expenses for legal dispute settlement and court fees to address or defend against liabilities
-* Costs associated with legal consultation and advisory services
-* Possible insurance payments (e.g. for legal defence costs)
-
-
-
-### Occurrence Probability
-
-Assign a likelihood of occurrence and estimate the potential financial impact for each risk identified. This approach considers the specific operational context of the node operator and requires the node operator to tailor the assessment to its unique risk exposure, and vulnerabilities and to take the mitigation strategies into account. This process can be informed by:
-
-* Analyzing historical data to understand past trends and incidents (external, internal incidents, and near-miss incidents)
-* Reviewing industry reports for insights into common risks and their fiscal consequences in similar scenarios
-* Consulting with experts in the field to gain a comprehensive perspective on risk probabilities and impacts
-* Utilizing risk assessment tools or software for a more data-driven analysis
-* Analyze the Mean Time to Repair (MTTR, The average time it takes to fully restore a system or service after a failure or security incident) in case of a downtime under different scenarios.
-
-
-
-### Risk Matrix
-
-Create a risk matrix to visually categorize risks based on their severity and likelihood. This helps in prioritizing which risks need more immediate attention. This process can be performed before and after the identified mitigation and controls are in place to visualize the effect of these strategies.
-
-## Review and Audit Procedures
-
-### Introduction
-
-This document provides a guide for Ethereum node operators on the best practices for conducting IT security-related reviews and audits. It aims to ensure the security, efficiency, and compliance of the node operations within the Ethereum network.
-
-See also the NIST Technical Guide to Information Security Testing and Assessment [NIST-800-115](#ref-nist-800-115).
-
-#### Internal Reviews vs External Audits
-
-##### Internal Reviews:
-
-* **Purpose:** To conduct self-assessments of the node's operation and management
-* **Process:** Conducted by the node's operating team using internal checklists and monitoring tools
-* **Benefits:** Quick identification and rectification of operational issues and continuous improvement at a low cost
-
-##### External Audits:
-
-* **Purpose:** To provide an independent assessment of the node's operation and compliance
-* **Process:** Conducted by third-party experts or audit firms specializing in blockchain technology and IT security
-* **Benefits:** Provides credibility, helps in identifying blind spots in internal reviews, and ensures compliance with industry standards
-
-### Types of Audit
-
-#### Infrastructure Audits:
-
-* **Purpose:** To identify vulnerabilities, ensure alignment with best practices, and ensure that the node is secure from internal and external threats
-* **Key Areas:** Examples are network access points security, patching, set-up of the failover system, back-up, access management, slashing protection, key management and data encryption
-
-#### Smart Contract Security Audits:
-
-* **Purpose:** To identify vulnerabilities in the smart contracts developed by the node operator
-* **Key Areas:** Examples are Smart Contract security audit or deployment audit
-
-#### Compliance Audits:
-
-* **Purpose:** To verify adherence to regulatory requirements and Ethereum network standards
-* **Key Areas:** Validate node's alignment with Ethereum's protocol updates and adherence to legal regulations concerning cryptocurrency operations (e.g. OFAC MEV compliance and KYC compliance)
-
-#### Performance Audits:
-
-* **Purpose:** To assess the efficiency and stability of the node
-* **Key Areas:** Block propagation time, transaction processing speed, uptime metrics, and resource utilization (such as CPU and memory usage)
-
-### When to Perform Audits
-
-#### Regularly-Scheduled Audits:
-
-* **Frequency:** Conducting audits regularly ensures consistent security. Regular audits are required as security standards change over time and new vulnerabilities and attack vectors are published.
-* **Scope:** These audits should encompass all types of audits mentioned under section 2.
-
-#### Event-Triggered Audits:
-
-* **Triggers:** Perform audits in response to specific events such as network upgrades (hard forks), security breaches, updates of the smart contract, compliance events,  performance issues, or major infrastructure updates.
-* **Focus:** These audits should primarily assess the impact of the event on your node's operation and security.
-
-### General Suggestions for Internal Audit
-
-#### Responsible Person:
-
-* Assign a dedicated team or individual responsible for conducting and overseeing the audit process.
-* This role includes planning, executing, and following up on audit findings.
-
-#### Well-defined Checklist:
-
-* **Internal Audit Checklist:** Develop a comprehensive list covering all aspects of node operation, including security, performance, and compliance. This checklist should be regularly updated to reflect changes in technology and regulations. This checklist should be created with input from the internal team and, if possible, checklists from external sources.
-* **External Audit Checklist:** For external audits, prepare a list that includes areas for external verification.
-
-#### Documentation Approach:
-
-* Establish a systematic approach for documenting the audit process.
-* This should include the responsible person, types and dates of audits having been conducted, audit reports, methods used conducting the audit, scope of the audit and audit vendor.
-
-#### Documentation of Results:
-
-* Create a structured format for reporting audit results.
-* This should include detailed findings, recommendations, and any corrective actions taken.
-* Ensure that these reports are accessible to relevant stakeholders for review and follow-up.
-
-## Mitigation Strategies
+## Risk Mitigation Strategies
 
 The Mitigation Strategies section serves as a go-to resource for node operators,
 providing actionable insights and mitigation options to enhance the security, reliability, and efficiency of their operations.
@@ -902,11 +758,76 @@ Most of the best practices that optimize up-time, access control and general sta
 However, there are a few risks that are very specific to running a node-operator, and to mitigate them,
 higher levels of process segregation need to be achieved.
 
+<a id="sec-mitigations-risk-management"></a>
+
+### Risk Management
+
+A core principle for mitigating risks is to actively identify and manage the risks.
+This means understanding the particular risks, and the likelihood of something going wrong and the likely impact if that does occur.
+That information enables a Node Operator to decide what level of risk is reasonable and how to prioritise available resources to mitigate risk.
+Risk management decisions need to take into account any regulation that obliges a Node Operator to meet specific benchmarks or implement specific mitigation strategies
+or other activities.
+
+A first step for effective risk management is to document the potential risks, as well as the tools and processes currently in place.
+Documentation needs to include an assessment of the relevant risks, what is acceptable,
+and how each process or infrastructure component contributes to and protects against risks.
+
+This enables Node Operators to identify activities that are not contributing to the business, or that actually increase the potential risks they face.
+The accuracy, availability and completeness of this information is of crucial import.
+
+Best practices include:
+* Ensure that every service, where possible, is configuration hardened using common benchmarks such as [CIS](https://www.cisecurity.org).
+* Analyze each component in your infrastructure environment in terms of security, availability, processing integrity, confidentiality and privacy.
+* Outline directly which risks are a high priority, and which ones are more acceptable, and the scenarios where it applies. For example, downtime comes only with an opportunity cost for ETH stakers, but may cause a slashing event in Polkadot.
+
+#### Assessing risks
+
+A standard industry approach to assessing risks is to consider the probability of an event occurring and the likely impact of that event.
+
+If these are ranked on a linear numerical scale (e.g. probability between 0 and 1), and an approximate overall financial impact, they can be multiplied,
+provide a ranking for priority of mitigating each risk.
+
+Since the cost of risk mitigation varies considerably, the overall priority for addressing risk, or deciding that a given level of risk is acceptable,
+generally depends on comparing the risk ranking with the cost of mitigation, and available resources.
+
+##### Assessing Finanacial Impact
+
+There are a number of factors to take into account when assessing the overall financial impact of a given risk, with the direct cost incurred as the most obvious.
+It is important to understand the time required to mitigate the impact of an event, and the cost that will be incurred over that time.
+
+An incident can incur a variety of costs in terms of employee time spent managing the incident, communication, and follow-up,
+new mitigations implemented to mitigate concrete or reputational damage such as replacement or additional infrastructure,
+as well as potential costs of compensation or legal costs.
+
+It is also useful to consider opportunity costs such as reputational damage, or competitors taking advantage of an incident to promote themselves as a better alternative.
+
+##### Assessing Incident Probability
+
+Predicting the likelihood of an unexpected future event is generally difficult, and results are unlikely to precisely match the predictions.
+Nevertheless it is important to consider the context of a specific operation and attempt accurate predictions.
+
+There are best practices to do this effectively:
+
+* Analyzing historical data to understand past trends and incidents (external, internal incidents, and near-miss incidents)
+* Reviewing industry reports for insights into common risks and their fiscal consequences in similar scenarios
+* Consulting with experts in the field to gain a comprehensive perspective on risk probabilities and impacts
+* Utilizing risk assessment tools or software for a more data-driven analysis
+
+##### Internal risk assessment is an important part of addressing all risks
+
+
+
+</div>
+
 <a id="sec-mitigations-tech-stack"></a>
+
 ### Technology Stack
 
-#### Local Anti-Slashing Database
+In a nutshell: technology needs to serve the business goal, not the other way around.
 
+To ensure this happens, it is important to consider both the business goals, and the available technology, and then use appropriate technology to meet those goals.
+
+#### Local Anti-Slashing Database
 
 To avoid double signing, validators maintain a history of messages they signed, usually stored in of a database.
 In some cases, this feature is enabled by an external web3signer. The maintenance and protection of this database is crucial, as inconsistencies in this database may cause a double-signing event. The following items need to be in place:
@@ -1850,6 +1771,54 @@ Some of these control criteria correspond to similar controls from at least thre
 
 Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
 
+<a id="sec-controls-risk-management"></a>
+### Controls for Risk Management
+
+#### Ensure Activities Support Operational Goals
+
+Node Operators MUST document how their processes and tools serve their business goals
+
+##### External Controls for aligning processes and tools with business goals
+
+* [[SOC2](#ref-soc2)] CC 5.2
+
+<div class="info">
+
+#### Assessment of activities' relevance helps address the following risks
+
+* [GIR5](#risk-gir-5)
+* [DOW18](#risk-dow-18)
+* [DOW16](#risk-dow-16)
+* [SLS11](#risk-sls-11)
+* [SLS12](#risk-sls-12)
+* [SLS13](#risk-sls-13)
+* [SLS14](#risk-sls-14)
+* [SLS15](#risk-sls-15)
+* [SLS16](#risk-sls-16)
+* [SLS17](#risk-sls-17)
+* [SLS18](#risk-sls-18)
+* [SLS1](#risk-sls-1)
+* [SLS2](#risk-sls-2)
+* [SLS3](#risk-sls-3)
+* [SLS4](#risk-sls-4)
+* [SLS5](#risk-sls-5)
+</div>
+
+#### Document Risk Assessments
+
+Node Operators MUST document their assessments of risks, and what risks they class as acceptable
+
+##### External controls for risk assessment
+
+* [[SOC2](#ref-soc2)] CC 3.1
+
+<div class="info">
+
+##### Internal risk assessment is an important part of addressing all risks
+
+</div>
+
+
 <a id="sec-controls-info-secrets"></a>
 ### Controls for Information and Secret Management
 
@@ -1950,6 +1919,7 @@ Best practice is to use a documentation management system. While this is likely 
 * [GIR4](#risk-gir-4), [GIR2](#risk-gir-25)
 * [SPS0](#risk-sps-0)
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
+
 
 <a id="sec-controls-access"></a>
 ### Controls for Access Control
@@ -2358,131 +2328,6 @@ response times and Service Level Agreements, security procedures, and the like a
 #### Manage Counterparty Relationship Lifecycles
 
 Service agreements MUST specify termination procedures and obligations
-
-## Summary of external controls
-
-<section style="background-color:#fdd">
-**NB: The following items are being consolidated into the [Controls Catalog](#controls-catalog) Section, above [Ed.]**
-
-<table><thead>
-<tr><th width="443">Framework</th><th>Criterion</th></tr></thead><tbody>
-<tr>
-
-<td>[SOC2](#soc2)</td>
-<td>CC 5.2</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 8.2</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 8.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 9.2  counterparties</td></tr>
-
-<tr>
-
-
-</tbody></table>
-
-
-
-## SOC 2
-
-### Control activities to achieve operational goals
-
-In a nutshell: technology needs to serve the business goal, not the other way around.
-
-Main outline from the COSO principles:
-
-1. **Technology Infrastructure Control** — Stakeholders develop control activities over the technology infrastructure, ensuring accuracy, availability and completeness of data.
-2. **Security Access Control** — External threats are analyzed and access rights are properly defined.
-
-**References:**
-
-* CC 5.2 of the Trust Services Criteria
-
-**Examples for best practices:**
-
-* Every third party software needs to be analyzed for the correct access rights with respect to users who can access it, but also the privileges it needs on the system it runs on. \
-  Examples for this are:
-  * Do not run main processes as root, since a compromised software can then execute privileged operations.
-  * Do not allow uncontrolled inbound and outbound networking traffic to this specific service.
-
-<div class="info">
-
-#### Assessment of activities' relevance helps address the following risks
-
-* [GIR5](#risk-gir-5)
-* [DOW18](#risk-dow-18)
-* [DOW16](#risk-dow-16)
-* [SLS11](#risk-sls-11)
-* [SLS12](#risk-sls-12)
-* [SLS13](#risk-sls-13)
-* [SLS14](#risk-sls-14)
-* [SLS15](#risk-sls-15)
-* [SLS16](#risk-sls-16)
-* [SLS17](#risk-sls-17)
-* [SLS18](#risk-sls-18)
-* [SLS1](#risk-sls-1)
-* [SLS2](#risk-sls-2)
-* [SLS3](#risk-sls-3)
-* [SLS4](#risk-sls-4)
-* [SLS5](#risk-sls-5)
-</div>
-
-### Risk assessment of one's own Node operation
-
-Node operation does not equal node operation. There are subjective goals for each organization, and the way they decided to operate. This control ensures that one is always having an eye on risk assessments.
-
-Main outline from the COSO principles:
-
-1. Considers Tolerances for Risk — Identify what is acceptable.
-2. Complies With Externally Established Frameworks — Consider local and international laws and benchmarks when developing the node operation.
-
-**References:**
-
-* CC 3.1 of the Trust Services Criteria
-
-**Examples for best practices:**
-
-* Ensure that every service, where possible, is configuration hardened using common benchmarks such as [CIS](https://www.cisecurity.org).
-* Analyze each component in your infrastructure environment in terms of security, availability, processing integrity, confidentiality and privacy.
-* Outline directly which risks are a high priority, and which ones are more acceptable, and the scenarios where it applies. For example, downtime comes only with an opportunity cost for ETH stakers, but may cause a slashing event in Polkadot.
-
-<div class="info">
-
-#### Internal risk assessment helps address the following risks
-
-* [GIR24](#risk-gir-24)
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <section id="sec-communications-strategy">
 
