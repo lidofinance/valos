@@ -2,9 +2,10 @@
 
 ## What is this `advanced staging` branch?
 
-This branch is used to collect pull requests that the editor expects will be merged, and can thus be used to view a snapshot of the "latest stage" of development, according to the editor's **expectations**.
+This branch is used to collect pull requests that the editor expects will be merged, and can thus be used to view a snapshot of the "latest proposed version" in development,
+according to the editor's **expectations**. (Beware, those expectations are not always met in practice)
 
-(Beware, those expectations are not always met in practice)
+To see the latest agreed draft, please look at the version of [spec-update-draft.md in the main branch](https://github.com/lidofinance/valos/blob/main/spec-update-draft.md)
 
 ## What is ValOS?
 
