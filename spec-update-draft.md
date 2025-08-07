@@ -68,6 +68,7 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
   - [Environmental Threats](#sec-controls-environment)
   - [Update Process](#sec-controls-updates)
   - [Incident Response](#sec-controls-response)
+  - [General Security Measures](#sec-controls-general)
 - [Communications Strategy](#sec-communications-strategy)
 - [References](#sec-references)
 - [Status and Feedback](#sec-sotd)
@@ -626,6 +627,13 @@ Risk related to running specific services.
 </tr></thead>
 <tbody>
 <tr>
+  <td id="risk-sps-0">SPS0</td>
+  <td>Counterparty</td>
+  <td>General Counterparty Risk</td>
+  <td>Whenever a service is provided by a third party, the relevant risks are run by the third party,
+  but in most case at least some and often the bulk of the consequences for a failure will be borne by the node operator.</td>
+</tr>
+<tr>
   <td id="risk-sps-1">SPS1</td>
   <td>Process</td>
   <td>Exit Risk - Delinquent state</td>
@@ -648,7 +656,7 @@ Risk related to running specific services.
   <td id="risk-rer-1">RER1</td>
   <td>Process</td>
   <td>Mismanagement during incident</td>
-  <td>Reputation damage due to mismanagement slashing, downtime or access loss to keys</td>
+  <td>Reputation damage due to mismanagement of slashing, downtime or access loss to keys</td>
 </tr>
 <tr>
   <td id="risk-rer-2">RER2</td>
@@ -1061,15 +1069,11 @@ Special considerations:
 
 #### Access control helps address the following risks
 
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
-* [DOW7](#risk-dow-7)
-* [DOW16](#risk-dow-16)
-* [GIR1](#risk-gir-1)
-* [GIR7](#risk-gir-7)
-* [GIR9](#risk-gir-9)
-* [GIR22](#risk-gir-22)
+* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
+* [DOW7](#risk-dow-7), [DOW16](#risk-dow-16)
+* [GIR1](#risk-gir-1), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR22](#risk-gir-22)
 * [KEC4](#risk-kec-4)
+* [SPS0](#risk-sps-0)
 
 
 </div>
@@ -1104,25 +1108,13 @@ Main outline from the COSO principles:
 
 ##### Least privilege helps address the following risks
 
-* [KEC11](#risk-kec-11)
-* [GIR1](#risk-gir-1)
-* [KEC8](#risk-kec-8)
-* [GIR25](#risk-gir-25)
-* [GIR1](#risk-gir-1)
-* [GIR5](#risk-gir-5)
-* [GIR7](#risk-gir-7)
-* [GIR9](#risk-gir-9)
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
+* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
 * [DOW16](#risk-dow-16)
-* [GIR1](#risk-gir-1)
-* [GIR22](#risk-gir-22)
-* [KEC8](#risk-kec-8)
-* [GIR25](#risk-gir-25)
-
+* [GIR1](#risk-gir-1), [GIR5](#risk-gir-5), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
+* [KEC8](#risk-kec-8), [KEC11](#risk-kec-11)
+* [SPS0](#risk-sps-0)
 
 </div>
-
 
 #### Employee Authorization Management
 
@@ -1352,17 +1344,10 @@ Main outline from the COSO principles:
 
 #### Managing software updates helps mitigate the following Risks
 
-* [SLS6](#risk-sls-6)
-* [SLS7](#risk-sls-7)
-* [GIR3](#risk-gir-3)
-* [GIR18](#risk-gir-18)
-* [GIR20](#risk-gir-20)
-* [GIR21](#risk-gir-21)
-* [GIR25](#risk-gir-25)
-* [DOW2](#risk-dow-2)
-* [DOW11](#risk-dow-11)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
+* [GIR3](#risk-gir-3), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21), [GIR25](#risk-gir-25)
+* [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [SPS](#risk-sps-0)
 </div>
 
 #### Avoid Customizing Third-party Software
@@ -1435,8 +1420,8 @@ Protection against malware needs to be implemented on all assets and users need 
 
 ##### Protection against supply-chain malware helps address the following risks
 
-* [GIR15](#risk-gir-15)
-* [GIR17](#risk-gir-17)
+* [GIR15](#risk-gir-15), [GIR17](#risk-gir-17)
+* [SPS0](#risk-sps-0)
 </div>
 
 #### Pre-deployment testing environments
@@ -1737,19 +1722,15 @@ Best practice for external communication about an incident includes providing a 
 * General cyber security (Firewall, Intrusion Detection System, ....)
 * Check the uptime promise of cloud provider (minimum three 9s)
 * Failover system (also in different locations)
-* Keeping track of age and replacing appliances //currently in access control and monitoring
 * Conduct an internal special study of failover and load balancer strategies
-* Being informed about the relevant natural catastrophes
 * Ensure stable Internet connection of the System (Cloud, Bare Metal, ....)
 * Ensure stable Power connection of the System (Cloud, Bare Metal, ....)
 * Ensure proper load-balancer and firewall at the front
 * Only necessary software on the relevant servers
 * Being able to switch the relayer or disconnect from the relay
 * Back-Up/DR / BC Policies
-* Validate cloud, data center or infrastructure provider regarding security
 * Safety training
 * Central & accessible documentation of critical knowledge
-* Having a communication toolkit and process prepared
 
 <a id="sec-controls-catalog"></a>
 ## Controls Catalog
@@ -2069,6 +2050,32 @@ Node Operators MUST document [Incident Communication](#def-incident-communicatio
 
 This requirement includes internal and external communication, both during and after incidents.
 
+<a id="sec-controls-general"></a>
+### Controls for General Security Measures
+
+#### Verify Counterparty Compliance
+
+Node Operators MUST verify that third parties providing services, or with whom the Node Operator contracts, is in compliance with relevant standards (including this one) and regulations
+
+This includes areas such as the uptime guarantees of cloud providers and other core counterparties,
+response times and Service Level Agreements, security procedures, and the like as well as relevant regulatory compliance.
+
+##### Counterparty verification helps mitigate the following risks
+
+* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
+* [GIR5](#risk-gir-5), [GIR24](#risk-gir24)
+* [DOW1](#risk-dow-1), [DOW19](#risk-dow-19)
+* [SPS0](#risk-sps-0)
+
+##### Relevant external controls for counterparty verification
+
+* [[ISO 27001](#iso-27001)] Annex A 8.30
+* [[SOC2](#ref-soc2)] CC 9.2
+
+#### Manage Counterparty Relationship Lifecycles
+
+Service agreements MUST specify termination procedures and obligations
+
 
 
 
@@ -2195,18 +2202,6 @@ Main outline from the COSO principles:
 * Implements Procedures for Terminating Vendor Relationships.
 
 **References:**
-
-* CC 9.2 of Trust Services Criteria
-
-<div class="info">
-
-#### Counterparty management helps address the following risks
-
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
-* [GIR5](#risk-gir-5)
-* [DOW1](#risk-dow-1)
-* [DOW19](#risk-dow-19)
 </div>
 
 
@@ -2342,29 +2337,6 @@ Main outline of the Information security controls reference:
 
 
 
-
-
-### Outsourced development
-
-Main outline of the Information security controls reference:
-
-* Any outsourced development needs to be controlled, monitored and closely reviewed.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.30
-
-**Examples for best practices:**
-
-* Proper ticketing system with clear expectations.
-* Minimal access to do the job.
-
-<div class="info">
-
-#### Counterparty management helps address the following risks
-
-* [GIR24](#risk-gir-24)
-</div>
 
 
 <section id="sec-communications-strategy">
