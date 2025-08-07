@@ -2425,64 +2425,6 @@ Main outline from the COSO principles:
 
 
 
-### Analyze system inputs for completeness and accuracy
-
-Main outline from the COSO principles:
-
-* Defines Characteristics of Processing Inputs, such as schemas.
-* Evaluates Processing Inputs with defined requirements and compliance.
-* Monitor the system inputs.
-
-**References:**
-
-* PI 1.2 of The Trust Services Criteria
-
-**Examples for best practices:**
-
-* Use [schema](https://json-schema.org) and [schema evolution techniques](https://en.wikipedia.org/wiki/Schema_evolution) to keep your data-flow clean.
-* Always define minimum and maximum input sizes and MIME types ([Microsoft IIS example](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/mimemap)).
-
-<div class="info">
-
-#### Input analysis helps address the following risks
-
-* [GIR8](#risk-gir-8)
-</div>
-
-### Analyze System outputs for completeness and accuracy
-
-Main outline from the COSO principles:
-
-* Inputs are processed completely, accurately, and timely.
-
-**References:**
-
-* PI 1.3 of the trust services criteria
-
-**Examples for best practices:**
-
-* Ensure that all inputs are being captured and either rejected or processed (schema enforcement).
-* Data should be always referencable through a [unique ID](https://datatracker.ietf.org/doc/html/rfc4122).
-* Data should be [examined for](https://www.npmjs.com/package/ajv) [correctness and completeness](https://github.com/validatorjs/validator.js).
-* For each individual user, it should be determined if they are capable of accessing data or not. Using some technologies, such as [Apache Ranger](https://ranger.apache.org), this can be done on a row-by-row basis on a table.
-
-<div class="info">
-
-#### Output analysis helps address the following risks
-
-* [GIR16](#risk-gir-16)
-</div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
