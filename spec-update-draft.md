@@ -2076,40 +2076,8 @@ response times and Service Level Agreements, security procedures, and the like a
 
 Service agreements MUST specify termination procedures and obligations
 
-## Summary of external controls
 
-<section style="background-color:#fdd">
-**NB: The following items are being consolidated into the [Controls Catalog](#controls-catalog) Section, above [Ed.]**
 
-<table><thead>
-<tr><th width="443">Framework</th><th>Criterion</th></tr></thead><tbody>
-<tr>
-<td>OWASP</td>
-<td><a href="https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_(SSRF%29/">A10:2021: Server Side Request Forgery</a></td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 5.2</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 8.2</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 8.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>PI 1.2</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>PI 1.3</td></tr>
-<tr>
-
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 5.16</td></tr>
-<tr>
-<td>[ISO 27001](#iso-27001) Information security controls reference</td>
-<td>Annex A 8.10</td></tr>
-
-</tbody></table>
 
 ## OWASP
 
@@ -2146,8 +2114,6 @@ Functionality to look out for when creating your application is:
 
 * [GIR8](#risk-gir-8)
 </div>
-
-## SOC 2
 
 ### Control activities to achieve operational goals
 
