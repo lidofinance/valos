@@ -2596,7 +2596,7 @@ You can download the spreadsheet here: [https://docs.google.com/spreadsheets/d/1
 ## References
 
 #### [BSSC KMS]
-"Key Management Standard v1", J Kemp and M Nesbitt eds., Blockchain Standards Security Council 2025. [https://specs.blockchainssc.org/kms/v1/](https://specs.blockchainssc.org/kms/v1/)
+"Key Management Standard version 1", J Kemp and M Nesbitt eds., Blockchain Standards Security Council 2025. [https://specs.blockchainssc.org/kms/v1/](https://specs.blockchainssc.org/kms/v1/)
 
 <a id="ref-ccss"></a>
 #### [CCSS]
