@@ -41,6 +41,7 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
 - [Introduction](#sec-introduction)
   - [Purpose](#sec-purpose)
 - [Risks](#risks)
+  - [Financial and Regulatory Risk](#sec-financial-risk)
   - [Slashing Risk](#slashing-risk)
   - [Downtime Risk](#downtime-risk)
   - [Key Management Risk](#key-custody-risk)
@@ -68,6 +69,7 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
   - [Environmental Threats](#sec-controls-environment)
   - [Update Process](#sec-controls-updates)
   - [Incident Response](#sec-controls-response)
+  - [General Security Measures](#sec-controls-general)
 - [Communications Strategy](#sec-communications-strategy)
 - [References](#sec-references)
 - [Status and Feedback](#sec-sotd)
@@ -91,7 +93,71 @@ and to simplify the process of assessing against those standards Node Operators 
 
 ## Risks
 
-This specification divides risk into 6 categories for Node Operators to consider in ensuring the quality of their overall setup.
+This specification divides risk into seven categories for Node Operators to consider in ensuring the quality of their overall setup.
+
+<a id="sec-financial-risk"></a>
+
+### Financial and Regulatory Risk
+
+<table role="table">
+<thead>
+<tr>
+<th width="96">ID</th>
+<th width="138">Risk Group</th>
+<th width="232">Risk Vectors</th>
+<th>Risk Vector Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td id="risk-fin-1">FIN1</td>
+<td>Process</td>
+<td>Onboarding</td>
+<td>Onboarded entities are not adequately vetted to ensure financial, operational, regulatory, or reputational appropriateness, resulting in potential financial, legal, or reputational damage</td>
+</tr>
+<tr>
+<td id="risk-fin-2">FIN2</td>
+<td>Infrastructure</td>
+<td>Deposit</td>
+<td>Fiat and digital assets deposited are not received in the appropriate currency, address, or fiat account, leading to financial loss</td>
+</tr>
+<tr>
+<td id="risk-fin-3">FIN3</td>
+<td>Infrastructure</td>
+<td>Deposit</td>
+<td>Fiat and digital assets are not correctly processed and assets are misallocated to individuals, entities, or operational addresses leading to financial loss</td>
+</tr>
+<tr>
+<td id="risk-fin-4">FIN4</td>
+<td>Process</td>
+<td>Withdrawal</td>
+<td>Fiat and digital assets are not correctly disbursed to individuals, entities, or addresses, leading to financial and reputational loss</td>
+</tr>
+<tr>
+<td id="risk-fin-5">FIN5</td>
+<td>Infrastructure</td>
+<td>Withdrawal</td>
+<td>Staking withdrawal requests cannot be met efficiently, leading to delays in payment processing causing financial and reputational loss</td>
+</tr>
+<tr>
+<td id="risk-fin-6">FIN6</td>
+<td>Infrastructure</td>
+<td>Compounding</td>
+<td>Staking rewards are not appropriately collected, governed, restaked, compounded, or allocated to clients leading to financial loss</td>
+</tr>
+<tr>
+<td id="risk-fin-7">FIN7</td>
+<td>Process</td>
+<td>Reporting</td>
+<td>Financial reporting requirements are not adhered to or inconsistently applied, leading to regulatory, legal, and financial consequences</td>
+</tr>
+<tr>
+<td id="risk-fin-8">FIN8</td>
+<td>Process</td>
+<td>Reporting</td>
+<td>Reconciliation of deposits, rewards, fees, and distributions are incorrectly maintained causing incomplete and inaccurate financial data, leading to financial, legal, and regulatory repercussions</td>
+</tr>
+</tbody>
+</table>
 
 ### Slashing Risk
 
@@ -116,7 +182,7 @@ Performing slashable actions leading to penalties.
   <td id="risk-sls-2">SLS2</td>
   <td>Infrastructure</td>
   <td>Operational Failure: Shutting down validator only temporarily</td>
-  <td>Validator shuts (temporary) down. System spins up a new validator with the same key</td>
+  <td>Validator shuts down temporarily. System spins up a new validator with the same key</td>
 </tr>
 <tr>
   <td id="risk-sls-3">SLS3</td>
@@ -146,7 +212,7 @@ Performing slashable actions leading to penalties.
   <td id="risk-sls-7">SLS7</td>
   <td>Software</td>
   <td>Software Bug (e.g. Validator Client) through software customization</td>
-  <td><br>New versions of a validator client may cause errors that lead to slashing</td>
+  <td>New versions of a validator client has errors that lead to slashing</td>
 </tr>
 <tr>
   <td id="risk-sls-8">SLS8</td>
@@ -164,7 +230,7 @@ Performing slashable actions leading to penalties.
   <td id="risk-sls-10">SLS10</td>
   <td>People</td>
   <td>Malicious Ex-Employee intentionally causes a slashing incident</td>
-  <td>A Ex-Employee can still have access to the system when his acces is not blocked or removed</td>
+  <td>A former employee whose access is not blocked or removed </td>
 </tr>
 <tr>
   <td id="risk-sls-11">SLS11</td>
@@ -182,7 +248,7 @@ Performing slashable actions leading to penalties.
   <td id="risk-sls-13">SLS13</td>
   <td>People</td>
   <td>Malicious External Hacker intentionally causes operational failure through authentication access</td>
-  <td>Malicious External Hacker can get access through by-passing or brut-forcing authentication systems</td>
+  <td>Malicious External Hacker can get access through by-passing or brute-forcing authentication systems</td>
 </tr>
 <tr>
   <td id="risk-sls-14">SLS14</td>
@@ -200,7 +266,7 @@ Performing slashable actions leading to penalties.
   <td id="risk-sls-16">SLS16</td>
   <td>Process</td>
   <td>Operational Failure: Slashing monitoring does not prevent system shut down</td>
-  <td>Slashing events keep ongoing on because no slashing monitoring system in place</td>
+  <td>Slashing events continue because no slashing monitoring system in place</td>
 </tr>
 <tr>
   <td id="risk-sls-17">SLS17</td>
@@ -626,6 +692,13 @@ Risk related to running specific services.
 </tr></thead>
 <tbody>
 <tr>
+  <td id="risk-sps-0">SPS0</td>
+  <td>Counterparty</td>
+  <td>General Counterparty Risk</td>
+  <td>Whenever a service is provided by a third party, the relevant risks are run by the third party,
+  but in most case at least some and often the bulk of the consequences for a failure will be borne by the node operator.</td>
+</tr>
+<tr>
   <td id="risk-sps-1">SPS1</td>
   <td>Process</td>
   <td>Exit Risk - Delinquent state</td>
@@ -648,7 +721,7 @@ Risk related to running specific services.
   <td id="risk-rer-1">RER1</td>
   <td>Process</td>
   <td>Mismanagement during incident</td>
-  <td>Reputation damage due to mismanagement slashing, downtime or access loss to keys</td>
+  <td>Reputation damage due to mismanagement of slashing, downtime or access loss to keys</td>
 </tr>
 <tr>
   <td id="risk-rer-2">RER2</td>
@@ -1100,15 +1173,11 @@ Special considerations:
 
 #### Access control helps address the following risks
 
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
-* [DOW7](#risk-dow-7)
-* [DOW16](#risk-dow-16)
-* [GIR1](#risk-gir-1)
-* [GIR7](#risk-gir-7)
-* [GIR9](#risk-gir-9)
-* [GIR22](#risk-gir-22)
+* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
+* [DOW7](#risk-dow-7), [DOW16](#risk-dow-16)
+* [GIR1](#risk-gir-1), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR22](#risk-gir-22)
 * [KEC4](#risk-kec-4)
+* [SPS0](#risk-sps-0)
 
 
 </div>
@@ -1143,25 +1212,13 @@ Main outline from the COSO principles:
 
 ##### Least privilege helps address the following risks
 
-* [KEC11](#risk-kec-11)
-* [GIR1](#risk-gir-1)
-* [KEC8](#risk-kec-8)
-* [GIR25](#risk-gir-25)
-* [GIR1](#risk-gir-1)
-* [GIR5](#risk-gir-5)
-* [GIR7](#risk-gir-7)
-* [GIR9](#risk-gir-9)
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
+* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
 * [DOW16](#risk-dow-16)
-* [GIR1](#risk-gir-1)
-* [GIR22](#risk-gir-22)
-* [KEC8](#risk-kec-8)
-* [GIR25](#risk-gir-25)
-
+* [GIR1](#risk-gir-1), [GIR5](#risk-gir-5), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
+* [KEC8](#risk-kec-8), [KEC11](#risk-kec-11)
+* [SPS0](#risk-sps-0)
 
 </div>
-
 
 #### Employee Authorization Management
 
@@ -1391,17 +1448,10 @@ Main outline from the COSO principles:
 
 #### Managing software updates helps mitigate the following Risks
 
-* [SLS6](#risk-sls-6)
-* [SLS7](#risk-sls-7)
-* [GIR3](#risk-gir-3)
-* [GIR18](#risk-gir-18)
-* [GIR20](#risk-gir-20)
-* [GIR21](#risk-gir-21)
-* [GIR25](#risk-gir-25)
-* [DOW2](#risk-dow-2)
-* [DOW11](#risk-dow-11)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
+* [GIR3](#risk-gir-3), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21), [GIR25](#risk-gir-25)
+* [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [SPS](#risk-sps-0)
 </div>
 
 #### Avoid Customizing Third-party Software
@@ -1473,8 +1523,8 @@ Protection against malware needs to be implemented on all assets and users need 
 
 ##### Protection against supply-chain malware helps address the following risks
 
-* [GIR15](#risk-gir-15)
-* [GIR17](#risk-gir-17)
+* [GIR15](#risk-gir-15), [GIR17](#risk-gir-17)
+* [SPS0](#risk-sps-0)
 </div>
 
 #### Pre-deployment testing environments
@@ -1775,19 +1825,15 @@ Best practice for external communication about an incident includes providing a 
 * General cyber security (Firewall, Intrusion Detection System, ....)
 * Check the uptime promise of cloud provider (minimum three 9s)
 * Failover system (also in different locations)
-* Keeping track of age and replacing appliances //currently in access control and monitoring
 * Conduct an internal special study of failover and load balancer strategies
-* Being informed about the relevant natural catastrophes
 * Ensure stable Internet connection of the System (Cloud, Bare Metal, ....)
 * Ensure stable Power connection of the System (Cloud, Bare Metal, ....)
 * Ensure proper load-balancer and firewall at the front
 * Only necessary software on the relevant servers
 * Being able to switch the relayer or disconnect from the relay
 * Back-Up/DR / BC Policies
-* Validate cloud, data center or infrastructure provider regarding security
 * Safety training
 * Central & accessible documentation of critical knowledge
-* Having a communication toolkit and process prepared
 
 <a id="sec-controls-catalog"></a>
 ## Controls Catalog
@@ -2208,36 +2254,34 @@ Node Operators MUST document [Incident Communication](#def-incident-communicatio
 
 This requirement includes internal and external communication, both during and after incidents.
 
+<a id="sec-controls-general"></a>
+### Controls for General Security Measures
 
-## Summary of external controls
+#### Verify Counterparty Compliance
 
-<section style="background-color:#fdd">
-**NB: The following items are being consolidated into the [Controls Catalog](#controls-catalog) Section, above [Ed.]**
+Node Operators MUST verify that third parties providing services, or with whom the Node Operator contracts, is in compliance with relevant standards (including this one) and regulations
 
-<table><thead>
-<tr><th width="443">Framework</th><th>Criterion</th></tr></thead><tbody>
-<tr>
-<td>OWASP</td>
-<td><a href="https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_(SSRF%29/">A10:2021: Server Side Request Forgery</a></td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 5.2</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 8.2</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>CC 8.3</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>PI 1.2</td></tr>
-<tr>
-<td>[SOC2](#soc2)</td>
-<td>PI 1.3</td></tr>
-<tr>
+This includes areas such as the uptime guarantees of cloud providers and other core counterparties,
+response times and Service Level Agreements, security procedures, and the like as well as relevant regulatory compliance.
+
+##### Counterparty verification helps mitigate the following risks
+
+* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
+* [GIR5](#risk-gir-5), [GIR24](#risk-gir24)
+* [DOW1](#risk-dow-1), [DOW19](#risk-dow-19)
+* [SPS0](#risk-sps-0)
+
+##### Relevant external controls for counterparty verification
+
+* [[ISO 27001](#iso-27001)] Annex A 8.30
+* [[SOC2](#ref-soc2)] CC 9.2
+
+#### Manage Counterparty Relationship Lifecycles
+
+Service agreements MUST specify termination procedures and obligations
 
 
-</tbody></table>
+
 
 ## OWASP
 
@@ -2274,8 +2318,6 @@ Functionality to look out for when creating your application is:
 
 * [GIR8](#risk-gir-8)
 </div>
-
-## SOC 2
 
 ### Control activities to achieve operational goals
 
@@ -2344,9 +2386,6 @@ Main outline from the COSO principles:
 
 * [GIR24](#risk-gir-24)
 </div>
-
-
-
 
 
 
@@ -2443,29 +2482,6 @@ Main outline of the Information security controls reference:
 
 
 
-
-
-### Outsourced development
-
-Main outline of the Information security controls reference:
-
-* Any outsourced development needs to be controlled, monitored and closely reviewed.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.30
-
-**Examples for best practices:**
-
-* Proper ticketing system with clear expectations.
-* Minimal access to do the job.
-
-<div class="info">
-
-#### Counterparty management helps address the following risks
-
-* [GIR24](#risk-gir-24)
-</div>
 
 
 <section id="sec-communications-strategy">
