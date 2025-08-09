@@ -1699,22 +1699,9 @@ Node Operators MUST document how their processes and tools serve their business 
 
 #### Assessment of activities' relevance helps address the following risks
 
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS16](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
+* [DOW16](#risk-dow-16), [DOW18](#risk-dow-18)
 * [GIR5](#risk-gir-5)
-* [DOW18](#risk-dow-18)
-* [DOW16](#risk-dow-16)
-* [SLS11](#risk-sls-11)
-* [SLS12](#risk-sls-12)
-* [SLS13](#risk-sls-13)
-* [SLS14](#risk-sls-14)
-* [SLS15](#risk-sls-15)
-* [SLS16](#risk-sls-16)
-* [SLS17](#risk-sls-17)
-* [SLS18](#risk-sls-18)
-* [SLS1](#risk-sls-1)
-* [SLS2](#risk-sls-2)
-* [SLS3](#risk-sls-3)
-* [SLS4](#risk-sls-4)
-* [SLS5](#risk-sls-5)
 </div>
 
 #### Document Risk Assessments
@@ -1731,6 +1718,9 @@ Node Operators MUST document their assessments of risks, and what risks they cla
 
 </div>
 
+#### Process Controls
+
+Node Operators MUST ensure that processes for risk mitigation are followed in practice
 
 <a id="sec-controls-access"></a>
 ### Controls for Access Control
