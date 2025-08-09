@@ -1443,30 +1443,26 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 * [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
 </div>
 
-#### Managed Configuration Changes
+#### Configuration Management
 
-Main outline from the COSO principles:
+It is important to manage the configuration of hardware, and software. A minimal profile helps reduce possible attack surface,
+while minimising, and carefully tracking, customisation is important to ensure smooth and safe upgrades.
 
-* Uses defined Configuration Standards, monitor and enforce them.
-* Detect configuration drift.
-* Detect unwanted sofware installed on nodes.
-* Conducts Vulnerability and Configuration security Scans.
+Software configuration to follow includes, among others:
+  * Firewall configurations
+  * Docker image setups
+  * Container orchestration configurations
+  * Database configurations
+  * Webserver/Load balancer configurations
+
+[CIS benchmarks](https://www.cisecurity.org) provide configuration standards for many pieces of software,
+while automated tools to track and scan for best practices are available such as [CoGuard](https://www.coguard.io).
 
 **References:**
 
 * [[SOC2](#ref-soc2)] CC 7.1
 * [[ISO 27001](#ref-iso-27001)] Annex A 8.9
 
-**Examples for best practices:**
-
-* This includes, but is not limited to:
-  * Firewall configurations
-  * Docker image setups
-  * Container orchestration configurations
-  * Database configurations
-  * Webserver/Load balancer configurations
-* Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
-* Many pieces of software has defined configuration standards provided by [CIS benchmarks](https://www.cisecurity.org).
 
 <div class="info">
 
@@ -1798,6 +1794,16 @@ Some of these control criteria correspond to similar controls from at least thre
 * [SOC2](#soc2)
 
 Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
+
+
+#### Manage Software and Hardware Configuration
+
+Node Operators MUST document configuration of software and hardware
+
+##### Relevant external controls for configuration management
+
+* [[SOC2](#ref-soc2)] CC 7.1
+* [[ISO 27001](#ref-iso-27001)] Annex A 8.9
 
 <a id="sec-controls-info-secrets"></a>
 ### Controls for Information and Secret Management
@@ -2147,6 +2153,10 @@ This covers verifying that all software updates, including validators and other 
 
 * [[ISO27001](#ref-iso-27001)] Annex A 8.7
 * [[ISO27001](#ref-iso-27001)] Annex A 8.30
+
+#### Verify Configuration on Update
+
+Software update procedures MUST include an assessment and application of configuration settings
 
 #### Validate Inputs and outputs
 
