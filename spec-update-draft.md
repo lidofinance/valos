@@ -694,6 +694,7 @@ This enables Node Operators to identify activities that are not contributing to 
 The accuracy, availability and completeness of this information is of crucial import.
 
 Best practices include:
+* Identify relevant staff and others responsible for identifying, assessing, and determining how to manage risks
 * Ensure that every service, where possible, is configuration hardened using common benchmarks such as [CIS](https://www.cisecurity.org).
 * Analyze each component in your infrastructure environment in terms of security, availability, processing integrity, confidentiality and privacy.
 * Outline directly which risks are a high priority, and which ones are more acceptable, and the scenarios where it applies. For example, downtime comes only with an opportunity cost for ETH stakers, but may cause a slashing event in Polkadot.
