@@ -1780,7 +1780,11 @@ Node Operators SHOULD implement some for of DVT
 
 #### Client Diversity
 
-Node Operators MUSST deploy at least 2 distinct client applications for any level of the blockchain where at least 3 clients are available.
+Node Operators MUST deploy at least 2 distinct client applications for any level of the blockchain where at least 3 clients are available.
+
+#### Secure Devices
+
+Devices that control critical functions MUST be dedicated to that purpose, and configured with only the necessary software for their intended purpose
 
 #### Validator Withdrawal
 
