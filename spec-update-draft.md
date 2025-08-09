@@ -2106,7 +2106,7 @@ This is a broad area. A few specific controls are included in this specification
 ##### Relevant external controls for secure development
 * [[ISO 27001](#iso-27001)] Annex A 8.25
 
-### Verify Outsourced Development
+#### Verify Outsourced Development
 
 Main outline of the Information security controls reference:
 
@@ -2150,7 +2150,7 @@ This covers verifying that all software updates, including validators and other 
 * [ISO27001](#ref-iso-27001) Annex A 8.7
 * [ISO27001](#ref-iso-27001) Annex A 8.30
 
-### Validate Inputs and outputs
+#### Validate Inputs and outputs
 
 Code MUST verify that input is safe before operating on it
 
