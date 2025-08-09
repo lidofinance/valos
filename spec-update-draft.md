@@ -934,7 +934,7 @@ and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh
 
 In this way, everything is audited, and anomaly detection can be activated for those vaults.
 
-Using multi-sig wallets, requiring authorization from multiple parties for specific actions, helps to ensure both that relevant access is monitored and that it is correctly controlled.
+Using multi-sig wallets requiring authorization from multiple parties for specific actions, helps to ensure both that relevant access is monitored and that it is correctly controlled.
 
 <div class="info">
 
@@ -1005,7 +1005,7 @@ but it is widely considered a good practise to require periodic key rotation to 
 
 Keys to rotate include, but are not limited to:
 
-* The Postgres database used by Web3Signer
+* Keys used by signature management tools
 * The vault itself
 * Any SSH keys
 * Any API keys for your cloud infrastructure
@@ -1020,7 +1020,7 @@ Keys to rotate include, but are not limited to:
 
 #### Operational Information Management
 
-Node operators are likely to  rely on a wide range of operational information,
+Node operators are likely to rely on a wide range of operational information,
 including internal procedures, understanding software configurations, plans for future development, and employee management.
 
 Best practise includes ensuring there is no single point of failure due to centralized information being held by a single external provider
@@ -1066,13 +1066,11 @@ and the ability to perform specific tasks, such as getting answers to requests.
 
 Three pillars of Access Control need to be considered:
 
-* Authentication: Ensure that no service accepts requests without some form of authentication.
-* Authorization: Clearly define who can read/write/update/delete resources. Ideally, this is not done on a per-user basis, but on a per-role basis.
-* Audit: Ensure that all access is logged so that you can alert on anomalies. This is particularly important for login failures.
+* Authentication: Best practise is to ensure that no service accepts requests without some form of authentication.
+* Authorization: Clear definitions of who can read/write/update/delete resources. Ideally, this is not done on a per-user basis, but on a per-role basis.
+* Audit: Logging access enables detecetion of anomalies. This is particularly important for login failures.
 
-It is important that every piece of the infrastructure is secured from unauthenticated and unauthorized access.
-
-A core principle to follow in granting authorization is [**least privilege**](#def-least-privilege). This is usually achieved by using [role-based access control](#rbac).
+A core principle to follow in granting authorization is [**least privilege**](#def-least-privilege). This is usually achieved by using some form of [role-based access control](#rbac).
 
 COSO Principles:
 1. Keep an inventory of information assets
@@ -1082,22 +1080,16 @@ COSO Principles:
 5. Manage Points of Access — Access to nodes inside the segmented area need to be controlled with authentication and authorization methods.
 6. Proper credentials management for infrastructure software — A clear definition of each credential life-time is established and enforced.
 
-
-Special considerations:
-
-* Disable meta-data serving through public endpoints (like what server is running in what version).
-* Limit the outbound traffic of a node that runs a certain service.
-* Apply rate limits to ensure that internal services cannot unintentionally DDos each other.
-* Where possible apply the use of authentication tokens that have a limited lifetime.
-
-
-
 **Examples for best practices:**
 
 * Creation and continuous analysis of Software Bill of Materials [SBOM](#ref-sbom).
 * Use of Clients, roles and groups when using [AWS IAM](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html).
 * Have an internal virtual private network and only have well-defined endpoints be accessible from the web.
 * Use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) mechanism.
+* Disable meta-data serving through public endpoints (like what server is running in what version).
+* Limit the outbound traffic of a node that runs a certain service.
+* Apply rate limits to ensure that internal services cannot unintentionally DDos each other.
+* Where possible apply the use of authentication tokens that have a limited lifetime.
 
 <div class="info">
 
@@ -1116,24 +1108,21 @@ Special considerations:
 
 The core of <dfn id="def-least-privilege">Least Privilege</dfn> is that access is only granted to those who need it, and only for as long as it is relevant. This means that an individual user's privileges are likely to change over time, and in particular any offboarding process includes a rapid revocation of user's assigned roles.
 
-Almost all Least Privilege implementation is managed through role-based access control, where a set of roles are defined according to the tasks they need to perform.
-Access rights are then based on holding a particular role,
-with individual users assigned relevant roles that are revoked or deliberately renewed on a timely basis, to ensure that they can fulfil their designated tasks
+Almost all Least Privilege implementation is managed through <dfn id="def-rbac">Role-based Access Control</dfn> (commonly known as "<abbr>RBAC</abbr>"), where a set of roles are defined according to the tasks they need to perform,
+and access rights are based on holding a particular role,
+with individual users assigned relevant roles that are revoked or deliberately renewed on a timely basis.
+It is important to ensure that individuals can fulfil their designated tasks,
 without having authorizations they do not need.
 
-Main outline from the COSO principles:
-
-1. Creates or Modifies Access — Processes are in place to create or modify access.
-2. Quick removal of access when needed
-3. Use Role-based access control (RBAC)
-4. Review of roles and permissions on a regular basis.
 
 **Example best practices:**
 
+* Assignation and revocation of roles needs to be efficient and rapid
 * Disable privilege escalation mechanisms ([like executing as root user inside a Docker container](https://docs.docker.com/engine/reference/commandline/container_exec/), `docker exec -uroot`)
-* [Impersonation mechanisms need to be audited (if it is enabled).](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc)* Credentials rotation needs to be in place to ensure that there is no interruption in the service when it is done.
+* [Impersonation mechanisms need to be audited (if it is enabled).](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc)
+* Credentials rotation needs to be in place to ensure that there is no interruption in the service when it is done.
 * Off-boarding of a terminated employee does not take more than an hour. Ideally, one would only disable them inside a single-sign-on service such as [Cognito](https://aws.amazon.com/cognito/) or [Keycloak](https://www.keycloak.org).
-* Tools need to be in place to analyze the permissions of certain users/programs and determine if these are too wide.
+* Review of roles and permissions on a regular basis for both users and programs, to determine if these are too narrow or wide.
 * Use of roles on the API endpoint level to determine the correct authorization.
 * [Webserver authentication configuration of Microsoft IIS servers.](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/) Observe how different authentication methods are possible to be set there. `anonymousAuthentication` would allow anyone to access as `anonymous`, which is rarely the intention except for the starting page. `basicAuthentication` is better than nothing, but makes user management not scalable. `clientCertificateMappingAuthentication` and `digestAuthentication` are the better ways to also implement RBAC.
 
@@ -1457,8 +1446,6 @@ Use separate tests and staging environments
 
 This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first, and then roll it out in a staged fashion. If it causes some slashing event, it is then contained to the few nodes that it was rolled out to.
 
-
-
 <div class="info">
 
 ##### Pre-deployment testing helps address the following risks
@@ -1489,7 +1476,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 
 Human error is always a risk. An automated script, whether or not invoked by a human, can help minimise indavertent errors.
 
-Another benefit of properly set up automation is to reduce the risk of exposing secrets.
+Another benefit of properly set up automation is that it can help reduce the risk of exposing secrets.
 
 When correctly configured pipelines and job-mechanisms such as GitHub Actions, Apache Airflow, or Apache Nifi can significantly reduce the potential for inadvertent errors to create problems
 
@@ -1639,19 +1626,10 @@ Best practices for Incident response plans include
 - Identify relevant Stakeholders and define communication strategies for both internal and external communications
 
 <a id="sec-mitigations-response"></a>
-#### Identify and Respond to Security Incidents
+#### Identifying and Responding to Security Incidents
 
-Main outline from the COSO principles:
-
-* Assigns Roles and Responsibilities in case of a security event.
-* Contains Security Incidents — Ideally incidents can be contained within a short period of time.
-* Communication protocols are in place to inform affected parties.
-* Vulnerabilities need to be identified.
-* Have a proper incident response plan in place, and review it periodically.
-* Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
-* Evaluate the identification of and response to incidents on a regular basis.
-
-
+There are several ways to identify that a security incident is taking place. Best practice is to have extensive monitoring in place, to identify anomalies early,
+with alerting and potentially direct reaction mechanisms. Although learning from third-party discussions is a terrible way to find out about an incident, it is still better than simply not discovering it, so monitoring channels where such discussions take place is a valuable part of an overall strategy.
 
 **Examples for best practices:**
 
@@ -1671,13 +1649,10 @@ Main outline from the COSO principles:
 #### Analyze Security Events and Learn from Them
 
 This is often referred to as a "<dfn id="def-post-mortem">Post-Mortem</dfn>",
-and is used to learn from the event and improve relevant Incident Response Plans
+used to learn from the event and improve relevant Incident Response Plans.
 
-Main outline from the COSO principles:
-
-* Develops and Implements Procedures to Analyze Security Incidents.
-* Whenever possible, determine the root cause.
-* Implement necessary changes to prevent similar disasters.
+Best practices are to determine the root cause or causes of an incident, examine how the incident was allowed to occur,
+and consider what changes can be implemented to prevent or mitigate similar events from occurring.
 
 <div class="info">
 
@@ -1693,19 +1668,13 @@ Main outline from the COSO principles:
 A Disaster Recovery Plan is an Incident Response Plan that gives guidance on recovering one or more information systems at an alternate facility,
 in response to a major hardware or software failure including the partial or complete destruction of facilities.
 
-Best practices include maintaining copies of production environments to enable fast restoration.
+Best practices include maintaining secured up-to-date copies of production environments to enable fast restoration.
 
 <div class="info">
 Sample Disaster Recovery Plan templates:
 
 * [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 * [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
-
-COSO principles:
-
-* Quick restoration of affected environments.
-* Whenever possible, determine the root cause.
-* Implement necessary changes to prevent similar disasters.
 
 ##### Disaster recovery plans help address the following risks:
 
