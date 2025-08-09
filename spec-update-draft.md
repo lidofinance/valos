@@ -1827,7 +1827,7 @@ This includes off-boarding mechanisms, tracking assigned roles, and ensuring com
 * [SLS9](#risk-sls-9)
 </div>
 
-### Document Vendors and Partner Risk
+#### Document Vendors and Partner Risk
 
 Node Operators MUST implement documented procedures for evaluating and reviewing counterparty risks from vendors and partners
 
@@ -1842,14 +1842,14 @@ Node Operators MUST implement documented procedures for evaluating and reviewing
 
 <div class="info">
 
-#### Counterparty risk management helps address the following risks
+##### Counterparty risk management helps address the following risks
 
 * [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
 * [GIR5](#risk-gir-5)
 * [DOW1](#risk-dow-1), [DOW19](#risk-dow-19)
 </div>
 
-### Manage Information Lifecycles
+#### Manage Information Lifecycles
 
 
 Node Operators MUST document and follow information lifecycle processes for important operational information
