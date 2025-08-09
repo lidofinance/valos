@@ -829,12 +829,11 @@ To ensure this happens, it is important to consider both the business goals, and
 
 #### Local Anti-Slashing Database
 
-To avoid double signing, validators maintain a history of messages they signed, usually stored in of a database.
-In some cases, this feature is enabled by an external web3signer. The maintenance and protection of this database is crucial, as inconsistencies in this database may cause a double-signing event. The following items need to be in place:
 
-* Persistence of anti-slashing database: Ensure that a persistent, not a temporary storage is used for the anti-slashing database.
-* Assurance that slashing databases are connected and interacting properly.
-* Protection against deletion of information, or the database itself.
+
+To avoid double signing, validators can maintain a history of messages they signed.
+This data is crucial, as inconsistencies can cause a double-signing event.
+The data needs to be reliably persistent, and properly connected to the systems that use it.
 
 <div class="info">
 
@@ -845,30 +844,22 @@ In some cases, this feature is enabled by an external web3signer. The maintenanc
 * [SLS3](#risk-sls-3)
 </div>
 
-#### Doppelgänger Protection
+#### Signature Management
 
-While there are multiple measures possible to be taken to avoid two validator running with the same signing keys, one can also employ technologies that detect and prevent two validators running at the same time. This can be done using monitoring and alert systems, robust StatefulSet handling in Kubernetes to ensure no two containers with the same keys run at the same time, or pre-defined tools such as [DoppelBuster](https://github.com/SimplyStaking/DoppelBuster).
+Tools that manage signatures for transactions generally provide a workflow that includes passive and active protection against a variety of risks.
+Using these tools helps minimise the chances that a signature is given without checking what is being signed, and that risk-bearing transactions require
+appropriate authorization.
 
-<div class="info">
+Properly configured signature management tools also provide the ability to recover, or mitigate any problems, in the case where a transaction was not completed.
 
-##### Doppelgänger protection helps address the following risks
+As well as the use of various kind of "<dfn id="def-multi-sig">multi-sig</dfn>", which can include simple requirements for multiple signatures,
+or incorporate such techniques as multi-part compute ("MPC") or the like, signature management tools can include automated verification steps in the process of authorizing a transaction.
 
-* [SLS2](#risk-sls-2)
-</div>
-
-#### Use of a Web3Signer
-
-The main benefit of the use of Web3 signers is to have a service that is focused on the signing task directly, and comes with protection mechanisms.
-
-Similar to the anti-slashing database, whenever used, a web3signer needs to be
-
-* Connected to a storage system (such as a database), and it needs to be ensured that it is always connected.
-* Ensured that they are not accidentally terminated.
-* Ensured that the failover is using the same web3signer
+Tools such as Web3Signer and Dirk help manage signatures securely, when properly used.
 
 <div class="info">
 
-##### Use of a Web3Signer helps address the following risks
+##### Signature management helps address the following risks
 
 * [SLS2](#risk-sls-2)
 * [SLS3](#risk-sls-3)
@@ -880,7 +871,14 @@ Similar to the anti-slashing database, whenever used, a web3signer needs to be
 
 #### Client Diversity
 
-Maintain a diverse set of clients for different protocols, in order to reduce blast radius in case one of the clients appears to have a protocol error or other bug. In some cases, migrate keys to different clients in case of a specific client error observed, such as startup issues after controlled update or bug in the latest version of the chosen client.
+A diverse set of clients for different protocols can reduce "blast radius" in a case where one client has a protocol error or other bug.
+The most common scenario for this being realized is likely when an upgrade introduces a problem.
+The ability to migrate relevant keys to a different client, if a specific client error is observed, provides an important layer of protection.
+In addition, maintaining client diversity helps ensure that the network as a whole does so,
+ideally providing real protection against a vulnerability present in a single version of a single client by ensuring that particular version is not able to dominate the network.
+
+Note that there are often a different range of clients available at different levels of the infrastructe.
+For example in Ethereum, it is possible to run different clients on each of the Execution and Consensus layers, and indeed best practice is to do so.
 
 <div class="info">
 
@@ -1573,6 +1571,18 @@ such as 2FA configuration or VPNs.
 * **Peering Connectivity:** Monitor both internal and external network peering connectivity.
 * **Firewall Configuration and Metrics:** Keep an eye on firewall configuration changes or unexpected increases in drop metrics.
 
+#### Doppelgänger Protection
+
+Detecting that two validators with the same identifiers are running at the same time is important, to shut one down as fast as possible. This can be done using monitoring and alert systems, robust StatefulSet handling in Kubernetes to ensure no two containers with the same keys run at the same time, or pre-defined tools such as [DoppelBuster](https://github.com/SimplyStaking/DoppelBuster).
+
+<div class="info">
+
+##### Doppelgänger protection helps address the following risks
+
+* [SLS2](#risk-sls-2)
+</div>
+
+
 #### Cloud and Infrastructure
 
 * **Cloud Monitoring Solutions:** Utilize cloud monitoring solutions to keep track of uptime and internal issues.
@@ -1740,43 +1750,42 @@ Some of these control criteria correspond to similar controls from at least thre
 
 Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
 
-<a id="sec-controls-risk-management"></a>
-### Controls for Risk Management
 
-#### Ensure Activities Support Operational Goals
+### Controls for Technology Stack
 
-Node Operators MUST document how their processes and tools serve their business goals
+#### Anti-slashing Database
 
-##### External Controls for aligning processes and tools with business goals
+Node Operators MUST have a persistent local anti-slashing database
 
-* [[SOC2](#ref-soc2)] CC 5.2
+##### A local anti-slashing database helps address the following risks
 
-<div class="info">
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3)
 
-#### Assessment of activities' relevance helps address the following risks
+#### Signature management
 
-* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS16](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
-* [DOW16](#risk-dow-16), [DOW18](#risk-dow-18)
-* [GIR5](#risk-gir-5)
-</div>
+Node Operators MUST document signature requirements for high-value transactions, including the definitions used to identify such transactions.
 
-#### Document Risk Assessments
+Node Operators SHOULD use signature management tools to help secure high-value transactions.
 
-Node Operators MUST document their assessments of risks, and what risks they class as acceptable
+The primary and backup/failover versions of Signature management tools MUST implement mechanisms to ensure data continuity
 
-##### External controls for risk assessment
+##### Signature management helps address the following risks
 
-* [[SOC2](#ref-soc2)] CC 3.1
+* [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
+* [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
 
-<div class="info">
+#### Distributed Validator Technology
 
-##### Internal risk assessment is an important part of addressing all risks
+Node Operators SHOULD implement some for of DVT
 
-</div>
+#### Client Diversity
 
-#### Process Controls
+Node Operators MUSST deploy at least 2 distinct client applications for any level of the blockchain where at least 3 clients are available.
 
-Node Operators MUST ensure that processes for risk mitigation are followed in practice
+#### Validator Withdrawal
+
+Node Operators MUST implement processes to withdraw validators from a network in such a way that they are not penalised for disappearing
+
 
 <a id="sec-controls-info-secrets"></a>
 ### Controls for Information and Secret Management
