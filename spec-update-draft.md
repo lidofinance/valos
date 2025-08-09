@@ -9,6 +9,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 <dt>This draft date:</dt>
 <dd>2025-08-09</dd>
 
+
 <dt>Version 1 URL:</dt>
 <dd><a href="https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base">https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base</a></dd>
 
@@ -908,6 +909,7 @@ higher levels of process segregation need to be achieved.
 #### Local Anti-Slashing Database
 
 
+
 To avoid double signing, validators maintain a history of messages they signed, usually stored in of a database.
 In some cases, this feature is enabled by an external web3signer. The maintenance and protection of this database is crucial, as inconsistencies in this database may cause a double-signing event. The following items need to be in place:
 
@@ -1331,7 +1333,6 @@ Best practices for lifecycle management include the ability to remotely pause, s
 ### Software Development and Update Process
 
 #### Secure Development Life Cycle
-
 
 
 **Examples for best practices:**
@@ -1904,7 +1905,7 @@ Best practice is to use a documentation management system. While this is likely 
 
 #### External Controls For Access Management - General
 
-* [OWASP Access Control](#ref-owasp-access-control)
+* [[OWASP Access Control](#ref-owasp-access-control)]
 * [[ISO27001](#ref-iso27001)] Annex A 5.15
 * [[SOC2](#ref-soc2)] CC 6.1
 
@@ -1998,7 +1999,7 @@ Best practices include ensuring that the latest version of TLS is being used, wi
 
 ##### External Controls for Encrypted Data
 
-* [OWASP Cryptographic Failures](#ref-owasp-cryptographic-failures)
+* [[OWASP Cryptographic Failures](#ref-owasp-cryptographic-failures)]
 * [[SOC2](#ref-soc2)] CC 6.7
 
 COSO principles:
@@ -2079,14 +2080,12 @@ This includes monitoring performance and performing preventive maintenance, upgr
 as well as processes that ensure equipment is correctly retired including removing data and any hardware-based authorization.
 
 ##### Relevant external controls for equipment lifecycles
-
 * [[ISO 27001](#ref-iso-27001)] Annex A 7
 
 #### Equipment life-cycle management helps address the following risks
 
 * [DOW3](#risk-dow-3)
 * [KEC1](#risk-kec-1), [KEC5](#risk-kec-), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
-
 
 
 <a id="sec-controls-updates"></a>
@@ -2117,7 +2116,6 @@ Likewise, in best practice third-party code developers are only given access to 
 and work with a well-defined set of expectations
 
 ##### Relevant external controls for verifying outsourced development
-
 * [[ISO 27001](#ref-iso-27001)] Annex A 8.30
 
 <div class="info">
@@ -2147,8 +2145,8 @@ This covers verifying that all software updates, including validators and other 
 
 ##### External controls for checking third-party software
 
-* [ISO27001](#ref-iso-27001) Annex A 8.7
-* [ISO27001](#ref-iso-27001) Annex A 8.30
+* [[ISO27001](#ref-iso-27001)] Annex A 8.7
+* [[ISO27001](#ref-iso-27001)] Annex A 8.30
 
 #### Validate Inputs and outputs
 
@@ -2193,7 +2191,7 @@ managed by code the Node Operator uses, whether self-managed or provided by a th
 
 ##### Relevant external controls for test coverage
 
-* [[ISO 27001](#ref-iso-27001)] Annex A 8.29
+* [ISO 27001](#iso-27001) Annex A 8.29
 
 #### Test All Interactions Impacted by Software Updates
 
@@ -2207,7 +2205,7 @@ Updates MUST be tested on a staging environment that as closely as possible matc
 
 ##### Relevant external controls for pre-deployment testing
 
-* [[ISO 27001](#ref-iso-27001)] Annex A 8.31
+* [ISO 27001](#iso-27001) Annex A 8.31
 
 #### Maintain Emergency Rollback Procedures
 
@@ -2218,8 +2216,8 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 
 #### Relevant external controls for incident response planning
 
-* [[SOC2](#ref-soc2)] CC 7.4
-* [[SOC2](#ref-soc2)] CC 9.1 of Trust Services Criteria
+* [SOC2](#soc2) CC 7.4
+* [SOC2](#ref-soc2) CC 9.1 of Trust Services Criteria
 
 Incident Response Planning helps address almost all risks faced by Node Operators
 
@@ -2234,7 +2232,7 @@ that lead to destruction of crucial data or loss of assets.
 
 ##### Relevant external controls for disaster recovery plans
 
-* [[SOC2](#ref-soc2)] CC 7.5
+* [SOC2](#soc2) CC 7.5
 
 ##### Disaster recovery plans help address the following risks:
 
@@ -2255,7 +2253,7 @@ This covers both responses to real incidents and Simulated activation, or "pre-m
 
 ##### Relevant external controls for analyzing security events
 
-* [[SOC2](#ref-soc2)] CC 7.3
+* [SOC2](#soc2) CC 7.3
 
 #### Perform Regular Incident Response Simulations
 
@@ -2293,6 +2291,11 @@ response times and Service Level Agreements, security procedures, and the like a
 #### Manage Counterparty Relationship Lifecycles
 
 Service agreements MUST specify termination procedures and obligations
+
+
+
+### Control activities to achieve operational goals
+
 
 
 ### Network services
