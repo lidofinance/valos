@@ -18,6 +18,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 <br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella S, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven, Lucas
 
+
 <br>(This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
 </dd>
 
@@ -59,7 +60,7 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
 - [Mitigation Strategies](#mitigation-strategies)
   - [Risk Management](#sec-mitigations-risk=management)
   - [Technology Stack](#sec-mitigations-tech-stack)
-  - [Secret Management](#sec-mitigations-secret-management)
+  - [Information and Secret Management](#secret-management)
   - [Access Management](#sec-mitigations-access-management)
   - [Software Development and Update Process](#sec-mitigations-development-and-update)
   - [Monitoring](#sec-mitigations-monitoring)
@@ -776,6 +777,8 @@ This enables Node Operators to identify activities that are not contributing to 
 The accuracy, availability and completeness of this information is of crucial import.
 
 Best practices include:
+
+* Identify relevant staff and others responsible for identifying, assessing, and determining how to manage risks
 * Ensure that every service, where possible, is configuration hardened using common benchmarks such as [CIS](https://www.cisecurity.org).
 * Analyze each component in your infrastructure environment in terms of security, availability, processing integrity, confidentiality and privacy.
 * Outline directly which risks are a high priority, and which ones are more acceptable, and the scenarios where it applies. For example, downtime comes only with an opportunity cost for ETH stakers, but may cause a slashing event in Polkadot.
@@ -819,6 +822,7 @@ There are best practices to do this effectively:
 
 </div>
 
+
 <a id="sec-mitigations-tech-stack"></a>
 
 ### Technology Stack
@@ -828,8 +832,6 @@ In a nutshell: technology needs to serve the business goal, not the other way ar
 To ensure this happens, it is important to consider both the business goals, and the available technology, and then use appropriate technology to meet those goals.
 
 #### Local Anti-Slashing Database
-
-
 
 To avoid double signing, validators can maintain a history of messages they signed.
 This data is crucial, as inconsistencies can cause a double-signing event.
@@ -1240,8 +1242,6 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 #### Secure Development Life Cycle
 
-
-
 **Examples for best practices:**
 
 * Use of CI/CD pipelines like GitHub Actions
@@ -1251,7 +1251,7 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 <div class="info">
 
-#### Secure development lifecycle helps address the following risks
+##### Secure development lifecycle helps address the following risks
 
 * [GIR8](#risk-gir-8)
 * [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
@@ -1350,30 +1350,22 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 * [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
 </div>
 
-#### Managed Configuration Changes
+#### Configuration Management
 
-Main outline from the COSO principles:
+It is important to manage the configuration of hardware, and software. A minimal profile helps reduce possible attack surface,
+while minimising, and carefully tracking, customisation is important to ensure smooth and safe upgrades.
 
-* Uses defined Configuration Standards, monitor and enforce them.
-* Detect configuration drift.
-* Detect unwanted sofware installed on nodes.
-* Conducts Vulnerability and Configuration security Scans.
-
-**References:**
-
-* [[SOC2](#ref-soc2)] CC 7.1
-* [[ISO 27001](#ref-iso-27001)] Annex A 8.9
-
-**Examples for best practices:**
-
-* This includes, but is not limited to:
+Software configuration to follow includes, among others:
   * Firewall configurations
   * Docker image setups
   * Container orchestration configurations
   * Database configurations
   * Webserver/Load balancer configurations
-* Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
-* Many pieces of software has defined configuration standards provided by [CIS benchmarks](https://www.cisecurity.org).
+
+[CIS benchmarks](https://www.cisecurity.org) provide configuration standards for many pieces of software,
+while automated tools to track and scan for best practices are available such as [CoGuard](https://www.coguard.io).
+
+
 
 <div class="info">
 
@@ -1538,9 +1530,8 @@ Detecting that two validators with the same identifiers are running at the same 
 
 #### Cloud and Infrastructure
 
-* **Cloud Monitoring Solutions:** Utilize cloud monitoring solutions to keep track of uptime and internal issues.
+* **Cloud Monitoring Solutions:** Use cloud monitoring solutions to keep track of uptime and internal issues.
 * **Cloud Service Notifications:** Stay informed about cloud service announcements regarding expected downtime and maintenance.
-
 
 <div class="info">
 
@@ -1698,6 +1689,43 @@ Some of these control criteria correspond to similar controls from at least thre
 
 Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
 
+<a id="sec-controls-risk-management"></a>
+### Controls for Risk Management
+
+#### Ensure Activities Support Operational Goals
+
+Node Operators MUST document how their processes and tools serve their business goals
+
+##### External Controls for aligning processes and tools with business goals
+
+* [[SOC2](#ref-soc2)] CC 5.2
+
+<div class="info">
+
+#### Assessment of activities' relevance helps address the following risks
+
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS16](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
+* [DOW16](#risk-dow-16), [DOW18](#risk-dow-18)
+* [GIR5](#risk-gir-5)
+</div>
+
+#### Document Risk Assessments
+
+Node Operators MUST document their assessments of risks, and what risks they class as acceptable
+
+##### External controls for risk assessment
+
+* [[SOC2](#ref-soc2)] CC 3.1
+
+<div class="info">
+
+##### Internal risk assessment is an important part of addressing all risks
+
+</div>
+
+#### Process Controls
+
+Node Operators MUST ensure that processes for risk mitigation are followed in practice
 
 ### Controls for Technology Stack
 
@@ -1738,6 +1766,15 @@ Devices that control critical functions MUST be dedicated to that purpose, and c
 
 Node Operators MUST implement processes to withdraw validators from a network in such a way that they are not penalised for disappearing
 
+
+#### Manage Software and Hardware Configuration
+
+Node Operators MUST document configuration of software and hardware
+
+##### Relevant external controls for configuration management
+
+* [[SOC2](#ref-soc2)] CC 7.1
+* [[ISO 27001](#ref-iso-27001)] Annex A 8.9
 
 <a id="sec-controls-info-secrets"></a>
 ### Controls for Information and Secret Management
@@ -1840,13 +1877,12 @@ Best practice is to use a documentation management system. While this is likely 
 * [SPS0](#risk-sps-0)
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 
-
 <a id="sec-controls-access"></a>
 ### Controls for Access Control
 
 #### External Controls For Access Management - General
 
-* [OWASP Access Control](#ref-owasp-access-control)
+* [[OWASP Access Control](#ref-owasp-access-control)]
 * [[ISO27001](#ref-iso27001)] Annex A 5.15
 * [[SOC2](#ref-soc2)] CC 6.1
 
@@ -1940,7 +1976,7 @@ Best practices include ensuring that the latest version of TLS is being used, wi
 
 ##### External Controls for Encrypted Data
 
-* [OWASP Cryptographic Failures](#ref-owasp-cryptographic-failures)
+* [[OWASP Cryptographic Failures](#ref-owasp-cryptographic-failures)]
 * [[SOC2](#ref-soc2)] CC 6.7
 
 COSO principles:
@@ -2034,7 +2070,6 @@ This includes monitoring performance and performing preventive maintenance, upgr
 as well as processes that ensure equipment is correctly retired including removing data and any hardware-based authorization.
 
 ##### Relevant external controls for equipment lifecycles
-
 * [[ISO 27001](#ref-iso-27001)] Annex A 7
 
 #### Equipment life-cycle management helps address the following risks
@@ -2074,13 +2109,9 @@ and work with a well-defined set of expectations
 ##### Relevant external controls for verifying outsourced development
 
 * [[ISO 27001](#ref-iso-27001)] Annex A 8.30
+* [[SOC2](#ref-soc2)] CC 8.1
+* [[ISO 27001](#iso-27001)] Annex A 8.32
 
-<div class="info">
-
-#### Verifying outsourced development helps address the following risks
-
-* [GIR24](#risk-gir-24)
-</div>
 
 #### Follow Update Procedures
 
@@ -2102,8 +2133,12 @@ This covers verifying that all software updates, including validators and other 
 
 ##### External controls for checking third-party software
 
-* [ISO27001](#ref-iso-27001) Annex A 8.7
-* [ISO27001](#ref-iso-27001) Annex A 8.30
+* [[ISO27001](#ref-iso-27001)] Annex A 8.7
+* [[ISO27001](#ref-iso-27001)] Annex A 8.30
+
+#### Verify Configuration on Update
+
+Software update procedures MUST include an assessment and application of configuration settings
 
 #### Validate Inputs and outputs
 
@@ -2138,7 +2173,6 @@ Multiple tools can help meet these requirements, including
 
 </div>
 
-
 #### Ensure Good Test Coverage
 
 Node Operators MUST have thorough test coverage of their software and operating procedures
@@ -2148,7 +2182,7 @@ managed by code the Node Operator uses, whether self-managed or provided by a th
 
 ##### Relevant external controls for test coverage
 
-* [[ISO 27001](#ref-iso-27001)] Annex A 8.29
+* [ISO 27001](#iso-27001) Annex A 8.29
 
 #### Test All Interactions Impacted by Software Updates
 
@@ -2162,7 +2196,7 @@ Updates MUST be tested on a staging environment that as closely as possible matc
 
 ##### Relevant external controls for pre-deployment testing
 
-* [[ISO 27001](#ref-iso-27001)] Annex A 8.31
+* [ISO 27001](#iso-27001) Annex A 8.31
 
 #### Maintain Emergency Rollback Procedures
 
@@ -2173,8 +2207,8 @@ Node Operators MUST have a process to enable emergency rollback of upgrades
 
 #### Relevant external controls for incident response planning
 
-* [[SOC2](#ref-soc2)] CC 7.4
-* [[SOC2](#ref-soc2)] CC 9.1 of Trust Services Criteria
+* [SOC2](#soc2) CC 7.4
+* [SOC2](#ref-soc2) CC 9.1 of Trust Services Criteria
 
 Incident Response Planning helps address almost all risks faced by Node Operators
 
@@ -2189,7 +2223,7 @@ that lead to destruction of crucial data or loss of assets.
 
 ##### Relevant external controls for disaster recovery plans
 
-* [[SOC2](#ref-soc2)] CC 7.5
+* [SOC2](#soc2) CC 7.5
 
 ##### Disaster recovery plans help address the following risks:
 
@@ -2210,7 +2244,7 @@ This covers both responses to real incidents and Simulated activation, or "pre-m
 
 ##### Relevant external controls for analyzing security events
 
-* [[SOC2](#ref-soc2)] CC 7.3
+* [SOC2](#soc2) CC 7.3
 
 #### Perform Regular Incident Response Simulations
 
@@ -2361,7 +2395,7 @@ You can download the spreadsheet here: [https://docs.google.com/spreadsheets/d/1
 ## References
 
 #### [BSSC KMS]
-"Key Management Standard v1", J Kemp and M Nesbitt eds., Blockchain Standards Security Council 2025. [https://specs.blockchainssc.org/kms/v1/](https://specs.blockchainssc.org/kms/v1/)
+"Key Management Standard version 1", J Kemp and M Nesbitt eds., Blockchain Standards Security Council 2025. [https://specs.blockchainssc.org/kms/v1/](https://specs.blockchainssc.org/kms/v1/)
 
 <a id="ref-ccss"></a>
 #### [CCSS]
