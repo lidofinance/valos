@@ -1,4 +1,4 @@
-# ValOS
+[[ISO 27001](#ref-iso-27001)] # ValOS
 
 Copyright© 2025, Lido Foundation. This document may be used, modified, copied and distributed under the terms of the [Apache 2 License](./LICENSE).
 
@@ -16,7 +16,8 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 <dd>This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
 
-<br>Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Oriol Padilla, Gabriella S, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven, Lucas
+<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella S, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven, Lucas
+
 
 <br>(This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
 </dd>
@@ -776,6 +777,7 @@ This enables Node Operators to identify activities that are not contributing to 
 The accuracy, availability and completeness of this information is of crucial import.
 
 Best practices include:
+
 * Identify relevant staff and others responsible for identifying, assessing, and determining how to manage risks
 * Ensure that every service, where possible, is configuration hardened using common benchmarks such as [CIS](https://www.cisecurity.org).
 * Analyze each component in your infrastructure environment in terms of security, availability, processing integrity, confidentiality and privacy.
@@ -819,6 +821,7 @@ There are best practices to do this effectively:
 
 
 </div>
+
 
 <a id="sec-mitigations-tech-stack"></a>
 
@@ -1239,7 +1242,6 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 #### Secure Development Life Cycle
 
-
 **Examples for best practices:**
 
 * Use of CI/CD pipelines like GitHub Actions
@@ -1249,7 +1251,7 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 <div class="info">
 
-#### Secure development lifecycle helps address the following risks
+##### Secure development lifecycle helps address the following risks
 
 * [GIR8](#risk-gir-8)
 * [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
@@ -1363,10 +1365,6 @@ Software configuration to follow includes, among others:
 [CIS benchmarks](https://www.cisecurity.org) provide configuration standards for many pieces of software,
 while automated tools to track and scan for best practices are available such as [CoGuard](https://www.coguard.io).
 
-**References:**
-
-* [[SOC2](#ref-soc2)] CC 7.1
-* [[ISO 27001](#ref-iso-27001)] Annex A 8.9
 
 
 <div class="info">
@@ -1532,9 +1530,8 @@ Detecting that two validators with the same identifiers are running at the same 
 
 #### Cloud and Infrastructure
 
-* **Cloud Monitoring Solutions:** Utilize cloud monitoring solutions to keep track of uptime and internal issues.
+* **Cloud Monitoring Solutions:** Use cloud monitoring solutions to keep track of uptime and internal issues.
 * **Cloud Service Notifications:** Stay informed about cloud service announcements regarding expected downtime and maintenance.
-
 
 <div class="info">
 
@@ -2081,6 +2078,7 @@ as well as processes that ensure equipment is correctly retired including removi
 * [KEC1](#risk-kec-1), [KEC5](#risk-kec-), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
 
 
+
 <a id="sec-controls-updates"></a>
 ### Controls for Development and Update Process
 
@@ -2109,14 +2107,11 @@ Likewise, in best practice third-party code developers are only given access to 
 and work with a well-defined set of expectations
 
 ##### Relevant external controls for verifying outsourced development
+
 * [[ISO 27001](#ref-iso-27001)] Annex A 8.30
+* [[SOC2](#ref-soc2)] CC 8.1
+* [[ISO 27001](#iso-27001)] Annex A 8.32
 
-<div class="info">
-
-#### Verifying outsourced development helps address the following risks
-
-* [GIR24](#risk-gir-24)
-</div>
 
 #### Follow Update Procedures
 
@@ -2177,7 +2172,6 @@ Multiple tools can help meet these requirements, including
 * [GIR8](#risk-gir-8), [GIR16](#risk-gir-16)
 
 </div>
-
 
 #### Ensure Good Test Coverage
 
@@ -2288,12 +2282,6 @@ response times and Service Level Agreements, security procedures, and the like a
 #### Manage Counterparty Relationship Lifecycles
 
 Service agreements MUST specify termination procedures and obligations
-
-
-
-
-
-
 
 <section id="sec-communications-strategy">
 
