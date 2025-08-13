@@ -9,7 +9,6 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 <dt>This draft date:</dt>
 <dd>2025-08-09</dd>
 
-
 <dt>Version 1 URL:</dt>
 <dd><a href="https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base">https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base</a></dd>
 
@@ -17,7 +16,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 <dd>This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
 
-<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella S, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven
+<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella S, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven, Lucas
 
 <br>(This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
 </dd>
@@ -58,6 +57,7 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
   - [Risk Matrix](#risk-matrix)
 - [Review and Audit Procedures](#review-and-audit-procedures)
 - [Mitigation Strategies](#mitigation-strategies)
+  - [Risk Management](#sec-mitigations-risk=management)
   - [Technology Stack](#sec-mitigations-tech-stack)
   - [Information and Secret Management](#secret-management)
   - [Access Management](#sec-mitigations-access-management)
@@ -747,154 +747,9 @@ Risk related to running specific services.
 </tr></tbody></table>
 
 
-## Risk Assessment Procedures
-
-This Risk Assessment Procedure provides a systematic approach for Ethereum
-node operators to assess the financial loss and the probability for each
-identified scenario.
-
-### Financial Loss
-
-First, it is important to assess the likely financial loss for any given risk scenario.
-
-#### Direct Monetary Losses from a Slashing Event
-Assess the losses directly linked to the slashing event. This can include:
-
-* Direct slashing penalty due to double signing (currently 1 ETH)
-* "Correlated slashing penalty" occurs 18 days after the initial slashing
-* Slashing leads to validator downtime until the slashed validator is exited
-* Missed rewards
-* Possible recoveries from insurance payments
 
 
-
-
-#### Direct Monetary Losses from a Downtime Event
-Assess the losses directly from the downtime event. This can include:
-
-* Downtime penalties until the validator is exited
-* Missed rewards
-* Possible recoveries from insurance payments
-
-#### Reputational Risks
-Determine the monetary loss from reputational damage. This includes:
-
-* Reduction in earnings due to the depletion of presently staked assets
-* Loss of anticipated earnings due to the diminishment of future staked assets
-
-#### Losses from the Event Investigation
-Indirect losses can arise from the investigation of the slashing or downtime event. This can include:
-
-* Costs associated with conducting an internal investigation
-* Expenses for external investigative services
-* Replacement or upgrading of hardware and software
-
-#### Legal Disputes and Liabilities
-Additional costs can come from legal disputes and liabilities. This can include:
-
-* Obligation for slashing or downtime events as stated in Service Level Agreements
-* Expenses for legal dispute settlement and court fees to address or defend against liabilities
-* Costs associated with legal consultation and advisory services
-* Possible insurance payments (e.g. for legal defence costs)
-
-
-
-### Occurrence Probability
-
-Assign a likelihood of occurrence and estimate the potential financial impact for each risk identified. This approach considers the specific operational context of the node operator and requires the node operator to tailor the assessment to its unique risk exposure, and vulnerabilities and to take the mitigation strategies into account. This process can be informed by:
-
-* Analyzing historical data to understand past trends and incidents (external, internal incidents, and near-miss incidents)
-* Reviewing industry reports for insights into common risks and their fiscal consequences in similar scenarios
-* Consulting with experts in the field to gain a comprehensive perspective on risk probabilities and impacts
-* Utilizing risk assessment tools or software for a more data-driven analysis
-* Analyze the Mean Time to Repair (MTTR, The average time it takes to fully restore a system or service after a failure or security incident) in case of a downtime under different scenarios.
-
-
-
-### Risk Matrix
-
-Create a risk matrix to visually categorize risks based on their severity and likelihood. This helps in prioritizing which risks need more immediate attention. This process can be performed before and after the identified mitigation and controls are in place to visualize the effect of these strategies.
-
-## Review and Audit Procedures
-
-### Introduction
-
-This document provides a guide for Ethereum node operators on the best practices for conducting IT security-related reviews and audits. It aims to ensure the security, efficiency, and compliance of the node operations within the Ethereum network.
-
-See also the NIST Technical Guide to Information Security Testing and Assessment [NIST-800-115](#ref-nist-800-115).
-
-#### Internal Reviews vs External Audits
-
-##### Internal Reviews:
-
-* **Purpose:** To conduct self-assessments of the node's operation and management
-* **Process:** Conducted by the node's operating team using internal checklists and monitoring tools
-* **Benefits:** Quick identification and rectification of operational issues and continuous improvement at a low cost
-
-##### External Audits:
-
-* **Purpose:** To provide an independent assessment of the node's operation and compliance
-* **Process:** Conducted by third-party experts or audit firms specializing in blockchain technology and IT security
-* **Benefits:** Provides credibility, helps in identifying blind spots in internal reviews, and ensures compliance with industry standards
-
-### Types of Audit
-
-#### Infrastructure Audits:
-
-* **Purpose:** To identify vulnerabilities, ensure alignment with best practices, and ensure that the node is secure from internal and external threats
-* **Key Areas:** Examples are network access points security, patching, set-up of the failover system, back-up, access management, slashing protection, key management and data encryption
-
-#### Smart Contract Security Audits:
-
-* **Purpose:** To identify vulnerabilities in the smart contracts developed by the node operator
-* **Key Areas:** Examples are Smart Contract security audit or deployment audit
-
-#### Compliance Audits:
-
-* **Purpose:** To verify adherence to regulatory requirements and Ethereum network standards
-* **Key Areas:** Validate node's alignment with Ethereum's protocol updates and adherence to legal regulations concerning cryptocurrency operations (e.g. OFAC MEV compliance and KYC compliance)
-
-#### Performance Audits:
-
-* **Purpose:** To assess the efficiency and stability of the node
-* **Key Areas:** Block propagation time, transaction processing speed, uptime metrics, and resource utilization (such as CPU and memory usage)
-
-### When to Perform Audits
-
-#### Regularly-Scheduled Audits:
-
-* **Frequency:** Conducting audits regularly ensures consistent security. Regular audits are required as security standards change over time and new vulnerabilities and attack vectors are published.
-* **Scope:** These audits should encompass all types of audits mentioned under section 2.
-
-#### Event-Triggered Audits:
-
-* **Triggers:** Perform audits in response to specific events such as network upgrades (hard forks), security breaches, updates of the smart contract, compliance events,  performance issues, or major infrastructure updates.
-* **Focus:** These audits should primarily assess the impact of the event on your node's operation and security.
-
-### General Suggestions for Internal Audit
-
-#### Responsible Person:
-
-* Assign a dedicated team or individual responsible for conducting and overseeing the audit process.
-* This role includes planning, executing, and following up on audit findings.
-
-#### Well-defined Checklist:
-
-* **Internal Audit Checklist:** Develop a comprehensive list covering all aspects of node operation, including security, performance, and compliance. This checklist should be regularly updated to reflect changes in technology and regulations. This checklist should be created with input from the internal team and, if possible, checklists from external sources.
-* **External Audit Checklist:** For external audits, prepare a list that includes areas for external verification.
-
-#### Documentation Approach:
-
-* Establish a systematic approach for documenting the audit process.
-* This should include the responsible person, types and dates of audits having been conducted, audit reports, methods used conducting the audit, scope of the audit and audit vendor.
-
-#### Documentation of Results:
-
-* Create a structured format for reporting audit results.
-* This should include detailed findings, recommendations, and any corrective actions taken.
-* Ensure that these reports are accessible to relevant stakeholders for review and follow-up.
-
-## Mitigation Strategies
+## Risk Mitigation Strategies
 
 The Mitigation Strategies section serves as a go-to resource for node operators,
 providing actionable insights and mitigation options to enhance the security, reliability, and efficiency of their operations.
@@ -903,19 +758,81 @@ Most of the best practices that optimize up-time, access control and general sta
 However, there are a few risks that are very specific to running a node-operator, and to mitigate them,
 higher levels of process segregation need to be achieved.
 
+<a id="sec-mitigations-risk-management"></a>
+
+### Risk Management
+
+A core principle for mitigating risks is to actively identify and manage the risks.
+This means understanding the particular risks, and the likelihood of something going wrong and the likely impact if that does occur.
+That information enables a Node Operator to decide what level of risk is reasonable and how to prioritise available resources to mitigate risk.
+Risk management decisions need to take into account any regulation that obliges a Node Operator to meet specific benchmarks or implement specific mitigation strategies
+or other activities.
+
+A first step for effective risk management is to document the potential risks, as well as the tools and processes currently in place.
+Documentation needs to include an assessment of the relevant risks, what is acceptable,
+and how each process or infrastructure component contributes to and protects against risks.
+
+This enables Node Operators to identify activities that are not contributing to the business, or that actually increase the potential risks they face.
+The accuracy, availability and completeness of this information is of crucial import.
+
+Best practices include:
+* Identify relevant staff and others responsible for identifying, assessing, and determining how to manage risks
+* Ensure that every service, where possible, is configuration hardened using common benchmarks such as [CIS](https://www.cisecurity.org).
+* Analyze each component in your infrastructure environment in terms of security, availability, processing integrity, confidentiality and privacy.
+* Outline directly which risks are a high priority, and which ones are more acceptable, and the scenarios where it applies. For example, downtime comes only with an opportunity cost for ETH stakers, but may cause a slashing event in Polkadot.
+
+#### Assessing risks
+
+A standard industry approach to assessing risks is to consider the probability of an event occurring and the likely impact of that event.
+
+If these are ranked on a linear numerical scale (e.g. probability between 0 and 1), and an approximate overall financial impact, they can be multiplied,
+provide a ranking for priority of mitigating each risk.
+
+Since the cost of risk mitigation varies considerably, the overall priority for addressing risk, or deciding that a given level of risk is acceptable,
+generally depends on comparing the risk ranking with the cost of mitigation, and available resources.
+
+##### Assessing Finanacial Impact
+
+There are a number of factors to take into account when assessing the overall financial impact of a given risk, with the direct cost incurred as the most obvious.
+It is important to understand the time required to mitigate the impact of an event, and the cost that will be incurred over that time.
+
+An incident can incur a variety of costs in terms of employee time spent managing the incident, communication, and follow-up,
+new mitigations implemented to mitigate concrete or reputational damage such as replacement or additional infrastructure,
+as well as potential costs of compensation or legal costs.
+
+It is also useful to consider opportunity costs such as reputational damage, or competitors taking advantage of an incident to promote themselves as a better alternative.
+
+##### Assessing Incident Probability
+
+Predicting the likelihood of an unexpected future event is generally difficult, and results are unlikely to precisely match the predictions.
+Nevertheless it is important to consider the context of a specific operation and attempt accurate predictions.
+
+There are best practices to do this effectively:
+
+* Analyzing historical data to understand past trends and incidents (external, internal incidents, and near-miss incidents)
+* Reviewing industry reports for insights into common risks and their fiscal consequences in similar scenarios
+* Consulting with experts in the field to gain a comprehensive perspective on risk probabilities and impacts
+* Utilizing risk assessment tools or software for a more data-driven analysis
+
+##### Internal risk assessment is an important part of addressing all risks
+
+
+
+</div>
+
 <a id="sec-mitigations-tech-stack"></a>
+
 ### Technology Stack
+
+In a nutshell: technology needs to serve the business goal, not the other way around.
+
+To ensure this happens, it is important to consider both the business goals, and the available technology, and then use appropriate technology to meet those goals.
 
 #### Local Anti-Slashing Database
 
-
-
-To avoid double signing, validators maintain a history of messages they signed, usually stored in of a database.
-In some cases, this feature is enabled by an external web3signer. The maintenance and protection of this database is crucial, as inconsistencies in this database may cause a double-signing event. The following items need to be in place:
-
-* Persistence of anti-slashing database: Ensure that a persistent, not a temporary storage is used for the anti-slashing database.
-* Assurance that slashing databases are connected and interacting properly.
-* Protection against deletion of information, or the database itself.
+To avoid double signing, validators can maintain a history of messages they signed.
+This data is crucial, as inconsistencies can cause a double-signing event.
+The data needs to be reliably persistent, and properly connected to the systems that use it.
 
 <div class="info">
 
@@ -924,30 +841,22 @@ In some cases, this feature is enabled by an external web3signer. The maintenanc
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3)
 </div>
 
-#### Doppelgänger Protection
+#### Signature Management
 
-While there are multiple measures possible to be taken to avoid two validator running with the same signing keys, one can also employ technologies that detect and prevent two validators running at the same time. This can be done using monitoring and alert systems, robust StatefulSet handling in Kubernetes to ensure no two containers with the same keys run at the same time, or pre-defined tools such as [DoppelBuster](https://github.com/SimplyStaking/DoppelBuster).
+Tools that manage signatures for transactions generally provide a workflow that includes passive and active protection against a variety of risks.
+Using these tools helps minimise the chances that a signature is given without checking what is being signed, and that risk-bearing transactions require
+appropriate authorization.
 
-<div class="info">
+Properly configured signature management tools also provide the ability to recover, or mitigate any problems, in the case where a transaction was not completed.
 
-##### Doppelgänger protection helps address the following risks
+As well as the use of various kind of "<dfn id="def-multi-sig">multi-sig</dfn>", which can include simple requirements for multiple signatures,
+or incorporate such techniques as multi-part compute ("MPC") or the like, signature management tools can include automated verification steps in the process of authorizing a transaction.
 
-* [SLS2](#risk-sls-2)
-</div>
-
-#### Use of a Web3Signer
-
-The main benefit of the use of Web3 signers is to have a service that is focused on the signing task directly, and comes with protection mechanisms.
-
-Similar to the anti-slashing database, whenever used, a web3signer needs to be
-
-* Connected to a storage system (such as a database), and it needs to be ensured that it is always connected.
-* Ensured that they are not accidentally terminated.
-* Ensured that the failover is using the same web3signer
+Tools such as Web3Signer and Dirk help manage signatures securely, when properly used.
 
 <div class="info">
 
-##### Use of a Web3Signer helps address the following risks
+##### Signature management helps address the following risks
 
 * [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
 * [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
@@ -955,7 +864,14 @@ Similar to the anti-slashing database, whenever used, a web3signer needs to be
 
 #### Client Diversity
 
-Maintain a diverse set of clients for different protocols, in order to reduce blast radius in case one of the clients appears to have a protocol error or other bug. In some cases, migrate keys to different clients in case of a specific client error observed, such as startup issues after controlled update or bug in the latest version of the chosen client.
+A diverse set of clients for different protocols can reduce "blast radius" in a case where one client has a protocol error or other bug.
+The most common scenario for this being realized is likely when an upgrade introduces a problem.
+The ability to migrate relevant keys to a different client, if a specific client error is observed, provides an important layer of protection.
+In addition, maintaining client diversity helps ensure that the network as a whole does so,
+ideally providing real protection against a vulnerability present in a single version of a single client by ensuring that particular version is not able to dominate the network.
+
+Note that there are often a different range of clients available at different levels of the infrastructe.
+For example in Ethereum, it is possible to run different clients on each of the Execution and Consensus layers, and indeed best practice is to do so.
 
 <div class="info">
 
@@ -1001,7 +917,7 @@ and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh
 
 In this way, everything is audited, and anomaly detection can be activated for those vaults.
 
-Using multi-sig wallets, requiring authorization from multiple parties for specific actions, helps to ensure both that relevant access is monitored and that it is correctly controlled.
+Using multi-sig wallets requiring authorization from multiple parties for specific actions, helps to ensure both that relevant access is monitored and that it is correctly controlled.
 
 <div class="info">
 
@@ -1064,7 +980,7 @@ but it is widely considered a good practise to require periodic key rotation to 
 
 Keys to rotate include, but are not limited to:
 
-* The Postgres database used by Web3Signer
+* Keys used by signature management tools
 * The vault itself
 * Any SSH keys
 * Any API keys for your cloud infrastructure
@@ -1079,7 +995,7 @@ Keys to rotate include, but are not limited to:
 
 #### Operational Information Management
 
-Node operators are likely to  rely on a wide range of operational information,
+Node operators are likely to rely on a wide range of operational information,
 including internal procedures, understanding software configurations, plans for future development, and employee management.
 
 Best practise includes ensuring there is no single point of failure due to centralized information being held by a single external provider
@@ -1125,13 +1041,11 @@ and the ability to perform specific tasks, such as getting answers to requests.
 
 Three pillars of Access Control need to be considered:
 
-* Authentication: Ensure that no service accepts requests without some form of authentication.
-* Authorization: Clearly define who can read/write/update/delete resources. Ideally, this is not done on a per-user basis, but on a per-role basis.
-* Audit: Ensure that all access is logged so that you can alert on anomalies. This is particularly important for login failures.
+* Authentication: Best practise is to ensure that no service accepts requests without some form of authentication.
+* Authorization: Clear definitions of who can read/write/update/delete resources. Ideally, this is not done on a per-user basis, but on a per-role basis.
+* Audit: Logging access enables detecetion of anomalies. This is particularly important for login failures.
 
-It is important that every piece of the infrastructure is secured from unauthenticated and unauthorized access.
-
-A core principle to follow in granting authorization is [**least privilege**](#def-least-privilege). This is usually achieved by using [role-based access control](#rbac).
+A core principle to follow in granting authorization is [**least privilege**](#def-least-privilege). This is usually achieved by using some form of [role-based access control](#rbac).
 
 COSO Principles:
 1. Keep an inventory of information assets
@@ -1141,22 +1055,16 @@ COSO Principles:
 5. Manage Points of Access — Access to nodes inside the segmented area need to be controlled with authentication and authorization methods.
 6. Proper credentials management for infrastructure software — A clear definition of each credential life-time is established and enforced.
 
-
-Special considerations:
-
-* Disable meta-data serving through public endpoints (like what server is running in what version).
-* Limit the outbound traffic of a node that runs a certain service.
-* Apply rate limits to ensure that internal services cannot unintentionally DDos each other.
-* Where possible apply the use of authentication tokens that have a limited lifetime.
-
-
-
 **Examples for best practices:**
 
 * Creation and continuous analysis of Software Bill of Materials [SBOM](#ref-sbom).
 * Use of Clients, roles and groups when using [AWS IAM](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html).
 * Have an internal virtual private network and only have well-defined endpoints be accessible from the web.
 * Use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) mechanism.
+* Disable meta-data serving through public endpoints (like what server is running in what version).
+* Limit the outbound traffic of a node that runs a certain service.
+* Apply rate limits to ensure that internal services cannot unintentionally DDos each other.
+* Where possible apply the use of authentication tokens that have a limited lifetime.
 
 <div class="info">
 
@@ -1175,24 +1083,21 @@ Special considerations:
 
 The core of <dfn id="def-least-privilege">Least Privilege</dfn> is that access is only granted to those who need it, and only for as long as it is relevant. This means that an individual user's privileges are likely to change over time, and in particular any offboarding process includes a rapid revocation of user's assigned roles.
 
-Almost all Least Privilege implementation is managed through role-based access control, where a set of roles are defined according to the tasks they need to perform.
-Access rights are then based on holding a particular role,
-with individual users assigned relevant roles that are revoked or deliberately renewed on a timely basis, to ensure that they can fulfil their designated tasks
+Almost all Least Privilege implementation is managed through <dfn id="def-rbac">Role-based Access Control</dfn> (commonly known as "<abbr>RBAC</abbr>"), where a set of roles are defined according to the tasks they need to perform,
+and access rights are based on holding a particular role,
+with individual users assigned relevant roles that are revoked or deliberately renewed on a timely basis.
+It is important to ensure that individuals can fulfil their designated tasks,
 without having authorizations they do not need.
 
-Main outline from the COSO principles:
-
-1. Creates or Modifies Access — Processes are in place to create or modify access.
-2. Quick removal of access when needed
-3. Use Role-based access control (RBAC)
-4. Review of roles and permissions on a regular basis.
 
 **Example best practices:**
 
+* Assignation and revocation of roles needs to be efficient and rapid
 * Disable privilege escalation mechanisms ([like executing as root user inside a Docker container](https://docs.docker.com/engine/reference/commandline/container_exec/), `docker exec -uroot`)
-* [Impersonation mechanisms need to be audited (if it is enabled).](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc)* Credentials rotation needs to be in place to ensure that there is no interruption in the service when it is done.
+* [Impersonation mechanisms need to be audited (if it is enabled).](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc)
+* Credentials rotation needs to be in place to ensure that there is no interruption in the service when it is done.
 * Off-boarding of a terminated employee does not take more than an hour. Ideally, one would only disable them inside a single-sign-on service such as [Cognito](https://aws.amazon.com/cognito/) or [Keycloak](https://www.keycloak.org).
-* Tools need to be in place to analyze the permissions of certain users/programs and determine if these are too wide.
+* Review of roles and permissions on a regular basis for both users and programs, to determine if these are too narrow or wide.
 * Use of roles on the API endpoint level to determine the correct authorization.
 * [Webserver authentication configuration of Microsoft IIS servers.](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/) Observe how different authentication methods are possible to be set there. `anonymousAuthentication` would allow anyone to access as `anonymous`, which is rarely the intention except for the starting page. `basicAuthentication` is better than nothing, but makes user management not scalable. `clientCertificateMappingAuthentication` and `digestAuthentication` are the better ways to also implement RBAC.
 
@@ -1496,8 +1401,6 @@ Use separate tests and staging environments
 
 This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first, and then roll it out in a staged fashion. If it causes some slashing event, it is then contained to the few nodes that it was rolled out to.
 
-
-
 <div class="info">
 
 ##### Pre-deployment testing helps address the following risks
@@ -1523,7 +1426,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 
 Human error is always a risk. An automated script, whether or not invoked by a human, can help minimise indavertent errors.
 
-Another benefit of properly set up automation is to reduce the risk of exposing secrets.
+Another benefit of properly set up automation is that it can help reduce the risk of exposing secrets.
 
 When correctly configured pipelines and job-mechanisms such as GitHub Actions, Apache Airflow, or Apache Nifi can significantly reduce the potential for inadvertent errors to create problems
 
@@ -1615,6 +1518,18 @@ such as 2FA configuration or VPNs.
 * **Peering Connectivity:** Monitor both internal and external network peering connectivity.
 * **Firewall Configuration and Metrics:** Keep an eye on firewall configuration changes or unexpected increases in drop metrics.
 
+#### Doppelgänger Protection
+
+Detecting that two validators with the same identifiers are running at the same time is important, to shut one down as fast as possible. This can be done using monitoring and alert systems, robust StatefulSet handling in Kubernetes to ensure no two containers with the same keys run at the same time, or pre-defined tools such as [DoppelBuster](https://github.com/SimplyStaking/DoppelBuster).
+
+<div class="info">
+
+##### Doppelgänger protection helps address the following risks
+
+* [SLS2](#risk-sls-2)
+</div>
+
+
 #### Cloud and Infrastructure
 
 * **Cloud Monitoring Solutions:** Utilize cloud monitoring solutions to keep track of uptime and internal issues.
@@ -1665,19 +1580,10 @@ Best practices for Incident response plans include
 - Identify relevant Stakeholders and define communication strategies for both internal and external communications
 
 <a id="sec-mitigations-response"></a>
-#### Identify and Respond to Security Incidents
+#### Identifying and Responding to Security Incidents
 
-Main outline from the COSO principles:
-
-* Assigns Roles and Responsibilities in case of a security event.
-* Contains Security Incidents — Ideally incidents can be contained within a short period of time.
-* Communication protocols are in place to inform affected parties.
-* Vulnerabilities need to be identified.
-* Have a proper incident response plan in place, and review it periodically.
-* Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
-* Evaluate the identification of and response to incidents on a regular basis.
-
-
+There are several ways to identify that a security incident is taking place. Best practice is to have extensive monitoring in place, to identify anomalies early,
+with alerting and potentially direct reaction mechanisms. Although learning from third-party discussions is a terrible way to find out about an incident, it is still better than simply not discovering it, so monitoring channels where such discussions take place is a valuable part of an overall strategy.
 
 **Examples for best practices:**
 
@@ -1697,13 +1603,10 @@ Main outline from the COSO principles:
 #### Analyze Security Events and Learn from Them
 
 This is often referred to as a "<dfn id="def-post-mortem">Post-Mortem</dfn>",
-and is used to learn from the event and improve relevant Incident Response Plans
+used to learn from the event and improve relevant Incident Response Plans.
 
-Main outline from the COSO principles:
-
-* Develops and Implements Procedures to Analyze Security Incidents.
-* Whenever possible, determine the root cause.
-* Implement necessary changes to prevent similar disasters.
+Best practices are to determine the root cause or causes of an incident, examine how the incident was allowed to occur,
+and consider what changes can be implemented to prevent or mitigate similar events from occurring.
 
 <div class="info">
 
@@ -1719,19 +1622,13 @@ Main outline from the COSO principles:
 A Disaster Recovery Plan is an Incident Response Plan that gives guidance on recovering one or more information systems at an alternate facility,
 in response to a major hardware or software failure including the partial or complete destruction of facilities.
 
-Best practices include maintaining copies of production environments to enable fast restoration.
+Best practices include maintaining secured up-to-date copies of production environments to enable fast restoration.
 
 <div class="info">
 Sample Disaster Recovery Plan templates:
 
 * [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 * [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
-
-COSO principles:
-
-* Quick restoration of affected environments.
-* Whenever possible, determine the root cause.
-* Implement necessary changes to prevent similar disasters.
 
 ##### Disaster recovery plans help address the following risks:
 
@@ -1794,6 +1691,83 @@ Some of these control criteria correspond to similar controls from at least thre
 * [SOC2](#soc2)
 
 Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
+
+<a id="sec-controls-risk-management"></a>
+### Controls for Risk Management
+
+#### Ensure Activities Support Operational Goals
+
+Node Operators MUST document how their processes and tools serve their business goals
+
+##### External Controls for aligning processes and tools with business goals
+
+* [[SOC2](#ref-soc2)] CC 5.2
+
+<div class="info">
+
+#### Assessment of activities' relevance helps address the following risks
+
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS16](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
+* [DOW16](#risk-dow-16), [DOW18](#risk-dow-18)
+* [GIR5](#risk-gir-5)
+</div>
+
+#### Document Risk Assessments
+
+Node Operators MUST document their assessments of risks, and what risks they class as acceptable
+
+##### External controls for risk assessment
+
+* [[SOC2](#ref-soc2)] CC 3.1
+
+<div class="info">
+
+##### Internal risk assessment is an important part of addressing all risks
+
+</div>
+
+#### Process Controls
+
+Node Operators MUST ensure that processes for risk mitigation are followed in practice
+
+### Controls for Technology Stack
+
+#### Anti-slashing Database
+
+Node Operators MUST have a persistent local anti-slashing database
+
+##### A local anti-slashing database helps address the following risks
+
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3)
+
+#### Signature management
+
+Node Operators MUST document signature requirements for high-value transactions, including the definitions used to identify such transactions.
+
+Node Operators SHOULD use signature management tools to help secure high-value transactions.
+
+The primary and backup/failover versions of Signature management tools MUST implement mechanisms to ensure data continuity
+
+##### Signature management helps address the following risks
+
+* [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
+* [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
+
+#### Distributed Validator Technology
+
+Node Operators SHOULD implement some for of DVT
+
+#### Client Diversity
+
+Node Operators MUST deploy at least 2 distinct client applications for any level of the blockchain where at least 3 clients are available.
+
+#### Secure Devices
+
+Devices that control critical functions MUST be dedicated to that purpose, and configured with only the necessary software for their intended purpose
+
+#### Validator Withdrawal
+
+Node Operators MUST implement processes to withdraw validators from a network in such a way that they are not penalised for disappearing
 
 
 #### Manage Software and Hardware Configuration
@@ -1996,7 +1970,7 @@ All data in transit MUST be encrypted, and SHOULD use the most direct transmissi
 This covers all services that communicate data, such as Databases, Web servers, Load balancers, Authentication systems, CI/CD pipeline tools, etc.
 Best practices include ensuring that the latest version of TLS is being used, with secure algorithms.
 
-##### Relevant Risks
+##### Risks that data encryption can help mitigate:
 
 * [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13)
 * [DOW18](#risk-dow-18)
@@ -2016,9 +1990,22 @@ COSO principles:
 
 ### Controls for Automated Monitoring
 
-Risks that Automated Monitoring can help mitigate:
 
-* [DOW1](#risk-dow-1)
+##### Risks that Automated Monitoring can help mitigate:
+
+* [SLS16](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
+* [DOW1](#risk-dow-1), [DOW10](#risk-dow-10), [DOW18](#risk-dow-18)
+* [GIR10](#risk-gir-10)
+* [KEC1](#risk-kec-1), [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
+
+#### Log and Analyze Network Traffic
+
+Node Operators MUST log network traffic, and analyze the logs for anomalous behaviour.
+
+##### Relevant risks for Traffic Log Analysis
+
+- SLS 8-9, SLS 10, SLS 11-13, SLS 14-15
+- [DOW1](#risk-dow-1)
 
 #### Log privileged access
 
@@ -2304,32 +2291,8 @@ Service agreements MUST specify termination procedures and obligations
 
 
 
-### Control activities to achieve operational goals
 
 
-
-### Network services
-
-Main outline of the Information security controls reference:
-
-* Any traffic needs to be monitored, analyzed and potentially alerted on.
-
-**References:**
-
-* [[ISO 27001](#ref-iso-27001)] Annex A 8.21
-
-**Examples for best practices:**
-
-* Segmentation of networks using security groups and subnets.
-* Encryption in transit should always be enabled.
-* Use and enforcement of IP whitelists
-
-<div class="info">
-
-#### Network management helps address the following risks
-
-* [DOW10](#risk-dow-10)
-</div>
 
 
 <section id="sec-communications-strategy">
