@@ -1,4 +1,4 @@
-[[ISO 27001](#ref-iso-27001)] # ValOS
+# ValOS
 
 Copyright© 2025, Lido Foundation. This document may be used, modified, copied and distributed under the terms of the [Apache 2 License](./LICENSE).
 
@@ -16,7 +16,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 <dd>This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
 
-<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella S, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven, Lucas
+<br>Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Oriol Padilla, Gabriella S, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven, Lucas
 
 <br>(This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
 </dd>
