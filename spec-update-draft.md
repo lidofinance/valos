@@ -1844,7 +1844,7 @@ Best practice is to use a documentation management system. While this is likely 
 
 #### Authentication required for services
 
-<b id="req-appropriate-authentication">All services MUST require appropriate authentication privileges.
+<b id="req-appropriate-authentication">All services MUST require appropriate authentication privileges</b>
 
 For example, a Node does not respond to anonymous requests from an unknown user.
 
