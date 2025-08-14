@@ -52,7 +52,6 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
   - [General Infrastructure Risk](#general-infrastructure-risk)
   - [Service Partner Specific Risk](#service-partner-specific-risk)
   - [Reputational Risk](#reputational-risk)
-- [Review and Audit Procedures](#review-and-audit-procedures)
 - [Mitigation Strategies](#mitigation-strategies)
   - [Risk Management](#sec-mitigations-risk=management)
   - [Technology Stack](#sec-mitigations-tech-stack)
@@ -2212,7 +2211,7 @@ This requirement includes internal and external communication, both during and a
 
 #### Verify Counterparty Compliance
 
-<b id="req-verify-3rdparty-compliance">Node Operators MUST verify that third parties providing services, or with whom the Node Operator contracts, 
+<b id="req-verify-3rdparty-compliance">Node Operators MUST verify that third parties providing services, or with whom the Node Operator contracts,
 are in compliance with relevant standards (including this one) and regulations</b>
 
 This includes areas such as the uptime guarantees of cloud providers and other core counterparties,
