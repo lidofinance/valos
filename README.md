@@ -38,7 +38,7 @@ ValOS is being revised over the course of 2025 with a new version expected befor
 
 Proposed updates are accepted (or returned for more work) on a weekly basis. The [spec-update-draft.md](./spec-update-draft.md) in this `main` branch shows the draft specification with all the changes that have been accepted so far.
 
-You can also see the specification as it would appear if curently proposed changes are accepted, by looking in the `advance-staging` branch for [[spec-update-draft.md](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.md]
+You can also see the specification as it would appear if curently proposed changes are accepted, by looking in the `advance-staging` branch for [[spec-update-draft.md](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.md)]
 
 ## How can you contribute?
 
