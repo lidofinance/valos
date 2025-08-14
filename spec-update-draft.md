@@ -7,7 +7,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 <dl>
 <dt>This draft date:</dt>
-<dd>2025-08-01</dd>
+<dd>2025-08-14</dd>
 
 <dt>Version 1 URL:</dt>
 <dd><a href="https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base">https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base</a></dd>
@@ -16,7 +16,8 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 
 <dd>This specification builds on the content developed as the DUCK Knowledge Base, and we gratefully acknowledge the contributions from everyone who developed that. In addition, specific contributions to this version have been made by:
 
-<br>Oriol, Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella S, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven
+<br>Miguel, Ivan Ang, Antonio Bartulovic, Albert Heinle, Sreepriya Kalarikka, Gabriella S, Oriol Padilla, Isidoros P, CK Teo, Julian Ueding, Scott Waller, @dracaryspierce, Sven, Lucas
+
 
 <br>(This list is a work in progress. The editor apologises for any names that have been missed, and requests that you let us know so we can rectify that).
 </dd>
@@ -51,12 +52,9 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
   - [General Infrastructure Risk](#general-infrastructure-risk)
   - [Service Partner Specific Risk](#service-partner-specific-risk)
   - [Reputational Risk](#reputational-risk)
-- [Risk Assessment Procedures](#risk-assessment-procedures)
-  - [Financial Loss](#financial-loss)
-  - [Occurrence Probability](#occurrence-probability)
-  - [Risk Matrix](#risk-matrix)
 - [Review and Audit Procedures](#review-and-audit-procedures)
 - [Mitigation Strategies](#mitigation-strategies)
+  - [Risk Management](#sec-mitigations-risk=management)
   - [Technology Stack](#sec-mitigations-tech-stack)
   - [Information and Secret Management](#secret-management)
   - [Access Management](#sec-mitigations-access-management)
@@ -85,7 +83,7 @@ This specification builds on the DUCK knowledge base as an evolution. In additio
 and an explanation of mitigation strategies that has likewise been updated, it provides a single set of controls - statements of requirement that can be tested,
 to ensure that as far as possible a Node Operator is following the recognised best practices to minimise risk and effectively maximise their returns.
 
-While there are other standards such as AICPA's SOC 2® [SOC2](#soc2) or ISO's 27001 standard [ISO27001](#iso27001) that can be applied to Node Operators,
+While there are other standards such as AICPA's SOC 2® [[SOC2](#ref-soc2)] or ISO's 27001 standard [[ISO27001](#ref-iso27001)] that can be applied to Node Operators,
 they often include more general requirements than this specification, reflecting a broader scope.
 
 The relevant controls from several such standards are explicitly linked to the controls in this specification. The purpose of this is twofold:
@@ -746,154 +744,9 @@ Risk related to running specific services.
 </tr></tbody></table>
 
 
-## Risk Assessment Procedures
-
-This Risk Assessment Procedure provides a systematic approach for Ethereum
-node operators to assess the financial loss and the probability for each
-identified scenario.
-
-### Financial Loss
-
-First, it is important to assess the likely financial loss for any given risk scenario.
-
-#### Direct Monetary Losses from a Slashing Event
-Assess the losses directly linked to the slashing event. This can include:
-
-* Direct slashing penalty due to double signing (currently 1 ETH)
-* "Correlated slashing penalty" occurs 18 days after the initial slashing
-* Slashing leads to validator downtime until the slashed validator is exited
-* Missed rewards
-* Possible recoveries from insurance payments
 
 
-
-
-#### Direct Monetary Losses from a Downtime Event
-Assess the losses directly from the downtime event. This can include:
-
-* Downtime penalties until the validator is exited
-* Missed rewards
-* Possible recoveries from insurance payments
-
-#### Reputational Risks
-Determine the monetary loss from reputational damage. This includes:
-
-* Reduction in earnings due to the depletion of presently staked assets
-* Loss of anticipated earnings due to the diminishment of future staked assets
-
-#### Losses from the Event Investigation
-Indirect losses can arise from the investigation of the slashing or downtime event. This can include:
-
-* Costs associated with conducting an internal investigation
-* Expenses for external investigative services
-* Replacement or upgrading of hardware and software
-
-#### Legal Disputes and Liabilities
-Additional costs can come from legal disputes and liabilities. This can include:
-
-* Obligation for slashing or downtime events as stated in Service Level Agreements
-* Expenses for legal dispute settlement and court fees to address or defend against liabilities
-* Costs associated with legal consultation and advisory services
-* Possible insurance payments (e.g. for legal defence costs)
-
-
-
-### Occurrence Probability
-
-Assign a likelihood of occurrence and estimate the potential financial impact for each risk identified. This approach considers the specific operational context of the node operator and requires the node operator to tailor the assessment to its unique risk exposure, and vulnerabilities and to take the mitigation strategies into account. This process can be informed by:
-
-* Analyzing historical data to understand past trends and incidents (external, internal incidents, and near-miss incidents)
-* Reviewing industry reports for insights into common risks and their fiscal consequences in similar scenarios
-* Consulting with experts in the field to gain a comprehensive perspective on risk probabilities and impacts
-* Utilizing risk assessment tools or software for a more data-driven analysis
-* Analyze the Mean Time to Repair (MTTR, The average time it takes to fully restore a system or service after a failure or security incident) in case of a downtime under different scenarios.
-
-
-
-### Risk Matrix
-
-Create a risk matrix to visually categorize risks based on their severity and likelihood. This helps in prioritizing which risks need more immediate attention. This process can be performed before and after the identified mitigation and controls are in place to visualize the effect of these strategies.
-
-## Review and Audit Procedures
-
-### Introduction
-
-This document provides a guide for Ethereum node operators on the best practices for conducting IT security-related reviews and audits. It aims to ensure the security, efficiency, and compliance of the node operations within the Ethereum network.
-
-See also the NIST Technical Guide to Information Security Testing and Assessment [NIST-800-115](#ref-nist-800-115).
-
-#### Internal Reviews vs External Audits
-
-##### Internal Reviews:
-
-* **Purpose:** To conduct self-assessments of the node's operation and management
-* **Process:** Conducted by the node's operating team using internal checklists and monitoring tools
-* **Benefits:** Quick identification and rectification of operational issues and continuous improvement at a low cost
-
-##### External Audits:
-
-* **Purpose:** To provide an independent assessment of the node's operation and compliance
-* **Process:** Conducted by third-party experts or audit firms specializing in blockchain technology and IT security
-* **Benefits:** Provides credibility, helps in identifying blind spots in internal reviews, and ensures compliance with industry standards
-
-### Types of Audit
-
-#### Infrastructure Audits:
-
-* **Purpose:** To identify vulnerabilities, ensure alignment with best practices, and ensure that the node is secure from internal and external threats
-* **Key Areas:** Examples are network access points security, patching, set-up of the failover system, back-up, access management, slashing protection, key management and data encryption
-
-#### Smart Contract Security Audits:
-
-* **Purpose:** To identify vulnerabilities in the smart contracts developed by the node operator
-* **Key Areas:** Examples are Smart Contract security audit or deployment audit
-
-#### Compliance Audits:
-
-* **Purpose:** To verify adherence to regulatory requirements and Ethereum network standards
-* **Key Areas:** Validate node's alignment with Ethereum's protocol updates and adherence to legal regulations concerning cryptocurrency operations (e.g. OFAC MEV compliance and KYC compliance)
-
-#### Performance Audits:
-
-* **Purpose:** To assess the efficiency and stability of the node
-* **Key Areas:** Block propagation time, transaction processing speed, uptime metrics, and resource utilization (such as CPU and memory usage)
-
-### When to Perform Audits
-
-#### Regularly-Scheduled Audits:
-
-* **Frequency:** Conducting audits regularly ensures consistent security. Regular audits are required as security standards change over time and new vulnerabilities and attack vectors are published.
-* **Scope:** These audits should encompass all types of audits mentioned under section 2.
-
-#### Event-Triggered Audits:
-
-* **Triggers:** Perform audits in response to specific events such as network upgrades (hard forks), security breaches, updates of the smart contract, compliance events,  performance issues, or major infrastructure updates.
-* **Focus:** These audits should primarily assess the impact of the event on your node's operation and security.
-
-### General Suggestions for Internal Audit
-
-#### Responsible Person:
-
-* Assign a dedicated team or individual responsible for conducting and overseeing the audit process.
-* This role includes planning, executing, and following up on audit findings.
-
-#### Well-defined Checklist:
-
-* **Internal Audit Checklist:** Develop a comprehensive list covering all aspects of node operation, including security, performance, and compliance. This checklist should be regularly updated to reflect changes in technology and regulations. This checklist should be created with input from the internal team and, if possible, checklists from external sources.
-* **External Audit Checklist:** For external audits, prepare a list that includes areas for external verification.
-
-#### Documentation Approach:
-
-* Establish a systematic approach for documenting the audit process.
-* This should include the responsible person, types and dates of audits having been conducted, audit reports, methods used conducting the audit, scope of the audit and audit vendor.
-
-#### Documentation of Results:
-
-* Create a structured format for reporting audit results.
-* This should include detailed findings, recommendations, and any corrective actions taken.
-* Ensure that these reports are accessible to relevant stakeholders for review and follow-up.
-
-## Mitigation Strategies
+## Risk Mitigation Strategies
 
 The Mitigation Strategies section serves as a go-to resource for node operators,
 providing actionable insights and mitigation options to enhance the security, reliability, and efficiency of their operations.
@@ -902,73 +755,129 @@ Most of the best practices that optimize up-time, access control and general sta
 However, there are a few risks that are very specific to running a node-operator, and to mitigate them,
 higher levels of process segregation need to be achieved.
 
+<a id="sec-mitigations-risk-management"></a>
+
+### Risk Management
+
+A core principle for mitigating risks is to actively identify and manage the risks.
+This means understanding the particular risks, and the likelihood of something going wrong and the likely impact if that does occur.
+That information enables a Node Operator to decide what level of risk is reasonable and how to prioritise available resources to mitigate risk.
+Risk management decisions need to take into account any regulation that obliges a Node Operator to meet specific benchmarks or implement specific mitigation strategies
+or other activities.
+
+A first step for effective risk management is to document the potential risks, as well as the tools and processes currently in place.
+Documentation needs to include an assessment of the relevant risks, what is acceptable,
+and how each process or infrastructure component contributes to and protects against risks.
+
+This enables Node Operators to identify activities that are not contributing to the business, or that actually increase the potential risks they face.
+The accuracy, availability and completeness of this information is of crucial import.
+
+Best practices include:
+
+* Identify relevant staff and others responsible for identifying, assessing, and determining how to manage risks
+* Ensure that every service, where possible, is configuration hardened using common benchmarks such as [CIS](https://www.cisecurity.org).
+* Analyze each component in your infrastructure environment in terms of security, availability, processing integrity, confidentiality and privacy.
+* Outline directly which risks are a high priority, and which ones are more acceptable, and the scenarios where it applies. For example, downtime comes only with an opportunity cost for ETH stakers, but may cause a slashing event in Polkadot.
+
+#### Assessing risks
+
+A standard industry approach to assessing risks is to consider the probability of an event occurring and the likely impact of that event.
+
+If these are ranked on a linear numerical scale (e.g. probability between 0 and 1), and an approximate overall financial impact, they can be multiplied,
+provide a ranking for priority of mitigating each risk.
+
+Since the cost of risk mitigation varies considerably, the overall priority for addressing risk, or deciding that a given level of risk is acceptable,
+generally depends on comparing the risk ranking with the cost of mitigation, and available resources.
+
+##### Assessing Finanacial Impact
+
+There are a number of factors to take into account when assessing the overall financial impact of a given risk, with the direct cost incurred as the most obvious.
+It is important to understand the time required to mitigate the impact of an event, and the cost that will be incurred over that time.
+
+An incident can incur a variety of costs in terms of employee time spent managing the incident, communication, and follow-up,
+new mitigations implemented to mitigate concrete or reputational damage such as replacement or additional infrastructure,
+as well as potential costs of compensation or legal costs.
+
+It is also useful to consider opportunity costs such as reputational damage, or competitors taking advantage of an incident to promote themselves as a better alternative.
+
+##### Assessing Incident Probability
+
+Predicting the likelihood of an unexpected future event is generally difficult, and results are unlikely to precisely match the predictions.
+Nevertheless it is important to consider the context of a specific operation and attempt accurate predictions.
+
+There are best practices to do this effectively:
+
+* Analyzing historical data to understand past trends and incidents (external, internal incidents, and near-miss incidents)
+* Reviewing industry reports for insights into common risks and their fiscal consequences in similar scenarios
+* Consulting with experts in the field to gain a comprehensive perspective on risk probabilities and impacts
+* Utilizing risk assessment tools or software for a more data-driven analysis
+
+##### Internal risk assessment is an important part of addressing all risks
+
+
+
+</div>
+
+
 <a id="sec-mitigations-tech-stack"></a>
+
 ### Technology Stack
+
+In a nutshell: technology needs to serve the business goal, not the other way around.
+
+To ensure this happens, it is important to consider both the business goals, and the available technology, and then use appropriate technology to meet those goals.
 
 #### Local Anti-Slashing Database
 
-
-To avoid double signing, validators maintain a history of messages they signed, usually stored in of a database.
-In some cases, this feature is enabled by an external web3signer. The maintenance and protection of this database is crucial, as inconsistencies in this database may cause a double-signing event. The following items need to be in place:
-
-* Persistence of anti-slashing database: Ensure that a persistent, not a temporary storage is used for the anti-slashing database.
-* Assurance that slashing databases are connected and interacting properly.
-* Protection against deletion of information, or the database itself.
+To avoid double signing, validators can maintain a history of messages they signed.
+This data is crucial, as inconsistencies can cause a double-signing event.
+The data needs to be reliably persistent, and properly connected to the systems that use it.
 
 <div class="info">
 
 ##### A local anti-slashing database helps address the following risks
 
-* [SLS1](#risk-sls-1)
-* [SLS2](#risk-sls-2)
-* [SLS3](#risk-sls-3)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3)
 </div>
 
-#### Doppelgänger Protection
+#### Signature Management
 
-While there are multiple measures possible to be taken to avoid two validator running with the same signing keys, one can also employ technologies that detect and prevent two validators running at the same time. This can be done using monitoring and alert systems, robust StatefulSet handling in Kubernetes to ensure no two containers with the same keys run at the same time, or pre-defined tools such as [DoppelBuster](https://github.com/SimplyStaking/DoppelBuster).
+Tools that manage signatures for transactions generally provide a workflow that includes passive and active protection against a variety of risks.
+Using these tools helps minimise the chances that a signature is given without checking what is being signed, and that risk-bearing transactions require
+appropriate authorization.
+
+Properly configured signature management tools also provide the ability to recover, or mitigate any problems, in the case where a transaction was not completed.
+
+As well as the use of various kind of "<dfn id="def-multi-sig">multi-sig</dfn>", which can include simple requirements for multiple signatures,
+or incorporate such techniques as multi-part compute ("MPC") or the like, signature management tools can include automated verification steps in the process of authorizing a transaction.
+
+Tools such as Web3Signer and Dirk help manage signatures securely, when properly used.
 
 <div class="info">
 
-##### Doppelgänger protection helps address the following risks
+##### Signature management helps address the following risks
 
-* [SLS2](#risk-sls-2)
-</div>
-
-#### Use of a Web3Signer
-
-The main benefit of the use of Web3 signers is to have a service that is focused on the signing task directly, and comes with protection mechanisms.
-
-Similar to the anti-slashing database, whenever used, a web3signer needs to be
-
-* Connected to a storage system (such as a database), and it needs to be ensured that it is always connected.
-* Ensured that they are not accidentally terminated.
-* Ensured that the failover is using the same web3signer
-
-<div class="info">
-
-##### Use of a Web3Signer helps address the following risks
-
-* [SLS2](#risk-sls-2)
-* [SLS3](#risk-sls-3)
-* [SLS14](#risk-sls-14)
-* [SLS15](#risk-sls-15)
-* [KEC5](#risk-kec-5)
-* [KEC6](#risk-kec-6)
+* [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
+* [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
 </div>
 
 #### Client Diversity
 
-Maintain a diverse set of clients for different protocols, in order to reduce blast radius in case one of the clients appears to have a protocol error or other bug. In some cases, migrate keys to different clients in case of a specific client error observed, such as startup issues after controlled update or bug in the latest version of the chosen client.
+A diverse set of clients for different protocols can reduce "blast radius" in a case where one client has a protocol error or other bug.
+The most common scenario for this being realized is likely when an upgrade introduces a problem.
+The ability to migrate relevant keys to a different client, if a specific client error is observed, provides an important layer of protection.
+In addition, maintaining client diversity helps ensure that the network as a whole does so,
+ideally providing real protection against a vulnerability present in a single version of a single client by ensuring that particular version is not able to dominate the network.
+
+Note that there are often a different range of clients available at different levels of the infrastructe.
+For example in Ethereum, it is possible to run different clients on each of the Execution and Consensus layers, and indeed best practice is to do so.
 
 <div class="info">
 
 ##### Client diversity helps address the following risks
 
-* [SLS6](#risk-sls-6)
-* [SLS7](#risk-sls-7)
-* [DOW2](#risk-dow-2)
-* [DOW19](#risk-dow-19)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
+* [DOW2](#risk-dow-2), [DOW19](#risk-dow-19)
 </div>
 
 #### Distributed Validator Technology (DVT)
@@ -979,14 +888,8 @@ In order to avoid the single-point of failure problem for a node-validator witho
 
 ##### DVT helps address the following risks
 
-* [SLS1](#risk-sls-1)
-* [SLS14](#risk-sls-14)
-* [SLS15](#risk-sls-15)
-* [KEC2](#risk-kec-2)
-* [KEC3](#risk-kec-3)
-* [KEC4](#risk-kec-4)
-* [KEC5](#risk-kec-5)
-* [KEC6](#risk-kec-6)
+* [SLS1](#risk-sls-1), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
+* [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
 </div>
 
 #### Lido-specific: Handling of Delinquent State
@@ -1013,26 +916,18 @@ and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh
 
 In this way, everything is audited, and anomaly detection can be activated for those vaults.
 
-Using multi-sig wallets, requiring authorization from multiple parties for specific actions, helps to ensure both that relevant access is monitored and that it is correctly controlled.
+Using multi-sig wallets requiring authorization from multiple parties for specific actions, helps to ensure both that relevant access is monitored and that it is correctly controlled.
 
 <div class="info">
 
-#### Secret access management helps address the following risks
+##### Secret access management helps address the following risks
 
 * [SLS5](#risk-sls-5)
-* [KEC1](#risk-kec-1)
-* [KEC3](#risk-kec-2)
-* [KEC2](#risk-kec-3)
-* [KEC4](#risk-kec-4)
-* [KEC6](#risk-kec-6)
-* [KEC8](#risk-kec-8)
-* [KEC9](#risk-kec-9)
-* [KEC10](#risk-kec-10)
-* [KEC11](#risk-kec-11)
+* [KEC1](#risk-kec-1), [KEC3](#risk-kec-2), [KEC2](#risk-kec-3), [KEC4](#risk-kec-4), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
 * [GIR25](#risk-gir-25)
 </div>
 
-#### Encryption of Data
+#### Encrypted Data
 
 Many different components interplay while a staking operation is going on.
 If confidential information is not protected by encryption, it can be intercepted and read during transmission.
@@ -1042,7 +937,7 @@ It is therefore crucial to ensure that confidential data is only stored and tran
 
 <div class="info">
 
-#### Data encryption helps address the following risks
+##### Data encryption helps address the following risks
 
 * [SLS8](#risk-sls-8)
 * [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11), [GIR10](#risk-GIR-10)
@@ -1055,7 +950,7 @@ by making it more difficult for malicious entities to access the information and
 
 <div class="info">
 
-#### Cold storage helps address the following risks
+##### Cold storage helps address the following risks
 
 * [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7)
 </div>
@@ -1084,7 +979,7 @@ but it is widely considered a good practise to require periodic key rotation to 
 
 Keys to rotate include, but are not limited to:
 
-* The Postgres database used by Web3Signer
+* Keys used by signature management tools
 * The vault itself
 * Any SSH keys
 * Any API keys for your cloud infrastructure
@@ -1099,7 +994,7 @@ Keys to rotate include, but are not limited to:
 
 #### Operational Information Management
 
-Node operators are likely to  rely on a wide range of operational information,
+Node operators are likely to rely on a wide range of operational information,
 including internal procedures, understanding software configurations, plans for future development, and employee management.
 
 Best practise includes ensuring there is no single point of failure due to centralized information being held by a single external provider
@@ -1121,14 +1016,14 @@ Documentation, even if rarely actively read by those responsible for operations 
 * [SPS0](#risk-sps-0)
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 
-##### Deletion protection
+#### Deletion protection
 
 Loss of important information, in particular keys, can have a crippling impact. It is important to have mechanisms to preotect against, and recover from,
 unintentional or malicious deletion of important data.
 
 Best Practise includes having journaled backups of important information.
 
-#### Deletion Protection helps address the following risks:
+##### Deletion Protection helps address the following risks:
 
 * [FIN7](#risk-fin-7)
 * [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12)
@@ -1143,33 +1038,9 @@ Best Practise includes having journaled backups of important information.
 Access Control covers physical access to devices and facilities, the ability to connect to servers through networks,
 and the ability to perform specific tasks, such as getting answers to requests.
 
-Three pillars of Access Control need to be considered:
+The core principle to follow in granting authorization is [**least privilege**](#def-least-privilege). This is achieved by using some form of [role-based access control](#def-rbac) in combination with an inventory of assets and services, to ensure that only those who need access are granted that access, and that it is revoked as soon as appropriate.
 
-* Authentication: Ensure that no service accepts requests without some form of authentication.
-* Authorization: Clearly define who can read/write/update/delete resources. Ideally, this is not done on a per-user basis, but on a per-role basis.
-* Audit: Ensure that all access is logged so that you can alert on anomalies. This is particularly important for login failures.
-
-It is important that every piece of the infrastructure is secured from unauthenticated and unauthorized access.
-
-A core principle to follow in granting authorization is [**least privilege**](#def-least-privilege). This is usually achieved by using [role-based access control](#rbac).
-
-COSO Principles:
-1. Keep an inventory of information assets
-2. Restrict Logical Access to information assets through the use of access control software and rule sets.
-3. Use sufficiently strong authentication systems.
-4. Network Segmentation — Restrict access to nodes to a minimum set of IPs.
-5. Manage Points of Access — Access to nodes inside the segmented area need to be controlled with authentication and authorization methods.
-6. Proper credentials management for infrastructure software — A clear definition of each credential life-time is established and enforced.
-
-
-Special considerations:
-
-* Disable meta-data serving through public endpoints (like what server is running in what version).
-* Limit the outbound traffic of a node that runs a certain service.
-* Apply rate limits to ensure that internal services cannot unintentionally DDos each other.
-* Where possible apply the use of authentication tokens that have a limited lifetime.
-
-
+Tracking this information is important to ensure that access can be audited and verified.
 
 **Examples for best practices:**
 
@@ -1177,6 +1048,10 @@ Special considerations:
 * Use of Clients, roles and groups when using [AWS IAM](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html).
 * Have an internal virtual private network and only have well-defined endpoints be accessible from the web.
 * Use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) mechanism.
+* Disable meta-data serving through public endpoints (like what server is running in what version).
+* Limit the outbound traffic of a node that runs a certain service.
+* Apply rate limits to ensure that internal services cannot unintentionally DDos each other.
+* Where possible apply the use of authentication tokens that have a limited lifetime.
 
 <div class="info">
 
@@ -1195,24 +1070,21 @@ Special considerations:
 
 The core of <dfn id="def-least-privilege">Least Privilege</dfn> is that access is only granted to those who need it, and only for as long as it is relevant. This means that an individual user's privileges are likely to change over time, and in particular any offboarding process includes a rapid revocation of user's assigned roles.
 
-Almost all Least Privilege implementation is managed through role-based access control, where a set of roles are defined according to the tasks they need to perform.
-Access rights are then based on holding a particular role,
-with individual users assigned relevant roles that are revoked or deliberately renewed on a timely basis, to ensure that they can fulfil their designated tasks
+Almost all Least Privilege implementation is managed through <dfn id="def-rbac">Role-based Access Control</dfn> (commonly known as "<abbr>RBAC</abbr>"), where a set of roles are defined according to the tasks they need to perform,
+and access rights are based on holding a particular role,
+with individual users assigned relevant roles that are revoked or deliberately renewed on a timely basis.
+It is important to ensure that individuals can fulfil their designated tasks,
 without having authorizations they do not need.
 
-Main outline from the COSO principles:
-
-1. Creates or Modifies Access — Processes are in place to create or modify access.
-2. Quick removal of access when needed
-3. Use Role-based access control (RBAC)
-4. Review of roles and permissions on a regular basis.
 
 **Example best practices:**
 
+* Assignation and revocation of roles needs to be efficient and rapid
 * Disable privilege escalation mechanisms ([like executing as root user inside a Docker container](https://docs.docker.com/engine/reference/commandline/container_exec/), `docker exec -uroot`)
-* [Impersonation mechanisms need to be audited (if it is enabled).](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc)* Credentials rotation needs to be in place to ensure that there is no interruption in the service when it is done.
+* [Impersonation mechanisms need to be audited (if it is enabled).](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc)
+* Credentials rotation needs to be in place to ensure that there is no interruption in the service when it is done.
 * Off-boarding of a terminated employee does not take more than an hour. Ideally, one would only disable them inside a single-sign-on service such as [Cognito](https://aws.amazon.com/cognito/) or [Keycloak](https://www.keycloak.org).
-* Tools need to be in place to analyze the permissions of certain users/programs and determine if these are too wide.
+* Review of roles and permissions on a regular basis for both users and programs, to determine if these are too narrow or wide.
 * Use of roles on the API endpoint level to determine the correct authorization.
 * [Webserver authentication configuration of Microsoft IIS servers.](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/) Observe how different authentication methods are possible to be set there. `anonymousAuthentication` would allow anyone to access as `anonymous`, which is rarely the intention except for the starting page. `basicAuthentication` is better than nothing, but makes user management not scalable. `clientCertificateMappingAuthentication` and `digestAuthentication` are the better ways to also implement RBAC.
 
@@ -1354,22 +1226,16 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 #### Secure Development Life Cycle
 
+A secure development lifecycle helps ensure that vulnerabilities are not introduced to codebases, and subsequently deployed.
 
-
-**Examples for best practices:**
-
-* Use of CI/CD pipelines like GitHub Actions
-* Use of Linters
-* Use of enforced review processes
-* Not allowing to directly push to the main branch
+Best practices include the use of auditable version control systems, with thorough testing and authorisation before changes are accepted.
 
 <div class="info">
 
-#### Secure development lifecycle helps address the following risks
+##### Secure development lifecycle helps address the following risks
 
 * [GIR8](#risk-gir-8)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
+* [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
 * [KEC8](#risk-kec-8)
 * [GIR25](#risk-gir-25)
 </div>
@@ -1389,23 +1255,11 @@ help ensure that coverage is sufficiently comprehensive to detect errors that ca
 
 <div class="info">
 
-#### Testing and code review helps address the following risks
+##### Testing and code review helps address the following risks
 
-* [SLS4](#risk-sls-4)
-* [SLS5](#risk-sls-5)
-* [SLS6](#risk-sls-6)
-* [SLS7](#risk-sls-7)
-* [SLS18](#risk-sls-18)
-* [DOW2](#risk-dow-2)
-* [DOW6](#risk-dow-6)
-* [DOW11](#risk-dow-11)-[DOW14](#risk-dow-14)
-* [GIR11](#risk-gir-11)
-* [GIR13](#risk-gir-13)
-* [GIR18](#risk-gir-18)
-* [GIR21](#risk-gir-21)
-* [GIR23](#risk-gir-23)-GIR24
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
+* [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS18](#risk-sls-18)
+* [DOW2](#risk-dow-2), [DOW6](#risk-dow-6), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14),  [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [GIR11](#risk-gir-11), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR21](#risk-gir-21), [GIR23](#risk-gir-23), [GIR24](#risk-gir-24)
 </div>
 
 #### Validated Inputs and Outputs
@@ -1423,27 +1277,12 @@ Unchecked inputs are a major cause for overflow attacks and brute force. Ideally
 
 ### Manage Software Updates
 
-This is challenging for classically set up IT operations, but is straightforward if modern Infrastructure as Code principles are being used.
-
-Main outline from the COSO principles:
-
-* Manages Changes Throughout the System Life Cycle — To support system availability and processing integrity, any changes need to go through a well-defined process.
-* Only perform authorized changes.
-* Use a version control system for infrastructure.
-* Maintain configuration of software in a code-base.
-* Tests are in place for system changes.
-* Have a ticketing system in place to document and review suggested changes.
-* Have a controlled deployment.
-* Certificate management for internal and external communication.
-* Have a way to directly identify historical changes to the infrastructure.
-* A templated configuration of IT and control systems is created and maintained.
-* Have breaking-glass change mechanisms in place for emergency situations.
-* Protect confidential information to be leaked or accidentally accessed in the change management system.
-
+Updating software is a major risk vector. Good processes for software development and managing the deployment of updates are important to mitigate some of this risk.
+As well as having control over the update process, it is important to have the capacity to revert to a known environment in an emergency where an update has been found to introduce unexpected problems.
 
 **Examples for best practices:**
 
-* A lot of these points can be addressed by following the [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) to infrastructure.
+* Use [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) for infrastructure.
 * Using GIT also for infrastructure code and configurations.
 * Use database migration systems such as [Liquibase](https://www.liquibase.org).
 
@@ -1452,8 +1291,8 @@ Main outline from the COSO principles:
 #### Managing software updates helps mitigate the following Risks
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
-* [GIR3](#risk-gir-3), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21), [GIR25](#risk-gir-25)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [GIR3](#risk-gir-3), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21), [GIR25](#risk-gir-25)
 * [SPS](#risk-sps-0)
 </div>
 
@@ -1474,35 +1313,25 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 ##### Not customising third-party software helps address the following risks
 
 * [SLS7](#risk-sls-7)
-* [DOW13](#risk-dow-13)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
+* [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
 </div>
 
-#### Managed Configuration Changes
+#### Configuration Management
 
-Main outline from the COSO principles:
+It is important to manage the configuration of hardware, and software. A minimal profile helps reduce possible attack surface,
+while minimising, and carefully tracking, customisation is important to ensure smooth and safe upgrades.
 
-* Uses defined Configuration Standards, monitor and enforce them.
-* Detect configuration drift.
-* Detect unwanted sofware installed on nodes.
-* Conducts Vulnerability and Configuration security Scans.
-
-**References:**
-
-* [SOC2](#ref-soc2) CC 7.1
-* [ISO 27001](#iso-27001) Annex A 8.9
-
-**Examples for best practices:**
-
-* This includes, but is not limited to:
+Software configuration to follow includes, among others:
   * Firewall configurations
   * Docker image setups
   * Container orchestration configurations
   * Database configurations
   * Webserver/Load balancer configurations
-* Automated tools to track and scan for best practices are available (e.g. [CoGuard](https://www.coguard.io))
-* Many pieces of software has defined configuration standards provided by [CIS benchmarks](https://www.cisecurity.org).
+
+[CIS benchmarks](https://www.cisecurity.org) provide configuration standards for many pieces of software,
+while automated tools to track and scan for best practices are available such as [CoGuard](https://www.coguard.io).
+
+
 
 <div class="info">
 
@@ -1536,21 +1365,14 @@ Use separate tests and staging environments
 
 This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first, and then roll it out in a staged fashion. If it causes some slashing event, it is then contained to the few nodes that it was rolled out to.
 
-
-
 <div class="info">
 
 ##### Pre-deployment testing helps address the following risks
 
 
-* [SLS6](#risk-sls-6)
-* [SLS7](#risk-sls-7)
-* [GIR11](#risk-gir-11)
-* [GIR18](#risk-gir-18)
-* [GIR20](#risk-gir-20)
-* [GIR21](#risk-gir-21)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
+* [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [GIR11](#risk-gir-11), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21)
 </div>
 
 #### Containerized and Orchestrated Environments
@@ -1559,7 +1381,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 
 <div class="info">
 
-#### Containerized environments help address the following risks
+##### Containerized environments help address the following risks
 
 * [GIR23](#risk-gir-23)
 </div>
@@ -1568,7 +1390,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 
 Human error is always a risk. An automated script, whether or not invoked by a human, can help minimise indavertent errors.
 
-Another benefit of properly set up automation is to reduce the risk of exposing secrets.
+Another benefit of properly set up automation is that it can help reduce the risk of exposing secrets.
 
 When correctly configured pipelines and job-mechanisms such as GitHub Actions, Apache Airflow, or Apache Nifi can significantly reduce the potential for inadvertent errors to create problems
 
@@ -1576,15 +1398,10 @@ When correctly configured pipelines and job-mechanisms such as GitHub Actions, A
 
 ##### Process automation helps address the following risks
 
-* [GIR16](#risk-gir-16)
-* [GIR18](#risk-gir-18)
-* [GIR19](#risk-gir-19)
-* [GIR20](#risk-gir-20)
-* [GIR21](#risk-gir-21)
 * [SLS17](#risk-sls-17)
-* [DOW19](#risk-dow-19)
-* [DOW20](#risk-dow-20)
-* [GIR25](#risk-gir-25)
+* [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [GIR16](#risk-gir-16) [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21),  [GIR25](#risk-gir-25)
+
 </div>
 
 </section>
@@ -1612,18 +1429,11 @@ where the alerts are ignored in practice because too often they are not identify
 
 Alert systems can in turn drive automated emergency responses, ranging from capture of increased levels of detail,
 through requesting additional authorization beyond the normal requirements, to full system shutdowns.
+
 Again, there are important trade-offs between ensuring a highly responsive system, and one that is robust in the face of real-world variability.
 For example, a system that can automatically suspend multisig transactions unless they are authorized within a short time is not always appropriate,
 because it can interfere with normal operations over a high-latency network or where a number of individuals are expected to coordinate extensively,
 taking a significant amount of time, before authorizing a particular action.
-
-Main outline from the COSO principles:
-
-* Implements Detection Policies, Procedures, and Tools
-* Design and improve on Detection Measures — Ideally capture unauthorized access, suspicious traffic, etc.
-* Implement filters to not even let suspicious requests contact the back-end.
-* Check frequently if detection tools are working correctly.
-* Have one or more centralized dashboards to aggregate the data and present it in a digestible way to a human observer.
 
 
 #### Beacon Chain Monitoring
@@ -1665,11 +1475,22 @@ such as 2FA configuration or VPNs.
 * **Peering Connectivity:** Monitor both internal and external network peering connectivity.
 * **Firewall Configuration and Metrics:** Keep an eye on firewall configuration changes or unexpected increases in drop metrics.
 
+#### Doppelgänger Protection
+
+Detecting that two validators with the same identifiers are running at the same time is important, to shut one down as fast as possible. This can be done using monitoring and alert systems, robust StatefulSet handling in Kubernetes to ensure no two containers with the same keys run at the same time, or pre-defined tools such as [DoppelBuster](https://github.com/SimplyStaking/DoppelBuster).
+
+<div class="info">
+
+##### Doppelgänger protection helps address the following risks
+
+* [SLS2](#risk-sls-2)
+</div>
+
+
 #### Cloud and Infrastructure
 
-* **Cloud Monitoring Solutions:** Utilize cloud monitoring solutions to keep track of uptime and internal issues.
+* **Cloud Monitoring Solutions:** Use cloud monitoring solutions to keep track of uptime and internal issues.
 * **Cloud Service Notifications:** Stay informed about cloud service announcements regarding expected downtime and maintenance.
-
 
 <div class="info">
 
@@ -1687,12 +1508,9 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 #### Monitoring can help address the following risks:
 
-* [SLS8](#risk-sls-8)
-* [SLS16](#risk-sls-16)
-* [DOW6](#risk-dow-6)
-* [DOW15](#risk-dow-15)
-* [GIR4](#risk-gir-4)
-* [GIR13](#risk-gir-13)
+* [SLS8](#risk-sls-8), [SLS16](#risk-sls-16)
+* [DOW6](#risk-dow-6), [DOW15](#risk-dow-15)
+* [GIR4](#risk-gir-4), [GIR13](#risk-gir-13)
 
 
 </div>
@@ -1718,19 +1536,10 @@ Best practices for Incident response plans include
 - Identify relevant Stakeholders and define communication strategies for both internal and external communications
 
 <a id="sec-mitigations-response"></a>
-#### Identify and Respond to Security Incidents
+#### Identifying and Responding to Security Incidents
 
-Main outline from the COSO principles:
-
-* Assigns Roles and Responsibilities in case of a security event.
-* Contains Security Incidents — Ideally incidents can be contained within a short period of time.
-* Communication protocols are in place to inform affected parties.
-* Vulnerabilities need to be identified.
-* Have a proper incident response plan in place, and review it periodically.
-* Communicates and Reviews Detected Security Events — Either take direct actions, or create tickets for future detection of events of a similar kind.
-* Evaluate the identification of and response to incidents on a regular basis.
-
-
+There are several ways to identify that a security incident is taking place. Best practice is to have extensive monitoring in place, to identify anomalies early,
+with alerting and potentially direct reaction mechanisms. Although learning from third-party discussions is a terrible way to find out about an incident, it is still better than simply not discovering it, so monitoring channels where such discussions take place is a valuable part of an overall strategy.
 
 **Examples for best practices:**
 
@@ -1750,13 +1559,10 @@ Main outline from the COSO principles:
 #### Analyze Security Events and Learn from Them
 
 This is often referred to as a "<dfn id="def-post-mortem">Post-Mortem</dfn>",
-and is used to learn from the event and improve relevant Incident Response Plans
+used to learn from the event and improve relevant Incident Response Plans.
 
-Main outline from the COSO principles:
-
-* Develops and Implements Procedures to Analyze Security Incidents.
-* Whenever possible, determine the root cause.
-* Implement necessary changes to prevent similar disasters.
+Best practices are to determine the root cause or causes of an incident, examine how the incident was allowed to occur,
+and consider what changes can be implemented to prevent or mitigate similar events from occurring.
 
 <div class="info">
 
@@ -1772,19 +1578,13 @@ Main outline from the COSO principles:
 A Disaster Recovery Plan is an Incident Response Plan that gives guidance on recovering one or more information systems at an alternate facility,
 in response to a major hardware or software failure including the partial or complete destruction of facilities.
 
-Best practices include maintaining copies of production environments to enable fast restoration.
+Best practices include maintaining secured up-to-date copies of production environments to enable fast restoration.
 
 <div class="info">
 Sample Disaster Recovery Plan templates:
 
 * [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 * [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
-
-COSO principles:
-
-* Quick restoration of affected environments.
-* Whenever possible, determine the root cause.
-* Implement necessary changes to prevent similar disasters.
 
 ##### Disaster recovery plans help address the following risks:
 
@@ -1832,11 +1632,8 @@ Best practice for external communication about an incident includes providing a 
 * Ensure stable Internet connection of the System (Cloud, Bare Metal, ....)
 * Ensure stable Power connection of the System (Cloud, Bare Metal, ....)
 * Ensure proper load-balancer and firewall at the front
-* Only necessary software on the relevant servers
 * Being able to switch the relayer or disconnect from the relay
-* Back-Up/DR / BC Policies
 * Safety training
-* Central & accessible documentation of critical knowledge
 
 <a id="sec-controls-catalog"></a>
 ## Controls Catalog
@@ -1850,12 +1647,100 @@ Some of these control criteria correspond to similar controls from at least thre
 
 Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
 
+<a id="sec-controls-risk-management"></a>
+### Controls for Risk Management
+
+#### Ensure Activities Support Operational Goals
+
+<b id="req-document-process-relevant">Node Operators MUST document how their processes and tools serve their business goals</b>
+
+##### External Controls for aligning processes and tools with business goals
+
+* [[SOC2](#ref-soc2)] CC 5.2
+
+<div class="info">
+
+##### Assessment of activities' relevance helps address the following risks
+
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS16](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
+* [DOW16](#risk-dow-16), [DOW18](#risk-dow-18)
+* [GIR5](#risk-gir-5)
+</div>
+
+#### Document Risk Assessments
+
+<b id="req-document-risk-assessment">Node Operators MUST document their assessments of risks, and what risks they class as acceptable</b>
+
+##### External controls for risk assessment
+
+* [[SOC2](#ref-soc2)] CC 3.1
+
+<div class="info">
+
+##### Internal risk assessment is an important part of addressing all risks
+
+</div>
+
+#### Process Controls
+
+<b id="req-follow-mitigation-process">Node Operators MUST ensure that processes for risk mitigation are followed in practice</b>
+
+### Controls for Technology Stack
+
+#### Anti-slashing Database
+
+<b id="req-local-slashing-db">Node Operators MUST have a persistent local anti-slashing database</b>
+
+##### A local anti-slashing database helps address the following risks
+
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3)
+
+#### Signature management
+
+<b id="req-document-signature-requirements">Node Operators MUST document signature requirements for high-value transactions, including the definitions used to identify such transactions</b>
+
+<b id="req-use-signature-management">Node Operators SHOULD use signature management tools to help secure high-value transactions</b>
+
+<b id="req-ensure-signature-continuity">The primary and backup/failover versions of Signature management tools MUST implement mechanisms to ensure data continuity</b>
+
+##### Signature management helps address the following risks
+
+* [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
+* [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
+
+#### Distributed Validator Technology
+
+<b id="req-use-dvt">Node Operators SHOULD implement some form of DVT with faillover validators in different physical locations</b>
+
+#### Client Diversity
+
+<b id="req-client-diversity">Node Operators MUST deploy at least 2 distinct client applications for any level of the blockchain where at least 3 clients are available</b>
+
+#### Secure Devices
+
+<b id="req-dedicated-devices">Devices that control critical functions MUST be dedicated to that purpose, and configured with only the necessary software for their intended purpose</b>
+
+This applies to servers acting as validators, but also to devices authorized to access and administer those servers remotely.
+
+#### Validator Withdrawal
+
+<b id="req-document-withdrawal-process">Node Operators MUST implement processes to withdraw validators from a network in such a way that they are not penalised for disappearing</b>
+
+#### Manage Software and Hardware Configuration
+
+<b id="req-document-configuration">Node Operators MUST document configuration of software and hardware</b>
+
+##### Relevant external controls for configuration management
+
+* [[SOC2](#ref-soc2)] CC 7.1
+* [[ISO 27001](#ref-iso-27001)] Annex A 8.9
+
 <a id="sec-controls-info-secrets"></a>
 ### Controls for Information and Secret Management
 
 #### Key Management
 
-Node Operators MUST implement appropriate key management procedures
+<b id="req-manage-keys">Node Operators MUST implement appropriate key management procedures</b>
 
 Best Practise includes following a commonly recognised key management standard such as
 
@@ -1864,29 +1749,28 @@ Best Practise includes following a commonly recognised key management standard s
 
 #### Identity Management
 
-Node Operators MUST track identity and roles of employees and service partners
+<b id="req-kystaff">Node Operators MUST track identity and roles of employees and service partners</b>
 
-This includes off-boarding mechanisms, tracking assigned roles, and ensuring compliance with privacy regulations
+This includes knowing who employees and contractors are, off-boarding mechanisms, tracking assigned roles, and ensuring compliance with privacy regulations
 
 ##### Relevant external controls for identity management
 
-* [ISO 27001](#iso-27001) Annex A 5.16
+* [[ISO 27001](#ref-iso-27001)] Annex A 5.16
 
 <div class="info">
 
-#### Identity management helps address the following risks
+##### Identity management helps address the following risks
 * [SLS8](#risk-sls-8)
 * [SLS9](#risk-sls-9)
 </div>
 
-### Document Vendors and Partner Risk
+#### Document Vendors and Partner Risk
 
-Node Operators MUST implement documented procedures for evaluating and reviewing counterparty risks from vendors and partners
+<b id="req-manage-counterparty-risk">Node Operators MUST implement documented procedures for evaluating and reviewing counterparty risks from vendors and partners</b>
 
-* Establishes Requirements for Vendor and Business Partner Engagements.
-* Assesses Vendor and Business Partner Risks - A process is in place to evaluate existing vendors.
-* Ensure that previously identified issues with vendors are fixed and regressions may be identified.
-* Implements Procedures for Terminating Vendor Relationships.
+* Establishing a process for Vendor and Business Partner engagement and assessing existing as well as new vendors and business partners
+* Ensuring that any identified issues are fixed, and regressions can be identified.
+* Terminating relationships efficiently where problems arise, or the relationship ends.
 
 ##### Relevant external controls for counterparty risk management
 
@@ -1894,24 +1778,23 @@ Node Operators MUST implement documented procedures for evaluating and reviewing
 
 <div class="info">
 
-#### Counterparty risk management helps address the following risks
+##### Counterparty risk management helps address the following risks
 
 * [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
 * [GIR5](#risk-gir-5)
 * [DOW1](#risk-dow-1), [DOW19](#risk-dow-19)
 </div>
 
-### Manage Information Lifecycles
+#### Manage Information Lifecycles
 
-
-Node Operators MUST document and follow information lifecycle processes for important operational information
+<b id="req-manage-information-lifecycle">Node Operators MUST document and follow information lifecycle processes for important operational information</b>
 
 This includes the definition and enforcement of retention periods, and the use of thorough deletion mechanisms, such as [shred](https://man.archlinux.org/man/shred.1.en).
 
 <div class="info">
 
 ##### Relevant external controls for information lifecycles:
-* [ISO 27001](#iso-27001) Annex A 8.10
+* [[ISO 27001](#ref-iso-27001)] Annex A 8.10
 
 #### Information Lifecycle management helps address the following risks:
 * [SLS10](#risk-sls-10)
@@ -1920,11 +1803,11 @@ This includes the definition and enforcement of retention periods, and the use o
 
 #### Backup and Protect Data against Loss
 
-Node Operators MUST implement backup procedures, at minimum daily, for important operational data
+<b id="req-backup-daily">Node Operators MUST implement backup procedures, at minimum daily, for important operational data</b>
 
-Backup Procedures SHOULD produce journaled backups covering relevant retention periods.
+<b id="req-journal-backups">Backup Procedures SHOULD produce journaled backups covering relevant retention periods</b>
 
-Node Operators MUST implement protection against accidental or malicious deletion of data.
+<b id="req-protect-against-deletion">Node Operators MUST implement protection against accidental or malicious deletion of data</b>
 
 These requirements cover all information required by controls in this specification.
 
@@ -1938,7 +1821,7 @@ These requirements cover all information required by controls in this specificat
 
 #### Record Important Operational Knowledge
 
-Node Operators MUST record and maintain important operational information
+<b id="req-maintain-records">Node Operators MUST record and maintain important operational information</b>
 
 Best practice is to use a documentation management system. While this is likely to have different levels of access control, it is important that no information is available to only one employee.
 
@@ -1956,21 +1839,21 @@ Best practice is to use a documentation management system. While this is likely 
 
 #### External Controls For Access Management - General
 
-* [OWASP Access Control](#ref-owasp-access-control)
-* [ISO27001](#iso27001) Annex A 5.15
-* [SOC2](#soc2) Trust services Criteria CC 6.1
+* [[OWASP Access Control](#ref-owasp-access-control)]
+* [[ISO27001](#ref-iso27001)] Annex A 5.15
+* [[SOC2](#ref-soc2)] CC 6.1
 
 #### Authentication required for services
 
-All services MUST require appropriate authentication privileges.
+<b id="req-appropriate-authentication">All services MUST require appropriate authentication privileges.
 
 For example, a Node does not respond to anonymous requests from an unknown user.
 
 #### Segment Networks to Limit Access
 
-Networks SHOULD be segmented, to restrict access to systems that are identified as needing it.
+<b id="req-segment-networks">Networks SHOULD be segmented, to restrict access to systems that are identified as needing it.
 
-Nodes MUST NOT respond to requests from outside a defined network, except those that are explicitly defined as necessary.
+<b id="req-no-outside-requests">Nodes MUST NOT respond to requests from outside a defined network, except those that are explicitly defined as necessary.
 
 Fulfilling this requirement means maintaining a whitelist of individual services that are authorized to respond to requests from broader networks.
 
@@ -1982,17 +1865,17 @@ Fulfilling this requirement means maintaining a whitelist of individual services
 
 ##### Relevant external controls
 
-* [ISO 27001](#iso-27001) Annex A 8.22
+* [[ISO 27001](#ref-iso-27001)] Annex A 8.22
 
 #### Access to physical hardware is limited
 
-Entry to physical server locations MUST require authorization
+<b id="req-protect-server-locations">Entry to physical server locations MUST require authorization
 
 For example, a biometric scan or the use of a keycard.
 
 #### Least Privilege is applied to individuals and software
 
-Software MUST NOT run with, and a user MUST not have a higher level of privilege than necessary.
+<b id="req-least-privilege">Software MUST NOT run with, and a user MUST not have a higher level of privilege than necessary.
 
 For example, check that software does not run as root, that users do not log in directly with root privileges, and software and users are granted fine-grained access based on need rather than broad-based access for simplicity.
 
@@ -2004,14 +1887,13 @@ For example, check that software does not run as root, that users do not log in 
 
 ##### External Controls for Least Privilege
 
-* [SOC2](#soc2) Trust services Criteria CC 6.3
-* [ISO 27001](#iso-27001) Annex A 8.2
-* [ISO 27001](#iso-27001) Annex A 8.18
-
+* [[SOC2](#ref-soc2)] CC 6.3
+* [[ISO 27001](#ref-iso-27001)] Annex A 8.2
+* [[ISO 27001](#ref-iso-27001)] Annex A 8.18
 
 #### Regularly Review Access Rights Management
 
-A review of Access Rights MUST take place regularly
+<b id="req-review-access-rights">A review of Access Rights MUST take place regularly
 
 This covers both the processes and tools for granting and revoking access rights, and verifying that they are effectively managing access rights
 according to the relevant principles ([**Least Privilege**](#def-least-privilege), [**Role-based management**](#rba)).
@@ -2030,18 +1912,20 @@ Best practice for this review includes:
 
 ##### Relevant external controls For Access Rights Review
 
-* [ISO 27001](#iso-27001) Annex A 5.17
-* [ISO 27001](#iso-27001) Annex A 5.18
-* [ISO 27001](#iso-27001) Annex A 8.18
+* [[ISO 27001](#ref-iso-27001)] Annex A 5.17
+* [[ISO 27001](#ref-iso-27001)] Annex A 5.18
+* [[ISO 27001](#ref-iso-27001)] Annex A 8.18
 
 #### Protect Data in Transit and Storage
 
-All data in transit MUST be encrypted, and SHOULD use the most direct transmission available.
+<b id="req-encrypt-data">All data in transit MUST be encrypted</b>, <b id="req-direct-transmission">and SHOULD use the most direct transmission available</b>
+
+<b id="req-store-encrypted">All data "at rest" MUST be stored in encrypted form</b>
 
 This covers all services that communicate data, such as Databases, Web servers, Load balancers, Authentication systems, CI/CD pipeline tools, etc.
 Best practices include ensuring that the latest version of TLS is being used, with secure algorithms.
 
-##### Relevant Risks
+##### Risks that data encryption can help mitigate:
 
 * [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13)
 * [DOW18](#risk-dow-18)
@@ -2050,57 +1934,63 @@ Best practices include ensuring that the latest version of TLS is being used, wi
 
 ##### External Controls for Encrypted Data
 
-* [OWASP Cryptographic Failures](#ref-owasp-cryptographic-failures)
-* [SOC2](#soc2) Trust services Criteria CC 6.7
-
-COSO principles:
-* Transmission of sensitive data needs to be restricted.
-* Data in transit needs to be encrypted.
+* [[OWASP Cryptographic Failures](#ref-owasp-cryptographic-failures)]
+* [[SOC2](#ref-soc2)] CC 6.7
 
 <section id="sec-controls-monitoring">
 
 ### Controls for Automated Monitoring
 
-Risks that Automated Monitoring can help mitigate:
 
-* [DOW1](#risk-dow-1)
+##### Risks that Automated Monitoring can help mitigate:
+
+* [SLS16](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
+* [DOW1](#risk-dow-1), [DOW10](#risk-dow-10), [DOW18](#risk-dow-18)
+* [GIR10](#risk-gir-10)
+* [KEC1](#risk-kec-1), [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
+
+#### Log and Analyze Network Traffic
+
+<b id="req-log-traffic">Node Operators MUST log network traffic, and analyze the logs for anomalous behaviour</b>
+
+##### Relevant risks for Traffic Log Analysis
+
+- SLS 8-9, SLS 10, SLS 11-13, SLS 14-15
+- [DOW1](#risk-dow-1)
 
 #### Log privileged access
 
-Any operation that requires privileged access MUST be logged.
+<b id="req-log-access">Any operation that requires privileged access MUST be logged</b>
 
-Any assignment of a key, or assignment of a role to or removal of a role from a particular key, MUST be logged.
+<b id="req-log-role-assignment">Any assignment of a key, or assignment of a role to or removal of a role from a particular key, MUST be logged</b>
 
 This includes monitoring software that has privileged access.
 
 ##### Relevant external controls
 
-* [ISO 27001](#iso-27001) Annex A 8.18
+* [[ISO 27001](#ref-iso-27001)] Annex A 8.18
 
 #### Log personnel changes
 
-Every change in the status of people who have access to any function of the Node, or physical access to any hardware, MUST be logged.
+<b id="req-log-personnel">Every change in the status of people who have access to any function of the Node, or physical access to any hardware, MUST be logged</b>
 
 #### Log slashing events
 
-Any event that results in slashing MUST be logged.
-
-There SHOULD be a procedure in place to determine whether there are repeating patterns,
-that identify a failure (e.g. software bugs, operating procedures) which can be rectified.
+<b id="req-log-slashing">Any event that results in slashing MUST be logged</b>
 
 #### Monitor hardware and network performance
 
-Logs MUST provide a sufficiently detailed view of hardware and network performance to enable upgrade needs to be forecast,
-and to alert if validators are operating with excess latency.
+<b id="req-log-perormance-maintenance">Logs MUST provide a sufficiently detailed view of hardware and network performance to enable upgrade needs to be forecast,
+and to alert if validators are operating with excess latency</b>
 
 Tools such as [Zabbix](tool-zabbix) can also display a live feed of CPU and memory usage of each compute instance.
 
 #### Relevant external controls for Automated Monitoring
 
-- [SOC2](#soc2) A 1.1
-- [SOC2](#soc2) CC 7.2
-- [ISO 27001](#iso-27001) Annex A 8.16
-- [ISO 27001](#iso-27001) Annex A 8.21
+- [[SOC2](#ref-soc2)] A 1.1
+- [[SOC2](#ref-soc2)] CC 7.2
+- [[ISO 27001](#ref-iso-27001)] Annex A 8.16
+- [[ISO 27001](#ref-iso-27001)] Annex A 8.21
 
 </section>
 
@@ -2109,14 +1999,14 @@ Tools such as [Zabbix](tool-zabbix) can also display a live feed of CPU and memo
 
 #### Manage Environmental Threats
 
-Node Operators SHOULD have processes in place to manage environmental threats
+<b id="req-log-environment">Node Operators SHOULD have processes in place to manage environmental threats</b>
 
 This includes monitoring for such threats and physically hardened facilities (e.g. fire- and flood-resistant server rooms),
 and physically decentralized infrastructure. It can also incorporate the use of DVT or related approaches to managing physical decentralization.
 
 ##### Relevant external controls for environmental threats
 
-* [ISO 27001](#iso-27001) Annex A 7
+* [[ISO 27001](#ref-iso-27001)] Annex A 7
 
 ##### Environmental threat management helps address the following risks
 
@@ -2125,14 +2015,13 @@ and physically decentralized infrastructure. It can also incorporate the use of 
 
 #### Manage Equipment Lifecycles
 
-Node Operators SHOULD have processes in place to manage equipment lifecycles
+<b id="req-manage-equipment-lifecycle">Node Operators SHOULD have processes in place to manage equipment lifecycles</b>
 
 This includes monitoring performance and performing preventive maintenance, upgrades, or replacing equipment as appropriate,
 as well as processes that ensure equipment is correctly retired including removing data and any hardware-based authorization.
 
 ##### Relevant external controls for equipment lifecycles
-
-* [ISO 27001](#iso-27001) Annex A 7
+* [[ISO 27001](#ref-iso-27001)] Annex A 7
 
 #### Equipment life-cycle management helps address the following risks
 
@@ -2151,18 +2040,17 @@ as well as processes that ensure equipment is correctly retired including removi
 
 #### Develop Software as Secure by Design
 
-Code development MUST follow processes to avoid introducing security risks
+<b id="req-secure-development">Code development MUST follow secure development processes to avoid introducing security risks</b>
 
 This is a broad area. A few specific controls are included in this specification, but this requirement is intended to ensure a general production philosophy.
 
 ##### Relevant external controls for secure development
 * [[ISO 27001](#iso-27001)] Annex A 8.25
 
-### Verify Outsourced Development
+#### Verify Outsourced Development
 
-Main outline of the Information security controls reference:
 
-Node Operators MUST review custom-developed code provided by third parties
+<b id="req-review-3rdparty-code">Node Operators MUST review custom-developed code provided by third parties</b>
 
 Best practice is to perform both internal and independent external audit, and to ensure the identity of the coders is known.
 Likewise, in best practice third-party code developers are only given access to code they need to do their work, are held to high standards of confidentiality,
@@ -2170,52 +2058,52 @@ and work with a well-defined set of expectations
 
 ##### Relevant external controls for verifying outsourced development
 
-* [ISO 27001](#iso-27001) Annex A 8.30
+* [[ISO 27001](#ref-iso-27001)] Annex A 8.30
+* [[SOC2](#ref-soc2)] CC 8.1
+* [[ISO 27001](#iso-27001)] Annex A 8.32
 
-<div class="info">
-
-#### Verifying outsourced development helps address the following risks
-
-* [GIR24](#risk-gir-24)
-</div>
 
 #### Follow Update Procedures
 
-Node Operators MUST document procedures for updates to code
+<b id="req-document-update-process">Node Operators MUST document procedures for updates to code</b>
 
 #### Use Code Repositories
 
-Source code MUST be managed in a repository
+<b id="req-use-code-repo">Source code MUST be managed in a repository</b>
 
-Deployed production code MUST NOT be directly editable
+<b id="req-dont-edit-prod">Deployed production code MUST NOT be directly editable</b>
 
 This covers all changes to code, including when it is necessary to roll back an upgrade.
 
 #### Check Third-party Code for Vulnerabilities before Updating
 
-Updates to third-party software MUST be checked for vulnerabilities before deployment
+<b id="req-check-vulnerabilities">Updates to third-party software MUST be checked for vulnerabilities before deployment</b>
 
 This covers verifying that all software updates, including validators and other nodes, have been audited to ensure they are not introducing known or new vulnerabilities.
 
 ##### External controls for checking third-party software
 
-* [ISO27001](#ref-iso-27001) Annex A 8.7
-* [ISO27001](#ref-iso-27001) Annex A 8.30
+* [[ISO27001](#ref-iso-27001)] Annex A 8.7
+* [[ISO27001](#ref-iso-27001)] Annex A 8.30
 
-### Validate Inputs and outputs
+#### Verify Configuration on Update
 
-Code MUST verify that input is safe before operating on it
+<b id="req-check-config-on-update">Software update procedures MUST include an assessment and application of configuration settings</b>
 
-Code MUST NOT produce invalid outputs
+#### Validate Inputs and outputs
 
-Components SHOULD use [[CORS](#ref-cors)] and [[CSP](#ref-csp)] to protect against Server Side Request Forgery
+<b id="req-verify-inputs">Code MUST verify that input is safe before operating on it</b>
+
+<b id="req-valid-output">Code MUST NOT produce invalid outputs</b>
+
+<b id="req-protect-vs-ssrf">Components SHOULD use [[CORS](#ref-cors)] and [[CSP](#ref-csp)] to protect against Server Side Request Forgery</b>
 
 These requirements ensure that data passed between software components can be handled safely by the receiving component. It includes data entered manually by users.
 
 Best practice includes using JSON [schema](https://json-schema.org) and [schema evolution techniques](https://en.wikipedia.org/wiki/Schema_evolution),
 and defined minimum and maximum input sizes and MIME types ([Microsoft IIS example](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/mimemap)).
 
-Multiple tools can help meet thsese requirements, including
+Multiple tools can help meet these requirements, including
 * [ajv](https://www.npmjs.com/package/ajv), [validatorjs](https://github.com/validatorjs/validator.js), [Apache Ranger](https://ranger.apache.org)
 * ORM systems exist for almost all programming languages and frameworks. Some of the most common ones are [Hibernate](https://hibernate.org/orm/documentation/getting-started/), [TypeORM](https://typeorm.io) and [SQLAlchemy](https://www.sqlalchemy.org).
 * In the Apache web-server, one can control the request size of different pieces of the request:
@@ -2235,10 +2123,9 @@ Multiple tools can help meet thsese requirements, including
 
 </div>
 
-
 #### Ensure Good Test Coverage
 
-Node Operators MUST have thorough test coverage of their software and operating procedures
+<b id="req-test-coverage">Node Operators MUST have thorough test coverage of their software and operating procedures</b>
 
 There is no magic percentage figure, but ideally unit tests and integration tests cover every funtionality and interaction
 managed by code the Node Operator uses, whether self-managed or provided by a third party.
@@ -2249,13 +2136,13 @@ managed by code the Node Operator uses, whether self-managed or provided by a th
 
 #### Test All Interactions Impacted by Software Updates
 
-Updates MUST include an Audit of ALL Code and User Interactions they impact
+<b id="req-reaudit-everything-impacted">Updates MUST include an audit of all code and user interactions they impact</b>
 
 This means testing not just the new code deployed, but also existing code that interacts with anything the update changes, to ensure that integration is not introducing a vulnerability. This extends to non-blockchain code used to interact with the Validator, where applicable.
 
 #### Deploy via staging test environments
 
-Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network.
+<b id="req-deply-via-testnet">Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network</b>
 
 ##### Relevant external controls for pre-deployment testing
 
@@ -2263,7 +2150,7 @@ Updates MUST be tested on a staging environment that as closely as possible matc
 
 #### Maintain Emergency Rollback Procedures
 
-Node Operators MUST have a process to enable emergency rollback of upgrades
+<b id="req-enable-rollback">Node Operators MUST have a process to enable emergency rollback of upgrades</b>
 
 <a id="sec-controls-response"></a>
 ### Controls for Incident Response Planning
@@ -2277,12 +2164,12 @@ Incident Response Planning helps address almost all risks faced by Node Operator
 
 #### Document Adequate Incident Response Plans
 
-The Node Operator MUST have documented [Incident Response Plans](#def-incident-response-plan) corresponding to all risks identified in this specification.
+<b id="req-incident-response-plans">The Node Operator MUST have documented [Incident Response Plans](#def-incident-response-plan) corresponding to all risks identified in this specification.
 
 #### Document Disaster Recovery Plans
 
-The Node Operator MUST have documented [Disaster Recovery Plans](#def-disaster-recovery-plan) corresponding to risks identified in this specification
-that lead to destruction of crucial data or loss of assets.
+<b id="req-disaster-recovery-plan">The Node Operator MUST have documented [Disaster Recovery Plans](#def-disaster-recovery-plan) corresponding to risks identified in this specification
+that lead to destruction of crucial data or loss of assets</b>
 
 ##### Relevant external controls for disaster recovery plans
 
@@ -2294,8 +2181,8 @@ that lead to destruction of crucial data or loss of assets.
 
 #### Plan Incident Follow-up
 
-[Incident Response](def-incident-response-plan)
-and [Disaster Recovery](#def-disaster-recovery-plan) plans MUST include revising the relevant plans whenever they are activated, based on lessons learned.
+<b id="req-revise-response-plans">[Incident Response](def-incident-response-plan)
+and [Disaster Recovery](#def-disaster-recovery-plan) plans MUST include revising the relevant plans whenever they are activated, based on lessons learned</b>
 
 This covers both responses to real incidents and Simulated activation, or "pre-mortems".
 
@@ -2311,12 +2198,12 @@ This covers both responses to real incidents and Simulated activation, or "pre-m
 
 #### Perform Regular Incident Response Simulations
 
-Node Operators MUST perform a simulated Incident and activation of the associate [Incident Response](def-incident-response-plan)
-or [Disaster Recovery](#def-disaster-recovery-plan) plans at least twice per year.
+<b id="req-run-incident-simulations">Node Operators MUST perform a simulated Incident and activation of the associate [Incident Response](def-incident-response-plan)
+or [Disaster Recovery](#def-disaster-recovery-plan) plans at least twice per year</b>
 
 #### Plan Incident Communication
 
-Node Operators MUST document [Incident Communication](#def-incident-communication) strategies or policies
+<b id="req-communication-strategy">Node Operators MUST document [Incident Communication](#def-incident-communication) strategies or policies</b>
 
 This requirement includes internal and external communication, both during and after incidents.
 
@@ -2325,7 +2212,8 @@ This requirement includes internal and external communication, both during and a
 
 #### Verify Counterparty Compliance
 
-Node Operators MUST verify that third parties providing services, or with whom the Node Operator contracts, is in compliance with relevant standards (including this one) and regulations
+<b id="req-verify-3rdparty-compliance">Node Operators MUST verify that third parties providing services, or with whom the Node Operator contracts, 
+are in compliance with relevant standards (including this one) and regulations</b>
 
 This includes areas such as the uptime guarantees of cloud providers and other core counterparties,
 response times and Service Level Agreements, security procedures, and the like as well as relevant regulatory compliance.
@@ -2344,113 +2232,7 @@ response times and Service Level Agreements, security procedures, and the like a
 
 #### Manage Counterparty Relationship Lifecycles
 
-Service agreements MUST specify termination procedures and obligations
-
-
-
-### Control activities to achieve operational goals
-
-In a nutshell: technology needs to serve the business goal, not the other way around.
-
-Main outline from the COSO principles:
-
-1. **Technology Infrastructure Control** — Stakeholders develop control activities over the technology infrastructure, ensuring accuracy, availability and completeness of data.
-2. **Security Access Control** — External threats are analyzed and access rights are properly defined.
-
-**References:**
-
-* CC 5.2 of the Trust Services Criteria
-
-**Examples for best practices:**
-
-* Every third party software needs to be analyzed for the correct access rights with respect to users who can access it, but also the privileges it needs on the system it runs on. \
-  Examples for this are:
-  * Do not run main processes as root, since a compromised software can then execute privileged operations.
-  * Do not allow uncontrolled inbound and outbound networking traffic to this specific service.
-
-<div class="info">
-
-#### Assessment of activities' relevance helps address the following risks
-
-* [GIR5](#risk-gir-5)
-* [DOW18](#risk-dow-18)
-* [DOW16](#risk-dow-16)
-* [SLS11](#risk-sls-11)
-* [SLS12](#risk-sls-12)
-* [SLS13](#risk-sls-13)
-* [SLS14](#risk-sls-14)
-* [SLS15](#risk-sls-15)
-* [SLS16](#risk-sls-16)
-* [SLS17](#risk-sls-17)
-* [SLS18](#risk-sls-18)
-* [SLS1](#risk-sls-1)
-* [SLS2](#risk-sls-2)
-* [SLS3](#risk-sls-3)
-* [SLS4](#risk-sls-4)
-* [SLS5](#risk-sls-5)
-</div>
-
-### Risk assessment of one's own Node operation
-
-Node operation does not equal node operation. There are subjective goals for each organization, and the way they decided to operate. This control ensures that one is always having an eye on risk assessments.
-
-Main outline from the COSO principles:
-
-1. Considers Tolerances for Risk — Identify what is acceptable.
-2. Complies With Externally Established Frameworks — Consider local and international laws and benchmarks when developing the node operation.
-
-**References:**
-
-* CC 3.1 of the Trust Services Criteria
-
-**Examples for best practices:**
-
-* Ensure that every service, where possible, is configuration hardened using common benchmarks such as [CIS](https://www.cisecurity.org).
-* Analyze each component in your infrastructure environment in terms of security, availability, processing integrity, confidentiality and privacy.
-* Outline directly which risks are a high priority, and which ones are more acceptable, and the scenarios where it applies. For example, downtime comes only with an opportunity cost for ETH stakers, but may cause a slashing event in Polkadot.
-
-<div class="info">
-
-#### Internal risk assessment helps address the following risks
-
-* [GIR24](#risk-gir-24)
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Network services
-
-Main outline of the Information security controls reference:
-
-* Any traffic needs to be monitored, analyzed and potentially alerted on.
-
-**References:**
-
-* [ISO 27001](#iso-27001) Annex A 8.21
-
-**Examples for best practices:**
-
-* Segmentation of networks using security groups and subnets.
-* Encryption in transit should always be enabled.
-* Use and enforcement of IP whitelists
-
-<div class="info">
-
-#### Network management helps address the following risks
-
-* [DOW10](#risk-dow-10)
-</div>
-
+<b id="req-termination-procedures">Service agreements MUST specify termination procedures and obligations</b>
 
 <section id="sec-communications-strategy">
 
