@@ -26,8 +26,7 @@ Copyright© 2025, Lido Foundation. This document may be used, modified, copied a
 </dl>
 
 
-<a id="sec-abstract"></a>
-## Abstract
+## Abstract <a href="#sec-abstract" id="sec-abstract">🔗</a>
 
 This specification defines risks that can apply when operating a blockchain node.
 
@@ -72,11 +71,9 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
 - [References](#sec-references)
 - [Status and Feedback](#sec-sotd)
 
-<a id="sec-introduction"></a>
-## Introduction
+## Introduction <a href="#sec-introduction" id="sec-introduction">🔗</a>
 
-<a id="sec-purpose"></a>
-### Purpose
+### Purpose <a href="#sec-purpose" id="sec-purpose">🔗</a>
 
 This specification builds on the DUCK knowledge base as an evolution. In addition to the risk framework, updated based on feedback from practitioners,
 and an explanation of mitigation strategies that has likewise been updated, it provides a single set of controls - statements of requirement that can be tested,
@@ -89,8 +86,7 @@ The relevant controls from several such standards are explicitly linked to the c
 to simplify the process of certifying conformance to this specification for Operators who have already undergone testing against those standards,
 and to simplify the process of assessing against those standards Node Operators who have been certified as conforming to this specification.
 
-<a id="sec-conformance"></a>
-### Conformance
+### Conformance <a href="#sec-conformance" id="sec-conformance">🔗</a>
 
 Conformance to this specification is based on meeting the requirements expressed in the [Controls Catalog](#sec-controls-catalog).
 
@@ -902,8 +898,7 @@ Node operators need to withdraw validators correctly, as they are otherwise put 
 * [SPS1](#risk-sps-1)
 </div>
 
-<a id="sec-mitigations-secret-management"></a>
-### Information and Secret Management
+### Information and Secret Management <a href="#sec-mitigations-secret-management" id="sec-mitigations-secret-management">🔗</a>
 
 Information management can mitigate many risks. One aspect is the management of highly confidential information, such as the management of signing keys or withdrawal keys, but it is also important to manage operational information.
 
@@ -1031,8 +1026,7 @@ Best Practise includes having journaled backups of important information.
 * [GIR4](#risk-kec-4), [GIR13](#risk-gir-13)
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 
-<a id="sec-mitigations-access-management"></a>
-### Access Controls and Access Management
+### Access Controls and Access Management <a href="#sec-mitigations-access-management" id="sec-mitigations-access-management">🔗</a>
 
 Access Control covers physical access to devices and facilities, the ability to connect to servers through networks,
 and the ability to perform specific tasks, such as getting answers to requests.
@@ -1179,8 +1173,7 @@ and monitor actual access such as visual verification that the authorized party 
 
 It is important to log and audit access sufficiently frequently to detect problems - see also [Monitoring](#sec-mitigations-monitoring).
 
-<a id="sec-mitigations-environment"></a>
-### Protection against Environmental Threats
+### Protection against Environmental Threats <a href="#sec-mitigations-environment" id="sec-mitigations-environment">🔗</a>
 
 Physical devices are subject to physical changes, including environmental issues such as temperature extremes that can cause damage,
 and utility failures such as power or internet failure.
@@ -1220,8 +1213,7 @@ Best practices for lifecycle management include the ability to remotely pause, s
 * [KEC1](#risk-kec-1), [KEC5](#risk-kec-), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
 </div>
 
-<a id="sec-mitigations-development-and-updates-"></a>
-### Software Development and Update Process
+### Software Development and Update Process <a href="#sec-mitigations-development-and-updates-" id="sec-mitigations-development-and-updates-">🔗</a>
 
 #### Secure Development Life Cycle
 
@@ -1405,8 +1397,7 @@ When correctly configured pipelines and job-mechanisms such as GitHub Actions, A
 
 </section>
 
-<a id="sec-mitigations-monitoring"></a>
-### Monitoring and Alerting
+### Monitoring and Alerting <a href="#sec-mitigations-monitoring" id="sec-mitigations-monitoring">🔗</a>
 
 Monitoring dashboards are an important tool to identify risks and gain relevant data.
 This is one reason that a requirement for monitoring is present in almost all compliance and security frameworks.
@@ -1514,8 +1505,7 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 </div>
 
-<a id="sec-mitigations-incident-response"></a>
-### Incident Response
+### Incident Response <a href="#sec-mitigations-incident-response" id="sec-mitigations-incident-response">🔗</a>
 
 An <dfn id="def-incident-response-plan">Incident Response Plan</dfn> documents procedures for managing security incidents and events,
 as guidance for employees or incident responders who believe they have discovered, or are responding to, a security incident.
@@ -1534,8 +1524,7 @@ Best practices for Incident response plans include
 - Data collection and distribution to enable effective response, external communication, and "Post Mortem" analysis
 - Identify relevant Stakeholders and define communication strategies for both internal and external communications
 
-<a id="sec-mitigations-response"></a>
-#### Identifying and Responding to Security Incidents
+#### Identifying and Responding to Security Incidents <a href="#sec-mitigations-response" id="sec-mitigations-response">🔗</a>
 
 There are several ways to identify that a security incident is taking place. Best practice is to have extensive monitoring in place, to identify anomalies early,
 with alerting and potentially direct reaction mechanisms. Although learning from third-party discussions is a terrible way to find out about an incident, it is still better than simply not discovering it, so monitoring channels where such discussions take place is a valuable part of an overall strategy.
@@ -1621,8 +1610,7 @@ against the importance of providing clear information with as much certainty as 
 
 Best practice for external communication about an incident includes providing a detailed post-incident summary.
 
-<a id="sec-mitigations-general"></a>
-### General Measures
+### General Measures <a href="#sec-mitigations-general" id="sec-mitigations-general">🔗</a>
 
 * General cyber security (Firewall, Intrusion Detection System, ....)
 * Check the uptime promise of cloud provider (minimum three 9s)
@@ -1634,8 +1622,7 @@ Best practice for external communication about an incident includes providing a 
 * Being able to switch the relayer or disconnect from the relay
 * Safety training
 
-<a id="sec-controls-catalog"></a>
-## Controls Catalog
+## Controls Catalog <a href="#sec-controls-catalog" id="sec-controls-catalog">🔗</a>
 
 This section contains controls that are material to Node Operator risks.
 Some of these control criteria correspond to similar controls from at least three common frameworks.
@@ -1646,12 +1633,11 @@ Some of these control criteria correspond to similar controls from at least thre
 
 Where relevant, corresponding controls from those frameworks are identified and linked from ValOS controls.
 
-<a id="sec-controls-risk-management"></a>
-### Controls for Risk Management
+### Controls for Risk Management <a href="#sec-controls-risk-management" id="sec-controls-risk-management">🔗</a>
 
 #### Ensure Activities Support Operational Goals
 
-<b id="req-document-process-relevant">Node Operators MUST document how their processes and tools serve their business goals</b>
+<a href="#req-document-process-relevant">🔗</a> <b id="req-document-process-relevant">Node Operators MUST document how their processes and tools serve their business goals</b>
 
 ##### External Controls for aligning processes and tools with business goals
 
@@ -1668,7 +1654,7 @@ Where relevant, corresponding controls from those frameworks are identified and 
 
 #### Document Risk Assessments
 
-<b id="req-document-risk-assessment">Node Operators MUST document their assessments of risks, and what risks they class as acceptable</b>
+<a href="#req-document-risk-assessment">🔗</a> <b id="req-document-risk-assessment">Node Operators MUST document their assessments of risks, and what risks they class as acceptable</b>
 
 ##### External controls for risk assessment
 
@@ -1682,13 +1668,13 @@ Where relevant, corresponding controls from those frameworks are identified and 
 
 #### Process Controls
 
-<b id="req-follow-mitigation-process">Node Operators MUST ensure that processes for risk mitigation are followed in practice</b>
+<a href="#req-follow-mitigation-process">🔗</a> <b id="req-follow-mitigation-process">Node Operators MUST ensure that processes for risk mitigation are followed in practice</b>
 
 ### Controls for Technology Stack
 
 #### Anti-slashing Database
 
-<b id="req-local-slashing-db">Node Operators MUST have a persistent local anti-slashing database</b>
+<a href="#req-local-slashing-db">🔗</a> <b id="req-local-slashing-db">Node Operators MUST have a persistent local anti-slashing database</b>
 
 ##### A local anti-slashing database helps address the following risks
 
@@ -1696,11 +1682,11 @@ Where relevant, corresponding controls from those frameworks are identified and 
 
 #### Signature management
 
-<b id="req-document-signature-requirements">Node Operators MUST document signature requirements for high-value transactions, including the definitions used to identify such transactions</b>
+<a href="#req-document-signature-requirements">🔗</a> <b id="req-document-signature-requirements">Node Operators MUST document signature requirements for high-value transactions, including the definitions used to identify such transactions</b>
 
-<b id="req-use-signature-management">Node Operators SHOULD use signature management tools to help secure high-value transactions</b>
+<a href="#req-use-signature-management">🔗</a> <b id="req-use-signature-management">Node Operators SHOULD use signature management tools to help secure high-value transactions</b>
 
-<b id="req-ensure-signature-continuity">The primary and backup/failover versions of Signature management tools MUST implement mechanisms to ensure data continuity</b>
+<a href="#req-ensure-signature-continuity">🔗</a> <b id="req-ensure-signature-continuity">The primary and backup/failover versions of Signature management tools MUST implement mechanisms to ensure data continuity</b>
 
 ##### Signature management helps address the following risks
 
@@ -1709,37 +1695,36 @@ Where relevant, corresponding controls from those frameworks are identified and 
 
 #### Distributed Validator Technology
 
-<b id="req-use-dvt">Node Operators SHOULD implement some form of DVT with faillover validators in different physical locations</b>
+<a href="#req-use-dvt">🔗</a> <b id="req-use-dvt">Node Operators SHOULD implement some form of DVT with faillover validators in different physical locations</b>
 
 #### Client Diversity
 
-<b id="req-client-diversity">Node Operators MUST deploy at least 2 distinct client applications for any level of the blockchain where at least 3 clients are available</b>
+<a href="#req-client-diversity">🔗</a> <b id="req-client-diversity">Node Operators MUST deploy at least 2 distinct client applications for any level of the blockchain where at least 3 clients are available</b>
 
 #### Secure Devices
 
-<b id="req-dedicated-devices">Devices that control critical functions MUST be dedicated to that purpose, and configured with only the necessary software for their intended purpose</b>
+<a href="#req-dedicated-devices">🔗</a> <b id="req-dedicated-devices">Devices that control critical functions MUST be dedicated to that purpose, and configured with only the necessary software for their intended purpose</b>
 
 This applies to servers acting as validators, but also to devices authorized to access and administer those servers remotely.
 
 #### Validator Withdrawal
 
-<b id="req-document-withdrawal-process">Node Operators MUST implement processes to withdraw validators from a network in such a way that they are not penalised for disappearing</b>
+<a href="#req-document-withdrawal-process">🔗</a> <b id="req-document-withdrawal-process">Node Operators MUST implement processes to withdraw validators from a network in such a way that they are not penalised for disappearing</b>
 
 #### Manage Software and Hardware Configuration
 
-<b id="req-document-configuration">Node Operators MUST document configuration of software and hardware</b>
+<a href="#req-document-configuration">🔗</a> <b id="req-document-configuration">Node Operators MUST document configuration of software and hardware</b>
 
 ##### Relevant external controls for configuration management
 
 * [[SOC2](#ref-soc2)] CC 7.1
 * [[ISO 27001](#ref-iso-27001)] Annex A 8.9
 
-<a id="sec-controls-info-secrets"></a>
-### Controls for Information and Secret Management
+### Controls for Information and Secret Management <a href="#sec-controls-info-secrets" id="sec-controls-info-secrets">🔗</a>
 
 #### Key Management
 
-<b id="req-manage-keys">Node Operators MUST implement appropriate key management procedures</b>
+<a href="#req-manage-keys">🔗</a> <b id="req-manage-keys">Node Operators MUST implement appropriate key management procedures</b>
 
 Best Practise includes following a commonly recognised key management standard such as
 
@@ -1748,7 +1733,7 @@ Best Practise includes following a commonly recognised key management standard s
 
 #### Identity Management
 
-<b id="req-kystaff">Node Operators MUST track identity and roles of employees and service partners</b>
+<a href="#req-kystaff">🔗</a> <b id="req-kystaff">Node Operators MUST track identity and roles of employees and service partners</b>
 
 This includes knowing who employees and contractors are, off-boarding mechanisms, tracking assigned roles, and ensuring compliance with privacy regulations
 
@@ -1765,7 +1750,7 @@ This includes knowing who employees and contractors are, off-boarding mechanisms
 
 #### Document Vendors and Partner Risk
 
-<b id="req-manage-counterparty-risk">Node Operators MUST implement documented procedures for evaluating and reviewing counterparty risks from vendors and partners</b>
+<a href="#req-manage-counterparty-risk">🔗</a> <b id="req-manage-counterparty-risk">Node Operators MUST implement documented procedures for evaluating and reviewing counterparty risks from vendors and partners</b>
 
 * Establishing a process for Vendor and Business Partner engagement and assessing existing as well as new vendors and business partners
 * Ensuring that any identified issues are fixed, and regressions can be identified.
@@ -1786,7 +1771,7 @@ This includes knowing who employees and contractors are, off-boarding mechanisms
 
 #### Manage Information Lifecycles
 
-<b id="req-manage-information-lifecycle">Node Operators MUST document and follow information lifecycle processes for important operational information</b>
+<a href="#req-manage-information-lifecycle">🔗</a> <b id="req-manage-information-lifecycle">Node Operators MUST document and follow information lifecycle processes for important operational information</b>
 
 This includes the definition and enforcement of retention periods, and the use of thorough deletion mechanisms, such as [shred](https://man.archlinux.org/man/shred.1.en).
 
@@ -1802,11 +1787,11 @@ This includes the definition and enforcement of retention periods, and the use o
 
 #### Backup and Protect Data against Loss
 
-<b id="req-backup-daily">Node Operators MUST implement backup procedures, at minimum daily, for important operational data</b>
+<a href="#req-backup-daily">🔗</a> <b id="req-backup-daily">Node Operators MUST implement backup procedures, at minimum daily, for important operational data</b>
 
-<b id="req-journal-backups">Backup Procedures SHOULD produce journaled backups covering relevant retention periods</b>
+<a href="#req-journal-backups">🔗</a> <b id="req-journal-backups">Backup Procedures SHOULD produce journaled backups covering relevant retention periods</b>
 
-<b id="req-protect-against-deletion">Node Operators MUST implement protection against accidental or malicious deletion of data</b>
+<a href="#req-protect-against-deletion">🔗</a> <b id="req-protect-against-deletion">Node Operators MUST implement protection against accidental or malicious deletion of data</b>
 
 These requirements cover all information required by controls in this specification.
 
@@ -1820,7 +1805,7 @@ These requirements cover all information required by controls in this specificat
 
 #### Record Important Operational Knowledge
 
-<b id="req-maintain-records">Node Operators MUST record and maintain important operational information</b>
+<a href="#req-maintain-records">🔗</a> <b id="req-maintain-records">Node Operators MUST record and maintain important operational information</b>
 
 Best practice is to use a documentation management system. While this is likely to have different levels of access control, it is important that no information is available to only one employee.
 
@@ -1833,8 +1818,7 @@ Best practice is to use a documentation management system. While this is likely 
 * [SPS0](#risk-sps-0)
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 
-<a id="sec-controls-access"></a>
-### Controls for Access Control
+### Controls for Access Control <a href="#sec-controls-access" id="sec-controls-access">🔗</a>
 
 #### External Controls For Access Management - General
 
@@ -1844,15 +1828,15 @@ Best practice is to use a documentation management system. While this is likely 
 
 #### Authentication required for services
 
-<b id="req-appropriate-authentication">All services MUST require appropriate authentication privileges</b>
+<a href="#req-appropriate-authentication">🔗</a> <b id="req-appropriate-authentication">All services MUST require appropriate authentication privileges</b>
 
 For example, a Node does not respond to anonymous requests from an unknown user.
 
 #### Segment Networks to Limit Access
 
-<b id="req-segment-networks">Networks SHOULD be segmented, to restrict access to systems that are identified as needing it.
+<a href="#req-segment-networks">🔗</a> <b id="req-segment-networks">Networks SHOULD be segmented, to restrict access to systems that are identified as needing it.
 
-<b id="req-no-outside-requests">Nodes MUST NOT respond to requests from outside a defined network, except those that are explicitly defined as necessary.
+<a href="#req-no-outside-requests">🔗</a> <b id="req-no-outside-requests">Nodes MUST NOT respond to requests from outside a defined network, except those that are explicitly defined as necessary.
 
 Fulfilling this requirement means maintaining a whitelist of individual services that are authorized to respond to requests from broader networks.
 
@@ -1868,13 +1852,13 @@ Fulfilling this requirement means maintaining a whitelist of individual services
 
 #### Access to physical hardware is limited
 
-<b id="req-protect-server-locations">Entry to physical server locations MUST require authorization
+<a href="#req-protect-server-locations">🔗</a> <b id="req-protect-server-locations">Entry to physical server locations MUST require authorization
 
 For example, a biometric scan or the use of a keycard.
 
 #### Least Privilege is applied to individuals and software
 
-<b id="req-least-privilege">Software MUST NOT run with, and a user MUST not have a higher level of privilege than necessary.
+<a href="#req-least-privilege">🔗</a> <b id="req-least-privilege">Software MUST NOT run with, and a user MUST not have a higher level of privilege than necessary.
 
 For example, check that software does not run as root, that users do not log in directly with root privileges, and software and users are granted fine-grained access based on need rather than broad-based access for simplicity.
 
@@ -1892,7 +1876,7 @@ For example, check that software does not run as root, that users do not log in 
 
 #### Regularly Review Access Rights Management
 
-<b id="req-review-access-rights">A review of Access Rights MUST take place regularly
+<a href="#req-review-access-rights">🔗</a> <b id="req-review-access-rights">A review of Access Rights MUST take place regularly
 
 This covers both the processes and tools for granting and revoking access rights, and verifying that they are effectively managing access rights
 according to the relevant principles ([**Least Privilege**](#def-least-privilege), [**Role-based management**](#rba)).
@@ -1917,9 +1901,9 @@ Best practice for this review includes:
 
 #### Protect Data in Transit and Storage
 
-<b id="req-encrypt-data">All data in transit MUST be encrypted</b>, <b id="req-direct-transmission">and SHOULD use the most direct transmission available</b>
+<a href="#req-encrypt-data">🔗</a> <b id="req-encrypt-data">All data in transit MUST be encrypted</b>, <a href="#req-direct-transmission">🔗</a> <b id="req-direct-transmission">and SHOULD use the most direct transmission available</b>
 
-<b id="req-store-encrypted">All data "at rest" MUST be stored in encrypted form</b>
+<a href="#req-store-encrypted">🔗</a> <b id="req-store-encrypted">All data "at rest" MUST be stored in encrypted form</b>
 
 This covers all services that communicate data, such as Databases, Web servers, Load balancers, Authentication systems, CI/CD pipeline tools, etc.
 Best practices include ensuring that the latest version of TLS is being used, with secure algorithms.
@@ -1950,7 +1934,7 @@ Best practices include ensuring that the latest version of TLS is being used, wi
 
 #### Log and Analyze Network Traffic
 
-<b id="req-log-traffic">Node Operators MUST log network traffic, and analyze the logs for anomalous behaviour</b>
+<a href="#req-log-traffic">🔗</a> <b id="req-log-traffic">Node Operators MUST log network traffic, and analyze the logs for anomalous behaviour</b>
 
 ##### Relevant risks for Traffic Log Analysis
 
@@ -1959,9 +1943,9 @@ Best practices include ensuring that the latest version of TLS is being used, wi
 
 #### Log privileged access
 
-<b id="req-log-access">Any operation that requires privileged access MUST be logged</b>
+<a href="#req-log-access">🔗</a> <b id="req-log-access">Any operation that requires privileged access MUST be logged</b>
 
-<b id="req-log-role-assignment">Any assignment of a key, or assignment of a role to or removal of a role from a particular key, MUST be logged</b>
+<a href="#req-log-role-assignment">🔗</a> <b id="req-log-role-assignment">Any assignment of a key, or assignment of a role to or removal of a role from a particular key, MUST be logged</b>
 
 This includes monitoring software that has privileged access.
 
@@ -1971,15 +1955,15 @@ This includes monitoring software that has privileged access.
 
 #### Log personnel changes
 
-<b id="req-log-personnel">Every change in the status of people who have access to any function of the Node, or physical access to any hardware, MUST be logged</b>
+<a href="#req-log-personnel">🔗</a> <b id="req-log-personnel">Every change in the status of people who have access to any function of the Node, or physical access to any hardware, MUST be logged</b>
 
 #### Log slashing events
 
-<b id="req-log-slashing">Any event that results in slashing MUST be logged</b>
+<a href="#req-log-slashing">🔗</a> <b id="req-log-slashing">Any event that results in slashing MUST be logged</b>
 
 #### Monitor hardware and network performance
 
-<b id="req-log-perormance-maintenance">Logs MUST provide a sufficiently detailed view of hardware and network performance to enable upgrade needs to be forecast,
+<a href="#req-log-perormance-maintenance">🔗</a> <b id="req-log-perormance-maintenance">Logs MUST provide a sufficiently detailed view of hardware and network performance to enable upgrade needs to be forecast,
 and to alert if validators are operating with excess latency</b>
 
 Tools such as [Zabbix](tool-zabbix) can also display a live feed of CPU and memory usage of each compute instance.
@@ -1993,12 +1977,11 @@ Tools such as [Zabbix](tool-zabbix) can also display a live feed of CPU and memo
 
 </section>
 
-<a id="sec-controls-environment"></a>
-### Controls for Environmental Threat Management
+### Controls for Environmental Threat Management <a href="#sec-controls-environment" id="sec-controls-environment">🔗</a>
 
 #### Manage Environmental Threats
 
-<b id="req-log-environment">Node Operators SHOULD have processes in place to manage environmental threats</b>
+<a href="#req-log-environment">🔗</a> <b id="req-log-environment">Node Operators SHOULD have processes in place to manage environmental threats</b>
 
 This includes monitoring for such threats and physically hardened facilities (e.g. fire- and flood-resistant server rooms),
 and physically decentralized infrastructure. It can also incorporate the use of DVT or related approaches to managing physical decentralization.
@@ -2014,7 +1997,7 @@ and physically decentralized infrastructure. It can also incorporate the use of 
 
 #### Manage Equipment Lifecycles
 
-<b id="req-manage-equipment-lifecycle">Node Operators SHOULD have processes in place to manage equipment lifecycles</b>
+<a href="#req-manage-equipment-lifecycle">🔗</a> <b id="req-manage-equipment-lifecycle">Node Operators SHOULD have processes in place to manage equipment lifecycles</b>
 
 This includes monitoring performance and performing preventive maintenance, upgrades, or replacing equipment as appropriate,
 as well as processes that ensure equipment is correctly retired including removing data and any hardware-based authorization.
@@ -2029,8 +2012,7 @@ as well as processes that ensure equipment is correctly retired including removi
 
 
 
-<a id="sec-controls-updates"></a>
-### Controls for Development and Update Process
+### Controls for Development and Update Process <a href="#sec-controls-updates" id="sec-controls-updates">🔗</a>
 
 #### Relevant external controls for managed software updates
 
@@ -2039,7 +2021,7 @@ as well as processes that ensure equipment is correctly retired including removi
 
 #### Develop Software as Secure by Design
 
-<b id="req-secure-development">Code development MUST follow secure development processes to avoid introducing security risks</b>
+<a href="#req-secure-development">🔗</a> <b id="req-secure-development">Code development MUST follow secure development processes to avoid introducing security risks</b>
 
 This is a broad area. A few specific controls are included in this specification, but this requirement is intended to ensure a general production philosophy.
 
@@ -2049,7 +2031,7 @@ This is a broad area. A few specific controls are included in this specification
 #### Verify Outsourced Development
 
 
-<b id="req-review-3rdparty-code">Node Operators MUST review custom-developed code provided by third parties</b>
+<a href="#req-review-3rdparty-code">🔗</a> <b id="req-review-3rdparty-code">Node Operators MUST review custom-developed code provided by third parties</b>
 
 Best practice is to perform both internal and independent external audit, and to ensure the identity of the coders is known.
 Likewise, in best practice third-party code developers are only given access to code they need to do their work, are held to high standards of confidentiality,
@@ -2064,19 +2046,19 @@ and work with a well-defined set of expectations
 
 #### Follow Update Procedures
 
-<b id="req-document-update-process">Node Operators MUST document procedures for updates to code</b>
+<a href="#req-document-update-process">🔗</a> <b id="req-document-update-process">Node Operators MUST document procedures for updates to code</b>
 
 #### Use Code Repositories
 
-<b id="req-use-code-repo">Source code MUST be managed in a repository</b>
+<a href="#req-use-code-repo">🔗</a> <b id="req-use-code-repo">Source code MUST be managed in a repository</b>
 
-<b id="req-dont-edit-prod">Deployed production code MUST NOT be directly editable</b>
+<a href="#req-dont-edit-prod">🔗</a> <b id="req-dont-edit-prod">Deployed production code MUST NOT be directly editable</b>
 
 This covers all changes to code, including when it is necessary to roll back an upgrade.
 
 #### Check Third-party Code for Vulnerabilities before Updating
 
-<b id="req-check-vulnerabilities">Updates to third-party software MUST be checked for vulnerabilities before deployment</b>
+<a href="#req-check-vulnerabilities">🔗</a> <b id="req-check-vulnerabilities">Updates to third-party software MUST be checked for vulnerabilities before deployment</b>
 
 This covers verifying that all software updates, including validators and other nodes, have been audited to ensure they are not introducing known or new vulnerabilities.
 
@@ -2087,15 +2069,15 @@ This covers verifying that all software updates, including validators and other 
 
 #### Verify Configuration on Update
 
-<b id="req-check-config-on-update">Software update procedures MUST include an assessment and application of configuration settings</b>
+<a href="#req-check-config-on-update">🔗</a> <b id="req-check-config-on-update">Software update procedures MUST include an assessment and application of configuration settings</b>
 
 #### Validate Inputs and outputs
 
-<b id="req-verify-inputs">Code MUST verify that input is safe before operating on it</b>
+<a href="#req-verify-inputs">🔗</a> <b id="req-verify-inputs">Code MUST verify that input is safe before operating on it</b>
 
-<b id="req-valid-output">Code MUST NOT produce invalid outputs</b>
+<a href="#req-valid-output">🔗</a> <b id="req-valid-output">Code MUST NOT produce invalid outputs</b>
 
-<b id="req-protect-vs-ssrf">Components SHOULD use [[CORS](#ref-cors)] and [[CSP](#ref-csp)] to protect against Server Side Request Forgery</b>
+<a href="#req-protect-vs-ssrf">🔗</a> <b id="req-protect-vs-ssrf">Components SHOULD use [[CORS](#ref-cors)] and [[CSP](#ref-csp)] to protect against Server Side Request Forgery</b>
 
 These requirements ensure that data passed between software components can be handled safely by the receiving component. It includes data entered manually by users.
 
@@ -2124,7 +2106,7 @@ Multiple tools can help meet these requirements, including
 
 #### Ensure Good Test Coverage
 
-<b id="req-test-coverage">Node Operators MUST have thorough test coverage of their software and operating procedures</b>
+<a href="#req-test-coverage">🔗</a> <b id="req-test-coverage">Node Operators MUST have thorough test coverage of their software and operating procedures</b>
 
 There is no magic percentage figure, but ideally unit tests and integration tests cover every funtionality and interaction
 managed by code the Node Operator uses, whether self-managed or provided by a third party.
@@ -2135,13 +2117,13 @@ managed by code the Node Operator uses, whether self-managed or provided by a th
 
 #### Test All Interactions Impacted by Software Updates
 
-<b id="req-reaudit-everything-impacted">Updates MUST include an audit of all code and user interactions they impact</b>
+<a href="#req-reaudit-everything-impacted">🔗</a> <b id="req-reaudit-everything-impacted">Updates MUST include an audit of all code and user interactions they impact</b>
 
 This means testing not just the new code deployed, but also existing code that interacts with anything the update changes, to ensure that integration is not introducing a vulnerability. This extends to non-blockchain code used to interact with the Validator, where applicable.
 
 #### Deploy via staging test environments
 
-<b id="req-deply-via-testnet">Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network</b>
+<a href="#req-deply-via-testnet">🔗</a> <b id="req-deply-via-testnet">Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network</b>
 
 ##### Relevant external controls for pre-deployment testing
 
@@ -2149,10 +2131,9 @@ This means testing not just the new code deployed, but also existing code that i
 
 #### Maintain Emergency Rollback Procedures
 
-<b id="req-enable-rollback">Node Operators MUST have a process to enable emergency rollback of upgrades</b>
+<a href="#req-enable-rollback">🔗</a> <b id="req-enable-rollback">Node Operators MUST have a process to enable emergency rollback of upgrades</b>
 
-<a id="sec-controls-response"></a>
-### Controls for Incident Response Planning
+### Controls for Incident Response Planning <a href="#sec-controls-response" id="sec-controls-response">🔗</a>
 
 #### Relevant external controls for incident response planning
 
@@ -2163,11 +2144,11 @@ Incident Response Planning helps address almost all risks faced by Node Operator
 
 #### Document Adequate Incident Response Plans
 
-<b id="req-incident-response-plans">The Node Operator MUST have documented [Incident Response Plans](#def-incident-response-plan) corresponding to all risks identified in this specification.
+<a href="#req-incident-response-plans">🔗</a> <b id="req-incident-response-plans">The Node Operator MUST have documented [Incident Response Plans](#def-incident-response-plan) corresponding to all risks identified in this specification.
 
 #### Document Disaster Recovery Plans
 
-<b id="req-disaster-recovery-plan">The Node Operator MUST have documented [Disaster Recovery Plans](#def-disaster-recovery-plan) corresponding to risks identified in this specification
+<a href="#req-disaster-recovery-plan">🔗</a> <b id="req-disaster-recovery-plan">The Node Operator MUST have documented [Disaster Recovery Plans](#def-disaster-recovery-plan) corresponding to risks identified in this specification
 that lead to destruction of crucial data or loss of assets</b>
 
 ##### Relevant external controls for disaster recovery plans
@@ -2180,7 +2161,7 @@ that lead to destruction of crucial data or loss of assets</b>
 
 #### Plan Incident Follow-up
 
-<b id="req-revise-response-plans">[Incident Response](def-incident-response-plan)
+<a href="#req-revise-response-plans">🔗</a> <b id="req-revise-response-plans">[Incident Response](def-incident-response-plan)
 and [Disaster Recovery](#def-disaster-recovery-plan) plans MUST include revising the relevant plans whenever they are activated, based on lessons learned</b>
 
 This covers both responses to real incidents and Simulated activation, or "pre-mortems".
@@ -2197,21 +2178,20 @@ This covers both responses to real incidents and Simulated activation, or "pre-m
 
 #### Perform Regular Incident Response Simulations
 
-<b id="req-run-incident-simulations">Node Operators MUST perform a simulated Incident and activation of the associate [Incident Response](def-incident-response-plan)
+<a href="#req-run-incident-simulations">🔗</a> <b id="req-run-incident-simulations">Node Operators MUST perform a simulated Incident and activation of the associate [Incident Response](def-incident-response-plan)
 or [Disaster Recovery](#def-disaster-recovery-plan) plans at least twice per year</b>
 
 #### Plan Incident Communication
 
-<b id="req-communication-strategy">Node Operators MUST document [Incident Communication](#def-incident-communication) strategies or policies</b>
+<a href="#req-communication-strategy">🔗</a> <b id="req-communication-strategy">Node Operators MUST document [Incident Communication](#def-incident-communication) strategies or policies</b>
 
 This requirement includes internal and external communication, both during and after incidents.
 
-<a id="sec-controls-general"></a>
-### Controls for General Security Measures
+### Controls for General Security Measures <a href="#sec-controls-general" id="sec-controls-general">🔗</a>
 
 #### Verify Counterparty Compliance
 
-<b id="req-verify-3rdparty-compliance">Node Operators MUST verify that third parties providing services, or with whom the Node Operator contracts,
+<a href="#req-verify-3rdparty-compliance">🔗</a> <b id="req-verify-3rdparty-compliance">Node Operators MUST verify that third parties providing services, or with whom the Node Operator contracts,
 are in compliance with relevant standards (including this one) and regulations</b>
 
 This includes areas such as the uptime guarantees of cloud providers and other core counterparties,
@@ -2231,7 +2211,7 @@ response times and Service Level Agreements, security procedures, and the like a
 
 #### Manage Counterparty Relationship Lifecycles
 
-<b id="req-termination-procedures">Service agreements MUST specify termination procedures and obligations</b>
+<a href="#req-termination-procedures">🔗</a> <b id="req-termination-procedures">Service agreements MUST specify termination procedures and obligations</b>
 
 <section id="sec-communications-strategy">
 
@@ -2347,63 +2327,49 @@ You can download the spreadsheet here: [https://docs.google.com/spreadsheets/d/1
 #### [BSSC KMS]
 "Key Management Standard version 1", J Kemp and M Nesbitt eds., Blockchain Standards Security Council 2025. [https://specs.blockchainssc.org/kms/v1/](https://specs.blockchainssc.org/kms/v1/)
 
-<a id="ref-ccss"></a>
-#### [CCSS]
+#### [CCSS] <a href="#ref-ccss" id="ref-ccss">🔗</a>
 "CCSS v9.0 Table", C4 2025. [https://cryptoconsortium.org/ccss-table-v9/](https://cryptoconsortium.org/ccss-table-v9/)
 
-<a id="ref-csp"></a>
-##### [CSP]
+##### [CSP] <a href="#ref-csp" id="ref-csp">🔗</a>
 "Content Security Policy", Mozilla Corporation. [https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 
-<a id="ref-cors"></a>
-##### [CORS]
+##### [CORS] <a href="#ref-cors" id="ref-cors">🔗</a>
 "Cross-Origin Resource Sharing (CORS)", Mozilla Corporation. [https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
-<a id="ref-cve"></a>
-##### [CVE]
+##### [CVE] <a href="#ref-cve" id="ref-cve">🔗</a>
 "CVE", Mitre, 1995-. [https://www.cve.org](https://www.cve.org)
 
-<a id="ref-iso-27001"></a>
-##### [ISO 27001]
+##### [ISO 27001] <a href="#ref-iso-27001" id="ref-iso-27001">🔗</a>
 ISO IEC 27001:2022 "Information security, cybersecurity and privacy protection — Information security management systems — Requirements" 3rd Ed. ISO, 2022. [https://www.iso.org/standard/27001](https://www.iso.org/standard/27001)
 
-<a id="ref-nist-800-115"></a>
-##### [NIST-800-115]
+##### [NIST-800-115] <a href="#ref-nist-800-115" id="ref-nist-800-115">🔗</a>
 "Technical Guide to Information Security Testing and Assessment", Karen Scarfone, Murugiah Souppaya, Amanda Cody, and Angela Orebaugh. NIST 2008. [https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
 
-<a id="ref-owasp-access-control"></a>
-##### [OWASP Access Control]
+##### [OWASP Access Control] <a href="#ref-owasp-access-control" id="ref-owasp-access-control">🔗</a>
 "OWASP Top 10: A01:2021 - Broken Access Control", OWASP 2021. [https://owasp.org/Top10/A01_2021-Broken_Access_Control/](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
 
-<a id="ref-owasp-cryptographic-failures"></a>
-##### [OWASP Cryptographic Failures]
+##### [OWASP Cryptographic Failures] <a href="#ref-owasp-cryptographic-failures" id="ref-owasp-cryptographic-failures">🔗</a>
 "OWASP Top 10: A01:2021 - Cryptographic Failures", OWASP 2021. [https://owasp.org/Top10/A01_2021-Cryptographic_Failures/](https://owasp.org/Top10/A01_2021-Cryptographic_Failures/)
 
-<a id="ref-owasp-ssrf"></a>
-##### [OWASP SSRF]
+##### [OWASP SSRF] <a href="#ref-owasp-ssrf" id="ref-owasp-ssrf">🔗</a>
 "OWASP Top 10: A10:2021 - Server-Side Request Forgery (SSRF)", OWASP 2021. [https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/)
 
 
-<a id="ref-premortem"></a>
-##### [Pre-mortem]
+##### [Pre-mortem] <a href="#ref-premortem" id="ref-premortem">🔗</a>
 "How to Use Pre-mortems to Prevent Problems, Blunders, and Disasters", Shreyas Doshi, 2020. [https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a](https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a)
 
-<a id="ref-rfc2119"></a>
-### RFC2119
+### RFC2119 <a href="#ref-rfc2119" id="ref-rfc2119">🔗</a>
 "Key words for use in RFCs to Indicate Requirement Levels", S. Bradner, IETF 1997.
 [https://www.rfc-editor.org/rfc/rfc2119.html](https://www.rfc-editor.org/rfc/rfc2119.html)
 
-<a id="ref-rfc8174"></a>
-### RFC8174
+### RFC8174 <a href="#ref-rfc8174" id="ref-rfc8174">🔗</a>
 "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", B. Leiba, IETF 2017.
 [https://www.rfc-editor.org/rfc/rfc8174.html](https://www.rfc-editor.org/rfc/rfc8174.html)
 
-<a id="ref-sbom"></a>
-##### [SBOM]
+##### [SBOM] <a href="#ref-sbom" id="ref-sbom">🔗</a>
 "Software Bill of Materials (SBOM)" CISA, 2024. [https://www.cisa.gov/sbom](https://www.cisa.gov/sbom)
 
-<a id="ref-soc2"></a>
-##### [SOC2]
+##### [SOC2] <a href="#ref-soc2" id="ref-soc2">🔗</a>
 "2017 Trust Services Criteria for Security, Availability, Processing Integrity, Confidentiality, and Privacy (With Revised Points of Focus — 2022)" AICPA 2022. [https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022](https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022) (requires AICPA membership)
 
 More:
