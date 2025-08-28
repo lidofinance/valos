@@ -373,7 +373,14 @@ Connectivity issues leading to reduced rewards.
   <td>Software</td>
   <td>Validator client update incompatible with IT system</td>
   <td>System downtime after validator client update caused by incompatibility</td>
-</tr></tbody></table>
+</tr>
+<tr>
+  <td id="risk-dow-20">DOW21</td>
+  <td>Software</td>
+  <td>Updates take too long</td>
+  <td>System downtime caused by software update processes taking longer than planned, with no failover capacity</td>
+</tr>
+</tbody></table>
 
 ### Key Custody Risk
 
@@ -828,7 +835,7 @@ For example in Ethereum, it is possible to run different clients on each of the 
 ##### Client diversity helps address the following risks
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
-* [DOW2](#risk-dow-2), [DOW19](#risk-dow-19)
+* [DOW2](#risk-dow-2), [DOW19](#risk-dow-19), [DOW21](#risk-dow-21)
 </div>
 
 #### Distributed Validator Technology (DVT)
@@ -1239,7 +1246,7 @@ As well as having control over the update process, it is important to have the c
 #### Managing software updates helps mitigate the following Risks
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
-* [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR3](#risk-gir-3), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21), [GIR25](#risk-gir-25)
 * [SPS](#risk-sps-0)
 </div>
@@ -1261,7 +1268,7 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 ##### Not customising third-party software helps address the following risks
 
 * [SLS7](#risk-sls-7)
-* [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 </div>
 
 #### Configuration Management
@@ -1319,7 +1326,7 @@ This minimizes a potential blast radius. It is important to run any change (even
 
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
-* [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR11](#risk-gir-11), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21)
 </div>
 
@@ -1968,8 +1975,6 @@ as well as processes that ensure equipment is correctly retired including removi
 * [DOW3](#risk-dow-3)
 * [KEC1](#risk-kec-1), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
 
-
-
 ### Controls for Development and Update Process <a href="#sec-controls-updates" id="sec-controls-updates">🔗</a>
 
 #### Relevant external controls for managed software updates
@@ -1988,7 +1993,6 @@ This is a broad area. A few specific controls are included in this specification
 
 #### Verify Outsourced Development
 
-
 <a href="#req-review-3rdparty-code">🔗</a> <b id="req-review-3rdparty-code">Node Operators MUST review custom-developed code provided by third parties</b>
 
 Best practice is to perform both internal and independent external audit, and to ensure the identity of the coders is known.
@@ -2000,7 +2004,6 @@ and work with a well-defined set of expectations
 * [[?ISO27001]] Annex A 8.30
 * [[?SOC2]] CC 8.1
 * [[?ISO27001]] Annex A 8.32
-
 
 #### Follow Update Procedures
 
