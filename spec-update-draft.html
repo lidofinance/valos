@@ -55,8 +55,13 @@ Conformance to this specification is based on meeting the requirements expressed
 
 This specification divides risk into seven categories for Node Operators to consider in ensuring the quality of their overall setup.
 
+In general, risk identifiers correspond to DUCK and will remain stable. This may mean that some identifiers are retired and will not be re-used.
 
 ### Financial and Regulatory Risk {#sec-financial-risk}
+
+Inadequate processes for financial control or regulatory compliance can pose risks ranging from unexpected financial losses to serious regulatory and legal consequences
+
+**Note**: This section is new in ValOS, and the identifiers are not yet stable - they may change before release.
 
 <table role="table">
 <thead>
@@ -90,12 +95,6 @@ This specification divides risk into seven categories for Node Operators to cons
 <td>Process</td>
 <td>Withdrawal</td>
 <td>Fiat and digital assets are not correctly disbursed to individuals, entities, or addresses, leading to financial and reputational loss</td>
-</tr>
-<tr>
-<td id="risk-fin-5">FIN5</td>
-<td>Infrastructure</td>
-<td>Withdrawal</td>
-<td>Staking withdrawal requests cannot be met efficiently, leading to delays in payment processing causing financial and reputational loss</td>
 </tr>
 <tr>
 <td id="risk-fin-6">FIN6</td>
@@ -662,7 +661,8 @@ Risk related to running specific services.
   <td>Process</td>
   <td>Exit Risk - Delinquent state</td>
   <td><ul><li>No new stake will be allocated to the Node Operator (happens automatically)</li><li>the daily rewards sent to the Node Operator will be halved (with the remaining half sent towards that day’s rebase) (happens automatically)</li><li>reduced rewards will continue for the duration of a cooldown period long enough to determine whether, immediately after service restoration by the Node Operator, subsequently received validator exit requests are processed in a timely manner.</li></ul></td>
-</tr></tbody></table>
+</tr>
+</tbody></table>
 
 ### Reputational Risk
 
@@ -693,7 +693,15 @@ Risk related to running specific services.
   <td>Process</td>
   <td>Mismanagement of Post-Incident</td>
   <td>Reputation damage due to mismanagement of Post-slashing, -downtime or access loss to keys</td>
-</tr></tbody></table>
+</tr>
+<tr>
+<td id="risk-rer-4">RER4</td>
+<td>Infrastructure</td>
+<td>Withdrawal</td>
+<td>Staking withdrawal requests cannot be met efficiently, leading to delays in payment processing causing reputational loss</td>
+</tr>
+
+</tbody></table>
 
 
 
