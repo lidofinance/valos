@@ -237,7 +237,14 @@ Performing slashable actions leading to penalties.
   <td>Process</td>
   <td>Operational Failure: Slashing monitoring does not shut down the validators</td>
   <td>Slashing keeps going on because system fails to automatically shut down after alerts</td>
-</tr></tbody></table>
+</tr>
+<tr>
+  <td id="risk-sls-18">SLS19</td>
+  <td>Process</td>
+  <td>Incident Response does not update Slashing Database</td>
+  <td>A slashing event recurs, because the database is not updated as part of Incident Response</td>
+</tr>
+</tbody></table>
 
 
 ### Downtime Risk
@@ -1528,9 +1535,9 @@ and consider what changes can be implemented to prevent or mitigate similar even
 
 ##### Analyzing security events helps address the following risks
 
+* [SLS19](#risk-sls-19)
 * [DOW10](#risk-dow-10)
-* [GIR6](#risk-gir-6)
-* [GIR7](#risk-gir-7)
+* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7)
 </div>
 
 #### Disaster Recovery Plan
@@ -2156,9 +2163,9 @@ This covers both responses to real incidents and Simulated activation, or [=Pre-
 
 ##### Analyzing security events helps address the following risks
 
+* [SLS19](#risk-sls-19)
 * [DOW10](#risk-dow-10)
-* [GIR6](#risk-gir-6)
-* [GIR7](#risk-gir-7)
+* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7)
 
 ##### Relevant external controls for analyzing security events
 
