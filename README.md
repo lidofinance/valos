@@ -34,9 +34,9 @@ and to understand what an auditor will be checking for when they are assessing a
 
 ValOS is being revised over the course of 2025 with a new version expected before the end of the year.
 
-Proposed updates are accepted (or returned for more work) on a weekly basis. The [spec-update-draft.html](./spec-update-draft.html) in the `main` branch shows the draft specification with all the changes that have been accepted so far.
+Proposed updates are accepted (or returned for more work) on a weekly basis. The [spec-update-draft.md](./spec-update-draft.md) in the `main` branch shows the draft specification with all the changes that have been accepted so far.
 
-You can also see the specification as it would appear if currently proposed changes are accepted, by looking in the `advance-staging` branch for [[spec-update-draft.html](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html]
+You can also see the specification as it would appear if currently proposed changes are accepted, by looking in the `advance-staging` branch for [spec-update-draft.html](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html] (currently, to view it as intended you need to clone the branch or download the HTML file, and open the local file in a browser. We expect to make it possible to see this online very soon.)
 
 ## How can you contribute?
 
