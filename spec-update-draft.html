@@ -1231,8 +1231,10 @@ As well as having control over the update process, it is important to have the c
 **Examples for best practices:**
 
 * Use [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) for infrastructure.
-* Using GIT also for infrastructure code and configurations.
-* Use database migration systems such as [Liquibase](https://www.liquibase.org).
+* Using GIT to manage infrastructure code and configurations.
+* Use database migration systems such as [Liquibase](https://www.liquibase.org)
+* The "Blue-Green Deployment pattern" [[[?WikipediaBG]]] uses two identical environments with a staged transfer of data,
+  that can enable rapid rollback if a problem is detected.
 
 <div class="info">
 
@@ -2416,6 +2418,11 @@ The following have contributed directly to the production of this specific versi
         publisher: "OWASP",
         date: "2022",
         href: "https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/"
+      },
+      WikipediaBG: {
+        title: "Blue Green Deployment",
+        publisher: "Wikipedia",
+        href: "https://en.wikipedia.org/wiki/Blue%E2%80%93green_deployment"
       }
     }
   };
