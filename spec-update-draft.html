@@ -698,7 +698,15 @@ Risks that impact the reputation of a Node Operator, likely to lead potential an
   <td>Process</td>
   <td>Mismanagement of Post-Incident</td>
   <td>Reputation damage due to mismanagement of Post-slashing, -downtime or access loss to keys</td>
-</tr></tbody></table>
+</tr>
+
+<tr>
+  <td id="risk-rer-5">RER5</td>
+  <td>Process</td>
+  <td>Poor Communication</td>
+  <td>Poor reputation or reputational damage due to insufficient operational communication and overall transparency</td>
+</tr>
+</tbody></table>
 
 
 
@@ -1467,9 +1475,103 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 </div>
 
-### Incident Response {#sec-mitigations-incident-response}
+### Communications and Incident Response {#sec-mitigations-incident-response}
 
-An <dfn id="def-incident-response-plan">Incident Response Plan</dfn> documents procedures for managing security incidents and events,
+Communication is important both during normal operations, and when an exceptional security incident occurs that could adversely affect the normal operations, or the users of a system.
+
+There are therefore two core parts to a Nore Operator's communication strategy:
+
+- Normal Operational Communication provides information about ongoing operations, to ensure coinfidence in and transparency of everyday operations.
+- <dfn>Incident Communication</dfn> is the collection of communications processes that occur as part of an [=Incident Response Plan=]
+
+Both rely on understanding the Stakeholders, and developing approriate communication channels and procedures to ensure those stakeholders have timely access to relevant information.
+
+#### Stakeholder Overview
+
+Some key stakeholders are <dfn>Known Stakeholders</dfn>, who have an identity known to the Node Operator
+that includes at least one direct communications cannel such as messaging, email, or telephone. These typically include
+
+* High stake investors - with some of whom the Operator could also have contractual obligations
+* Service Partners, who might be involved in operating and managing protocols and requiring governance votes, or hosting, managing or operating infrastructure as part of the node operation setup
+* Media channels, platforms, and accounts covering technical and non-technical news and reports
+* Other Node Operators running validators on the same network
+* Staff such as those developing and maintaining critical node operations software
+* Individuals or organizations using additional service provided by Node Operators (e.g., API users, customers for white-label solutions etc.)
+* Corporate Regulators - who can require that Node Operators provide them with specific information, but do not necessarily communnicate with Node Operators on an individual basis
+
+Node operators will almost certainly also have <dfn>Anonymous Stakeholders</dfn>, who might follow a Node Operator's public information channels,
+or operate independently, but who do not provide individual communication information to Operators.
+
+As well as those who could be [=Known Stakeholders=], such as high stake investors, media and other node operators these can include
+
+* Low stake investors
+* Potential investors
+* Communities involved in the ecosystem for motives as diverse as lobbying regulators, developing technical standards, education, and more.
+
+
+#### Communication Channels
+
+Stakeholders' preferences for communication channels differ.
+Where possible for [=Known Stakeholders=] it is good practice to identify them, and their individual channel preferences in advance.
+However it is also important to note that a number of jurisdictions (such as the EU, with the [[?GDPR]]) regulate the use of information about individuals
+that includes communication channel information.
+It is important to include channels that enable [=Anonymous Stakeholders=] to follow important developments.
+
+Broadly, communication channels can be considered two-way, enabling communication with an individual Known Stakeholder or with all of them at once,
+or broadcast, enabling [=Anonymous Stakeholders=] to receive important information.
+Additionally, some mechanisms allow for persistent information, while others are only temporary;
+A website can be maintained long-term or the information can be removed, information sent by email can easily be retained by the recipient in perpetuity,
+while information in e.g. a Slack or Telegram channel could be deleted after a matter of days or weeks
+
+It is also important, especially for services used for two-way communication with [=Known Stakeholders=], to consider the security and privacy of the channels used.
+While channels such as Telegram or Whatsapp use encryption, in the case of the former all communication is decoded at some unknnown centralized point, in the latter large amounts of metadata are available to the service provider.
+
+While many messaging services can behave in either manner, some such as websites are well-suited to broadcast communication
+while others are specifically suited to individual two-way communication.
+
+Common communication tools that stakeholders are likely to find familiar and actively use include Websites, email, message-based services such as Telegram, Discord, Slack, Signal, Whatsapp and "post"-oriented services such as X (the former Twitter), BlueSky, Facebook/Instagram, and the like.
+
+
+#### Stakeholder Management
+
+The following procedures enable appropriate consideration and management of relevant stakeholders:
+
+1. Define all stakeholders that are relevant to your organization
+2. Define and align communciation channels that you intend to use for engagement with your stakeholders
+3. Perform a stakeholder mapping and define your individual ways of engagement with the different stakeholder groups
+4. Document all defined stakeholders with the respective management measures in the stakeholder register. Also take best practices covering incident communication into account.
+5. Define appropriate intervals to review accuracy and relevance of documented contents in the stakeholder register
+
+A [Stakeholder Map](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base/~gitbook/image?url=https%3A%2F%2F3935398949-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FxTRnDyIanlwU7cCKcAju%252Fuploads%252Fhdg4kca5vuEMKsr01CxP%252FStakeholder_Map_Template.png%3Falt%3Dmedia%26token%3Dc83db7a4-f0ed-464f-ab69-630ba1450597&width=768&dpr=4&quality=100&sign=7ea4928c&sv=2) can help categorize individual stakeholders into different communication groups. It can be used as an initial assessment for further review and adaption to your individual stakeholder landscape. Review each stakeholder individually, to assess the appropriate communication plans.
+
+##### Manage Closely
+
+* Use direct two-way communication channels
+* Provide individual status reporting and communications
+* Perform immediate alignment in case of incidents
+
+##### Keep Satisfied
+
+* Provide regular status reporting of important operational information
+* Provide summary and updates in case of incidents
+
+##### Keep Informed
+
+* Select communication channels depending on the need for responsiveness
+* Provide summaries and updates in case of incidents
+
+##### Monitor
+
+* Monitor activities and react to activities and requests
+
+A stakeholder register listing all stakeholders with details about their roles, interests, and impact on the organization
+is helpful for managing stakeholders, and effective communication with them.
+This can be as simple as a [Stakeholder Register Spreadsheet](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true),
+or a more advanced CRM system, depending on the needs of the Node Operator.
+
+#### Incident Response Plans
+
+An <dfn>Incident Response Plan</dfn> documents procedures for managing security incidents and events,
 as guidance for employees or incident responders who believe they have discovered, or are responding to, a security incident.
 A well-documented Incident Response Plan helps employees in a high-stress situation by providing a reminder of all important actions and considerations.
 To be useful, it is necessary that relevant employees know the plans exist, and how to find them.
@@ -1506,7 +1608,7 @@ with alerting and potentially direct reaction mechanisms. Although learning from
 * [RER3](#risk-rer-3)
 </div>
 
-#### Analyze Security Events and Learn from Them
+#### Learning from Security Events
 
 This is often referred to as a "<dfn>Post Mortem</dfn>",
 used to learn from the event and improve relevant Incident Response Plans.
@@ -1523,7 +1625,7 @@ and consider what changes can be implemented to prevent or mitigate similar even
 * [GIR7](#risk-gir-7)
 </div>
 
-#### Disaster Recovery Plan
+#### Disaster Recovery Plans
 
 A <dfn>Disaster Recovery Plan</dfn> is a specialized [=Incident Response Plan=]
 that gives guidance on recovering one or more information systems at an alternate facility,
@@ -1547,17 +1649,17 @@ Sample Disaster Recovery Plan templates:
 
 These are also known as "<dfn>Pre-Mortems</dfn>".
 
-Regular simulations of implementing an Incident Response Plan ensure that relevant personnel are familiar with them and can follow them when necessary.
-"Pre-Mortems" simulating or "war-gaming" a specific failure also
-tests that those procedures are tested to give some idea of whether they are appropriate and adequate,
-and often motivates people to think about other risks, and whether appropriate procedures and mitigations are in place.
+Regular simulations of implementing an [=Incident Response Plan=] ensure that relevant personnel are familiar with them
+and can efficiently follow them when necessary.
+"Pre-Mortems" simulating or "war-gaming" a specific failure also tests those procedures to give some idea of whether they are appropriate and adequate.
+It also often motivates participants to think about other risks, and whether appropriate procedures and mitigations are in place.
 
-There are many possible approaches to an incident simulation, and may eventualities that they can cover. As well as a highly detailed scenario, example topics could include variations on themes such as
+There are many possible approaches to an incident simulation, and many eventualities that they can cover.
+Example topics for Pre-Mortems include variations on themes such as
 
 * Unauthorized users gain access to the servers and set about making mischief
-* A complex security compromise, where details are not immediately available
-* A specific scenario (environmental disaster, utility failure, operational error) results in downtime
-
+* A complex security compromise where details are not immediately available
+* A specific scenario (environmental disaster, utility failure, operational error) results in system downtime
 
 Articles such as [[[?PREMORTEM]]]
 offer further information on how to plan and implement simulations, and how to derive the maximum benefit from them.
@@ -1571,7 +1673,7 @@ It is important to note that inappropriate communication during an incident can 
 External communication has to balance stakeholders' need for information that enables them to respond in a well-informed manner
 against the importance of providing clear information with as much certainty as feasible that it will not later be contradicted.
 
-Best practice for external communication about an incident includes providing a detailed post-incident summary.
+Best practice for [=Incident Communication=] includes providing a detailed post-incident summary.
 
 ### General Measures {#sec-mitigations-general}
 
@@ -2154,21 +2256,43 @@ This means testing not just the new code deployed, but also existing code that i
 
 <a href="#req-enable-rollback">🔗</a> <b id="req-enable-rollback">Node Operators MUST have a process to enable emergency rollback of upgrades</b>
 
-### Controls for Incident Response Planning <a href="#sec-controls-response" id="sec-controls-response">🔗</a>
+### Controls for Communication and Incident Response <a href="#sec-controls-response" id="sec-controls-response">🔗</a>
+
+#### Provide Operational Communication
+
+<a href="#req-regular-communciation">🔗</a> <b id="req-regular-communication">Node Operators SHOULD provide regular normal operational communication</b>
+
+This covers general information similar to financial reporting, major changes in staffing (overall size, key positions, strategic focus),
+and operator-specific information such as governance of onchain systems, key third-party relationships, software partnerships,
+participation in standards-setting, and the like.
+
+The purpose is to provide confidence to stakeholders that the Node Operator is effectively managed, to enable them to understand the overall goals,
+and to show operational strengths, and plans to address perceived weaknesses and strategic threats.
 
 <div class="info">
 
-#### Relevant external controls for incident response planning
+##### Relevant external controls for disaster recovery plans
+
+* [[?SOC2]] CC 7.5
+
+##### Disaster recovery plans help address the following risks
+
+* [RER5](#risk-rer-5)
+</div>
+
+#### Document Adequate Incident Response Plans
+
+<a href="#req-incident-response-plans">🔗</a> <b id="req-incident-response-plans">The Node Operator MUST have documented [Incident Response Plans](#def-incident-response-plan) corresponding to all risks identified in this specification</b>
+
+<div class="info">
+
+#### Relevant external controls for incident response
 
 * [[?SOC2]] CC 7.4
 * [[?SOC2]] CC 9.1 of Trust Services Criteria
 
 Incident Response Planning helps address almost all risks faced by Node Operators
 </div>
-
-#### Document Adequate Incident Response Plans
-
-<a href="#req-incident-response-plans">🔗</a> <b id="req-incident-response-plans">The Node Operator MUST have documented [Incident Response Plans](#def-incident-response-plan) corresponding to all risks identified in this specification</b>
 
 #### Document Disaster Recovery Plans
 
@@ -2247,105 +2371,6 @@ response times and Service Level Agreements, security procedures, and the like a
 <a href="#req-termination-procedures">🔗</a> <b id="req-termination-procedures">Service agreements MUST specify termination procedures and obligations</b>
 
 
-
-## Communications Strategy {#sec-communications-strategy}
-
-There are two core parts to a Nore Operator's communication strategy:
-Normal Operational Communication provides information about ongoing operations, to ensure coinfidence in and transparency of everyday operations.
-[=Incident Communication=] is the collection of communications processes that occur when an exceptional security incident occurs that could adversely affect the normal operations, or the users of a system.
-
-Both rely on understanding the Stakeholders, and developing approriate communication channels and procedures to ensure those stakeholders have timely access to relevant information.
-
-### Stakeholder Overview
-
-Some key stakeholders are <dfn>Known Stakeholders</dfn>, who have an identity known to the Node Operator
-that includes at least one direct communications cannel such as messaging, email, or telephone. These typically include
-
-* High stake investors - with whom the Operator could have contractual obligations
-* Service Partners, who might be involved in operating and managing protocols and requiring governance votes, or hosting, managing or operating infrastructure as part of the node operation setup
-* Media channels, platforms, and accounts covering technical and non-technical news and reports
-* Other Node Operators running validators on the same network
-* Staff such as those developing and maintaining critical node operations software
-* Individuals or organizations using additional service provided by Node Operators (e.g., API users, customers for white-label solutions etc.)
-* Corporate Regulators - who can require that Node Operators provide them with specific information, but do not necessarily communnicate with Node Operators on an individual basis
-
-Node operators will almost certainly also have <dfn>Anonymous Stakeholders</dfn>, who might follow a Node Operator's public information channels,
-or operate independently, but who do not provide individual communication information to Operators.
-
-These can include
-
-* Low stake investors and potential investors
-* Communities involved in the ecosystem for motives as diverse as lobbying regulators, developing technical standards,
-
-As well as many of the types of Stakeholder who also become Known Stakeholders, such as High stake investors, Media and  Other Node Operators.
-
-### Communication Channels
-
-Stakeholders' preferences for communication channels differ.
-Where possible for [=Known Stakeholders=] it is good practice to identify them, and their individual channel preferences in advance.
-However it is also important to note that a number of jurisdictions (such as the EU, with the [[?GDPR]]) regulate the use of information about individuals
-that includes communication channel information.
-It is important to include channels that enable [=Anonymous Stakeholders=] to follow important developments.
-
-Broadly, communication channels can be considered two-way, enabling communication with an individual Known Stakeholder or with all of them at once,
-or broadcast, enabling [=Anonymous Stakeholders=] to receive important information.
-Additionally, some mechanisms allow for persistent information, while others are only temporary;
-A website can be maintained long-term or the information can be removed, information sent by email can easily be retained by the recipient in perpetuity,
-while information in e.g. a Slack or Telegram channel could be deleted after a matter of days or weeks
-
-It is also important, especially for services used for two-way communication with [=Known Stakeholders=], to consider the security and privacy of the channels used.
-While channels such as Telegram or Whatsapp use encryption, in the case of the former all communication is decoded at some unknnown centralized point, in the latter large amounts of metadata are available to the service provider.
-
-While many messaging services can behave in either manner, some such as websites are well-suited to broadcast communication
-while others are specifically suited to individual two-way communication.
-
-Common communication tools that Stakeholders are likely to find familiar and actively use include Websites, email, message-based services such as Telegram, Discord, Slack, Signal, Whatsapp and "post"-oriented services such as X (the former Twitter), BlueSky, Facebook/Instagram, and the like.
-
-
-
-### Stakeholder Management
-
-#### General Procedures
-
-The following procedures enable appropriate consideration and management of relevant stakeholders:
-
-1. Define all stakeholders that are relevant to your organization
-2. Define and align communciation channels that you intend to use for engagement with your stakeholders
-3. Perform a stakeholder mapping and define your individual ways of engagement with the different stakeholder groups
-4. Document all defined stakeholders with the respective management measures in the stakeholder register. Also take best practices covering incident communication into account.
-5. Define appropriate intervals to review accuracy and relevance of documented contents in the stakeholder register
-
-#### Stakeholder Map
-
-The [Stakeholder Map](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base/~gitbook/image?url=https%3A%2F%2F3935398949-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FxTRnDyIanlwU7cCKcAju%252Fuploads%252Fhdg4kca5vuEMKsr01CxP%252FStakeholder_Map_Template.png%3Falt%3Dmedia%26token%3Dc83db7a4-f0ed-464f-ab69-630ba1450597&width=768&dpr=4&quality=100&sign=7ea4928c&sv=2) can help categorize individual stakeholders into different communication groups. It can be used as an initial assessment for further review and adaption to your individual stakeholder landscape. Review each stakeholder individually, to assess the appropriate communication plans.
-
-##### Manage Closely
-
-* Use direct communication channels (e.g., Telegram, Slack or similar)
-* Individual status reporting and communications
-* Perform immediate alignment in case of incidents
-
-##### Keep Satisfied
-
-* Establish public communication channels (e.g., Telegram, Discord, X)
-* Regular status reporting and engagement
-* Provide summary and updates in case of incidents
-
-##### Keep Informed
-
-* Communication channels depend on need for responsiveness (e.g., Mail, Discord, Telegram, Slack, X)
-* Provide summary and updates in case of incidents
-
-##### Monitor
-
-* Monitor activities and react to activities and requests
-
-#### Stakeholder Register
-
-A stakeholder register listing all stakeholders with details about their roles, interests, and impact on the organization
-is helpful for managing stakeholders, and effective communication with them.
-This can be as simple as a [Stakeholder Register Spreadsheet](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true),
-or a more advanced CRM system, depending on the needs of the Node Operator.
 
 
 <section id="sec-sotd">
