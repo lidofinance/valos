@@ -358,21 +358,15 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
 </tr>
 <tr>
   <td id="risk-dow-16">DOW16</td>
-  <td>People</td>
-  <td>Malicious Internal Employee (intentionally causes operational failure)</td>
-  <td>An employee having too privileged access</td>
+  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
 </tr>
 <tr>
   <td id="risk-dow-17">DOW17</td>
-  <td>People</td>
-  <td>Malicious Ex-Employee intentionally causes a downtime incident</td>
-  <td>A Ex-Employee can still have access to the system when his access is not blocked or removed</td>
+  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
 </tr>
 <tr>
   <td id="risk-dow-18">DOW18</td>
-  <td>People</td>
-  <td>Malicious External Hacker (intentionally causes operational failure)</td>
-  <td>A hacker may find a way to overload the<br>system or shut parts of it down manually.</td>
+  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
 </tr>
 <tr>
   <td id="risk-dow-19">DOW19</td>
@@ -420,27 +414,19 @@ The risks associated with key custody are divided in this specification accordin
 </tr>
 <tr>
   <td id="risk-kec-2">KEC2</td>
-  <td>People</td>
-  <td>Stolen / Lost Signing Keys (malicious internal employee)</td>
-  <td>Malicious employee deletes or steals the signing keys</td>
+  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
 </tr>
 <tr>
   <td id="risk-kec-3">KEC3</td>
-  <td>People</td>
-  <td>Stolen / Lost Signing Keys (malicious internal employee)</td>
-  <td>Malicious employee gets access to the unencrypted signing keys</td>
+  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
 </tr>
 <tr>
   <td id="risk-kec-4">KEC4</td>
-  <td>People</td>
-  <td>Stolen / Lost Signing Keys (External Hacker)</td>
-  <td>Malicious external hacker deletes signing keys</td>
+  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
 </tr>
 <tr>
   <td id="risk-kec-5">KEC5</td>
-  <td>People</td>
-  <td>Stolen / Lost Signing Keys (External Hacker)</td>
-  <td>Stealing the signing key from the unencrypted memory of the Web3Signer, even if keys are encrypted at rest in a vault</td>
+  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
 </tr>
 <tr>
   <td id="risk-kec-6">KEC6</td>
@@ -480,6 +466,77 @@ The risks associated with key custody are divided in this specification accordin
 </tr>
 <tr>
   <td id="risk-kec-10">KEC10</td>
+  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
+</tr>
+<tr>
+  <td id="risk-kec-11">KEC11</td>
+  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
+</tr></tbody></table>
+
+### Hacking Risk
+
+Many risks arise through vulnerability to hacking, whether carried out by a malicious external actor,
+or facilitated by a curret or former member of the operational team.
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Risk Group</th>
+<th>Risk Vectors</th>
+<th>Risk Vector Description</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td id="risk-SLS-8">HCK1 was SLS8</td>
+  <td>People</td>
+  <td>Malicious Internal Employee intentionally causes operational failure with appropriate user rights</td>
+  <td>Anything that an internal employee has access to is at risk of being exploited to sabotage the operation resulting in a slashing incident.</td>
+</tr>
+<tr>
+  <td id="risk-SLS-9">HCK2 WAS SLS9,DOW16</td>
+  <td>People</td>
+  <td>Malicious Internal Employee intentionally causes operational failure via privilege escalation</td>
+  <td>A malicious internal employee can get additional rights via through privileges escalation.</td>
+</tr>
+<tr>
+  <td id="risk-sls-10">HCK3 was SLS10, DOW17</td>
+  <td>People</td>
+  <td>Malicious Ex-Employee intentionally causes an operational failure</td>
+  <td>A former employee whose access is not blocked or removed </td>
+</tr>
+<tr>
+  <td id="risk-sls-11">HCK4 was SLS11,12,13, DOW18</td>
+  <td>People</td>
+  <td>Malicious External Hacker intentionally causes operational failure</td>
+  <td>Malicious External Hacker gets system access through absence of or weak cyber security standards</td>
+</tr>
+<tr>
+  <td id="risk-kec-2">KEC2</td>
+  <td>People</td>
+  <td>Destroyed Signing Keys (malicious internal employee)</td>
+  <td>Malicious employee deletes or corrupts the signing keys</td>
+</tr>
+<tr>
+  <td id="risk-kec-3">KEC3</td>
+  <td>People</td>
+  <td>Leaked Signing Keys (malicious internal employee)</td>
+  <td>Malicious employee provides access to the unencrypted signing keys to an unauthorised party</td>
+</tr>
+<tr>
+  <td id="risk-kec-4">KEC4</td>
+  <td>People</td>
+  <td>Stolen / Lost Signing Keys (External Hacker)</td>
+  <td>Malicious external hacker deletes signing keys</td>
+</tr>
+<tr>
+  <td id="risk-kec-5">KEC5</td>
+  <td>People</td>
+  <td>Stolen / Lost Signing Keys (External Hacker)</td>
+  <td>Stealing the signing key from the unencrypted memory of the Web3Signer, even if keys are encrypted at rest in a vault</td>
+</tr>
+<tr>
+  <td id="risk-kec-10">KEC10</td>
   <td>People</td>
   <td>Stolen Withdrawal Keys (Internal Employee)</td>
   <td>Stolen Withdrawal Keys (Internal Employee)</td>
@@ -490,6 +547,8 @@ The risks associated with key custody are divided in this specification accordin
   <td>Stolen Withdrawal Keys (External Hacker)</td>
   <td>Stolen Withdrawal Keys (External Hacker)</td>
 </tr></tbody></table>
+
+
 
 
 ### General Infrastructure Risk
@@ -2145,7 +2204,7 @@ and physically decentralized infrastructure. It can also incorporate the use of 
 * [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
 * [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
 </div>
-  
+
 #### Manage Equipment Lifecycles
 
 <a href="#req-manage-equipment-lifecycle">🔗</a> <b id="req-manage-equipment-lifecycle">Node Operators SHOULD have processes in place to manage equipment lifecycles</b>
