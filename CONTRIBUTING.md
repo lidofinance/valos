@@ -10,8 +10,13 @@ BY CONTRIBUTING TO THIS REPOSITORY, YOU AGREE:
 2. TO PROVIDE YOUR CONTRIBUTIONS UNDER THE TERMS OF THE [APACHE 2.0 LICENSE](LICENSE.md), AND
 3. TO PROVIDE LIDO FINANCE, IN EXCHANGE FOR THEIR CONTRIBUTION TO THE MAINTENANCE OF THIS WORK, A NON-EXCLUSIVE WORLDWIDE IRREVOCABLE LICENSE TO IMPLEMENT, PERFORM, COPY, MODIFY DISTRIBUTE ADN OTHERWISE USE YOUR CONTRIBUTIONS, WHETHER COMMERCIALLY OR OTHERWISE, AS THEY CHOOSE IN THEIR SOLE DISCRETION.
 
-The [**current update draft**](spec-update-draft.md) is the latest development state of the proposal for a new version.
+The version of [**current update draft**](spec-update-draft.html)
+in the [`advanced-staging` branch](https://github.com/lidofinance/valos/tree/advance-staging) is the latest development state of the proposal for a new version,
+incorporating changes that are proposed but not necessarily agreed.
+
 Please provide feedback based on that document.
+
+(**NB** For now, you need to download [the file](spec-update-draft.html](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open it locally in a browser, to read it. We expect to fix this very soon).
 
 ## What
 
@@ -78,7 +83,7 @@ even if you do not have time to understand and replicate the various conventions
 
 Issues and Pull Requests are assigned at least one milestone, which refers to a decision point at which they can be approved, or returned for more discussion.
 
-Items on the milestone will be published to the Telegram Community on Fridays. If there is no objection raised, they will be merged into the `staging` brnch, or closed as proposed, on the following Wednesday.
+Items on the milestone will be published to the Telegram Community on Fridays. If there is no objection raised, they will be merged into the `staging` branch, or closed as proposed, on the following Wednesday.
 
-When all the approved items have been merged into the staging branch, a Pull Request will be raised to merge that update to the `main` branch.
+When all the approved items have been merged into the staging branch, the update will be checked then merged to the `main` branch.
 
