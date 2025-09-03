@@ -2030,7 +2030,6 @@ This is a broad area. A few specific controls are included in this specification
 
 #### Verify Outsourced Development
 
-
 <a href="#req-review-3rdparty-code">🔗</a> <b id="req-review-3rdparty-code">Node Operators MUST review custom-developed code provided by third parties</b>
 
 Best practice is to perform both internal and independent external audit, and to ensure the identity of the coders is known.
