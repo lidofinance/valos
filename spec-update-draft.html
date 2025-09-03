@@ -56,10 +56,13 @@ Conformance to this specification is based on meeting the requirements expressed
 
 This specification divides risk into seven categories for Node Operators to consider in ensuring the quality of their overall setup.
 
+In general, risk identifiers correspond to DUCK and will remain stable. This may mean that some identifiers are retired and will not be re-used.
 
 ### Financial and Regulatory Risk {#sec-financial-risk}
 
 These are risks explicitly arising from management of financial and regulatory compliance processes. (Many other risk cateogries have a direct financial impact).
+
+**Note**: This section is new in ValOS, and the identifiers are not yet stable - they may change before release.
 
 <table>
 <thead>
@@ -95,12 +98,6 @@ These are risks explicitly arising from management of financial and regulatory c
 <td>Fiat and digital assets are not correctly disbursed to individuals, entities, or addresses, leading to financial and reputational loss</td>
 </tr>
 <tr>
-<td id="risk-fin-5">FIN5</td>
-<td>Infrastructure</td>
-<td>Withdrawal</td>
-<td>Staking withdrawal requests cannot be met efficiently, leading to delays in payment processing causing financial and reputational loss</td>
-</tr>
-<tr>
 <td id="risk-fin-6">FIN6</td>
 <td>Infrastructure</td>
 <td>Compounding</td>
@@ -117,6 +114,12 @@ These are risks explicitly arising from management of financial and regulatory c
 <td>Process</td>
 <td>Reporting</td>
 <td>Reconciliation of deposits, rewards, fees, and distributions are incorrectly maintained causing incomplete and inaccurate financial data, leading to financial, legal, and regulatory repercussions</td>
+</tr>
+<tr>
+<td id="risk-fin-9">FIN9</td>
+<td>Process</td>
+<td>Up to date compliance</td>
+<td>Failure to review relevant regulation and update compliance procedures leading to financial, legal, and regulatory repercussions</td>
 </tr>
 </tbody>
 </table>
@@ -242,7 +245,14 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>Process</td>
   <td>Operational Failure: Slashing monitoring does not shut down the validators</td>
   <td>Slashing keeps going on because system fails to automatically shut down after alerts</td>
-</tr></tbody></table>
+</tr>
+<tr>
+  <td id="risk-sls-19">SLS19</td>
+  <td>Process</td>
+  <td>Incident Response does not update Slashing Database</td>
+  <td>A slashing event recurs, because the database is not updated as part of Incident Response</td>
+</tr>
+</tbody></table>
 
 
 ### Downtime Risk
@@ -302,15 +312,13 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
 </tr>
 <tr>
   <td id="risk-dow-8">DOW8</td>
-  <td>Infrastructure</td>
-  <td>External: Power supply</td>
-  <td>Power Breakdown</td>
+  <td colspan="3">This risk has been merged into <a href="#risk-dow-9">DOW9</a></td>
 </tr>
 <tr>
   <td id="risk-dow-9">DOW9</td>
   <td>Infrastructure</td>
-  <td>External: Power supply</td>
-  <td>Volatile power supply damages infrastructure</td>
+  <td>Power supply</td>
+  <td>Volatile power supply damages infrastructure or causes system downtime</td>
 </tr>
 <tr>
   <td id="risk-dow-10">DOW10</td>
@@ -377,7 +385,14 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td>Software</td>
   <td>Validator client update incompatible with IT system</td>
   <td>System downtime after validator client update caused by incompatibility</td>
-</tr></tbody></table>
+</tr>
+<tr>
+  <td id="risk-dow-21">DOW21</td>
+  <td>Software</td>
+  <td>Updates take too long</td>
+  <td>System downtime caused by software update processes taking longer than planned, with no failover capacity</td>
+</tr>
+</tbody></table>
 
 ### Key Custody Risk
 
@@ -666,7 +681,8 @@ Risk related to partners and specific third-party services.
   <td>Process</td>
   <td>Exit Risk - Delinquent state</td>
   <td><ul><li>No new stake will be allocated to the Node Operator (happens automatically)</li><li>the daily rewards sent to the Node Operator will be halved (with the remaining half sent towards that day’s rebase) (happens automatically)</li><li>reduced rewards will continue for the duration of a cooldown period long enough to determine whether, immediately after service restoration by the Node Operator, subsequently received validator exit requests are processed in a timely manner.</li></ul></td>
-</tr></tbody></table>
+</tr>
+</tbody></table>
 
 ### Reputational Risk
 
@@ -698,7 +714,15 @@ Risks that impact the reputation of a Node Operator, likely to lead potential an
   <td>Process</td>
   <td>Mismanagement of Post-Incident</td>
   <td>Reputation damage due to mismanagement of Post-slashing, -downtime or access loss to keys</td>
-</tr></tbody></table>
+</tr>
+<tr>
+<td id="risk-rer-4">RER4</td>
+<td>Infrastructure</td>
+<td>Withdrawal</td>
+<td>Staking withdrawal requests cannot be met efficiently, leading to delays in payment processing causing reputational loss</td>
+</tr>
+
+</tbody></table>
 
 
 
@@ -836,7 +860,7 @@ For example in Ethereum, it is possible to run different clients on each of the 
 ##### Client diversity helps address the following risks
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
-* [DOW2](#risk-dow-2), [DOW19](#risk-dow-19)
+* [DOW2](#risk-dow-2), [DOW19](#risk-dow-19), [DOW21](#risk-dow-21)
 </div>
 
 #### Distributed Validator Technology (DVT)
@@ -1166,7 +1190,7 @@ and destructive physical attacks. Appropriate mitigations will depend in part on
 ##### Protection against environmental threats helps address the following risks
 
 * [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
-* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW8](#risk-dow-8), [DOW9](#risk-dow-9)
+* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
 </div>
 
 [Monitoring](#sec-mitigations-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
@@ -1247,15 +1271,17 @@ As well as having control over the update process, it is important to have the c
 **Examples for best practices:**
 
 * Use [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) for infrastructure.
-* Using GIT also for infrastructure code and configurations.
-* Use database migration systems such as [Liquibase](https://www.liquibase.org).
+* Using GIT to manage infrastructure code and configurations.
+* Use database migration systems such as [Liquibase](https://www.liquibase.org)
+* The "Blue-Green Deployment pattern" [[[?WikipediaBG]]] uses two identical environments with a staged transfer of data,
+  that can enable rapid rollback if a problem is detected.
 
 <div class="info">
 
 #### Managing software updates helps address the following risks
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
-* [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR3](#risk-gir-3), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21), [GIR25](#risk-gir-25)
 * [SPS](#risk-sps-0)
 </div>
@@ -1277,7 +1303,7 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 ##### Not customising third-party software helps address the following risks
 
 * [SLS7](#risk-sls-7)
-* [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 </div>
 
 #### Configuration Management
@@ -1334,7 +1360,7 @@ This minimizes a potential blast radius. It is important to run any change (even
 
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
-* [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR11](#risk-gir-11), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21)
 </div>
 
@@ -1521,9 +1547,9 @@ and consider what changes can be implemented to prevent or mitigate similar even
 
 ##### Analyzing security events helps address the following risks
 
+* [SLS19](#risk-sls-19)
 * [DOW10](#risk-dow-10)
-* [GIR6](#risk-gir-6)
-* [GIR7](#risk-gir-7)
+* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7)
 </div>
 
 #### Disaster Recovery Plan
@@ -1636,6 +1662,25 @@ Where relevant, corresponding controls from those frameworks are identified and 
 #### Process Controls
 
 <a href="#req-follow-mitigation-process">🔗</a> <b id="req-follow-mitigation-process">Node Operators MUST ensure that processes for risk mitigation are followed in practice</b>
+
+### Controls for Financial and Regulatory Risk {#controls-fin-reg}
+
+#### Payment rails
+
+<a href="#req-document-payment-rails">🔗</a> <b id="req-document-payment-rails">Node Operators MUST document payment processes including currency and exchange details</b>
+
+##### Payment rails help address the following risk:
+
+* [FIN2](#risk-fin-2)
+
+#### Updated Regulatory Compliance
+
+<a href="#req-review-regulatory-compliance">🔗</a> <b id="req-review-regulatory-compliance">Node Operators MUST review relevant regulation and update processes for compliance as necessary at least quarterly</b>
+
+##### Updated regulatory compliance helps address the following risks:
+
+* [FIN7](#risk-fin-7), [FIN8](#risk-fin-8)
+* [RER2](#risk-rer-2)
 
 ### Controls for Technology Stack
 
@@ -1822,7 +1867,7 @@ For example, a Node does not respond to anonymous requests from an unknown user.
 
 #### Segment Networks to Limit Access
 
-<a href="#req-segment-networks">🔗</a> <b id="req-segment-networks">Networks SHOULD be segmented, to restrict access to systems that are identified as needing it</b>
+<a href="#req-segment-networks">🔗</a> <b id="req-segment-networks">Networks MUST be segmented, to restrict access to systems that are identified as needing it</b>
 
 <a href="#req-no-outside-requests">🔗</a> <b id="req-no-outside-requests">Nodes MUST NOT respond to requests from outside a defined network, except those that are explicitly defined as necessary</b>
 
@@ -1999,7 +2044,7 @@ and physically decentralized infrastructure. It can also incorporate the use of 
 ##### Environmental threat management helps address the following risks
 
 * [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
-* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW8](#risk-dow-8), [DOW9](#risk-dow-9)
+* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
 </div>
 
 #### Manage Equipment Lifecycles
@@ -2055,6 +2100,7 @@ and work with a well-defined set of expectations
 * [[?ISO27001]] Annex A 8.30
 * [[?SOC2]] CC 8.1
 * [[?ISO27001]] Annex A 8.32
+
 
 ##### Verifying outsourced development helps address the following risks
 
@@ -2203,9 +2249,9 @@ This covers both responses to real incidents and Simulated activation, or [=Pre-
 
 ##### Analyzing security events helps address the following risks
 
+* [SLS19](#risk-sls-19)
 * [DOW10](#risk-dow-10)
-* [GIR6](#risk-gir-6)
-* [GIR7](#risk-gir-7)
+* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7)
 
 ##### Relevant external controls for analyzing security events
 
@@ -2420,10 +2466,12 @@ function clean() {
 The following have contributed directly to the production of this specific version:"},
       { name: "Ivan Ang"},
       { name: "Antonio Bartulovic"},
+      { name: "Angus Eaton"},
       { name: "Albert Heinle"},
       { name: "Sreepriya Kalarikka"},
+      { name: "Seamus McNab"},
       { name: "Oriol Padilla"},
-      { name: "Isidoros P"},
+      { name: "Isidoros Passadis"},
       { name: "Gabriella S"},
       { name: "CK Teo"},
       { name: "Julian Ueding"},
@@ -2507,6 +2555,11 @@ The following have contributed directly to the production of this specific versi
         publisher: "OWASP",
         date: "2022",
         href: "https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/"
+      },
+      WikipediaBG: {
+        title: "Blue Green Deployment",
+        publisher: "Wikipedia",
+        href: "https://en.wikipedia.org/wiki/Blue%E2%80%93green_deployment"
       }
     }
   };
