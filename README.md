@@ -1,12 +1,13 @@
 # Introduction
 
-## What is this `staging` branch?
+## About branches
 
-This branch is used to collect pull requests that the has approved for merge, to enable review before merging the changes to the `main` branch.
+This branch shows the latest agreed draft.
 
-All Pull Requests proposing changes should be made against this branch.
+The [`staging` branch](https://github.com/lidofinance/valos/tree/staging) is used to collect pull requests that the has approved for merge, to enable review before merging the changes to the `main` branch.
+All Pull Requests proposing changes should be made against that branch.
 
-Note there is also an [`advanced-staging`](https://github.com/lidofinance/valos/tree/advance-staging) branch, which shows this branch with proposed PRs merged. That may be useful to look at when considering a new Pull Request,
+There is also an [`advanced-staging` branch](https://github.com/lidofinance/valos/tree/advance-staging), which shows most proposed PRs merged. That may be useful to look at when considering a new Pull Request,
 to avoid duplicating work or being surprised by a conflicting change proposal.
 
 ## What is ValOS?
