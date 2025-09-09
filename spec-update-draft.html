@@ -11,6 +11,9 @@
     td, th {border: 1px black solid; padding: 0.3em 1em}
     p:has(b[id^=req]) {border: 1px solid blue; background-color: #ffd}
     .info {background-color:#efe}
+    tr:has(option:nth-child(2):checked), tr:has(option:nth-child(3):checked) {background-color: #9f9}
+    tr:has(option:nth-child(4):checked) {background-color: #ff9}
+    tr:has(option:nth-child(5):checked) {background-color: #f99}
     </style>
   </head>
   <body>
@@ -182,39 +185,27 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
 </tr>
 <tr>
   <td id="risk-sls-8">SLS8</td>
-  <td>People</td>
-  <td>Malicious Internal Employee intentionally causes operational failure via his given user rights</td>
-  <td>Anything that an internal employee has access to is at risk of being exploited to sabotage the operation resulting in a slashing incident.</td>
+  <td colspan="3">Now <a href="#risks-hck-1">HCK1</a></td>
 </tr>
 <tr>
   <td id="risk-sls-9">SLS9</td>
-  <td>People</td>
-  <td>Malicious Internal Employee intentionally causes operational failure via privilege escalation</td>
-  <td>A malicious internal employee can get additional rights via through privileges escalation.</td>
+  <td colspan="3">Now <a href="#risks-hck-2">HCK2</a></td>
 </tr>
 <tr>
   <td id="risk-sls-10">SLS10</td>
-  <td>People</td>
-  <td>Malicious Ex-Employee intentionally causes a slashing incident</td>
-  <td>A former employee whose access is not blocked or removed </td>
+  <td colspan="3">Now <a href="#risks-hck-3">HCK3</a></td>
 </tr>
 <tr>
   <td id="risk-sls-11">SLS11</td>
-  <td>People</td>
-  <td>Malicious External Hacker intentionally causes slashing incident</td>
-  <td>Malicious External Hacker gets system access through absence of or weak cyber security standards</td>
+  <td colspan="3">Now <a href="#risks-hck-4">HCK4</a></td>
 </tr>
 <tr>
   <td id="risk-sls-12">SLS12</td>
-  <td>People</td>
-  <td>Malicious External Hacker intentionally causes slashing incident</td>
-  <td>Malicious External Hacker gets external network access to the system</td>
+  <td colspan="3">Now <a href="#risks-hck-4">HCK4</a></td>
 </tr>
 <tr>
   <td id="risk-sls-13">SLS13</td>
-  <td>People</td>
-  <td>Malicious External Hacker intentionally causes operational failure through authentication access</td>
-  <td>Malicious External Hacker can get access through by-passing or brute-forcing authentication systems</td>
+  <td colspan="3">Now <a href="#risks-hck-4">HCK4</a></td>
 </tr>
 <tr>
   <td id="risk-sls-14">SLS14</td>
@@ -358,15 +349,15 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
 </tr>
 <tr>
   <td id="risk-dow-16">DOW16</td>
-  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
+  <td colspan="3">Now <a href="#risks-hck-2">HCK2</a></td>
 </tr>
 <tr>
   <td id="risk-dow-17">DOW17</td>
-  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
+  <td colspan="3">Now <a href="#risks-hck-3">HCK3</a></td>
 </tr>
 <tr>
   <td id="risk-dow-18">DOW18</td>
-  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
+  <td colspan="3">Now <a href="#risks-hck-4">HCK4</a></td>
 </tr>
 <tr>
   <td id="risk-dow-19">DOW19</td>
@@ -414,19 +405,19 @@ The risks associated with key custody are divided in this specification accordin
 </tr>
 <tr>
   <td id="risk-kec-2">KEC2</td>
-  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
+  <td colspan="3">Now <a href="#risks-hck-1">HCK1</a>, <a href="#risks-hck-2">HCK2</a></td>
 </tr>
 <tr>
   <td id="risk-kec-3">KEC3</td>
-  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
+  <td colspan="3">Now <a href="#risks-hck-1">HCK1</a>, <a href="#risks-hck-2">HCK2</a></td>
 </tr>
 <tr>
   <td id="risk-kec-4">KEC4</td>
-  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
+  <td colspan="3">Now <a href="#risks-hck-4">HCK4</a></td>
 </tr>
 <tr>
   <td id="risk-kec-5">KEC5</td>
-  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
+  <td colspan="3">Now <a href="#risks-hck-4">HCK4</a></td>
 </tr>
 <tr>
   <td id="risk-kec-6">KEC6</td>
@@ -466,11 +457,11 @@ The risks associated with key custody are divided in this specification accordin
 </tr>
 <tr>
   <td id="risk-kec-10">KEC10</td>
-  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
+  <td colspan="3">Now <a href="#risks-hck-1">HCK1</a>, <a href="#risks-hck-2">HCK2</a></td>
 </tr>
 <tr>
   <td id="risk-kec-11">KEC11</td>
-  <td colspan="3"><a href="#risks-hackxx">Now HackXX</a></td>
+  <td colspan="3">Now <a href="#risks-hck-4">HCK4</a></td>
 </tr></tbody></table>
 
 ### Hacking Risk
@@ -488,67 +479,30 @@ or facilitated by a curret or former member of the operational team.
 </tr></thead>
 <tbody>
 <tr>
-  <td id="risk-SLS-8">HCK1 was SLS8</td>
+  <td id="risk-hck-1">HCK1 (was SLS8, KEC2, KEC3, KEC10)</td>
   <td>People</td>
   <td>Malicious Internal Employee intentionally causes operational failure with appropriate user rights</td>
   <td>Anything that an internal employee has access to is at risk of being exploited to sabotage the operation resulting in a slashing incident.</td>
 </tr>
 <tr>
-  <td id="risk-SLS-9">HCK2 WAS SLS9,DOW16</td>
+  <td id="risk-SLS-9">HCK2 (was SLS9, DOW16, KEC2, KEC3, KEC10)</td>
   <td>People</td>
   <td>Malicious Internal Employee intentionally causes operational failure via privilege escalation</td>
   <td>A malicious internal employee can get additional rights via through privileges escalation.</td>
 </tr>
 <tr>
-  <td id="risk-sls-10">HCK3 was SLS10, DOW17</td>
+  <td id="risk-sls-10">HCK3 (was SLS10, DOW17)</td>
   <td>People</td>
   <td>Malicious Ex-Employee intentionally causes an operational failure</td>
   <td>A former employee whose access is not blocked or removed </td>
 </tr>
 <tr>
-  <td id="risk-sls-11">HCK4 was SLS11,12,13, DOW18</td>
+  <td id="risk-sls-11">HCK4 (was SLS11, SLS12, SLS13, DOW18, KEC4, KEC5, KEC11)</td>
   <td>People</td>
   <td>Malicious External Hacker intentionally causes operational failure</td>
   <td>Malicious External Hacker gets system access through absence of or weak cyber security standards</td>
 </tr>
-<tr>
-  <td id="risk-kec-2">KEC2</td>
-  <td>People</td>
-  <td>Destroyed Signing Keys (malicious internal employee)</td>
-  <td>Malicious employee deletes or corrupts the signing keys</td>
-</tr>
-<tr>
-  <td id="risk-kec-3">KEC3</td>
-  <td>People</td>
-  <td>Leaked Signing Keys (malicious internal employee)</td>
-  <td>Malicious employee provides access to the unencrypted signing keys to an unauthorised party</td>
-</tr>
-<tr>
-  <td id="risk-kec-4">KEC4</td>
-  <td>People</td>
-  <td>Stolen / Lost Signing Keys (External Hacker)</td>
-  <td>Malicious external hacker deletes signing keys</td>
-</tr>
-<tr>
-  <td id="risk-kec-5">KEC5</td>
-  <td>People</td>
-  <td>Stolen / Lost Signing Keys (External Hacker)</td>
-  <td>Stealing the signing key from the unencrypted memory of the Web3Signer, even if keys are encrypted at rest in a vault</td>
-</tr>
-<tr>
-  <td id="risk-kec-10">KEC10</td>
-  <td>People</td>
-  <td>Stolen Withdrawal Keys (Internal Employee)</td>
-  <td>Stolen Withdrawal Keys (Internal Employee)</td>
-</tr>
-<tr>
-  <td id="risk-kec-11">KEC11</td>
-  <td>People</td>
-  <td>Stolen Withdrawal Keys (External Hacker)</td>
-  <td>Stolen Withdrawal Keys (External Hacker)</td>
-</tr></tbody></table>
-
-
+</tbody></table>
 
 
 ### General Infrastructure Risk
@@ -1827,18 +1781,24 @@ Where relevant, corresponding controls from those frameworks are identified and 
 
 <a href="#req-document-payment-rails">🔗</a> <b id="req-document-payment-rails">Node Operators MUST document payment processes including currency and exchange details</b>
 
+<div class="info">
+
 ##### Payment rails help address the following risk:
 
 * [FIN2](#risk-fin-2)
+</div>
 
 #### Updated Regulatory Compliance
 
 <a href="#req-review-regulatory-compliance">🔗</a> <b id="req-review-regulatory-compliance">Node Operators MUST review relevant regulation and update processes for compliance as necessary at least quarterly</b>
 
+<div class="info">
+
 ##### Updated regulatory compliance helps address the following risks:
 
 * [FIN7](#risk-fin-7), [FIN8](#risk-fin-8)
 * [RER2](#risk-rer-2)
+</div>
 
 ### Controls for Technology Stack
 
@@ -1847,7 +1807,6 @@ Where relevant, corresponding controls from those frameworks are identified and 
 <a href="#req-local-slashing-db">🔗</a> <b id="req-local-slashing-db">Node Operators MUST have a persistent local anti-slashing database</b>
 
 <div class="info">
-
 
 ##### A local anti-slashing database helps address the following risks
 
@@ -2477,7 +2436,7 @@ response times and Service Level Agreements, security procedures, and the like a
 
 
 
-<section id="sec-sotd">
+<section id="sec-sotd" class="appendix">
 
 ## Status and Feedback
 
@@ -2523,15 +2482,104 @@ a major change to best practices or risks, or a combination of these factors, am
 
 </section>
 
+<section id="sec-summary-of-controls" class="appendix">
+<!-- The Summary function (defined below) automatically populates this section. Do not edit it directly -->
+<h2>Summary of Controls</h2>
+
+This section provides a summary of the Controls provided by this Specification.
+
+
+
+</section>
+
+
 <script class="remove">
 
 function clean() {
   document.querySelector(".head").removeChild(document.querySelector(".copyright"));
 }
 
+function Summary () {
+//Blergh! This is pretty hacky hard-coding, but it works.
+
+  var controlsTable = document.createElement("table");
+  controlsTable.appendChild(document.createElement("thead"));
+  headerRow = document.createElement("tr");
+
+  header1 = document.createElement("th");
+  header1.innerText = "Control";
+  headerRow.appendChild(header1);
+
+  header2 = document.createElement("th");
+  header2.innerText = "Status";
+  headerRow.appendChild(header2);
+
+  header3 = document.createElement("th");
+  header3.innerText = "Comments";
+  header3.width = "50%";
+  headerRow.appendChild(header3);
+
+  controlsTable.childNodes[0].appendChild(headerRow);
+
+  controlsBody = document.createElement("tbody");
+
+  // Get all the controls in the specification.
+  var allItems = document.querySelectorAll("[id^='req-");
+  // Loop through them.
+  for (i = 0; i < allItems.length; i++) {
+    // Clone the control.
+    var item = allItems[i].cloneNode(true);
+
+      var row = document.createElement("tr");
+      row.appendChild(document.createElement("td"));
+      row.appendChild(document.createElement("td"));
+      row.appendChild(document.createElement("td"));
+      //add the control to the first cell
+      control = document.createElement("p");
+      control.id = "summ-" + item.id;
+      control.appendChild(document.createElement("a"));
+      control.appendChild(document.createElement("b"));
+      control.childNodes[0].href = "#"+item.id;
+      control.childNodes[0].innerHTML = "Control:";
+      control.childNodes[1].innerHTML = " "+item.innerHTML;
+      row.childNodes[0].appendChild(control);
+
+      //add a status menu to the second cell
+      statusMenu = document.createElement("select");
+      statusMenu.name = statusMenu.id = "status-" + item.id;
+      ntOption = document.createElement("option");
+      ntOption.name = item.id + "-NT";
+      ntOption.innerText = "Not Tested";
+      statusMenu.appendChild(ntOption);
+      passOption = document.createElement("option");
+      passOption.name = item.id + "-P";
+      passOption.innerText = "Implemented";
+      statusMenu.appendChild(passOption);
+      naOption = document.createElement("option");
+      naOption.name = item.id + "-NA";
+      naOption.innerText = "Not Applicable (passes)";
+      statusMenu.appendChild(naOption);
+      piOption = document.createElement("option");
+      piOption.name = item.id + "-PI";
+      piOption.innerText = "Partial / Incomplete (fails)";
+      statusMenu.appendChild(piOption);
+      fOption = document.createElement("option");
+      fOption.name = item.id + "-F";
+      fOption.innerText = "Fails";
+      statusMenu.appendChild(fOption);
+      row.childNodes[1].appendChild(statusMenu);
+
+      row.childNodes[2].appendChild(document.createElement("textarea"));
+
+      controlsBody.appendChild(row);
+  }
+  controlsTable.appendChild(controlsBody);
+  document.getElementById("sec-summary-of-controls").appendChild(controlsTable);
+}
+
   // All config options at https://respec.org/docs/
   var respecConfig = {
-    postProcess: [clean],
+    postProcess: [clean, Summary],
     subTitle: "Validator Operations Standard (Editor's draft)",
     specStatus: "base",
     latestVersion: "https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base",
