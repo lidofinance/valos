@@ -1,13 +1,13 @@
 # Introduction
 
-## What is this `staging` branch?
+## What is this `advanced staging` branch?
 
-This branch is used to collect pull requests that the has approved for merge, to enable review before merging the changes to the `main` branch.
+This branch is used to collect pull requests that the editor expects will be merged, and can thus be used to view a snapshot of the "latest proposed version" in development,
+according to the editor's **expectations**. (Beware, those expectations are not always met in practice)
 
-All Pull Requests proposing changes should be made against this branch.
+To read the proposed draft, please download [spec-update-draft.html](./spec-update-draft.html) and open the local file in a browser. (Since this is a potentially dangerous behaviour pattern, as soon as possible we will update the procedure to enable straightforward online viewing)
 
-Note there is also an [`advanced-staging`](https://github.com/lidofinance/valos/tree/advance-staging) branch, which shows this branch with proposed PRs merged. That may be useful to look at when considering a new Pull Request,
-to avoid duplicating work or being surprised by a conflicting change proposal.
+To see the latest agreed draft, please look at the version of [spec-update-draft.html in the main branch](https://github.com/lidofinance/valos/blob/main/spec-update-draft.html)
 
 ## What is ValOS?
 
