@@ -871,18 +871,6 @@ For example in Ethereum, it is possible to run different clients on each of the 
 * [DOW2](#risk-dow-2), [DOW19](#risk-dow-19), [DOW21](#risk-dow-21)
 </div>
 
-#### Distributed Validator Technology (DVT)
-
-In order to avoid the single-point of failure problem for a node-validator without risking a slashing incident, DVT has been developed.
-
-<div class="info">
-
-##### DVT helps address the following risks
-
-* [SLS1](#risk-sls-1), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
-* [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
-</div>
-
 #### Lido-specific: Handling of Delinquent State
 
 Node operators need to withdraw validators correctly, as they are otherwise put into a delinquent state.
@@ -1185,18 +1173,50 @@ and monitor actual access such as visual verification that the authorized party 
 
 It is important to log and audit access sufficiently frequently to detect problems - see also [Monitoring](#sec-mitigations-monitoring).
 
-### Protection against Environmental Threats {#sec-mitigations-environment}
+### Managing Hardware {#sec-mitigations-environment}
 
 Physical devices are subject to physical changes, including environmental issues such as temperature extremes that can cause damage,
 and utility failures such as power or internet failure.
 
-Mitigation strategies include the use of redundant infrastructure with failure detection and failover systems,
-from backup node servers in different geographical locations to backup power supply e.g. through local batteries or power generation.
-The level of mitigation that is appropriate depends on the level of risk, and the costs of both failure and mitigating failure.
-These calculations mean economies of scale will enable larger-scale operations to be more robust than smaller ones, for a given price.
+#### Physically Distributed Infrastructure
 
-It is also important to ensure that facilities have appropriate protection from relevant environmental risks such as fire, flooding, or extreme wind,
-and destructive physical attacks. Appropriate mitigations will depend in part on the specific location and nature of the facility.
+A single validator represents a single point of failure, that can introduce slashing or downtime risks.
+[[?DVT]] (Distributed Validator Technology) provides an approach to mitigating this problem, by distributing the keys and the hardware that runs validation,
+in such a way that multiple clients physically located in different places share the task of validation.
+Thus if a single client or small number of them fail, the overall validation is unaffected.
+
+Note that while the Ethereum Foundation provides a specific technical specification,
+the principes can be implemented in different ways.
+
+<div class="info">
+
+##### DVT helps address the following risks
+
+* [SLS1](#risk-sls-1), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
+* [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
+</div>
+
+#### Protection against Utility Failure
+
+To ensure that a local utility failure does not impact a validator, it is useful to have redundant systems,
+such as a backup power supply e.g. through local batteries or power generation,
+and for connectivity e.g. physical connection such as fibre-optic cable, and one or more modes of wireless connection.
+
+The level of mitigation that is appropriate depends on the level of risk, and the costs of both failure and mitigating failure.
+These calculations mean economies of scale often enable larger-scale operations to be more robust than smaller ones, for a given price.
+
+<div class="info">
+
+##### Protection against utility failure threats helps address the following risks
+
+* [DOW9](#risk-dow-9), [DOW15](#risk-dow-15)
+</div>
+
+#### Protection against Environmental Threat
+
+It is also important to ensure that facilities have appropriate protection from relevant environmental risks such as fire, flooding, extreme wind,
+as well as earthquakes and destructive physical attacks. Appropriate mitigations will depend in part on the specific location and nature of the facility,
+but will generally revolve around siting of facilities, their architecture, and specific measures to ensure resilience.
 
 <div class="info">
 
@@ -1217,7 +1237,6 @@ Best practices for lifecycle management include the ability to remotely pause, s
 [Monitoring](#sec-mitigations-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
 
 <div class="info">
-
 
 #### Equipment life-cycle management helps address the following risks
 
@@ -1824,10 +1843,6 @@ Where relevant, corresponding controls from those frameworks are identified and 
 * [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
 </div>
 
-#### Distributed Validator Technology
-
-<a href="#req-use-dvt">🔗</a> <b id="req-use-dvt">Node Operators SHOULD implement some form of DVT with faillover validators in different physical locations</b>
-
 #### Client Diversity
 
 <a href="#req-client-diversity">🔗</a> <b id="req-client-diversity">Node Operators MUST deploy at least 2 distinct client applications for any level of the blockchain where at least 3 clients are available</b>
@@ -2173,6 +2188,14 @@ and physically decentralized infrastructure. It can also incorporate the use of 
 * [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
 * [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
 </div>
+
+#### Distribute Validators physically
+
+<a href="#req-use-dvt">🔗</a> <b id="req-use-dvt">Node Operators SHOULD implement failover validators in different physical locations</b>
+
+##### Distributed failover validators help address the following risks
+
+* [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
 
 #### Manage Equipment Lifecycles
 
@@ -2651,6 +2674,11 @@ The following have contributed directly to the production of this specific versi
         title: "CCSS v9.0 Table",
         publisher: "C4, 2025",
         href: "https://cryptoconsortium.org/ccss-table-v9/"
+      },
+      DVT: {
+        title: "Distributed Validator Technology",
+        publisher: "Ethereum Foundation",
+        href: "https://ethereum.org/staking/dvt/"
       },
       CRYPTOFAIL: {
         title: "OWASP Top 10: A01:2021 - Cryptographic Failures",
