@@ -912,6 +912,7 @@ Using [=multi-sig=] wallets requiring authorization from multiple parties for sp
 
 ##### Secret access management helps address the following risks
 
+* [FIN1](#risk-fin-1)
 * [SLS5](#risk-sls-5)
 * [KEC1](#risk-kec-1), [KEC3](#risk-kec-2), [KEC2](#risk-kec-3), [KEC4](#risk-kec-4), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
 * [GIR25](#risk-gir-25)
@@ -1054,6 +1055,7 @@ Tracking this information is important to ensure that access can be audited and 
 
 #### Access control helps address the following risks
 
+* [FIN1](#risk-fin-1)
 * [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
 * [DOW7](#risk-dow-7), [DOW16](#risk-dow-16)
 * [GIR1](#risk-gir-1), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR22](#risk-gir-22)
@@ -1090,6 +1092,7 @@ without having authorizations they do not need.
 
 ##### Least privilege helps address the following risks
 
+* [FIN1](#risk-fin-1)
 * [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
 * [DOW16](#risk-dow-16)
 * [GIR1](#risk-gir-1), [GIR5](#risk-gir-5), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
@@ -1109,6 +1112,7 @@ covering role changes as well as termination, transfer, and promotion procedures
 
 ##### Employee authorization process helps address the following risks
 
+* [FIN1](#risk-fin-1)
 * [SLS10](#risk-sls-10)
 * [DOW17](#risk-dow-17)
 * [GIR25](#risk-gir-25)
@@ -1140,6 +1144,7 @@ Best practice is to use password and related authentication policies to ensure t
 
 ##### Authentication policy helps address the following risks
 
+* [FIN1](#risk-fin-1)
 * [SLS13](#risk-sls-13)
 </div>
 
@@ -1872,8 +1877,9 @@ This includes knowing who employees and contractors are, off-boarding mechanisms
 * [[?ISO27001]] Annex A 5.16
 
 ##### Identity management helps address the following risks
-* [SLS8](#risk-sls-8)
-* [SLS9](#risk-sls-9)
+
+* [FIN1](#risk-fin-1)
+* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
 </div>
 
 #### Document Vendors and Partner Risk
@@ -1892,6 +1898,7 @@ This includes knowing who employees and contractors are, off-boarding mechanisms
 
 ##### Counterparty risk management helps address the following risks
 
+* [FIN1](#risk-fin-1)
 * [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
 * [GIR5](#risk-gir-5)
 * [DOW1](#risk-dow-1), [DOW19](#risk-dow-19)
@@ -2106,9 +2113,25 @@ This includes monitoring software that has privileged access.
 * [[?ISO27001]] Annex A 8.18
 </div>
 
+<div class="info">
+
+##### Logging privileged access helps address the following risks:
+
+* [FIN1](#risk-fin-1)
+
+</div>
+
 #### Log personnel changes
 
 <a href="#req-log-personnel">🔗</a> <b id="req-log-personnel">Every change in the status of people who have access to any function of the Node, or physical access to any hardware, MUST be logged</b>
+
+<div class="info">
+
+##### Logging personnel changes helps address the following risks:
+
+* [FIN1](#risk-fin-1)
+
+</div>
 
 #### Log slashing events
 
@@ -2289,6 +2312,8 @@ managed by code the Node Operator uses, whether self-managed or provided by a th
 * [[?ISO27001]] Annex A 8.29
 </div>
 
+</div>
+
 #### Test All Interactions Impacted by Software Updates
 
 <a href="#req-reaudit-everything-impacted">🔗</a> <b id="req-reaudit-everything-impacted">Updates MUST include an audit of all code and user interactions they impact</b>
@@ -2304,6 +2329,8 @@ This means testing not just the new code deployed, but also existing code that i
 ##### Relevant external controls for pre-deployment testing
 
 * [[?ISO27001]] Annex A 8.31
+</div>
+
 </div>
 
 #### Maintain Emergency Rollback Procedures
@@ -2334,6 +2361,8 @@ and to show operational strengths, and plans to address perceived weaknesses and
 * [RER5](#risk-rer-5)
 </div>
 
+</div>
+
 #### Document Adequate Incident Response Plans
 
 <a href="#req-incident-response-plans">🔗</a> <b id="req-incident-response-plans">The Node Operator MUST have documented [=Incident Response Plans=] corresponding to all risks identified in this specification</b>
@@ -2362,6 +2391,8 @@ that lead to destruction of crucial data or loss of assets</b>
 ##### Disaster recovery plans help address the following risks
 
 * [GIR19](#risk-gir-19)
+</div>
+
 </div>
 
 #### Plan Incident Follow-up
@@ -2409,6 +2440,7 @@ response times and Service Level Agreements, security procedures, and the like a
 
 ##### Counterparty verification helps address the following risks
 
+* [FIN1](#risk-fin-1)
 * [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
 * [GIR5](#risk-gir-5), [GIR24](#risk-gir-24)
 * [DOW1](#risk-dow-1), [DOW19](#risk-dow-19)
@@ -2420,9 +2452,19 @@ response times and Service Level Agreements, security procedures, and the like a
 * [[?SOC2]] CC 9.2
 </div>
 
+</div>
+
 #### Manage Counterparty Relationship Lifecycles
 
 <a href="#req-termination-procedures">🔗</a> <b id="req-termination-procedures">Service agreements MUST specify termination procedures and obligations</b>
+
+<div class="info">
+
+##### Managing counterparty relationship lifecycles helps address the following risks
+
+* [FIN1](#risk-fin-1)
+
+</div>
 
 
 
