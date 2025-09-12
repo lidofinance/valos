@@ -2,10 +2,12 @@
 
 ## About branches
 
-This branch shows the latest agreed draft.
+**To read the current draft** you should download the file [spec-update-draft.html](spec-update-draft.html) from the relevant branch, and then open the local file in a browser. This procedure will be simplified in the near future.
 
-The [`staging` branch](https://github.com/lidofinance/valos/tree/staging) is used to collect pull requests that the has approved for merge, to enable review before merging the changes to the `main` branch.
-All Pull Requests proposing changes should be made against that branch.
+This branch contains the latest agreed draft.
+
+The [`staging` branch](https://github.com/lidofinance/valos/tree/staging) is used to collect pull requests approved for merge, to enable review before merging the changes to the `main` branch.
+**All Pull Requests proposing changes should be made against the `staging` branch**.
 
 There is also an [`advanced-staging` branch](https://github.com/lidofinance/valos/tree/advance-staging), which shows most proposed PRs merged. That may be useful to look at when considering a new Pull Request,
 to avoid duplicating work or being surprised by a conflicting change proposal.
