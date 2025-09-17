@@ -1467,14 +1467,15 @@ taking a significant amount of time, before authorizing a particular action.
 
 Among many aspects of Validator Operations to monitor directly are the following:
 
-#### Beacon Chain
+#### Blockchain
 
 * are **Slashing Events** occurring on the beacon chain? To whom?
 * is the **Anti-Slashing Database** functioning correctly?
 * what is the **Impact of Slashing** incidents on the network?
 * how well are **Relay Lists** balancing load and availability to avoid downtime conditions?
 * are **Chain Reorganizations** occurring? Are there patterns of causes?
-* is the Consensus layer reaching **Finality** in accordance with expectations
+* is the Consensus layer reaching **Finality** in accordance with expectations?
+* is **MEV** performance or returns?
 
 <div class="info">
 
@@ -1564,7 +1565,7 @@ There are some tools listed in DUCK @@bring them here@@ [collection-of-tools-scr
 * Filtering and anaysis of anomalies can be done in AWS using the [WAF module](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html).
 * An example for monitoring software is the [ELK stack](https://www.elastic.co/elastic-stack/).
 * A very common centralized dashboard is [Grafana](https://grafana.com) - an example of [alerting setup in Grafana](https://grafana.com/docs/grafana/latest/alerting/set-up/)
-
+* Simply has an OS tool for monitoring MEV: https://github.com/SimplyStaking/eth-block-proposal-monitor
 
 #### Monitoring can help address the following risks:
 
