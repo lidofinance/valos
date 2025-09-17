@@ -820,6 +820,17 @@ In a nutshell: technology needs to serve the business goal, not the other way ar
 To ensure this happens, it is important to consider both the business goals and the available technology,
 and then use appropriate technology to meet those goals.
 
+#### Update Third-party Software
+
+Updates to software components provided by third-parties often address newly-discovered or longstanding vulnerabilities.
+It is a best practice to update software regularly, but it is important to [check for vulnerabilities](#req-check-vulnerabilities)
+that can be introduced by an upgrade as part of a supply-chain attack, and to verify that any customisation of open-source software, or 
+[specific configuration](#req-check-config-on-update) options, are compatible with an update and do not create new vulnerabilities on updating.
+
+Relevant controls: 
+    
+- [Controls for Development and Update](#sec-controls-updates) 
+
 #### Local Anti-Slashing Database
 
 To avoid double signing, validators can maintain a history of messages they signed.
@@ -1820,6 +1831,19 @@ Where relevant, corresponding controls from those frameworks are identified and 
 
 ### Controls for Technology Stack
 
+#### Keep Software Updated
+
+<a href="#req-update-3p-software">🔗</a> <b id="update-3p-software">Node Operators MUST keep third-party software up to date</b>
+
+<div class="info">
+
+##### Updated software helps address the following risks
+
+* [DOW19](#risk-dow-19)
+* [HCK4](#risk-hck-4)
+</div>
+
+
 #### Anti-slashing Database
 
 <a href="#req-local-slashing-db">🔗</a> <b id="req-local-slashing-db">Node Operators MUST have a persistent local anti-slashing database</b>
@@ -2239,27 +2263,6 @@ This is a broad area. A few specific controls are included in this specification
 * [[?ISO27001]] Annex A 8.25
 </div>
 
-#### Verify Outsourced Development
-
-<a href="#req-review-3rdparty-code">🔗</a> <b id="req-review-3rdparty-code">Node Operators MUST review custom-developed code provided by third parties</b>
-
-Best practice is to perform both internal and independent external audit, and to ensure the identity of the coders is known.
-Likewise, in best practice third-party code developers are only given access to code they need to do their work, are held to high standards of confidentiality,
-and work with a well-defined set of expectations
-
-<div class="info">
-
-##### Relevant external controls for verifying outsourced development
-
-* [[?ISO27001]] Annex A 8.30
-* [[?SOC2]] CC 8.1
-* [[?ISO27001]] Annex A 8.32
-
-
-##### Verifying outsourced development helps address the following risks
-
-@@risks
-</div>
 
 #### Follow Update Procedures
 
@@ -2277,7 +2280,12 @@ This covers all changes to code, including when it is necessary to roll back an 
 
 <a href="#req-check-vulnerabilities">🔗</a> <b id="req-check-vulnerabilities">Updates to third-party software MUST be checked for vulnerabilities before deployment</b>
 
-This covers verifying that all software updates, including validators and other nodes, have been audited to ensure they are not introducing known or new vulnerabilities.
+This covers verifying that all software updates, including validator and other node clients as well as specifically written custom code or updates,
+have been audited to ensure they are not introducing known or new vulnerabilities.
+
+Best practice is to perform both internal and independent external audit, and to ensure the identity of the coders is known.
+Likewise, in best practice third-party code developers are only given access to code they need to do their work,
+are held to high standards of confidentiality, and work with a well-defined set of expectations.
 
 <div class="info">
 
@@ -2285,6 +2293,17 @@ This covers verifying that all software updates, including validators and other 
 
 * [[?ISO27001]] Annex A 8.7
 * [[?ISO27001]] Annex A 8.30
+* [[?ISO27001]] Annex A 8.32
+* [[?SOC2]] CC 8.1
+
+##### Checking third-party software helps address the following Risks
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7), [FIN8](#risk-fin-8)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS6](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
+* [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14)
+* [KEC7](#risk-kec-7)
+* [HCK1](#risk-hck-1)
+* [SPS0](#risk-sps-0)
+
 </div>
 
 #### Verify Configuration on Update
