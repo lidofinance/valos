@@ -816,6 +816,17 @@ In a nutshell: technology needs to serve the business goal, not the other way ar
 To ensure this happens, it is important to consider both the business goals and the available technology,
 and then use appropriate technology to meet those goals.
 
+#### Update Third-party Software
+
+Updates to software components provided by third-parties often address newly-discovered or longstanding vulnerabilities.
+It is a best practice to update software regularly, but it is important to [check for vulnerabilities](#req-check-vulnerabilities)
+that can be introduced by an upgrade as part of a supply-chain attack, and to verify that any customisation of open-source software, or 
+[specific configuration](#req-check-config-on-update) options, are compatible with an update and do not create new vulnerabilities on updating.
+
+Relevant controls: 
+    
+- [Controls for Development and Update](#sec-controls-updates) 
+
 #### Local Anti-Slashing Database
 
 To avoid double signing, validators can maintain a history of messages they signed.
@@ -1796,6 +1807,19 @@ Where relevant, corresponding controls from those frameworks are identified and 
 </div>
 
 ### Controls for Technology Stack
+
+#### Keep Software Updated
+
+<a href="#req-update-3p-software">🔗</a> <b id="update-3p-software">Node Operators MUST keep third-party software up to date</b>
+
+<div class="info">
+
+##### Updated software helps address the following risks
+
+* [DOW19](#risk-dow-19)
+* [HCK4](#risk-hck-4)
+</div>
+
 
 #### Anti-slashing Database
 
