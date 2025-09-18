@@ -810,8 +810,53 @@ There are best practices to do this effectively:
 
 </div>
 
+### People Management {#sec-mitigations-manage-people}
 
+Unless a validator system is immutable and fully automated, there will be people involved in managing it.
+It is therefore important that appropriate management of people is part of managing the validator node.
+This impacts in various areas, from mitigating the risk of hacking by unknown parties with access to privileged roles,
+to the ability to provide timely incident response and minimize the damage caused by a security incident.
 
+Many relevant controls are classified under more specific types of mitigation,
+
+#### Identified Individuals
+
+It is important to identify individuals who have access to and can control aspects of the operations of the Validator node.
+While a globalized workforce can provide multiple benefits, it is difficult to hold an anonymous individual accountable.
+This fact is repeatedly used by large-scale hacking operations to infiltrate valuable targets
+with a goal of eventually using access granted willingly to rob, damage, or destroy the target.
+
+<div class="info">
+
+##### Identifying individuals involved in managing Validators helps address the following Risks
+
+* [KEC7](#risk-kec-7)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3)
+* [SPS0](#risk-sps-0)
+* [RER2](#risk-rer-2)
+</div>
+
+#### Training
+
+It is important that individuals whose actions influence the Validator node have appropriate skills,
+and as the ecosystem evolves training helps maintain a relevant skillset.
+
+As well as themes specific to the individuals' tasks and Node Operator internal policies (such as this document),
+there are a number of areas where up-to-date skills matter, such as:
+
+- Security practices, including protection from social engineering attacks such as phishing
+- Relevant regulatory requirements, a broad topic possibly including privacy, anti-bribery, conflict of interest, and more
+
+<div class="info">
+
+##### Training helps address the following Risks
+
+* [FIN9](#risk-fin-9)
+* [SLS17](#risk-sls-17)
+* [DOW21](#risk-dow-21)
+* [GIR16](#risk-gir-16), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
+* [RER2](#risk-rer-2)
+</div>
 
 ### Technology Stack {#sec-mitigations-tech-stack}
 
@@ -824,12 +869,12 @@ and then use appropriate technology to meet those goals.
 
 Updates to software components provided by third-parties often address newly-discovered or longstanding vulnerabilities.
 It is a best practice to update software regularly, but it is important to [check for vulnerabilities](#req-check-vulnerabilities)
-that can be introduced by an upgrade as part of a supply-chain attack, and to verify that any customisation of open-source software, or 
+that can be introduced by an upgrade as part of a supply-chain attack, and to verify that any customisation of open-source software, or
 [specific configuration](#req-check-config-on-update) options, are compatible with an update and do not create new vulnerabilities on updating.
 
-Relevant controls: 
-    
-- [Controls for Development and Update](#sec-controls-updates) 
+Relevant controls:
+
+- [Controls for Development and Update](#sec-controls-updates)
 
 #### Local Anti-Slashing Database
 
@@ -1753,7 +1798,6 @@ Best practice for [=Incident Communication=] includes providing a detailed post-
 * Ensure stable Power connection of the System (Cloud, Bare Metal, ....)
 * Ensure proper load-balancer and firewall at the front
 * Being able to switch the relayer or disconnect from the relay
-* Safety training
 
 ## Controls Catalog {#sec-controls-catalog}
 
@@ -1826,6 +1870,40 @@ Where relevant, corresponding controls from those frameworks are identified and 
 ##### Updated regulatory compliance helps address the following risks:
 
 * [FIN7](#risk-fin-7), [FIN8](#risk-fin-8)
+* [RER2](#risk-rer-2)
+</div>
+
+### Controls for People Management
+
+#### Identify Relevant Entities
+
+<a href="#req-identify-staff">🔗</a> <b id="req-identify-staff">Node Operators MUST know the identity of entities who are authorized to manage operations</b>
+
+Best practise is to identify every individual who works for the Node Operator.
+In the case of corporate third-party providers, sensible due diligence does not always extend to identifying specific individuals.
+
+<div class="info">
+
+##### Identifying individuals involved in managing Validators helps address the following Risks
+
+* [KEC7](#risk-kec-7)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3)
+* [SPS0](#risk-sps-0)
+* [RER2](#risk-rer-2)
+</div>
+
+#### Provide Training
+
+<a href="#req-train-staff">🔗</a> <b id="req-train-staff">Node Operators MUST ensure entities who are authorized to manage operations have and maintain the necessary knowledge to minimize risks to the Node Operator in the course of performing their work</b>
+
+<div class="info">
+
+##### Training helps address the following Risks
+
+* [FIN9](#risk-fin-9)
+* [SLS17](#risk-sls-17)
+* [DOW21](#risk-dow-21)
+* [GIR16](#risk-gir-16), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
 * [RER2](#risk-rer-2)
 </div>
 
@@ -2400,8 +2478,6 @@ and to show operational strengths, and plans to address perceived weaknesses and
 ##### Operational communications help address the following risk
 
 * [RER5](#risk-rer-5)
-</div>
-
 </div>
 
 #### Document Adequate Incident Response Plans
