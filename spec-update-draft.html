@@ -1743,18 +1743,6 @@ against the importance of providing clear information with as much certainty as 
 
 Best practice for [=Incident Communication=] includes providing a detailed post-incident summary.
 
-### General Measures {#sec-mitigations-general}
-
-* General cyber security (Firewall, Intrusion Detection System, ....)
-* Check the uptime promise of cloud provider (minimum three 9s)
-* Failover system (also in different locations)
-* Conduct an internal special study of failover and load balancer strategies
-* Ensure stable Internet connection of the System (Cloud, Bare Metal, ....)
-* Ensure stable Power connection of the System (Cloud, Bare Metal, ....)
-* Ensure proper load-balancer and firewall at the front
-* Being able to switch the relayer or disconnect from the relay
-* Safety training
-
 ## Controls Catalog {#sec-controls-catalog}
 
 This section contains controls that are material to Node Operator risks.
@@ -1785,12 +1773,27 @@ Where relevant, corresponding controls from those frameworks are identified and 
 * [GIR5](#risk-gir-5)
 </div>
 
+#### Assess Dependencies and Replacement Strategies and Costs
+
+<a href="#req-review-dependency-replacement">🔗</a> <b id="req-review-dependency-replacement">Node Operators MUST review their dependencies on staff and external suppliers and how to replace key staff or suppliers every year</b>
+
+External suppliers can change terms, shut down products or support, and key staff can leave or be indisposed for long enough to impact business functions.
+
+<div class="info">
+
+##### Assessment of activities' relevance helps address the following risks
+
+- [FIN1](#risk-fin-1)
+- [SLS6](#risk-sls-6)
+- [DOW11](#risk-dow-11), [DOW14](#risk-dow-14), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+- [GIR24](#risk-gir-24), [GIR25](#risk-gir-25)
+</div>
+
 #### Document Risk Assessments
 
 <a href="#req-document-risk-assessment">🔗</a> <b id="req-document-risk-assessment">Node Operators MUST document their assessments of risks, and what risks they class as acceptable</b>
 
 <div class="info">
-
 
 ##### Relevant external controls for risk assessment
 
