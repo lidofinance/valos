@@ -815,7 +815,10 @@ It is therefore important that appropriate management of people is part of manag
 This impacts in various areas, from mitigating the risk of hacking by unknown parties with access to privileged roles,
 to the ability to provide timely incident response and minimize the damage caused by a security incident.
 
-Many relevant controls are classified under more specific types of mitigation,
+As well as the [Controls for People Management](#sec-controls-people-management) some relevant controls are grouped with other areas, such as
+- [Limit Physical Access](#req-protect-server-locations)
+- [Minimze Authorization](#req-least-privilege)
+- [Log Personnel Information](#req-log-personnel)
 
 #### Identified Individuals
 
@@ -828,6 +831,7 @@ with a goal of eventually using access granted willingly to rob, damage, or dest
 
 ##### Identifying individuals involved in managing Validators helps address the following Risks
 
+* [FIN1](#risk-fin-1)
 * [KEC7](#risk-kec-7)
 * [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3)
 * [SPS0](#risk-sps-0)
@@ -849,7 +853,7 @@ there are a number of areas where up-to-date skills matter, such as:
 
 ##### Training helps address the following Risks
 
-* [FIN9](#risk-fin-9)
+* [FIN1](#risk-fin-1), [FIN9](#risk-fin-9)
 * [SLS17](#risk-sls-17)
 * [DOW21](#risk-dow-21)
 * [GIR16](#risk-gir-16), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
@@ -1928,12 +1932,39 @@ In the case of corporate third-party providers, sensible due diligence does not 
 
 <div class="info">
 
+##### Relevant external controls for Identifying individuals
+
+* [[?ISO27001]] Annex A 5.16
+
 ##### Identifying individuals involved in managing Validators helps address the following Risks
 
+* [FIN1](#risk-fin-1)
 * [KEC7](#risk-kec-7)
 * [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3)
 * [SPS0](#risk-sps-0)
 * [RER2](#risk-rer-2)
+</div>
+
+#### Document Vendors and Partner Risk
+
+<a href="#req-manage-counterparty-risk">🔗</a> <b id="req-manage-counterparty-risk">Node Operators MUST implement documented procedures for evaluating and reviewing counterparty risks from vendors and partners</b>
+
+* Establishing a process for Vendor and Business Partner engagement and assessing existing as well as new vendors and business partners
+* Ensuring that any identified issues are fixed, and regressions can be identified.
+* Terminating relationships efficiently where problems arise, or the relationship ends.
+
+<div class="info">
+
+##### Relevant external controls for counterparty risk management
+
+* [[?SOC2]] CC 9.2
+
+##### Counterparty risk management helps address the following risks
+
+* [FIN1](#risk-fin-1)
+* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
+* [GIR5](#risk-gir-5)
+* [DOW1](#risk-dow-1), [DOW19](#risk-dow-19)
 </div>
 
 #### Provide Training
@@ -1944,7 +1975,7 @@ In the case of corporate third-party providers, sensible due diligence does not 
 
 ##### Training helps address the following Risks
 
-* [FIN9](#risk-fin-9)
+* [FIN1](#risk-fin-1), [FIN9](#risk-fin-9)
 * [SLS17](#risk-sls-17)
 * [DOW21](#risk-dow-21)
 * [GIR16](#risk-gir-16), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
@@ -2031,46 +2062,6 @@ Best Practise includes following a commonly recognised key management standard s
 
 - [[?CCSS]]: a set of requirements for securing Cryptocurrency systems, focusing on Key Management. Certification for systems is available at three levels, and is granted by certified CCSS Auditors.
 - [[?KMS]]: a set of requirements for Key Management designed for organisations working in blockchain, allowing self-attestation of conformance.
-
-#### Identity Management
-
-<a href="#req-kystaff">🔗</a> <b id="req-kystaff">Node Operators MUST track identity and roles of employees and service partners</b>
-
-This includes knowing who employees and contractors are, off-boarding mechanisms, tracking assigned roles, and ensuring compliance with privacy regulations
-
-<div class="info">
-
-##### Relevant external controls for identity management
-
-* [[?ISO27001]] Annex A 5.16
-
-##### Identity management helps address the following risks
-
-* [FIN1](#risk-fin-1)
-* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
-</div>
-
-#### Document Vendors and Partner Risk
-
-<a href="#req-manage-counterparty-risk">🔗</a> <b id="req-manage-counterparty-risk">Node Operators MUST implement documented procedures for evaluating and reviewing counterparty risks from vendors and partners</b>
-
-* Establishing a process for Vendor and Business Partner engagement and assessing existing as well as new vendors and business partners
-* Ensuring that any identified issues are fixed, and regressions can be identified.
-* Terminating relationships efficiently where problems arise, or the relationship ends.
-
-<div class="info">
-
-##### Relevant external controls for counterparty risk management
-
-* [[?SOC2]] CC 9.2
-
-##### Counterparty risk management helps address the following risks
-
-* [FIN1](#risk-fin-1)
-* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
-* [GIR5](#risk-gir-5)
-* [DOW1](#risk-dow-1), [DOW19](#risk-dow-19)
-</div>
 
 #### Manage Information Lifecycles
 
