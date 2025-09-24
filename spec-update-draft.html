@@ -315,7 +315,7 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td id="risk-dow-10">DOW10</td>
   <td>Infrastructure</td>
   <td>External: DDOS attack</td>
-  <td>Systems unresponsive, slowed down, and compromized due to buffer/stack overflow</td>
+  <td>Systems unresponsive, slowed down, and compromized</td>
 </tr>
 <tr>
   <td id="risk-dow-11">DOW11</td>
@@ -502,6 +502,12 @@ or facilitated by a curret or former member of the operational team.
   <td>Malicious External Hacker intentionally causes operational failure</td>
   <td>Malicious External Hacker gets system access through absence of or weak cyber security standards</td>
 </tr>
+<tr>
+  <td id="risk-hck-5">HCK5 (was GIR8)</td>
+  <td>Process</td>
+  <td>No Input validation</td>
+  <td>Attacks induce buffer overflow, DoS, code injection, etc.</td>
+</tr>
 </tbody></table>
 
 
@@ -556,9 +562,7 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
 </tr>
 <tr>
   <td id="risk-gir-8">GIR8</td>
-  <td>Process</td>
-  <td>No Input validation</td>
-  <td>Buffer overflow attacks</td>
+  <td colspan="3">Now <a href="#risk-hck-5">HCK5</a></td>
 </tr>
 <tr>
   <td id="risk-gir-9">GIR9</td>
@@ -1271,8 +1275,8 @@ Best practices include the use of auditable version control systems, with thorou
 
 ##### Secure development lifecycle helps address the following risks
 
-* [GIR8](#risk-gir-8)
 * [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [HCK5](#risk-hck-5)
 * [KEC8](#risk-kec-8)
 * [GIR25](#risk-gir-25)
 </div>
@@ -1301,13 +1305,20 @@ help ensure that coverage is sufficiently comprehensive to detect errors that ca
 
 #### Validated Inputs and Outputs
 
-Unchecked inputs are a major cause for overflow attacks and brute force. Ideally, the load balancer in front of the node filters out all traffic that has too large headers and payloads. Additionally, if JSON payloads are being used, it is important to validate them against the relevant schema.
+Unchecked inputs are a major vector for a range of attacks. These include
+
+- brute force authorization, or denial of service (including DDoS) attacks, often identifiable by a high rate of failing requests using inputs with minimal variation
+- overflow attacks, where excessive input causes a problem, generally mitigated by programming practices or overflow-safe languages
+- targeted efforts to inject code that executes functionality that should not be authorized, or causes an adverse system reaction including a crash
+
+Ideally, the load balancer in front of the node filters out all traffic with payloads that cause overflow.
+Additionally, it is important to validate inputs against the relevant parameters, particularly where these allow a range of functionalities to be triggered.
 
 <div class="info">
 
 ##### Input checking helps address the following risks
 
-* [GIR8](#risk-gir-8)
+* [HCK5](#risk-hck-5)
 </div>
 
 ### Manage Software Updates  {#sec-mitigations-manage-updates}
@@ -2340,7 +2351,8 @@ Multiple tools can help meet these requirements, including
 
 #### Data validation helps address the following risks
 
-* [GIR8](#risk-gir-8), [GIR16](#risk-gir-16)
+* [HCK5](#risk-hck-5)
+* [GIR16](#risk-gir-16)
 
 </div>
 
