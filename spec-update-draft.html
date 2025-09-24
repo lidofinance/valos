@@ -1432,73 +1432,119 @@ When correctly configured pipelines and job-mechanisms such as GitHub Actions, A
 
 </div>
 
-### Monitoring and Alerting {#sec-mitigations-monitoring}
+### Monitoring, Logging and Alerting {#sec-mitigations-monitoring}
 
-Monitoring dashboards are an important tool to identify risks and gain relevant data.
+Monitoring is an important tool to identify risks and gain relevant data.
 This is one reason that a requirement for monitoring is present in almost all compliance and security frameworks.
 
-It is crucial to monitor not only high level business functions but all containers.
-In particular, proper log collection makes it possible to dynamically verify low-level requirements,
-including
+Monitoring takes many forms, and can be done internally or provided as a service especially for monitoring health of widely available infrastructure such as blockchains,
+and of third-party systems such as cloud services.
 
-* Web3Signer database has no CRUD operations going on (is it connected?)
-* CPU/Memory does not spike suddenly in a container
-* Network traffic in and out of container is within expected parameters
-* Relays are functioning as expected
-* Slashing related logs on validator nodes are accurate and correctly checked
+Monitoring can take place throughout the ecosystem. Low-level indicators such as whether network traffic is within expected or design parameters,
+whether databases are being updated at expected rates, or whether server facilities are maintaining an appropriate temperature are all examples of motitoring
+with fairly obvious value, and where immediate remediations or further investigation is straightforward.
 
-Likewise, there needs to be useful and targeted alerting system based on the monitoring system.
+Monitoring access to physical infrastructure is more complex (not least because in many cases information about people is subject to regulations about privacy),
+but can be a useful diagnostic tool if something goes very wrong, or if you just want to know who keeps blocking the server-room door open on warm days.
+
+As well as monitoring in real time, logging information is important to allow analysis over time,
+to discover information that is only observable though variations (or non-variations) in specific monitored information over time,
+and to enable "historical" or post-mortem analysis.
+
+A good monitoring system provides very broad coverage, with redundancy both as an aspect that can be monitored to detect anomalies
+and to eliminate the risk of a single point of failure - when monitoring is compromised it can indicate a simple failure of the monitoring system,
+but can also mask a broader issue that the system is expected to detect.
+
+With a good monitoring system in place providing broad coverage of operations, there needs to be useful and targeted alerting system based on the monitoring system.
 It is important to learn that a potential problem has been identified as soon as possible, and act on it.
-However, a system that overloads its watchers with alerts is likely to lead to <b>alert fatigue</b>,
-where the alerts are ignored in practice because too often they are not identifying a real problem.
+However, a system that overloads its watchers with alerts is likely to lead to <dfn>alert fatigue</dfn>,
+where the alerts are ignored in practice because too often they require an onerous human response when they are not identifying a real problem.
 
 Alert systems can in turn drive automated emergency responses, ranging from capture of increased levels of detail,
 through requesting additional authorization beyond the normal requirements, to full system shutdowns.
 
-Again, there are important trade-offs between ensuring a highly responsive system, and one that is robust in the face of real-world variability.
+Here again, there are important trade-offs between ensuring a highly responsive system, and one that is robust in the face of real-world variability.
 For example, a system that can automatically suspend [=multi-sig=] transactions unless they are authorized within a short time is not always appropriate,
 because it can interfere with normal operations over a high-latency network or where a number of individuals are expected to coordinate extensively,
 taking a significant amount of time, before authorizing a particular action.
 
+Among many aspects of Validator Operations to monitor directly are the following:
 
-#### Beacon Chain Monitoring
+#### Blockchain
 
-* **Slashing Events:** Monitor the beacon chain for any slashing events.
-* **Anti-Slashing Database:** Regularly poll the local node to ensure the anti-slashing database is enabled and functioning correctly.
-* **Impact of Slashing:** Assess and monitor the broader impact of any slashing incidents on the network.
-* **Relay List Monitoring:** Monitor the relay list for availability metrics and load balance capabilities between various relayers for downtime conditions.
-* **Chain Reorganizations:** Track events and causes of chain reorganizations
-* **Non-finalized Events:** Monitor events preventing the consensus layer from confirming finality
-* **Special Software Conditions:** Monitor major software upgrades requiring specific durations and events that will conclude the upgrade
+* are **Slashing Events** occurring on the beacon chain? To whom?
+* is the **Anti-Slashing Database** functioning correctly?
+* what is the **Impact of Slashing** incidents on the network?
+* how well are **Relay Lists** balancing load and availability to avoid downtime conditions?
+* are **Chain Reorganizations** occurring? Are there patterns of causes?
+* is the Consensus layer reaching **Finality** in accordance with expectations?
+* is **MEV** performance or returns?
 
-#### Node and System Health
+<div class="info">
 
-* **Node Health Metrics:** Monitor key metrics like CPU, memory, restarts, and uptime of nodes.
-* **System Configuration:** Monitor system configuration settings in real-time and continuously.
-* **Key Usages:** Track the usage of critical system keys.
-* **App-specific:** App specific metrics  (e.g. metrics for Dirk, Vouch)
+###### Blockchain monitoring helps address the following risks
+
+* [SLS]1-7, 14-19
+</div>
+
+#### Node, System and Network Health
+
+* do key operational metrics like CPU usage, memory usage, restarts, and uptime of nodes indicate **Healthy Node** conditions?
+* is **Peering Connectivity** normal?
+* are **Failover Systems** functional, ready to operate, and not operating unexpectedly?
+* are **Cloud Systems** functioning according to agreements?
+* do **Cloud Service Notifications** help effectively anticipate and manage expected downtime and maintenance?
+* are **App-specific** metrics within expected parameters?
+* are **Redundant Monitors** producing consistent results?
+
+<div class="info">
+
+##### System monitoring helps address the following risks
+
+* [GIR8](#risk-gir-8), [GIR8](#risk-gir-8)
+</div>
 
 #### Security and Compliance
 
-* **Access Control and Logs:** Monitor access to nodes, with heightened attention to abnormal configuration changes or changes in sensitive systems
+Monitoring for unusual patterns or spikes can help detect a security breach or an exploit in progress.
+In many cases, even if security is breached, secure and accurate logs are important to determine how this took place, in order to protect against recurrence.
+The following are among indicators of a security issue, and information that can help determine what happened.
+
+* **Key Usage**, particularly the usage of critical system keys
+* **Access Control Changes** can indicate an attack underway
+* **Authorised Access** including access to nodes, with heightened attention to abnormal configuration changes or changes in sensitive systems,
 such as 2FA configuration or VPNs.
-* **Phishing and Endpoint Protection:** Monitor for phishing attacks and ensure the security of endpoint protection systems, both for employee devices and infrastructure nodes.
-* **Bastion Nodes:** If applicable, monitor bastion or connection nodes.
-* **Suspicious Internal Interactions:** Watch for any suspicious internal interactions with infrastructure, cloud security platforms, or network monitoring solutions.
-* **Relay Compliance:** Monitor relay compliance aspects and availability metrics.
+* **Phishing** and similar attempts to attack authorized users through social engineering.
+* Attacks on **Firewalls** and **Endpoint Attacks** both for employee devices and infrastructure nodes.
+* Attacks directed at **Bastion Nodes** and can be indicative of an attack or exploit underway
+* unusual or unauthorized **Internal Interactions** with infrastructure, cloud security platforms, or network monitoring solutions
+* **Relay behavior** such as compliance aspects and availability metrics.
+* Ideally, **Bug Reports* and **Community Discussion** will not be the first source of notification about a problem.
+* Various services can monitor whether **Confidential Data** are available publicly, demonstrating there has been a data breach.
 
-#### Upgrade and Code Management
+<div class="info">
 
-* **Upgrade Process:** Monitor the upgrade process, including client code source, notification channels, bug reports, and community disclosures.
-* **Customized Code in Testnet:** Monitor any new custom code deployed in the testnet.
+##### Security and compliance monitoring helps address the following risks
 
-#### Hardware and Network
+* [FIN1](#risk-fin-1), [FIN2](#risk-fin-2), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7), [FIN8](#risk-fin-8), [FIN9](#risk-fin-9)
+* [DOW10](#risk-dow-10), [DOW12](#risk-dow-12)
+* [KEC8](#risk-kec-8), [FIN2](#risk-fin-2)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
+* [GIR9](#risk-gir-9), [GIR14](#risk-gir-14), [GIR17](#risk-gir-17), [GIR22](#risk-gir-22)
+</div>
 
-* **Baremetal and Network Equipment Health:** Monitor the health of bare metals and networking equipment, including internet and peering connectivity.
-* **Predictive Models:** Use predictive models for future malfunctions and equipment replacement needs.
-* **Capacity and Resource Usage:** Track capacity usage, processing memory, and CPU.
-* **Peering Connectivity:** Monitor both internal and external network peering connectivity.
-* **Firewall Configuration and Metrics:** Keep an eye on firewall configuration changes or unexpected increases in drop metrics.
+#### Upgrades
+
+* does the **Upgrade Process** including client code source, configuration and testnet and production deployment, work as desired, consume unexpected time, or generate errors and issues?
+* how does **Customized Code in Testnet** behave compared to the code deployed in production? This is especially relevant for network updates.
+* is **System Configuration** stable?
+
+<div class="info">
+
+##### Monitoring upgrades helps address the following risks
+
+* [GIR9](#risk-gir-9), [GIR11](#risk-gir-11), [GIR14](#risk-gir-14), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21)
+</div>
 
 #### Doppelgänger Protection
 
@@ -1512,20 +1558,18 @@ Detecting that two validators with the same identifiers are running at the same 
 </div>
 
 
-#### Cloud and Infrastructure
-
-* **Cloud Monitoring Solutions:** Use cloud monitoring solutions to keep track of uptime and internal issues.
-* **Cloud Service Notifications:** Stay informed about cloud service announcements regarding expected downtime and maintenance.
 
 <div class="info">
 
-Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md) for tool examples to perform the monitoring of some of the metrics mentioned above, as well as:
+#### Tools for Monitoring
+There are some tools listed in DUCK @@bring them here@@ [collection-of-tools-scripts-and-templates.md]() to perform the monitoring of some of the metrics mentioned above, as well as:
 
 * Cognito's [Userpool Addons for auditing authentications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html).
 * Filtering and anaysis of anomalies can be done in AWS using the [WAF module](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html).
 * An example for monitoring software is the [ELK stack](https://www.elastic.co/elastic-stack/).
-* A very common centralized dashboard is [Grafana](https://grafana.com) - an example of [alerting setup in Grafana.](https://grafana.com/docs/grafana/latest/alerting/set-up/)
-
+* A very common centralized dashboard is [Grafana](https://grafana.com) - an example of [alerting setup in Grafana](https://grafana.com/docs/grafana/latest/alerting/set-up/)
+* Simply has an OS tool for monitoring MEV: https://github.com/SimplyStaking/eth-block-proposal-monitor
+* [Prometheus](https://prometheus.io/docs/introduction/overview/) is a commonly used system used to help managing monitoring and alerts
 
 #### Monitoring can help address the following risks:
 
