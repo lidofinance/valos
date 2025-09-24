@@ -221,21 +221,19 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
 </tr>
 <tr>
   <td id="risk-sls-16">SLS16</td>
-  <td>Process</td>
-  <td>Operational Failure: Slashing monitoring does not prevent system shut down</td>
-  <td>Slashing events continue because no slashing monitoring system in place</td>
+  <td colspan="3">Removed</td>
 </tr>
 <tr>
   <td id="risk-sls-17">SLS17</td>
   <td>Process</td>
   <td>Operational Failure: Slashing monitoring ignores alerts</td>
-  <td>Monitoring is in place, but slashing events keep ongoing on because alerts are not monitored</td>
+  <td>Slashing events continue or recur because alerts are not monitored</td>
 </tr>
 <tr>
   <td id="risk-sls-18">SLS18</td>
   <td>Process</td>
   <td>Operational Failure: Slashing monitoring does not shut down the validators</td>
-  <td>Slashing keeps going on because system fails to automatically shut down after alerts</td>
+  <td>Slashing continues because monitoring system fails to automatically shut down malfunctioning validator</td>
 </tr>
 <tr>
   <td id="risk-sls-19">SLS19</td>
@@ -1434,7 +1432,7 @@ When correctly configured pipelines and job-mechanisms such as GitHub Actions, A
 
 ##### Process automation helps address the following risks
 
-* [SLS17](#risk-sls-17)
+* [SLS18](#risk-sls-18)
 * [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
 * [GIR16](#risk-gir-16) [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21),  [GIR25](#risk-gir-25)
 
@@ -1537,7 +1535,7 @@ Take a look at [collection-of-tools-scripts-and-templates.md](../mitigation-and-
 
 #### Monitoring can help address the following risks:
 
-* [SLS8](#risk-sls-8), [SLS16](#risk-sls-16)
+* [SLS8](#risk-sls-8), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
 * [DOW6](#risk-dow-6), [DOW15](#risk-dow-15)
 * [GIR4](#risk-gir-4), [GIR13](#risk-gir-13)
 
@@ -1780,7 +1778,7 @@ Where relevant, corresponding controls from those frameworks are identified and 
 
 ##### Assessment of activities' relevance helps address the following risks
 
-* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS16](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
 * [DOW16](#risk-dow-16), [DOW18](#risk-dow-18)
 * [GIR5](#risk-gir-5)
 </div>
@@ -2127,7 +2125,7 @@ Best practices include ensuring that the latest version of TLS is being used, wi
 
 ##### Automated monitoring helps address the following risks
 
-* [SLS16](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
+* [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 * [DOW1](#risk-dow-1), [DOW10](#risk-dow-10), [DOW18](#risk-dow-18)
 * [GIR10](#risk-gir-10)
 * [KEC1](#risk-kec-1), [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
