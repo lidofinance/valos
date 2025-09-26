@@ -55,13 +55,13 @@ and to simplify the process of assessing against those standards Node Operators 
 Conformance to this specification is based on meeting the requirements expressed in the [Controls Catalog](#sec-controls-catalog).
 </section>
 
-## Risks
+## Risks {#sec-risks}
 
 This specification divides risk into seven categories for Node Operators to consider in ensuring the quality of their overall setup.
 
 In general, risk identifiers correspond to DUCK and will remain stable. This may mean that some identifiers are retired and will not be re-used.
 
-### Financial and Regulatory Risk {#sec-financial-risk}
+### Financial and Regulatory Risk {#sec-risks-financial}
 
 These are risks explicitly arising from management of financial and regulatory compliance processes. (Many other risk cateogries have a direct financial impact).
 
@@ -121,7 +121,7 @@ These are risks explicitly arising from management of financial and regulatory c
 </tbody>
 </table>
 
-### Slashing Risk
+### Slashing Risk {#sec-risks-slashing}
 
 These risks arise from performing slashable actions, that lead to penalties.
 Note that frequent slashing penalties are likely to incur a reputational risk.
@@ -238,7 +238,7 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
 </tbody></table>
 
 
-### Downtime Risk
+### Downtime Risk {#sec-risks-downtime}
 
 These risks are due to connectivity issues that lead to reduced rewards, in effect an opportunity cost.
 
@@ -371,14 +371,14 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
 </tr>
 </tbody></table>
 
-### Key Custody Risk
+### Key Custody Risk {#sec-risks-keys}
 
 The risks associated with key custody are divided in this specification according to the type of Key:
 
 - Validator Keys enable the operator to manage their nodes. [Validator Key Custody Risks](#validator-key-custody-risk) if realised, have a direct impact on operations, which is very likely to have a financial and reputational impact, and possibly leaving an operator unable to meet contractual obligations.
 - Withdrawal Keys enable the operator to manage their digital assets, and [Withdrawal Key Custody Risks](#withdrawal-key-custody-risk) have a direct financial impact, as well as a likely reputational impact.
 
-#### Validator Key Custody Risk
+#### Validator Key Custody Risk {#sec-risks-keys-validator}
 
 <table>
 <thead>
@@ -430,7 +430,7 @@ The risks associated with key custody are divided in this specification accordin
   <td>Someone who gains physical access to a server can have access to locally exposed ports and can access the software API</td>
 </tr></tbody></table>
 
-#### Withdrawal Key Custody Risk
+#### Withdrawal Key Custody Risk {#sec-risks-keys-withdrawal}
 
 <table>
 <thead>
@@ -456,7 +456,7 @@ The risks associated with key custody are divided in this specification accordin
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
 </tr></tbody></table>
 
-### Hacking Risk
+### Hacking Risk {#sec-risks-hacking}
 
 Many risks arise through vulnerability to hacking, whether carried out by a malicious external actor,
 or facilitated by a curret or former member of the operational team.
@@ -497,7 +497,7 @@ or facilitated by a curret or former member of the operational team.
 </tbody></table>
 
 
-### General Infrastructure Risk
+### General Infrastructure Risk {#sec-risks-infra}
 
 Risks related to process errors, inefficiencies, and weak general infrastructure.
 
@@ -655,7 +655,7 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>If the infrastructure knowledge is not shared across the team, this could lead to a heavy dependency on a single person</td>
 </tr></tbody></table>
 
-### Service Partner Specific Risk
+### Service Partner Specific Risk {#sec-risks-partner}
 
 Risk related to partners and specific third-party services.
 
@@ -683,7 +683,7 @@ Risk related to partners and specific third-party services.
 </tr>
 </tbody></table>
 
-### Reputational Risk
+### Reputational Risk {#sec-risk-reputation}
 
 Risks that impact the reputation of a Node Operator, likely to lead potential and actual customers to choose a different partner to work with.
 
@@ -731,7 +731,7 @@ Risks that impact the reputation of a Node Operator, likely to lead potential an
 
 
 
-## Risk Mitigation Strategies {#sec-risk-mitigation}
+## Risk Mitigation Strategies {#sec-mitigation}
 
 The Mitigation Strategies section serves as a go-to resource for node operators,
 providing actionable insights and mitigation options to enhance the security, reliability, and efficiency of their operations.
@@ -763,7 +763,7 @@ Best practices include:
 * Analyze each component in your infrastructure environment in terms of security, availability, processing integrity, confidentiality and privacy.
 * Outline directly which risks are a high priority, and which ones are more acceptable, and the scenarios where it applies. For example, downtime comes only with an opportunity cost for ETH stakers, but may cause a slashing event in Polkadot.
 
-#### Assessing risks
+#### Assessing risks {#sec-mit-asses-risk}
 
 A standard industry approach to assessing risks is to consider the probability of an event occurring and the likely impact of that event.
 
@@ -773,7 +773,7 @@ provide a ranking for priority of mitigating each risk.
 Since the cost of risk mitigation varies considerably, the overall priority for addressing risk, or deciding that a given level of risk is acceptable,
 generally depends on comparing the risk ranking with the cost of mitigation, and available resources.
 
-##### Assessing Finanacial Impact
+##### Assessing Finanacial Impact {#sec-mit-assess-risk-impact}
 
 There are a number of factors to take into account when assessing the overall financial impact of a given risk, with the direct cost incurred as the most obvious.
 It is important to understand the time required to mitigate the impact of an event, and the cost that will be incurred over that time.
@@ -784,7 +784,7 @@ as well as potential costs of compensation or legal costs.
 
 It is also useful to consider opportunity costs such as reputational damage, or competitors taking advantage of an incident to promote themselves as a better alternative.
 
-##### Assessing Incident Probability
+##### Assessing Incident Probability {#sec-mit-assess-risk-probability}
 
 Predicting the likelihood of an unexpected future event is generally difficult, and results are unlikely to precisely match the predictions.
 Nevertheless it is important to consider the context of a specific operation and attempt accurate predictions.
@@ -812,7 +812,7 @@ In a nutshell: technology needs to serve the business goal, not the other way ar
 To ensure this happens, it is important to consider both the business goals and the available technology,
 and then use appropriate technology to meet those goals.
 
-#### Update Third-party Software
+#### Update Third-party Software {#sec-mit-update-software}
 
 Updates to software components provided by third-parties often address newly-discovered or longstanding vulnerabilities.
 It is a best practice to update software regularly, but it is important to [check for vulnerabilities](#req-check-vulnerabilities)
@@ -823,7 +823,7 @@ Relevant controls:
 
 - [Controls for Development and Update](#sec-controls-updates)
 
-#### Local Anti-Slashing Database
+#### Local Anti-Slashing Database  {#sec-mit-antislash-db}
 
 To avoid double signing, validators can maintain a history of messages they signed.
 This data is crucial, as inconsistencies can cause a double-signing event.
@@ -836,7 +836,7 @@ The data needs to be reliably persistent, and properly connected to the systems 
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3)
 </div>
 
-#### Signature Management
+#### Signature Management {#sec-mit-signature-management}
 
 Tools that manage signatures for transactions generally provide a workflow that includes passive and active protection against a variety of risks.
 Using these tools helps minimise the chances that a signature is given without checking what is being signed,
@@ -859,7 +859,7 @@ Tools such as Web3Signer and Dirk help manage signatures securely, when properly
 * [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
 </div>
 
-#### Client Diversity
+#### Client Diversity {#sec-mit-client-diversity}
 
 A diverse set of clients for different protocols can reduce "blast radius" in a case where one client has a protocol error or other bug.
 The most common scenario for this being realized is likely when an upgrade introduces a problem.
@@ -878,7 +878,7 @@ For example in Ethereum, it is possible to run different clients on each of the 
 * [DOW2](#risk-dow-2), [DOW19](#risk-dow-19), [DOW21](#risk-dow-21)
 </div>
 
-#### Lido-specific: Handling of Delinquent State
+#### Lido-specific: Handling of Delinquent State {#sec-mit-lido-delinquent-state}
 
 Node operators need to withdraw validators correctly, as they are otherwise put into a delinquent state.
 This results in an opportunity cost realised as monetary losses.
@@ -896,7 +896,7 @@ Information management can mitigate many risks.
 One aspect is the management of highly confidential information, such as the management of signing keys or withdrawal keys,
 but it is also important to manage operational information.
 
-#### Controlled and Audited Secret Access
+#### Controlled and Audited Secret Access {#sec-mit-control-secret-access}
 
 Best practise for credential management is to use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) system,
 that gives users authorised access to secrets through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication),
@@ -916,7 +916,7 @@ Using [=multi-sig=] wallets requiring authorization from multiple parties for sp
 * [GIR25](#risk-gir-25)
 </div>
 
-#### Encrypted Data
+#### Encrypted Data {#sec-mit-encrypt-data}
 
 Many different components interplay while a staking operation is going on.
 If confidential information is not protected by encryption, it can be intercepted and read during transmission.
@@ -932,7 +932,7 @@ It is therefore crucial to ensure that confidential data is only stored and tran
 * [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11), [GIR10](#risk-gir-10)
 </div>
 
-#### Cold Storage
+#### Cold Storage {#sec-mit-cold-storage}
 
 Cold Storage, in particular "air-gapped" storage, can help protect information not used often such as withdrawal keys, private key generation materials, and the like,
 by making it more difficult for malicious entities to access the information and by reducing the chance that it will be leaked in the event of accidentally publishing data.
@@ -944,7 +944,7 @@ by making it more difficult for malicious entities to access the information and
 * [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7)
 </div>
 
-#### Key Management
+#### Key Management {#sec-mit-key-management}
 
 It is important to protect private keys from accidental or malicious misuse, and in particular deletion.
 It is not normal to provide broad access to unencrypted signing keys.
@@ -959,7 +959,7 @@ Modern vault systems enable the enforcement of policies to ensure that access to
 * [KEC2](#risk-kec-2), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
 </div>
 
-#### Key Rotation
+#### Key Rotation {#sec-mit-key-rotation}
 
 Key rotation following a proper process help protect infrastructure from a potential misuse of credentials.
 
@@ -981,7 +981,7 @@ Keys to rotate include, but are not limited to:
 * [GIR6](#risk-gir-6), [GIR7](#risk-gir-7)
 </div>
 
-#### Operational Information Management
+#### Operational Information Management {#sec-mit-operational-info-management}
 
 Node operators are likely to rely on a wide range of operational information,
 including internal procedures, understanding software configurations, plans for future development, and employee management.
@@ -1008,7 +1008,7 @@ Documentation, even if rarely actively read by those responsible for operations 
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 </div>
 
-#### Deletion protection
+#### Deletion protection {#sec-mit-deletion-protection}
 
 Loss of important information, especially loss of control over keys, can have a crippling impact. It is important to have mechanisms to preotect against, and recover from,
 unintentional or malicious deletion of important data.
@@ -1063,7 +1063,7 @@ Tracking this information is important to ensure that access can be audited and 
 
 </div>
 
-#### Least Privilege
+#### Least Privilege {#sec-mit-least-privilege}
 
 The core of <dfn id="def-least-privilege">Least Privilege</dfn> is that access is only granted to those who need it, and only for as long as it is relevant. This means that an individual user's privileges are likely to change over time, and in particular any offboarding process includes a rapid revocation of user's assigned roles.
 
@@ -1099,7 +1099,7 @@ without having authorizations they do not need.
 
 </div>
 
-#### Employee Authorization Management
+#### Employee Authorization Management {#sec-mit-employee-auth-management}
 
 Ensuring that employees whose roles have changed do not have lingering credentials reduces the risk they others can misuse those credentials to cause harm.
 
@@ -1116,7 +1116,7 @@ covering role changes as well as termination, transfer, and promotion procedures
 * [GIR25](#risk-gir-25)
 </div>
 
-#### Managed Network Access to Nodes
+#### Managed Network Access to Nodes {#sec-mit-manage-network-access}
 
 Following the principles of defense in depth and [**least privilege**](#def-least-privilege), it is important that nodes are not directly accessible without permission, and that they do not leak information to the Web that can help malicious parties gain unauthorized access.
 
@@ -1134,7 +1134,7 @@ and does not allow generic probing mechanisms such as open port scans that can h
 * [SLS12](#risk-sls-12)
 </div>
 
-#### Authentication Policies
+#### Authentication Policies {#sec-mit-auth-policies}
 
 Best practice is to use password and related authentication policies to ensure that access control mechanisms are sufficiently strong at every layer of the infrastructure. This can include appropriate requirements for the strength of passwords and the use of Multi-Factor Authentication as well as [=Multi-Sig=] requirements.
 
@@ -1146,7 +1146,7 @@ Best practice is to use password and related authentication policies to ensure t
 * [SLS13](#risk-sls-13)
 </div>
 
-#### Managed Physical Access
+#### Managed Physical Access {#sec-mit-manage-physical-access}
 
 This covers all physical devices that can access the Node, as well as all areas in which such devices are kept,
 whether "on-premises", distributed, hosted by a third party, or remote mobile devices such as laptops.
@@ -1185,7 +1185,7 @@ It is important to log and audit access sufficiently frequently to detect proble
 Physical devices are subject to physical changes, including environmental issues such as temperature extremes that can cause damage,
 and utility failures such as power or internet failure.
 
-#### Physically Distributed Infrastructure
+#### Physically Distributed Infrastructure {#sec-mit-distribute-hardware}
 
 A single validator represents a single point of failure, that can introduce slashing or downtime risks.
 [[?DVT]] (Distributed Validator Technology) provides an approach to mitigating this problem, by distributing the keys and the hardware that runs validation,
@@ -1197,13 +1197,13 @@ the principes can be implemented in different ways.
 
 <div class="info">
 
-##### DVT helps address the following risks
+##### Dinstributed Infrastructure helps address the following risks
 
 * [SLS1](#risk-sls-1), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
 * [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
 </div>
 
-#### Protection against Utility Failure
+#### Protection against Utility Failure {#sec-mit-protect-utilities}
 
 To ensure that a local utility failure does not impact a validator, it is useful to have redundant systems,
 such as a backup power supply e.g. through local batteries or power generation,
@@ -1219,7 +1219,7 @@ These calculations mean economies of scale often enable larger-scale operations 
 * [DOW9](#risk-dow-9), [DOW15](#risk-dow-15)
 </div>
 
-#### Protection against Environmental Threat
+#### Protection against Environmental Threat {#sec-mit-protect-from-environment}
 
 It is also important to ensure that facilities have appropriate protection from relevant environmental risks such as fire, flooding, extreme wind,
 as well as earthquakes and destructive physical attacks. Appropriate mitigations will depend in part on the specific location and nature of the facility,
@@ -1235,7 +1235,7 @@ but will generally revolve around siting of facilities, their architecture, and 
 
 [Monitoring](#sec-mitigations-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
 
-### Manage Equipment Life-cycle.
+### Manage Equipment Life-cycle {#sec-mit-mnage-equipment-life}
 
 The lifecycle of equipment, most particularly node servers and computers used to access and manage them, is a determinant of overall security.
 
@@ -1253,7 +1253,7 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 ### Software Development and Update Process {#sec-mitigations-development-and-updates}
 
-#### Secure Development Life Cycle
+#### Secure Development Life Cycle {#sec-mit-ssdlc}
 
 A secure development lifecycle helps ensure that vulnerabilities are not introduced to codebases, and subsequently deployed.
 
@@ -1270,7 +1270,7 @@ Best practices include the use of auditable version control systems, with thorou
 </div>
 
 
-#### Comprehensive Testing for Changes to Code
+#### Comprehensive Testing for Changes to Code {#sec-mit-code-testing}
 
 A comprehensive test suite helps ensure changes do not introduce new vulnerabilities or situations that lead to operational failures.
 Equally, it is important that someone other than the developer who produces Code changes reviews them.
@@ -1291,7 +1291,7 @@ help ensure that coverage is sufficiently comprehensive to detect errors that ca
 * [GIR11](#risk-gir-11), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR21](#risk-gir-21), [GIR23](#risk-gir-23), [GIR24](#risk-gir-24)
 </div>
 
-#### Validated Inputs and Outputs
+#### Validated Inputs and Outputs {#sec-mit-validate-inputs-outputs}
 
 Unchecked inputs are a major cause for overflow attacks and brute force. Ideally, the load balancer in front of the node filters out all traffic that has too large headers and payloads. Additionally, if JSON payloads are being used, it is important to validate them against the relevant schema.
 
@@ -1325,7 +1325,7 @@ As well as having control over the update process, it is important to have the c
 * [SPS](#risk-sps-0)
 </div>
 
-#### Avoid Customizing Third-party Software
+#### Avoid Customizing Third-party Software {#sec-mit-minimize-customizing-software}
 
 Validator software, and other software validators use, is very often open source.
 However, customising software can introduce errors.
@@ -1345,7 +1345,7 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 * [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 </div>
 
-#### Configuration Management
+#### Configuration Management {#sec-mit-configuration-management}
 
 It is important to manage the configuration of hardware, and software. A minimal profile helps reduce possible attack surface,
 while minimising, and carefully tracking, customisation is important to ensure smooth and safe upgrades.
@@ -1370,7 +1370,7 @@ while automated tools to track and scan for best practices are available such as
 * [KEC8](#risk-kec-8)
 </div>
 
-#### Protection against Supply-chain Malware
+#### Protection against Supply-chain Malware {#sec-mit-protect-against-malware}
 
 Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
 
@@ -1387,7 +1387,7 @@ Protection against malware needs to be implemented on all assets and users need 
 * [SPS0](#risk-sps-0)
 </div>
 
-#### Pre-deployment testing environments
+#### Pre-deployment testing environments {#sec-mit-test-predeployment}
 
 Use separate tests and staging environments
 
@@ -1403,7 +1403,7 @@ This minimizes a potential blast radius. It is important to run any change (even
 * [GIR11](#risk-gir-11), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21)
 </div>
 
-#### Containerized and Orchestrated Environments
+#### Containerized and Orchestrated Environments {#sec-mit-containerized-environments}
 
 Containerized and orchestrated environments are designed to reinforce security by automating many good practices, with mechanisms that have been widely tested in diverse environments. As tools that can be used well or badly, their best practice recommendations are important to ensure the the full benefits are realised.
 
@@ -1414,7 +1414,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 * [GIR23](#risk-gir-23)
 </div>
 
-#### Process Automation
+#### Process Automation {#sec-mit-process-automation}
 
 Human error is always a risk. An automated script, whether or not invoked by a human, can help minimise indavertent errors.
 
@@ -1470,7 +1470,7 @@ taking a significant amount of time, before authorizing a particular action.
 
 Among many aspects of Validator Operations to monitor directly are the following:
 
-#### Blockchain
+#### Blockchain {#sec-mit-monitor-blockchain}
 
 * are **Slashing Events** occurring on the beacon chain? To whom?
 * is the **Anti-Slashing Database** functioning correctly?
@@ -1487,7 +1487,7 @@ Among many aspects of Validator Operations to monitor directly are the following
 * [SLS]1-7, 14-19
 </div>
 
-#### Node, System and Network Health
+#### Node, System and Network Health {#sec-mit-monitor-systems}
 
 * do key operational metrics like CPU usage, memory usage, restarts, and uptime of nodes indicate **Healthy Node** conditions?
 * is **Peering Connectivity** normal?
@@ -1504,7 +1504,7 @@ Among many aspects of Validator Operations to monitor directly are the following
 * [GIR8](#risk-gir-8), [GIR8](#risk-gir-8)
 </div>
 
-#### Security and Compliance
+#### Security and Compliance {#sec-mit-monitor-compliance}
 
 Monitoring for unusual patterns or spikes can help detect a security breach or an exploit in progress.
 In many cases, even if security is breached, secure and accurate logs are important to determine how this took place, in order to protect against recurrence.
@@ -1533,7 +1533,7 @@ such as 2FA configuration or VPNs.
 * [GIR9](#risk-gir-9), [GIR14](#risk-gir-14), [GIR17](#risk-gir-17), [GIR22](#risk-gir-22)
 </div>
 
-#### Upgrades
+#### Upgrades {#sec-mit-monitor-upgrades}
 
 * does the **Upgrade Process** including client code source, configuration and testnet and production deployment, work as desired, consume unexpected time, or generate errors and issues?
 * how does **Customized Code in Testnet** behave compared to the code deployed in production? This is especially relevant for network updates.
@@ -1546,7 +1546,7 @@ such as 2FA configuration or VPNs.
 * [GIR9](#risk-gir-9), [GIR11](#risk-gir-11), [GIR14](#risk-gir-14), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21)
 </div>
 
-#### Doppelgänger Protection
+#### Doppelgänger Protection {#sec-mit-doppelganger-protection}
 
 Detecting that two validators with the same identifiers are running at the same time is important, to shut one down as fast as possible. This can be done using monitoring and alert systems, robust StatefulSet handling in Kubernetes to ensure no two containers with the same keys run at the same time, or pre-defined tools such as [DoppelBuster](https://github.com/SimplyStaking/DoppelBuster).
 
@@ -1590,7 +1590,7 @@ There are therefore two core parts to a Nore Operator's communication strategy:
 
 Both rely on understanding the Stakeholders, and developing approriate communication channels and procedures to ensure those stakeholders have timely access to relevant information.
 
-#### Stakeholder Overview
+#### Stakeholder Overview {#sec-mit-comms-stakeholders}
 
 Some key stakeholders are <dfn>Known Stakeholders</dfn>, who have an identity known to the Node Operator
 that includes at least one direct communications cannel such as messaging, email, or telephone. These typically include
@@ -1613,7 +1613,7 @@ As well as those who could be [=Known Stakeholders=], such as high stake investo
 * Communities involved in the ecosystem for motives as diverse as lobbying regulators, developing technical standards, education, and more.
 
 
-#### Communication Channels
+#### Communication Channels {#sec-mit-comms-channels}
 
 Stakeholders' preferences for communication channels differ.
 Where possible for [=Known Stakeholders=] it is good practice to identify them, and their individual channel preferences in advance.
@@ -1636,7 +1636,7 @@ while others are specifically suited to individual two-way communication.
 Common communication tools that stakeholders are likely to find familiar and actively use include Websites, email, message-based services such as Telegram, Discord, Slack, Signal, Whatsapp and "post"-oriented services such as X (the former Twitter), BlueSky, Facebook/Instagram, and the like.
 
 
-#### Stakeholder Management
+#### Stakeholder Management {#sec-mit-stakeholder-management}
 
 The following procedures enable appropriate consideration and management of relevant stakeholders:
 
@@ -1673,7 +1673,7 @@ is helpful for managing stakeholders, and effective communication with them.
 This can be as simple as a [Stakeholder Register Spreadsheet](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true),
 or a more advanced CRM system, depending on the needs of the Node Operator.
 
-#### Incident Response Plans
+#### Incident Response Plans {#sec-mit-incident-response}
 
 An <dfn>Incident Response Plan</dfn> documents procedures for managing security incidents and events,
 as guidance for employees or incident responders who believe they have discovered, or are responding to, a security incident.
@@ -1692,7 +1692,7 @@ Best practices for Incident response plans include
 - Data collection and distribution to enable effective response, external communication, and [=Post Mortem=] analysis
 - Identify relevant Stakeholders and define communication strategies for both internal and external communications
 
-#### Identifying and Responding to Security Incidents {#sec-mitigations-response}
+#### Identifying and Responding to Security Incidents {#sec-mitigations-identify-incidents}
 
 There are several ways to identify that a security incident is taking place. Best practice is to have extensive monitoring in place, to identify anomalies early,
 with alerting and potentially direct reaction mechanisms. Although learning from third-party discussions is a terrible way to find out about an incident, it is still better than simply not discovering it, so monitoring channels where such discussions take place is a valuable part of an overall strategy.
@@ -1712,7 +1712,7 @@ with alerting and potentially direct reaction mechanisms. Although learning from
 * [RER3](#risk-rer-3)
 </div>
 
-#### Learning from Security Events
+#### Learning from Security Events {#sec-mit-incident-learning}
 
 This is often referred to as a "<dfn>Post Mortem</dfn>",
 used to learn from the event and improve relevant Incident Response Plans.
@@ -1729,7 +1729,7 @@ and consider what changes can be implemented to prevent or mitigate similar even
 * [GIR6](#risk-gir-6), [GIR7](#risk-gir-7)
 </div>
 
-#### Disaster Recovery Plans
+#### Disaster Recovery Plans {#sec-mit-disaster-recovery}
 
 A <dfn>Disaster Recovery Plan</dfn> is a specialized [=Incident Response Plan=]
 that gives guidance on recovering one or more information systems at an alternate facility,
@@ -1749,7 +1749,7 @@ Sample Disaster Recovery Plan templates:
 
 </div>
 
-#### Incident Simulations
+#### Incident Simulations {#sec-mit-incident-simulation}
 
 These are also known as "<dfn>Pre-Mortems</dfn>".
 
@@ -1768,7 +1768,7 @@ Example topics for Pre-Mortems include variations on themes such as
 Articles such as [[[?PREMORTEM]]]
 offer further information on how to plan and implement simulations, and how to derive the maximum benefit from them.
 
-#### Incident Communication
+#### Incident Communication {#sec-mit-incident-communication}
 
 As well as direct financial losses, security incidents can also result in substantial reputational damage.
 Appropriate [=Incident Communication=] with stakeholders about security incidents, both during and after the relevant incident, can significantly mitigate this risk.
@@ -1842,7 +1842,7 @@ Where relevant, corresponding controls from those frameworks are identified and 
 
 Best practice is to ensure that where possible, [processes are automated](#process-automation)
 
-### Controls for Financial and Regulatory Risk {#controls-fin-reg}
+### Controls for Financial and Regulatory Risk {#sec-controls-fin-reg}
 
 #### Payment rails
 
@@ -1867,7 +1867,7 @@ Best practice is to ensure that where possible, [processes are automated](#proce
 * [RER2](#risk-rer-2)
 </div>
 
-### Controls for Technology Stack
+### Controls for Technology Stack {#sec-controls-tech-stack}
 
 #### Keep Software Updated
 
@@ -2420,7 +2420,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 <a href="#req-enable-rollback">🔗</a> <b id="req-enable-rollback">Node Operators MUST have a process to enable emergency rollback of upgrades</b>
 
-### Controls for Communication and Incident Response <a href="#sec-controls-response" id="sec-controls-response">🔗</a>
+### Controls for Communication and Incident Response {#sec-controls-response}
 
 #### Provide Operational Communication
 
@@ -2504,7 +2504,7 @@ or [=Disaster Recovery Plans=] at least twice per year</b>
 
 This requirement includes internal and external communication, both during and after incidents.
 
-### Controls for General Security Measures <a href="#sec-controls-general" id="sec-controls-general">🔗</a>
+### Controls for General Security Measures {#sec-controls-general}
 
 #### Verify Counterparty Compliance
 
