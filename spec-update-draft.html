@@ -235,6 +235,12 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>Incident Response does not update Slashing Database</td>
   <td>A slashing event recurs, because the database is not updated as part of Incident Response</td>
 </tr>
+<tr>
+  <td id="risk-sls-20">SLS20</td>
+  <td>Infrastructure</td>
+  <td>Chainsplit increases slashing penalty</td>
+  <td>After a chainsplit occurs, continuing to support the leading fork can lead to a larger penalty if it is later rejected</td>
+</tr>
 </tbody></table>
 
 
@@ -1484,7 +1490,7 @@ Among many aspects of Validator Operations to monitor directly are the following
 
 ###### Blockchain monitoring helps address the following risks
 
-* [SLS]1-7, 14-19
+* [SLS]1-7, 14-19, [SLS20](#risk-sls-20)
 </div>
 
 #### Node, System and Network Health
