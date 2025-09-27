@@ -74,6 +74,7 @@ These are risks explicitly arising from management of financial and regulatory c
 <th>Risk Group</th>
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
+<th>Relevant Mitigations</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -81,42 +82,49 @@ These are risks explicitly arising from management of financial and regulatory c
 <td>Process</td>
 <td>Onboarding</td>
 <td>Onboarded entities are not adequately vetted to ensure financial, operational, regulatory, or reputational appropriateness, resulting in potential financial, legal, or reputational damage</td>
+<td></td>
 </tr>
 <tr>
 <td id="risk-fin-2">FIN2</td>
 <td>Infrastructure</td>
 <td>Deposit</td>
 <td>Fiat and digital assets deposited are not received in the appropriate currency, address, or fiat account, leading to financial loss</td>
+<td></td>
 </tr>
 <tr>
 <td id="risk-fin-3">FIN3</td>
 <td>Infrastructure</td>
 <td>Deposit</td>
 <td>Fiat and digital assets are not correctly processed and assets are misallocated to individuals, entities, or operational addresses leading to financial loss</td>
+<td></td>
 </tr>
 <tr>
 <td id="risk-fin-4">FIN4</td>
 <td>Process</td>
 <td>Withdrawal</td>
 <td>Fiat and digital assets are not correctly disbursed to individuals, entities, or addresses, leading to financial and reputational loss</td>
+<td></td>
 </tr>
 <tr>
 <td id="risk-fin-6">FIN6</td>
 <td>Infrastructure</td>
 <td>Compounding</td>
 <td>Staking rewards are not appropriately collected, governed, restaked, compounded, or allocated to clients leading to financial loss</td>
+<td></td>
 </tr>
 <tr>
 <td id="risk-fin-7">FIN7</td>
 <td>Process</td>
 <td>Reporting</td>
 <td>Financial reporting requirements are not adhered to or inconsistently applied, leading to regulatory, legal, and financial consequences</td>
+<td></td>
 </tr>
 <tr>
 <td id="risk-fin-9">FIN9</td>
 <td>Process</td>
 <td>Up to date compliance</td>
 <td>Failure to review relevant regulation and update compliance procedures leading to financial, legal, and regulatory repercussions</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -133,6 +141,7 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
 <th>Risk Group</th>
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
+<th>Relevant Mitigations</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -140,100 +149,119 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>Infrastructure</td>
   <td>Operational Failure: Single validator signs two different blocks</td>
   <td>Single node signs two different blocks, e.g. failure in setting up the anti-slashing mechanism (e.g. no lokal anti-slashing database disabled or deleted) or failure in the validator migration process.</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-2">SLS2</td>
   <td>Infrastructure</td>
   <td>Operational Failure: Shutting down validator only temporarily</td>
   <td>Validator shuts down temporarily. System spins up a new validator with the same key</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-3">SLS3</td>
   <td>Infrastructure</td>
   <td>Operational Failure: Validator keys are used on 2 different validators</td>
   <td>System takes the same keys twice from the key database and deploys them on two different validators.</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-4">SLS4</td>
   <td>Infrastructure</td>
   <td>Operational Failure: Failure in setting up the anti-slashing mechanisms correctly</td>
   <td>Failure in setting up the anti-slashing mechanisms correctly (e.g. Web3Signer has no slashing protection enabled, no database, database only in memory and not on disk, 2 or several copies of Web3Signer, slashing databse can be deleted)</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-5">SLS5</td>
   <td>Infrastructure</td>
   <td>Double key usage in the CI/CD pipeline</td>
   <td>Usage of same key within different environments causing a slashing</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-6">SLS6</td>
   <td>Software</td>
   <td>Software Bug (e.g. Validator Client) (Intentional or accidentional) through update</td>
   <td>New versions of a validator client that may cause errors that lead to slashing<br>Supply chain attack</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-7">SLS7</td>
   <td>Software</td>
   <td>Software Bug (e.g. Validator Client) through software customization</td>
   <td>New versions of a validator client has errors that lead to slashing</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-8">SLS8</td>
   <td colspan="3">Now <a href="#risk-hck-1">HCK1</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-9">SLS9</td>
   <td colspan="3">Now <a href="#risk-hck-2">HCK2</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-10">SLS10</td>
   <td colspan="3">Now <a href="#risk-hck-3">HCK3</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-11">SLS11</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-12">SLS12</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-13">SLS13</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-14">SLS14</td>
   <td>Process</td>
   <td>Operational Failure: Incorrect implementation of the failover mechanism: Failover system comes unexpectedly online</td>
   <td>If the failover does not ensure that old system is not still alive in some way or is using a stale version of the anti-slashing database, e.g.: failover system starts accidentally although primary system is not down</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-15">SLS15</td>
   <td>Process</td>
   <td>Operational Failure: Incorrect implementation of the failover mechanism: Primary system comes unexpectedly back online</td>
   <td>If the failover does not ensure that old system is not still alive in some way or is using a stale version of the anti-slashing database, e.g.: failover system starts (manually / automatically) because primary system is down and primary system comes back online</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-16">SLS16</td>
   <td colspan="3">Removed</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-17">SLS17</td>
   <td>Process</td>
   <td>Operational Failure: Slashing monitoring ignores alerts</td>
   <td>Slashing events continue or recur because alerts are not monitored</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-18">SLS18</td>
   <td>Process</td>
   <td>Operational Failure: Slashing monitoring does not shut down the validators</td>
   <td>Slashing continues because monitoring system fails to automatically shut down malfunctioning validator</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sls-19">SLS19</td>
   <td>Process</td>
   <td>Incident Response does not update Slashing Database</td>
   <td>A slashing event recurs, because the database is not updated as part of Incident Response</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -249,6 +277,7 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
 <th>Risk Group</th>
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
+<th>Relevant Mitigations</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -256,118 +285,139 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td>Infrastructure</td>
   <td>External: Operational Failure of Cloud Service Provider</td>
   <td>Cloud Downtime, malfunction</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-2">DOW2</td>
   <td>Infrastructure</td>
   <td>Operational Failure of own bare metal set-up due to malfunction software</td>
   <td>Malfunction of software (e.g. validator client or third party software) leads to downtime</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-3">DOW3</td>
   <td>Infrastructure</td>
   <td>Operational Failure of own bare metal set-up due to malfunction hardware</td>
   <td>Malfunction of hardware (e.g. physical network, computer system, CPU, RAM) leads to downtime</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-4">DOW4</td>
   <td>Infrastructure</td>
   <td>External: Operational Failure of own bare metal set-up due to people (ManMade)</td>
   <td>Employees are responsible for the downtime event (accidentally or intentionally)</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-5">DOW5</td>
   <td>Infrastructure</td>
   <td>External: Operational Failure of own bare metal set-up due to natural causes</td>
   <td>A natural event (e.g. earthquake, flood, hurricane,...) leads to an downtime</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-6">DOW6</td>
   <td>Infrastructure</td>
   <td>Failure to design for high availability</td>
   <td>Having too few beacon nodes relative to validator clients, leading to:<br>- opportunity costs<br>- slashing on some networks</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-7">DOW7</td>
   <td>Infrastructure</td>
   <td>External: Internet connectivity</td>
   <td>Loss of infrastructure network connection due to:<br>- Sudden cloud outage<br>- Sudden internet failure in on-premise machines<br>- Accidental firewall change locks out access.</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-8">DOW8</td>
   <td colspan="3">This risk has been merged into <a href="#risk-dow-9">DOW9</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-9">DOW9</td>
   <td>Infrastructure</td>
   <td>Power supply</td>
   <td>Volatile power supply damages infrastructure or causes system downtime</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-10">DOW10</td>
   <td>Infrastructure</td>
   <td>External: DDOS attack</td>
-  <td>Systems unresponsive, slowed down, and compromized</td>
+  <td>Systems unresponsive, slowed down, and compromized due to buffer/stack overflow</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-11">DOW11</td>
   <td>Software</td>
   <td>Software Bug in the Validator Client</td>
   <td>Downtime or accidental interpretation of dishonest behavior</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-12">DOW12</td>
   <td>Software</td>
   <td>Software Bug in the Validator Client (Intentional or accidental) through software update</td>
   <td>New versions of a validator client that may cause errors that lead to downtime<br>(Supply chain attack)</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-13">DOW13</td>
   <td>Software</td>
   <td>Software Bug in the Validator Client through software customization</td>
   <td><br>New versions of a validator client may cause errors that lead to downtime</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-14">DOW14</td>
   <td>Software</td>
   <td>Software Bug in third party software</td>
   <td><br>Third party software failure can lead to downtime of the whole system</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-15">DOW15</td>
   <td>Software</td>
   <td>Latency / Failure of relays</td>
   <td>Latency / Failure of relays </td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-16">DOW16</td>
   <td colspan="3">Now <a href="#risk-hck-2">HCK2</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-17">DOW17</td>
   <td colspan="3">Now <a href="#risk-hck-3">HCK3</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-18">DOW18</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-19">DOW19</td>
   <td>Software</td>
   <td>Running outdated validator software</td>
   <td>The node operator os not updating its validator software</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-20">DOW20</td>
   <td>Software</td>
   <td>Validator client update incompatible with IT system</td>
   <td>System downtime after validator client update caused by incompatibility</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-dow-21">DOW21</td>
   <td>Software</td>
   <td>Updates take too long</td>
   <td>System downtime caused by software update processes taking longer than planned, with no failover capacity</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -387,6 +437,7 @@ The risks associated with key custody are divided in this specification accordin
 <th>Risk Group</th>
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
+<th>Relevant Mitigations</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -394,40 +445,48 @@ The risks associated with key custody are divided in this specification accordin
   <td>Infrastructure</td>
   <td>Failure to use vault system</td>
   <td>No audit trail and controlled access to secrets</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-kec-2">KEC2</td>
   <td colspan="3">Now <a href="#risk-hck-1">HCK1</a>, <a href="#risk-hck-2">HCK2</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-kec-3">KEC3</td>
   <td colspan="3">Now <a href="#risk-hck-1">HCK1</a>, <a href="#risk-hck-2">HCK2</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-kec-4">KEC4</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-kec-5">KEC5</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-kec-6">KEC6</td>
   <td>Process</td>
   <td>Loss of Signing Keys (Operational Failure)</td>
   <td>Signing keys are lost in an operational process</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-kec-7">KEC7</td>
   <td>Process</td>
   <td>Privilege escalation mechanisms not prevented</td>
   <td>Someone with access to one service/node can increase their privileges and do more harm on further nodes.</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-kec-8">KEC8</td>
   <td>Infrastructure</td>
   <td>Failure to protect infrastructure against physical access</td>
   <td>Someone who gains physical access to a server can have access to locally exposed ports and can access the software API</td>
+<td></td>
 </tr></tbody></table>
 
 #### Withdrawal Key Custody Risk {#sec-risks-keys-withdrawal}
@@ -439,6 +498,7 @@ The risks associated with key custody are divided in this specification accordin
 <th>Risk Group</th>
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
+<th>Relevant Mitigations</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -446,14 +506,17 @@ The risks associated with key custody are divided in this specification accordin
   <td>Process</td>
   <td>Loss of Withdrawal Keys (Operational Failure)</td>
   <td>Loss of Withdrawal Keys (Operational Failure)</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-kec-10">KEC10</td>
   <td colspan="3">Now <a href="#risk-hck-1">HCK1</a>, <a href="#risk-hck-2">HCK2</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-kec-11">KEC11</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
+<td></td>
 </tr></tbody></table>
 
 ### Hacking Risk {#sec-risks-hacking}
@@ -468,6 +531,7 @@ or facilitated by a curret or former member of the operational team.
 <th>Risk Group</th>
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
+<th>Relevant Mitigations</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -475,24 +539,28 @@ or facilitated by a curret or former member of the operational team.
   <td>People</td>
   <td>Malicious Internal Employee intentionally causes operational failure with appropriate user rights</td>
   <td>Anything that an internal employee has access to is at risk of being exploited to sabotage the operation resulting in a slashing incident.</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-hck-2">HCK2 (was SLS9, DOW16, KEC2, KEC3, KEC10, GIR2)</td>
   <td>People</td>
   <td>Malicious Internal Employee intentionally causes operational failure via privilege escalation</td>
   <td>A malicious internal employee can get additional rights via through privileges escalation.</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-hck-3">HCK3 (was SLS10, DOW17, GIR2, GIR5)</td>
   <td>People</td>
   <td>Malicious Ex-Employee intentionally causes an operational failure</td>
   <td>A former employee whose access is not blocked or removed </td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-hck-4">HCK4 (was SLS11, SLS12, SLS13, DOW18, KEC4, KEC5, KEC11, GIR1)</td>
   <td>People</td>
   <td>Malicious External Hacker intentionally causes operational failure</td>
   <td>Malicious External Hacker gets system access through absence of or weak cyber security standards</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-hck-5">HCK5 (was GIR8)</td>
@@ -514,149 +582,175 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <th>Risk Group</th>
   <th>Risk Vectors</th>
   <th>Risk Vector Description</th>
+<th>Relevant Mitigations</th>
 </tr></thead>
 <tbody>
 <tr>
   <td id="risk-gir-1">GIR1</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-2">GIR2</td>
   <td colspan="3">Now <a href="#risk-hck-2">HCK2</a>, <a href="#risk-hck-3">HCK3</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-3">GIR3</td>
   <td>Infrastructure</td>
   <td>Fix versions on every deploy</td>
   <td>Downtime if a system needs to be just re-started if newest version is accidentally pulled</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-4">GIR4</td>
   <td>Process</td>
   <td>Insufficient monitoring/logging</td>
   <td>- Inability to learn from incidents<br>- Late detection of incidents<br>- insufficient automation to react to incidents</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-5">GIR5</td>
   <td colspan="3">Now <a href="#risk-hck-3">HCK3</a></td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-6">GIR6</td>
   <td>Process</td>
   <td>No password rotation</td>
   <td>- Leak of passwords<br>- brute force</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-7">GIR7</td>
   <td>Process</td>
   <td>Use of direct auth</td>
   <td>Authentication information does not expire timely and can be used later.</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-8">GIR8</td>
   <td colspan="3">Now <a href="#risk-hck-5">HCK5</a></td>
+  <td></td>
 </tr>
 <tr>
   <td id="risk-gir-9">GIR9</td>
   <td>Infrastructure</td>
   <td>Failure to properly perform network segmentation</td>
   <td>Having containers or nodes accessible from any IP addresses increases the attack vector enormously</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-10">GIR10</td>
   <td>Infrastructure</td>
   <td>Lack of encrypted traffic between services and deployment scripts</td>
   <td>Anyone on the network can sniff out packages with secrets included, and may be able to steal passwords and tokens in this way</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-11">GIR11</td>
   <td>Infrastructure</td>
   <td>No separate tests and staging environments</td>
   <td>Improper change management and testing of software updates "in production"</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-12">GIR12</td>
   <td>Infrastructure</td>
   <td>General architectural flaws</td>
   <td>General risk category that can cause downtime, slashing, etc.<br>This includes, but is not limited to:<br>- Non-scalable deployments<br>- Use of tools not made for this purpose<br>- Lack of robustness/redundancy<br>- Bad change management<br>- Bad container isolation</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-13">GIR13</td>
   <td>Infrastructure</td>
   <td>High Blast radius of software bug in overall system</td>
   <td>A small error affects the whole system and all clients right away, instead of being caught early with limited effect on the whole system.</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-14">GIR14</td>
   <td>Infrastructure</td>
   <td>Low Infrastructure provider security</td>
   <td>Hacks through the apis of the infrastructure provider</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-15">GIR15</td>
   <td>Infrastructure</td>
   <td>CVE Monitoring</td>
   <td>Attack on the system suddenly possible once published</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-16">GIR16</td>
   <td>People</td>
   <td>Human error</td>
   <td>Anything a human can touch can go wrong</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-17">GIR17</td>
   <td>Process</td>
   <td>Use of non-hardened images</td>
   <td>Attack on the system using the weakest link of a given node/container</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-18">GIR18</td>
   <td>Process</td>
   <td>Insufficient change management mechanisms in place</td>
   <td>- Downtime on update<br>- Slow down in reaction time to incident</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-19">GIR19</td>
   <td>Process</td>
   <td>Lack of automation for deloyment</td>
   <td>- Downtime on update<br>- Slow down in reaction time to incident</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-20">GIR20</td>
   <td>Process</td>
   <td>Lack of testing (software and infrastructure)</td>
   <td>- Downtime on update<br>- Slow down in reaction time to incident</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-21">GIR21</td>
   <td>Process</td>
   <td>Lack of enforced code review</td>
   <td>- Downtime on update<br>- Slow down in reaction time to incident</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-22">GIR22</td>
   <td>Process</td>
   <td>Lack of Security training (password hygiene, phising attacks, ...)</td>
   <td>Employees spill secrets</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-23">GIR23</td>
   <td>Process</td>
   <td>Make-shift container orchestration procedures</td>
   <td>Failure when e.g. failover is actually needed to be performed</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-24">GIR24</td>
   <td>Software</td>
   <td>Third party software and vendors</td>
   <td>Suboptimal third-party software practices</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-gir-25">GIR25</td>
   <td>People</td>
   <td>Centralized knowledge</td>
   <td>If the infrastructure knowledge is not shared across the team, this could lead to a heavy dependency on a single person</td>
+<td></td>
 </tr></tbody></table>
 
 ### Service Partner Specific Risk {#sec-risks-partner}
@@ -670,6 +764,7 @@ Risk related to partners and specific third-party services.
 <th>Risk Group</th>
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
+<th>Relevant Mitigations</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -678,12 +773,14 @@ Risk related to partners and specific third-party services.
   <td>General Counterparty Risk</td>
   <td>Whenever a service is provided by a third party, the relevant risks are run by the third party,
   but in most case at least some and often the bulk of the consequences for a failure will be borne by the node operator.</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-sps-1">SPS1</td>
   <td>Process</td>
   <td>Exit Risk - Delinquent state</td>
   <td><ul><li>No new stake will be allocated to the Node Operator (happens automatically)</li><li>the daily rewards sent to the Node Operator will be halved (with the remaining half sent towards that day’s rebase) (happens automatically)</li><li>reduced rewards will continue for the duration of a cooldown period long enough to determine whether, immediately after service restoration by the Node Operator, subsequently received validator exit requests are processed in a timely manner.</li></ul></td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -698,6 +795,7 @@ Risks that impact the reputation of a Node Operator, likely to lead potential an
 <th>Risk Group</th>
 <th>Risk Vector</th>
 <th>Description</th>
+<th>Relevant Mitigations</th>
 </tr></thead>
 <tbody>
 <tr>
@@ -705,30 +803,35 @@ Risks that impact the reputation of a Node Operator, likely to lead potential an
   <td>Process</td>
   <td>Mismanagement during incident</td>
   <td>Reputation damage due to mismanagement of slashing, downtime or access loss to keys</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-rer-2">RER2</td>
   <td>People</td>
   <td>Negative appearance in public</td>
   <td>Damage to reputation due to bad behavior in public</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-rer-3">RER3</td>
   <td>Process</td>
   <td>Mismanagement of Post-Incident</td>
   <td>Reputation damage due to mismanagement of Post-slashing, -downtime or access loss to keys</td>
+<td></td>
 </tr>
 <tr>
 <td id="risk-rer-4">RER4</td>
 <td>Infrastructure</td>
 <td>Withdrawal</td>
 <td>Staking withdrawal requests cannot be met efficiently, leading to delays in payment processing causing reputational loss</td>
+<td></td>
 </tr>
 <tr>
   <td id="risk-rer-5">RER5</td>
   <td>Process</td>
   <td>Poor Communication</td>
   <td>Poor reputation or reputational damage due to insufficient operational communication and overall transparency</td>
+<td></td>
 </tr>
 </tbody></table>
 
