@@ -1002,7 +1002,7 @@ The data needs to be reliably persistent, and properly connected to the systems 
 
 ##### A local anti-slashing database helps address the following risks
 
-* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 </div>
 
 #### Signature Management {#sec-mit-signature-management}
@@ -1024,8 +1024,11 @@ Tools such as Web3Signer and Dirk help manage signatures securely, when properly
 
 ##### Signature management helps address the following risks
 
-* [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
-* [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
+* [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
+* [HCK3](#risk-hck-3)
+* [GIR7](#risk-gir-7)
 </div>
 
 #### Client Diversity {#sec-mit-client-diversity}
@@ -1098,7 +1101,10 @@ It is therefore crucial to ensure that confidential data is only stored and tran
 ##### Data encryption helps address the following risks
 
 * [SLS8](#risk-sls-8)
-* [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11), [GIR10](#risk-gir-10)
+* [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8),[KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
+* [HCK1](#risk-hck-1), [HCK4](#risk-hck-4)
+* [GIR17](#risk-gir-17), [GIR10](#risk-gir-10)
+* [RER1](#risk-rer-1), [RER2](#risk-rer-2)
 </div>
 
 #### Cold Storage {#sec-mit-cold-storage}
@@ -1110,7 +1116,8 @@ by making it more difficult for malicious entities to access the information and
 
 ##### Cold storage helps address the following risks
 
-* [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7)
+* [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
+* [GIR10](#risk-gir-10), [GIR17](#risk-gir-17)
 </div>
 
 #### Key Management {#sec-mit-key-management}
@@ -1125,7 +1132,11 @@ Modern vault systems enable the enforcement of policies to ensure that access to
 
 ##### Key management helps address the following risks
 
-* [KEC2](#risk-kec-2), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
+* [FIN1](#risk-fin-1)
+* [SLS1](#risk-sls-1), [SLS3](#risk-sls-3), [SLS5](#risk-sls-5)
+* [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9)
+* [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK](#risk-hck-4)
+* [GIR6](#risk-gir-6), [GIR14](#risk-gir-14), [GIR16](#risk-gir-16), [GIR18](#risk-gir-18)
 </div>
 
 #### Key Rotation {#sec-mit-key-rotation}
@@ -1168,13 +1179,14 @@ Documentation, even if rarely actively read by those responsible for operations 
 
 ##### Operational information management helps address the following risks:
 
-* [FIN1](#risk-fin-1), [FIN7](#risk-fin-6), [FIN8](#risk-fin-7)
-* [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS14](#risk-sls-14)
-* [DOW1](#risk-dow-1), [DOW4](#risk-dow-4), [DOW16](#risk-dow-18), [DOW16](#risk-dow-18)
-* [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC6](#risk-kec-6), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
-* [GIR4](#risk-gir-4), [GIR2](#risk-gir-25)
-* [SPS0](#risk-sps-0)
-* [RER1](#risk-rer-1), [RER3](#risk-rer-3)
+* [FIN2](#risk-fin-2), [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN7](#risk-fin-6), [FIN9](#risk-fin-9)
+* [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS10](#risk-sls-10), [SLS14](#risk-sls-14)
+* [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW16](#risk-dow-16), [DOW18](#risk-dow-18), [DOW21](#risk-dow-21)
+* [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC9](#risk-kec-9)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2)
+* [GIR4](#risk-gir-4), [GIR15](#risk-gir-15), [GIR16](#risk-gir-16), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
+* [SPS0](#risk-sps-0), [SPS1](#risk-sps-1)
+* [RER1](#risk-rer-1), [RER3](#risk-rer-3), [RER5](#risk-rer-5)
 </div>
 
 #### Deletion protection {#sec-mit-deletion-protection}
@@ -1189,9 +1201,10 @@ Best Practise includes having journaled backups of important information.
 ##### Deletion Protection helps address the following risks:
 
 * [FIN7](#risk-fin-7)
-* [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12)
-* [DOW16](#risk-dow-18), [DOW16](#risk-dow-18)
+* [SLS4](#risk-sls-4)
+* [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW20](#risk-dow-20)
 * [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
 * [GIR4](#risk-kec-4), [GIR13](#risk-gir-13)
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 
@@ -1223,10 +1236,10 @@ Tracking this information is important to ensure that access can be audited and 
 #### Access control helps address the following risks
 
 * [FIN1](#risk-fin-1)
-* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
 * [DOW7](#risk-dow-7), [DOW16](#risk-dow-16)
-* [GIR1](#risk-gir-1), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR22](#risk-gir-22)
-* [KEC4](#risk-kec-4)
+* [GIR1](#risk-gir-1), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR16](#risk-gir-16), [GIR22](#risk-gir-22)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
+* [KEC2](#risk-kec-2), [KEC4](#risk-kec-4)
 * [SPS0](#risk-sps-0)
 
 
@@ -1262,8 +1275,9 @@ without having authorizations they do not need.
 * [FIN1](#risk-fin-1)
 * [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
 * [DOW16](#risk-dow-16)
-* [GIR1](#risk-gir-1), [GIR5](#risk-gir-5), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
-* [KEC8](#risk-kec-8), [KEC11](#risk-kec-11)
+* [GIR1](#risk-gir-1), [GIR5](#risk-gir-5), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9),  [GIR16](#risk-gir-16), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
+* [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC11](#risk-kec-11)
 * [SPS0](#risk-sps-0)
 
 </div>
@@ -1280,9 +1294,10 @@ covering role changes as well as termination, transfer, and promotion procedures
 ##### Employee authorization process helps address the following risks
 
 * [FIN1](#risk-fin-1)
-* [SLS10](#risk-sls-10)
-* [DOW17](#risk-dow-17)
-* [GIR25](#risk-gir-25)
+* [DOW4](#risk-dow-4)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
+* [GIR4](#risk-gir-4), [GIR7](#risk-gir-7), [GIR13](#risk-gir-13), [GIR25](#risk-gir-25)
+* [SPS0](#risk-sps-0)
 </div>
 
 #### Managed Network Access to Nodes {#sec-mit-manage-network-access}
@@ -1300,7 +1315,8 @@ and does not allow generic probing mechanisms such as open port scans that can h
 
 ##### Managed network access helps address the following risks
 
-* [SLS12](#risk-sls-12)
+* [HCK4](#risk-hck-4)
+* [GIR9](#risk-gir-9), [GIR17](#risk-gir-17)
 </div>
 
 #### Authentication Policies {#sec-mit-auth-policies}
@@ -1313,7 +1329,18 @@ Best practice is to use password and related authentication policies to ensure t
 
 * [FIN1](#risk-fin-1)
 * [SLS13](#risk-sls-13)
+* [DOW4](#risk-dow-4)
+* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9),  [GIR13](#risk-gir-13), [GIR17](#risk-gir-17), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5)
+* [KEC1](#risk-kec-1), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8)
+* [SPS0](#risk-sps-0)
+
 </div>
+
+### Managing Hardware {#sec-mitigations-environment}
+
+Physical devices are subject to physical changes, including environmental issues such as temperature extremes that can cause damage,
+and utility failures such as power or internet failure.
 
 #### Managed Physical Access {#sec-mit-manage-physical-access}
 
@@ -1349,10 +1376,17 @@ and monitor actual access such as visual verification that the authorized party 
 
 It is important to log and audit access sufficiently frequently to detect problems - see also [Monitoring](#sec-mitigations-monitoring).
 
-### Managing Hardware {#sec-mitigations-environment}
 
-Physical devices are subject to physical changes, including environmental issues such as temperature extremes that can cause damage,
-and utility failures such as power or internet failure.
+<div class="info">
+
+##### Managed physical access helps address the following risks
+
+* [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW10](#risk-dow-10)
+* [GIR9](#risk-gir-9), [GIR17](#risk-gir-17)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5)
+* [KEC8](#risk-kec-8)
+
+</div>
 
 #### Physically Distributed Infrastructure {#sec-mit-distribute-hardware}
 
@@ -1366,10 +1400,11 @@ the principes can be implemented in different ways.
 
 <div class="info">
 
-##### Dinstributed Infrastructure helps address the following risks
+##### Distributed Infrastructure helps address the following risks
 
-* [SLS1](#risk-sls-1), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
-* [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
+* [SLS1](#risk-sls-1)
+* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
+* [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
 </div>
 
 #### Protection against Utility Failure {#sec-mit-protect-utilities}
@@ -1385,7 +1420,7 @@ These calculations mean economies of scale often enable larger-scale operations 
 
 ##### Protection against utility failure threats helps address the following risks
 
-* [DOW9](#risk-dow-9), [DOW15](#risk-dow-15)
+* [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW15](#risk-dow-15)
 </div>
 
 #### Protection against Environmental Threat {#sec-mit-protect-from-environment}
@@ -1399,12 +1434,12 @@ but will generally revolve around siting of facilities, their architecture, and 
 ##### Protection against environmental threats helps address the following risks
 
 * [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
-* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
+* [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW15](#risk-dow-15)
 </div>
 
 [Monitoring](#sec-mitigations-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
 
-### Manage Equipment Life-cycle {#sec-mit-mnage-equipment-life}
+#### Manage Equipment Life-cycle {#sec-mit-manage-equipment-life}
 
 The lifecycle of equipment, most particularly node servers and computers used to access and manage them, is a determinant of overall security.
 
@@ -1414,10 +1449,11 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 <div class="info">
 
-#### Equipment life-cycle management helps address the following risks
+##### Equipment life-cycle management helps address the following risks
 
-* [DOW3](#risk-dow-3)
-* [KEC1](#risk-kec-1), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
+* [DOW3](#risk-dow-3), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW15](#risk-dow-15), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
+* [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
+* [HCK4](#risk-hck-4)
 </div>
 
 ### Software Development and Update Process {#sec-mitigations-development-and-updates}
@@ -1432,10 +1468,14 @@ Best practices include the use of auditable version control systems, with thorou
 
 ##### Secure development lifecycle helps address the following risks
 
-* [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
-* [HCK5](#risk-hck-5)
-* [KEC8](#risk-kec-8)
-* [GIR25](#risk-gir-25)
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS17](#risk-sls-17), [SLS19](#risk-sls-19)
+* [DOW2](#risk-dow-2), [DOW6](#risk-dow-6), [DOW10](#risk-dow-10), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13)
+* [KEC7](#risk-kec-7), [KEC8](#risk-kec-8)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5)
+* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR10](#risk-gir-10), [GIR13](#risk-gir-13), [GIR15](#risk-gir-15), [GIR17](#risk-gir-17), [GIR21](#risk-gir-21)
+* [SPS1](#risk-sps-1)
+
 </div>
 
 
@@ -1455,9 +1495,13 @@ help ensure that coverage is sufficiently comprehensive to detect errors that ca
 
 ##### Testing and code review helps address the following risks
 
-* [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS18](#risk-sls-18)
-* [DOW2](#risk-dow-2), [DOW6](#risk-dow-6), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14),  [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
-* [GIR11](#risk-gir-11), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR21](#risk-gir-21), [GIR23](#risk-gir-23), [GIR24](#risk-gir-24)
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
+* [DOW2](#risk-dow-2), [DOW6](#risk-dow-6), [DOW10](#risk-dow-10), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14),  [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [KEC7](#risk-kec-7), [KEC8](#risk-kec-8)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5)
+* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR10](#risk-gir-10), [GIR11](#risk-gir-11), [GIR13](#risk-gir-13), [GIR15](#risk-gir-15), [GIR17](#risk-gir-17), [GIR18](#risk-gir-18), [GIR21](#risk-gir-21), [GIR21](#risk-gir-21), [GIR23](#risk-gir-23), [GIR24](#risk-gir-24)
+* [SPS1](#risk-sps-1)
 </div>
 
 #### Validated Inputs and Outputs {#sec-mit-validate-inputs-outputs}
@@ -1475,7 +1519,10 @@ Additionally, it is important to validate inputs against the relevant parameters
 
 ##### Input checking helps address the following risks
 
-* [HCK5](#risk-hck-5)
+* [DOW10](#risk-dow-10)
+* [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC9](#risk-kec-9)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5)
+* [GIR8](#risk-gir-8)
 </div>
 
 ### Manage Software Updates  {#sec-mitigations-manage-updates}
@@ -1483,6 +1530,7 @@ Additionally, it is important to validate inputs against the relevant parameters
 Updating software is a major risk vector. Good processes for software development and managing the deployment of updates are important to mitigate some of this risk.
 As well as having control over the update process, it is important to have the capacity to revert to a known environment in an emergency where an update has been found to introduce unexpected problems.
 
+<div class="info">
 **Examples for best practices:**
 
 * Use [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) for infrastructure.
@@ -1490,15 +1538,6 @@ As well as having control over the update process, it is important to have the c
 * Use database migration systems such as [Liquibase](https://www.liquibase.org)
 * The "Blue-Green Deployment pattern" [[[?WikipediaBG]]] uses two identical environments with a staged transfer of data,
   that can enable rapid rollback if a problem is detected.
-
-<div class="info">
-
-#### Managing software updates helps address the following risks
-
-* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
-* [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
-* [GIR3](#risk-gir-3), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21), [GIR25](#risk-gir-25)
-* [SPS](#risk-sps-0)
 </div>
 
 #### Avoid Customizing Third-party Software {#sec-mit-minimize-customizing-software}
@@ -1517,8 +1556,10 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 
 ##### Not customising third-party software helps address the following risks
 
-* [SLS7](#risk-sls-7)
-* [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
+* [SLS5](#risk-sls-5), [SLS7](#risk-sls-7)
+* [DOW2](#risk-dow-2), [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
+* [HCK2](#risk-hck-2), [HCK3](#risk-hck-3)
+* [GIR3](#risk-gir-3), [GIR16](#risk-gir-16)
 </div>
 
 #### Configuration Management {#sec-mit-configuration-management}
@@ -1542,8 +1583,11 @@ while automated tools to track and scan for best practices are available such as
 
 ##### Managing configuration helps address the following risks
 
-* [GIR3](#risk-gir-3), [GIR4](#risk-gir-4)
+* [SLS1](#risk-sls-1), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6)
+* [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW21](#risk-dow-21)
 * [KEC8](#risk-kec-8)
+* [HCK2](#risk-hck-2), [HCK3](#risk-hck-3)
+* [GIR3](#risk-gir-3), [GIR4](#risk-gir-4)
 </div>
 
 #### Protection against Supply-chain Malware {#sec-mit-protect-against-malware}
@@ -1559,7 +1603,11 @@ Protection against malware needs to be implemented on all assets and users need 
 
 ##### Protection against supply-chain malware helps address the following risks
 
-* [GIR15](#risk-gir-15), [GIR17](#risk-gir-17)
+* All [Slashing Risks](#sec-risks-slashing)
+* [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW14](#risk-dow-14)
+* [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9)
+* [HCK2](#risk-hck-2), [HCK4](#risk-hck-)
+* [GIR15](#risk-gir-15), [GIR17](#risk-gir-17), [GIR15](#risk-gir-15), [GIR15](#risk-gir-15), [GIR15](#risk-gir-15)
 * [SPS0](#risk-sps-0)
 </div>
 
@@ -1574,9 +1622,9 @@ This minimizes a potential blast radius. It is important to run any change (even
 ##### Pre-deployment testing helps address the following risks
 
 
-* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
-* [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
-* [GIR11](#risk-gir-11), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS14](#risk-sls-14)
+* [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
+* [GIR11](#risk-gir-11), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21)
 </div>
 
 #### Containerized and Orchestrated Environments {#sec-mit-containerized-environments}
@@ -1587,7 +1635,11 @@ Containerized and orchestrated environments are designed to reinforce security b
 
 ##### Containerized environments help address the following risks
 
-* [GIR23](#risk-gir-23)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
+* [DOW21](#risk-dow-21)
+* [HCK2](#risk-hck-2)
+* [GIR13](#risk-gir-13) [GIR23](#risk-gir-23)
+
 </div>
 
 #### Process Automation {#sec-mit-process-automation}
@@ -1602,8 +1654,10 @@ When correctly configured pipelines and job-mechanisms such as GitHub Actions, A
 
 ##### Process automation helps address the following risks
 
-* [SLS18](#risk-sls-18)
-* [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS17](#risk-sls-17, [SLS18](#risk-sls-18, [SLS19](#risk-sls-19)
+* [DOW4](#risk-dow-4), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
+* [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
 * [GIR16](#risk-gir-16) [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21),  [GIR25](#risk-gir-25)
 
 </div>
@@ -1660,7 +1714,11 @@ Among many aspects of Validator Operations to monitor directly are the following
 
 ###### Blockchain monitoring helps address the following risks
 
-* [SLS]1-7, 14-19
+* [FIN6](#risk-fin-6)
+* All [Slashing Risks](#sec-risks-slashing)
+* [DOW1](#risk-dow-1), [DOW7](#risk-dow-7), [DOW10](#risk-dow-10), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW15](#risk-dow-15), [DOW19](#risk-dow-19)
+* [GIR4](#risk-gir-4)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
 </div>
 
 #### Node, System and Network Health {#sec-mit-monitor-systems}
@@ -1677,7 +1735,11 @@ Among many aspects of Validator Operations to monitor directly are the following
 
 ##### System monitoring helps address the following risks
 
-* [GIR8](#risk-gir-8), [GIR8](#risk-gir-8)
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5)
+* All [Slashing Risks](#sec-risks-slashing)
+* [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW4](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW10](#risk-dow-10), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW15](#risk-dow-15)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5)
+* [GIR7](#risk-gir-7), [GIR8](#risk-gir-8)
 </div>
 
 #### Security and Compliance {#sec-mit-monitor-compliance}
@@ -1702,11 +1764,11 @@ such as 2FA configuration or VPNs.
 
 ##### Security and compliance monitoring helps address the following risks
 
-* [FIN1](#risk-fin-1), [FIN2](#risk-fin-2), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7), [FIN8](#risk-fin-8), [FIN9](#risk-fin-9)
-* [DOW10](#risk-dow-10), [DOW12](#risk-dow-12)
+* [FIN1](#risk-fin-1), [FIN2](#risk-fin-2), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7), [FIN9](#risk-fin-9)
+* [DOW4](#risk-dow-4), [DOW10](#risk-dow-10), [DOW12](#risk-dow-12), [DOW19](#risk-dow-19)
 * [KEC8](#risk-kec-8), [FIN2](#risk-fin-2)
 * [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
-* [GIR9](#risk-gir-9), [GIR14](#risk-gir-14), [GIR17](#risk-gir-17), [GIR22](#risk-gir-22)
+* [GIR6](#risk-gir-6), [GIR9](#risk-gir-9), [GIR14](#risk-gir-14), [GIR14](#risk-gir-15), [GIR17](#risk-gir-17), [GIR22](#risk-gir-22)
 </div>
 
 #### Upgrades {#sec-mit-monitor-upgrades}
@@ -1719,7 +1781,9 @@ such as 2FA configuration or VPNs.
 
 ##### Monitoring upgrades helps address the following risks
 
-* [GIR9](#risk-gir-9), [GIR11](#risk-gir-11), [GIR14](#risk-gir-14), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
+* [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW17](#risk-dow-17), [DOW18](#risk-dow-18), [DOW19](#risk-dow-19)
+* [GIR11](#risk-gir-11), [GIR14](#risk-gir-14), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21)
 </div>
 
 #### Doppelgänger Protection {#sec-mit-doppelganger-protection}
@@ -1730,7 +1794,9 @@ Detecting that two validators with the same identifiers are running at the same 
 
 ##### Doppelgänger protection helps address the following risks
 
-* [SLS2](#risk-sls-2)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS5](#risk-sls-5)
+* [DOW2](#risk-dow-2), [DOW10](#risk-dow-10)
+* [SPS0](#risk-sps-0)
 </div>
 
 
@@ -1746,13 +1812,6 @@ There are some tools listed in DUCK @@bring them here@@ [collection-of-tools-scr
 * A very common centralized dashboard is [Grafana](https://grafana.com) - an example of [alerting setup in Grafana](https://grafana.com/docs/grafana/latest/alerting/set-up/)
 * Simply has an OS tool for monitoring MEV: https://github.com/SimplyStaking/eth-block-proposal-monitor
 * [Prometheus](https://prometheus.io/docs/introduction/overview/) is a commonly used system used to help managing monitoring and alerts
-
-#### Monitoring can help address the following risks:
-
-* [SLS8](#risk-sls-8), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18)
-* [DOW6](#risk-dow-6), [DOW15](#risk-dow-15)
-* [GIR4](#risk-gir-4), [GIR13](#risk-gir-13)
-
 </div>
 
 ### Communications and Incident Response {#sec-mitigations-incident-response}
@@ -1824,30 +1883,46 @@ The following procedures enable appropriate consideration and management of rele
 
 A [Stakeholder Map](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base/~gitbook/image?url=https%3A%2F%2F3935398949-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FxTRnDyIanlwU7cCKcAju%252Fuploads%252Fhdg4kca5vuEMKsr01CxP%252FStakeholder_Map_Template.png%3Falt%3Dmedia%26token%3Dc83db7a4-f0ed-464f-ab69-630ba1450597&width=768&dpr=4&quality=100&sign=7ea4928c&sv=2) can help categorize individual stakeholders into different communication groups. It can be used as an initial assessment for further review and adaption to your individual stakeholder landscape. Review each stakeholder individually, to assess the appropriate communication plans.
 
-##### Manage Closely
-
+<dl>
+  <dt>Manage Closely</dt>
+<dd>
 * Use direct two-way communication channels
 * Provide individual status reporting and communications
 * Perform immediate alignment in case of incidents
-
-##### Keep Satisfied
-
+</dd>
+<dt>Keep Satisfied</dt>
+<dd>
 * Provide regular status reporting of important operational information
 * Provide summary and updates in case of incidents
-
-##### Keep Informed
-
+</dd>
+<dt>Keep Informed</dt>
+<dd>
 * Select communication channels depending on the need for responsiveness
 * Provide summaries and updates in case of incidents
-
-##### Monitor
-
+</dd>
+<dt>Monitor</dt>
+<dd>
 * Monitor activities and react to activities and requests
+</dd>
+</dl>
 
-A stakeholder register listing all stakeholders with details about their roles, interests, and impact on the organization
-is helpful for managing stakeholders, and effective communication with them.
-This can be as simple as a [Stakeholder Register Spreadsheet](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true),
+
+<div class="info">
+##### Tools for stakholder management include
+
+A stakeholder register listing all stakeholders with details about their roles, interests, and impact on the organization.
+This can be helpful for managing stakeholders, and effective communication with them.
+It can be as simple as a [Stakeholder Register Spreadsheet](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true),
 or a more advanced CRM system, depending on the needs of the Node Operator.
+
+
+
+##### Stakeholder management helps address the following risks
+
+* [FIN1](#risk-fin-1), [FIN7](#risk-fin-7), [FIN9](#risk-fin-9)
+* [SPS0](#risk-sps-0)
+* [RER1](#risk-rer-1), [RER3](#risk-rer-3)
+</div>
 
 #### Incident Response Plans {#sec-mit-incident-response}
 
@@ -1868,6 +1943,18 @@ Best practices for Incident response plans include
 - Data collection and distribution to enable effective response, external communication, and [=Post Mortem=] analysis
 - Identify relevant Stakeholders and define communication strategies for both internal and external communications
 
+<div class="info">
+
+##### Incident response planning helps address the following risks
+
+* [FIN1](#risk-fin-1), [FIN7](#risk-fin-7), [FIN9](#risk-fin-9)
+* [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
+* [DOW1](#risk-DOW-1), [DOW2](#risk-DOW-2), [DOW3](#risk-DOW-3), [DOW4](#risk-DOW-4), [DOW5](#risk-DOW-5), [DOW6](#risk-DOW-6), [DOW7](#risk-DOW-7), [DOW9](#risk-DOW-9), [DOW10](#risk-DOW-10), [DOW21](#risk-DOW-21)
+* [HCK3](#risk-hck-3)
+* [GIR13](#risk-gir-13)
+* [RER1](#risk-rer-1), [RER3](#risk-rer-3)
+</div>
+
 #### Identifying and Responding to Security Incidents {#sec-mitigations-identify-incidents}
 
 There are several ways to identify that a security incident is taking place. Best practice is to have extensive monitoring in place, to identify anomalies early,
@@ -1884,11 +1971,17 @@ with alerting and potentially direct reaction mechanisms. Although learning from
 
 ##### Identifying and responding to security incidents helps address the following risks
 
-* [RER1](#risk-rer-1)
-* [RER3](#risk-rer-3)
+* [FIN7](#risk-fin-7)
+* [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
+* All [Downtime risks](#sec-risks-downtime)
+* [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5)
+* [GIR13](#risk-gir-13), [GIR14](#risk-gir-14), [GIR15](#risk-gir-15), [GIR22](#risk-gir-22)
+* [SPS0](#risk-sps-0)
+* [RER1](#risk-rer-1), [RER3](#risk-rer-3), [RER5](#risk-rer-5)
 </div>
 
-#### Learning from Security Events {#sec-mit-incident-learning}
+#### Analyzing Security Events {#sec-mit-incident-learning}
 
 This is often referred to as a "<dfn>Post Mortem</dfn>",
 used to learn from the event and improve relevant Incident Response Plans.
@@ -1900,9 +1993,12 @@ and consider what changes can be implemented to prevent or mitigate similar even
 
 ##### Analyzing security events helps address the following risks
 
-* [SLS19](#risk-sls-19)
-* [DOW10](#risk-dow-10)
-* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7)
+* [FIN9](#risk-fin-9)
+* [SLS5](#risk-sls-5), [SLS9](#risk-sls-9), [SLS14](#risk-sls-14), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
+* [DOW4](#risk-dow-4), [DOW6](#risk-dow-6), [DOW10](#risk-dow-10)
+* [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5)
+* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7), [GIR13](#risk-gir-13), [GIR14](#risk-gir-14), [GIR15](#risk-gir-15)
 </div>
 
 #### Disaster Recovery Plans {#sec-mit-disaster-recovery}
@@ -1919,9 +2015,11 @@ Sample Disaster Recovery Plan templates:
 * [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 * [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
 
-##### Disaster recovery plans help address the following risks:
+##### Disaster recovery plans help address the following risks
 
-* [GIR19](#risk-gir-19)
+* [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
+* [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9)
+* [GIR15](#risk-gir-15), [GIR16](#risk-gir-16), [GIR19](#risk-gir-19), [GIR21](#risk-gir-21), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
 
 </div>
 
@@ -1944,6 +2042,15 @@ Example topics for Pre-Mortems include variations on themes such as
 Articles such as [[[?PREMORTEM]]]
 offer further information on how to plan and implement simulations, and how to derive the maximum benefit from them.
 
+<div class="info">
+
+##### Tools and templates for incident simulation
+
+* [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
+* [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
+
+##### Incident simulations help address all risks
+</div>
 #### Incident Communication {#sec-mit-incident-communication}
 
 As well as direct financial losses, security incidents can also result in substantial reputational damage.
@@ -1954,6 +2061,16 @@ External communication has to balance stakeholders' need for information that en
 against the importance of providing clear information with as much certainty as feasible that it will not later be contradicted.
 
 Best practice for [=Incident Communication=] includes providing a detailed post-incident summary.
+
+<div class="info">
+
+##### Incident communications help address the following risks:
+
+* [FIN9](#risk-fin-7)
+* [HCK4](#risk-hck-4)
+* [SPS0](#risk-sps-0)
+* [RER1](#risk-rer-1), [RER2](#risk-rer-2), [RER3](#risk-rer-3)
+</div>
 
 ## Controls Catalog {#sec-controls-catalog}
 
@@ -2015,11 +2132,19 @@ External suppliers can change terms, shut down products or support, and key staf
 
 </div>
 
-#### Process Controls
+#### Follow Processes
 
 <a href="#req-follow-mitigation-process">🔗</a> <b id="req-follow-mitigation-process">Node Operators MUST ensure that processes for risk mitigation are followed in practice</b>
 
 Best practice is to ensure that where possible, [processes are automated](#process-automation)
+
+##### Following processes helps address the following risks
+
+* [FIN1](#risk-fin-1), [FIN2](#risk-fin-2), [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
+
+<div class="info">
+
+</div>
 
 ### Controls for Financial and Regulatory Risk {#sec-controls-fin-reg}
 
@@ -2029,9 +2154,11 @@ Best practice is to ensure that where possible, [processes are automated](#proce
 
 <div class="info">
 
-##### Payment rails help address the following risk:
+##### Payment rails help address the following risks
 
-* [FIN2](#risk-fin-2)
+* [FIN2](#risk-fin-2), [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
+* [HCK1](#risk-hck-1)
+* [RER4](#risk-rer-4)
 </div>
 
 #### Updated Regulatory Compliance
@@ -2130,7 +2257,7 @@ In the case of corporate third-party providers, sensible due diligence does not 
 
 ##### A local anti-slashing database helps address the following risks
 
-* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS17](#risk-sls-18), [SLS19](#risk-sls-19)
 </div>
 
 #### Signature management
@@ -2145,13 +2272,23 @@ In the case of corporate third-party providers, sensible due diligence does not 
 
 ##### Signature management helps address the following risks
 
-* [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
-* [KEC5](#risk-kec-5), [KEC6](#risk-kec-6)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS7](#risk-sls-7), [SLS15](#risk-sls-15)
+* [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
+* [GIR7](#risk-gir-7), [GIR16](#risk-gir-16)
 </div>
 
 #### Client Diversity
 
 <a href="#req-client-diversity">🔗</a> <b id="req-client-diversity">Node Operators MUST deploy at least 2 distinct client applications for any level of the blockchain where at least 3 clients are available</b>
+
+<div class="info">
+
+##### Client diversity helps address the following risks
+
+* [SLS6](#risk-sls-6), [SLS20](#risk-sls-20)
+* [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14)
+* [GIR13](#risk-gir-13), [GIR24](#risk-gir-24)
+</div>
 
 #### Secure Devices
 
@@ -2159,9 +2296,26 @@ In the case of corporate third-party providers, sensible due diligence does not 
 
 This applies to servers acting as validators, but also to devices authorized to access and administer those servers remotely.
 
+<div class="info">
+
+##### Securing devices helps address the following risks
+
+* [DOW2](#risk-dow-2)
+* [HCK](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
+</div>
+
 #### Validator Withdrawal
 
 <a href="#req-document-withdrawal-process">🔗</a> <b id="req-document-withdrawal-process">Node Operators MUST implement processes to withdraw validators from a network in such a way that they are not penalised for disappearing</b>
+
+
+<div class="info">
+
+##### Managed validator withdrawal helps address the following risks
+
+* [SLS2](#risk-sls-2)
+* [SPS1](#risk-sps-1)
+</div>
 
 #### Manage Software and Hardware Configuration
 
@@ -2169,11 +2323,11 @@ This applies to servers acting as validators, but also to devices authorized to 
 
 <div class="info">
 
-
 ##### Relevant external controls for configuration management
 
 * [[?SOC2]] CC 7.1
 * [[?ISO27001]] Annex A 8.9
+
 
 </div>
 
@@ -2183,10 +2337,59 @@ This applies to servers acting as validators, but also to devices authorized to 
 
 <a href="#req-manage-keys">🔗</a> <b id="req-manage-keys">Node Operators MUST implement appropriate key management procedures</b>
 
+
 Best Practise includes following a commonly recognised key management standard such as
 
 - [[?CCSS]]: a set of requirements for securing Cryptocurrency systems, focusing on Key Management. Certification for systems is available at three levels, and is granted by certified CCSS Auditors.
 - [[?KMS]]: a set of requirements for Key Management designed for organisations working in blockchain, allowing self-attestation of conformance.
+
+<div class="info">
+
+##### Key management helps address the following risks
+
+* All [Key Custody risks](#sec-risks-keys)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
+</div>
+
+#### Identity Management
+
+<a href="#req-kystaff">🔗</a> <b id="req-kystaff">Node Operators MUST track identity and roles of employees and service partners</b>
+
+This includes knowing who employees and contractors are, off-boarding mechanisms, tracking assigned roles, and ensuring compliance with privacy regulations
+
+<div class="info">
+
+##### Relevant external controls for identity management
+
+* [[?ISO27001]] Annex A 5.16
+
+##### Identity management helps address the following risks
+
+* [FIN1](#risk-fin-1)
+* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
+</div>
+
+#### Document Vendors and Partner Risk
+
+<a href="#req-manage-counterparty-risk">🔗</a> <b id="req-manage-counterparty-risk">Node Operators MUST implement documented procedures for evaluating and reviewing counterparty risks from vendors and partners</b>
+
+* Establishing a process for Vendor and Business Partner engagement and assessing existing as well as new vendors and business partners
+* Ensuring that any identified issues are fixed, and regressions can be identified.
+* Terminating relationships efficiently where problems arise, or the relationship ends.
+
+<div class="info">
+
+##### Relevant external controls for counterparty risk management
+
+* [[?SOC2]] CC 9.2
+
+##### Counterparty risk management helps address the following risks
+
+* [FIN1](#risk-fin-1)
+* [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
+* [GIR5](#risk-gir-5)
+* [DOW1](#risk-dow-1), [DOW19](#risk-dow-19)
+</div>
 
 #### Manage Information Lifecycles
 
@@ -2260,6 +2463,17 @@ Best practice is to use a documentation management system. While this is likely 
 
 For example, a Node does not respond to anonymous requests from an unknown user.
 
+<div class="info">
+
+##### Authenticating access to services helps address the following risks
+
+* [FIN1](#risk-fin-1)
+* [DOW4](#risk-dow-4)
+* [KEC7](#risk-kec-7)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
+* [GIR22](#risk-gir-22)
+</div>
+
 #### Segment Networks to Limit Access
 
 <a href="#req-segment-networks">🔗</a> <b id="req-segment-networks">Networks MUST be segmented, to restrict access to systems that are identified as needing it</b>
@@ -2270,15 +2484,15 @@ Fulfilling this requirement means maintaining a whitelist of individual services
 
 <div class="info">
 
+##### Relevant external controls for network segmentation
+
+* [[?ISO27001]] Annex A 8.22
+
 ##### Segmenting networks helps address the following risks
 
 * [DOW10](#risk-dow-10)
 * [GIR9](#risk-gir-9)
 * [KEC8](#risk-kec-8)
-
-##### Relevant external controls for network segmentation
-
-* [[?ISO27001]] Annex A 8.22
 </div>
 
 #### Access to physical hardware is limited
@@ -2286,6 +2500,14 @@ Fulfilling this requirement means maintaining a whitelist of individual services
 <a href="#req-protect-server-locations">🔗</a> <b id="req-protect-server-locations">Entry to physical server locations MUST require authorization</b>
 
 For example, a biometric scan or the use of a keycard.
+
+<div class="info">
+
+#### Limiting access to hardware helps address the following risks
+
+  * [DOW3](#risk-dow-3), [DOW4](#risk-dow-4)
+  * [KEC8](#risk-kec-8)
+</div>
 
 #### Least Privilege is applied to individuals and software
 
@@ -2297,8 +2519,10 @@ For example, check that software does not run as root, that users do not log in 
 
 ##### Least Privilege helps address the following risks
 
-* [KEC11](#risk-kec-11)
-* [GIR7](#risk-gir-7)
+* [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14)
+* [KEC7](#risk-kec-7)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
+* [SPS0](#risk-sps-0)
 
 ##### Relevant external controls for Least Privilege
 
@@ -2342,35 +2566,30 @@ Best practice for this review includes:
 <a href="#req-store-encrypted">🔗</a> <b id="req-store-encrypted">All data "at rest" MUST be stored in encrypted form</b>
 
 This covers all services that communicate data, such as Databases, Web servers, Load balancers, Authentication systems, CI/CD pipeline tools, etc.
+
 Best practices include ensuring that the latest version of TLS is being used, with secure algorithms.
 
+Current best practice includes assessing the cost and risk associated with moving to quantum-safe cryptography, and appropriate timelines.
+
 <div class="info">
-
-##### Data encryption helps address the following risks
-
-* [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13)
-* [DOW18](#risk-dow-18)
-* [GIR10](#risk-gir-10)
-* [KEC1](#risk-kec-1), [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
 
 ##### Relevant external controls for encrypted data
 
 * [[?CRYPTOFAIL]]
 * [[?SOC2]] CC 6.7
+
+##### Data encryption helps address the following risks
+
+* [SLS11](#risk-sls-11), [SLS12](#risk-sls-12), [SLS13](#risk-sls-13)
+* [DOW18](#risk-dow-18)
+* [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
+* [GIR10](#risk-gir-10)
 </div>
 
 
 ### Controls for Automated Monitoring {#sec-controls-monitoring}
 
-<div class="info">
-
-##### Automated monitoring helps address the following risks
-
-* [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
-* [DOW1](#risk-dow-1), [DOW10](#risk-dow-10), [DOW18](#risk-dow-18)
-* [GIR10](#risk-gir-10)
-* [KEC1](#risk-kec-1), [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC4](#risk-kec-4), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
-</div>
 
 #### Log and Analyze Network Traffic
 
@@ -2413,12 +2632,23 @@ This includes monitoring software that has privileged access.
 ##### Logging personnel changes helps address the following risks:
 
 * [FIN1](#risk-fin-1)
+* [HCK3](#risk-hck-3)
 
 </div>
 
 #### Log slashing events
 
 <a href="#req-log-slashing">🔗</a> <b id="req-log-slashing">Any event that results in slashing MUST be logged</b>
+
+<div class="info">
+
+##### Logging slashing events helps address the following risks
+
+* [SLS4](#risk-sls-4), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19), [SLS20](#risk-sls-20)
+* [RER1](#risk-rer-1), [RER3](#risk-rer-3)
+
+</div>
+
 
 #### Monitor hardware and network performance
 
@@ -2428,12 +2658,17 @@ and to alert if validators are operating with excess latency</b>
 Tools such as [Zabbix](tool-zabbix) can also display a live feed of CPU and memory usage of each compute instance.
 
 <div class="info">
-#### Relevant external controls for Automated Monitoring
+#### Relevant external controls for Monitoring
 
 - [[?SOC2]] A 1.1
 - [[?SOC2]] CC 7.2
 - [[?ISO27001]] Annex A 8.16
 - [[?ISO27001]] Annex A 8.21
+
+##### Monitoring hardware helps address the following risks
+
+* [DOW3](#risk-dow-3), [DOW7](#risk-dow-7), [DOW10](#risk-dow-10), [DOW15](#risk-dow-15)
+* [GIR4](#risk-gir-4)
 </div>
 
 ### Controls for Environmental Threat Management {#sec-controls-environment}
@@ -2480,12 +2715,13 @@ as well as processes that ensure equipment is correctly retired including removi
 ##### Relevant external controls for equipment lifecycles
 * [[?ISO27001]] Annex A 7
 
-#### Equipment life-cycle management helps address the following risks
+##### Equipment life-cycle management helps address the following risks
 
-* [DOW3](#risk-dow-3)
-* [KEC1](#risk-kec-1), [KEC5](#risk-kec-5), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
-
+* [DOW3](#risk-dow-3), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW15](#risk-dow-15), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
+* [KEC1](#risk-kec-1), [KEC3](#risk-kec-3), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
+* [HCK4](#risk-hck-4)
 </div>
+
 
 ### Controls for Development and Update Process {#sec-controls-updates}
 
@@ -2540,7 +2776,7 @@ are held to high standards of confidentiality, and work with a well-defined set 
 * [[?SOC2]] CC 8.1
 
 ##### Checking third-party software helps address the following Risks
-* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7), [FIN8](#risk-fin-8)
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS6](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 * [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14)
 * [KEC7](#risk-kec-7)
