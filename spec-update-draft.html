@@ -3232,7 +3232,11 @@ function Summary () {
 
       risksCell = row.appendChild(document.createElement("td"));
       if (theRisks = item.querySelector("[id$=risks]")) {
-        risksCell.appendChild(theRisks.parentElement.nextElementSibling.cloneNode(true));
+        if (!(theRisksList = theRisks.parentElement.nextElementSibling)) {
+          theRisksList = document.createElement('p');
+          theRisksList.innerHTML = "<b>All risks</b>";
+        }
+        risksCell.appendChild(theRisksList.cloneNode(true));
       }
 
 
