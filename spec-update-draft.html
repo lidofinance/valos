@@ -263,6 +263,14 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>A slashing event recurs, because the database is not updated as part of Incident Response</td>
 <td></td>
 </tr>
+</tr>
+<tr>
+  <td id="risk-sls-20">SLS20</td>
+  <td>Infrastructure</td>
+  <td>Chainsplit increases slashing penalty</td>
+  <td>After a chainsplit occurs, continuing to support the leading fork can lead to a larger penalty if it is later rejected</td>
+  <td></td>
+</tr>
 </tbody></table>
 
 
@@ -1034,19 +1042,21 @@ Tools such as Web3Signer and Dirk help manage signatures securely, when properly
 #### Client Diversity {#sec-mit-client-diversity}
 
 A diverse set of clients for different protocols can reduce "blast radius" in a case where one client has a protocol error or other bug.
+This can be especially important if the bug causes a chain split.
 The most common scenario for this being realized is likely when an upgrade introduces a problem.
 The ability to migrate relevant keys to a different client, if a specific client error is observed, provides an important layer of protection.
 In addition, maintaining client diversity helps ensure that the network as a whole does so,
 ideally providing real protection against a vulnerability present in a single version of a single client by ensuring that particular version is not able to dominate the network.
 
 Note that there are often a different range of clients available at different levels of the infrastructure.
-For example in Ethereum, it is possible to run different clients on each of the Execution and Consensus layers, and indeed best practice is to do so.
+For example in Ethereum, it is possible to run different clients on each of the Execution and Consensus layers, and indeed best practice is to do so,
+as further explained by the Ethereum Foundation's Dankrad Feist in [[[?ETHdiverse]]] [[?ETHdiverse]]
 
 <div class="info">
 
 ##### Client diversity helps address the following risks
 
-* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS20](#risk-sls-20)
 * [DOW2](#risk-dow-2), [DOW19](#risk-dow-19), [DOW21](#risk-dow-21)
 </div>
 
@@ -3305,6 +3315,12 @@ The following have contributed directly to the production of this specific versi
         title: "Distributed Validator Technology",
         publisher: "Ethereum Foundation",
         href: "https://ethereum.org/staking/dvt/"
+      },
+      ETHdiverse: {
+        title: "Ethereum Merge: Run the majority client at your own peril!",
+        authors: ["Dankrad Feist"],
+        date: "2022-03-04",
+        href: "https://dankradfeist.de/ethereum/2022/03/24/run-the-majority-client-at-your-own-peril.html"
       },
       CRYPTOFAIL: {
         title: "OWASP Top 10: A01:2021 - Cryptographic Failures",
