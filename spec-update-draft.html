@@ -1391,12 +1391,14 @@ It is important to log and audit access sufficiently frequently to detect proble
 #### Physically Distributed Infrastructure {#sec-mit-distribute-hardware}
 
 A single validator represents a single point of failure, that can introduce slashing or downtime risks.
+
 [[?DVT]] (Distributed Validator Technology) provides an approach to mitigating this problem, by distributing the keys and the hardware that runs validation,
 in such a way that multiple clients physically located in different places share the task of validation.
 Thus if a single client or small number of them fail, the overall validation is unaffected.
+(Note that while the Ethereum Foundation provides a specific technical specification for DVT that has been implemented
+the principes can be implemented in different ways.)
 
-Note that while the Ethereum Foundation provides a specific technical specification,
-the principes can be implemented in different ways.
+Likewise, maintaining multiple validators running on separate hardware and software can increase resilience to a failure in any one platform.
 
 <div class="info">
 
@@ -3265,6 +3267,7 @@ function Summary () {
     authors: [
       { name: "This work builds on the gratefully acknowledged work of all those who contributed to the D.U.C.K. knowledge base. \
 The following have contributed directly to the production of this specific version:"},
+      { name: "Sean Anderson"},
       { name: "Ivan Ang"},
       { name: "Antonio Bartulovic"},
       { name: "Angus Eaton"},
@@ -3279,7 +3282,8 @@ The following have contributed directly to the production of this specific versi
       { name: "Scott Waller"},
       { name: "@dracaryspierce", url: "https://github.com/dracaryspierce"},
       { name: "Sven"},
-      { name: "Lucas"}
+      { name: "Lucas"},
+      { name: "Mehdi Zerouali"}
     ],
     github: "lido-finance/valos",
     format: "markdown",
