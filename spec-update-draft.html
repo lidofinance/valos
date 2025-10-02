@@ -3108,11 +3108,16 @@ function Summary () {
 //Blergh! This is pretty hacky hard-coding, but it works.
 
   var controlsTable = document.createElement("table");
+  controlsTable.style = "width:180%"
   controlsTable.appendChild(document.createElement("thead"));
   headerRow = document.createElement("tr");
 
+  header0 = document.createElement("th");
+  header0.innerText = "Control Group";
+  headerRow.appendChild(header0);
+
   header1 = document.createElement("th");
-  header1.innerText = "Control";
+  header1.innerText = "Control(s)";
   headerRow.appendChild(header1);
 
   header2 = document.createElement("th");
@@ -3121,35 +3126,58 @@ function Summary () {
 
   header3 = document.createElement("th");
   header3.innerText = "Comments";
-  header3.width = "50%";
+  header3.width = "30%";
   headerRow.appendChild(header3);
+
+  header4 = document.createElement("th");
+  header4.innerText = "Risks";
+  headerRow.appendChild(header4);
+
+  header5 = document.createElement("th");
+  header5.innerText = "External Controls";
+  headerRow.appendChild(header5);
 
   controlsTable.childNodes[0].appendChild(headerRow);
 
   controlsBody = document.createElement("tbody");
 
-  // Get all the controls in the specification.
-  var allItems = document.querySelectorAll("[id^='req-");
+  // Get all the headers for sets of controls in the specification.
+  var allItems = document.querySelectorAll("section:not([id^=controls]):has(b[id^=req-])");
   // Loop through them.
   for (i = 0; i < allItems.length; i++) {
     // Clone the control.
     var item = allItems[i].cloneNode(true);
 
       var row = document.createElement("tr");
-      row.appendChild(document.createElement("td"));
-      row.appendChild(document.createElement("td"));
-      row.appendChild(document.createElement("td"));
-      //add the control to the first cell
-      control = document.createElement("p");
-      control.id = "summ-" + item.id;
-      control.appendChild(document.createElement("a"));
-      control.appendChild(document.createElement("b"));
-      control.childNodes[0].href = "#"+item.id;
-      control.childNodes[0].innerHTML = "Control:";
-      control.childNodes[1].innerHTML = " "+item.innerHTML;
-      row.childNodes[0].appendChild(control);
 
-      //add a status menu to the second cell
+//The heading for the controls
+      var ConGrpCell = row.appendChild(document.createElement("th"));
+      ConGrpCell.scope = "row";
+      var ControlGroupLink = document.createElement("a");
+      ControlGroupLink.href = item.firstChild.childNodes[1].href;
+      ControlGroupLink.innerHTML = item.firstChild.firstChild.innerHTML;
+      ConGrpCell.appendChild(ControlGroupLink);
+
+//individual controls
+      var controlsCell = row.appendChild(document.createElement("td"));
+      var theseControls = item.querySelectorAll("p:has([id^=req-])");
+        if (theseControls.length == 1) {
+        controls = document.createElement("p");
+        controls.id = "summ-" + theseControls[0].firstChild.hash.substr(1);
+        controls.innerHTML = "<b>"+theseControls[0].childNodes[2].innerHTML+"</b>";
+      } else {
+        controls = document.createElement("ul");
+        for (j = 0; j < theseControls.length; j++) {
+          thisItem = document.createElement("li");
+          thisItem.id = "summ-" + theseControls[j].firstChild.hash.substr(1);
+          thisItem.innerHTML = "<b>" + theseControls[j].childNodes[2].innerHTML + "</b>";
+          controls.appendChild(thisItem);
+        }
+      }
+      controlsCell.appendChild(controls);
+
+      //add a status menu to the row
+      statusCell = row.appendChild(document.createElement("td"));
       statusMenu = document.createElement("select");
       statusMenu.name = statusMenu.id = "status-" + item.id;
       ntOption = document.createElement("option");
@@ -3172,9 +3200,29 @@ function Summary () {
       fOption.name = item.id + "-F";
       fOption.innerText = "Fails";
       statusMenu.appendChild(fOption);
-      row.childNodes[1].appendChild(statusMenu);
+      statusCell.appendChild(statusMenu);
 
-      row.childNodes[2].appendChild(document.createElement("textarea"));
+      commentsCell = row.appendChild(document.createElement("td"));
+      commentsCell.appendChild(document.createElement("textarea"));
+
+//Add relevant Risks
+
+      risksCell = row.appendChild(document.createElement("td"));
+      if (theRisks = item.querySelector("[id$=risks]")) {
+        if (!(theRisksList = theRisks.parentElement.nextElementSibling)) {
+          theRisksList = document.createElement('p');
+          theRisksList.innerHTML = "<b>All risks</b>";
+        }
+        risksCell.appendChild(theRisksList.cloneNode(true));
+      }
+
+
+//Add relevant external controls
+
+      externalControlsCell = row.appendChild(document.createElement("td"));
+        if (theExternalControls = item.querySelector("[id^=relevant]")) {
+          externalControlsCell.appendChild(theExternalControls.parentElement.nextElementSibling.cloneNode(true));
+        }
 
       controlsBody.appendChild(row);
   }
