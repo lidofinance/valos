@@ -181,7 +181,7 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td id="risk-sls-4">SLS4</td>
   <td>Infrastructure</td>
   <td>Operational Failure: Failure in setting up the anti-slashing mechanisms correctly</td>
-  <td>Failure in setting up the anti-slashing mechanisms correctly (e.g. Web3Signer has no slashing protection enabled, no database, database only in memory and not on disk, 2 or several copies of Web3Signer, slashing databse can be deleted)</td>
+  <td>Failure in setting up the anti-slashing mechanisms correctly (e.g. Web3Signer has no slashing protection enabled, no database, database only in memory and not on disk, 2 or several copies of Web3Signer, slashing database can be deleted)</td>
 <td></td>
 </tr>
 </tr>
@@ -196,7 +196,7 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
 <tr>
   <td id="risk-sls-6">SLS6</td>
   <td>Software</td>
-  <td>Software Bug (e.g. Validator Client) (Intentional or accidentional) through update</td>
+  <td>Software Bug (e.g. Validator Client) (Intentional or accidental) through update</td>
   <td>New versions of a validator client that may cause errors that lead to slashing<br>Supply chain attack</td>
 <td></td>
 </tr>
@@ -591,7 +591,7 @@ The risks associated with key custody are divided in this specification accordin
 ### Hacking Risk {#sec-risks-hacking}
 
 Many risks arise through vulnerability to hacking, whether carried out by a malicious external actor,
-or facilitated by a curret or former member of the operational team.
+or facilitated by a current or former member of the operational team.
 
 <table>
 <thead>
@@ -797,7 +797,7 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
 <tr>
   <td id="risk-gir-19">GIR19</td>
   <td>Process</td>
-  <td>Lack of automation for deloyment</td>
+  <td>Lack of automation for deployment</td>
   <td>- Downtime on update<br>- Slow down in reaction time to incident</td>
 <td></td>
 </tr>
@@ -821,7 +821,7 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
 <tr>
   <td id="risk-gir-22">GIR22</td>
   <td>Process</td>
-  <td>Lack of Security training (password hygiene, phising attacks, ...)</td>
+  <td>Lack of Security training (password hygiene, phishing attacks, ...)</td>
   <td>Employees spill secrets</td>
 <td></td>
 </tr>
@@ -987,7 +987,7 @@ provide a ranking for priority of mitigating each risk.
 Since the cost of risk mitigation varies considerably, the overall priority for addressing risk, or deciding that a given level of risk is acceptable,
 generally depends on comparing the risk ranking with the cost of mitigation, and available resources.
 
-##### Assessing Finanacial Impact {#sec-mit-assess-risk-impact}
+##### Assessing Financial Impact {#sec-mit-assess-risk-impact}
 
 There are a number of factors to take into account when assessing the overall financial impact of a given risk, with the direct cost incurred as the most obvious.
 It is important to understand the time required to mitigate the impact of an event, and the cost that will be incurred over that time.
@@ -1025,7 +1025,7 @@ to the ability to provide timely incident response and minimize the damage cause
 
 As well as the [Controls for People Management](#controls-for-people-management) some relevant controls are grouped with other areas, such as
 - [Limit Physical Access](#req-protect-server-locations)
-- [Minimze Authorization](#req-least-privilege)
+- [Minimize Authorization](#req-least-privilege)
 - [Log Personnel Information](#req-log-personnel)
 
 #### Identified Individuals
@@ -1300,7 +1300,7 @@ Documentation, even if rarely actively read by those responsible for operations 
 
 #### Deletion protection {#sec-mit-deletion-protection}
 
-Loss of important information, especially loss of control over keys, can have a crippling impact. It is important to have mechanisms to preotect against, and recover from,
+Loss of important information, especially loss of control over keys, can have a crippling impact. It is important to have mechanisms to protect against, and recover from,
 unintentional or malicious deletion of important data.
 
 Best Practise includes having journaled backups of important information.
@@ -1754,7 +1754,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 
 #### Process Automation {#sec-mit-process-automation}
 
-Human error is always a risk. An automated script, whether or not invoked by a human, can help minimise indavertent errors.
+Human error is always a risk. An automated script, whether or not invoked by a human, can help minimise inadvertent errors.
 
 Another benefit of properly set up automation is that it can help reduce the risk of exposing secrets.
 
@@ -1765,7 +1765,7 @@ When correctly configured pipelines and job-mechanisms such as GitHub Actions, A
 ##### Process automation helps address the following risks
 
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
-* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS17](#risk-sls-17, [SLS18](#risk-sls-18, [SLS19](#risk-sls-19)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 * [DOW4](#risk-dow-4), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
 * [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
 * [GIR16](#risk-gir-16) [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR20](#risk-gir-20), [GIR21](#risk-gir-21),  [GIR25](#risk-gir-25)
@@ -1845,7 +1845,7 @@ Among many aspects of Validator Operations to monitor directly are the following
 
 ##### System monitoring helps address the following risks
 
-* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5)
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4)
 * All [Slashing Risks](#sec-risks-slashing)
 * [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW4](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW10](#risk-dow-10), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW15](#risk-dow-15)
 * [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5)
@@ -1917,7 +1917,7 @@ Detecting that two validators with the same identifiers are running at the same 
 There are some tools listed in DUCK @@bring them here@@ [collection-of-tools-scripts-and-templates.md]() to perform the monitoring of some of the metrics mentioned above, as well as:
 
 * Cognito's [Userpool Addons for auditing authentications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html).
-* Filtering and anaysis of anomalies can be done in AWS using the [WAF module](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html).
+* Filtering and analysis of anomalies can be done in AWS using the [WAF module](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html).
 * An example for monitoring software is the [ELK stack](https://www.elastic.co/elastic-stack/).
 * A very common centralized dashboard is [Grafana](https://grafana.com) - an example of [alerting setup in Grafana](https://grafana.com/docs/grafana/latest/alerting/set-up/)
 * Simply has an OS tool for monitoring MEV: https://github.com/SimplyStaking/eth-block-proposal-monitor
@@ -1930,10 +1930,10 @@ Communication is important both during normal operations, and when an exceptiona
 
 There are therefore two core parts to a Nore Operator's communication strategy:
 
-- Normal Operational Communication provides information about ongoing operations, to ensure coinfidence in and transparency of everyday operations.
+- Normal Operational Communication provides information about ongoing operations, to ensure confidence in and transparency of everyday operations.
 - <dfn>Incident Communication</dfn> is the collection of communications processes that occur as part of an [=Incident Response Plan=]
 
-Both rely on understanding the Stakeholders, and developing approriate communication channels and procedures to ensure those stakeholders have timely access to relevant information.
+Both rely on understanding the Stakeholders, and developing appropriate communication channels and procedures to ensure those stakeholders have timely access to relevant information.
 
 #### Stakeholder Overview {#sec-mit-comms-stakeholders}
 
@@ -1946,7 +1946,7 @@ that includes at least one direct communications cannel such as messaging, email
 * Other Node Operators running validators on the same network
 * Staff such as those developing and maintaining critical node operations software
 * Individuals or organizations using additional service provided by Node Operators (e.g., API users, customers for white-label solutions etc.)
-* Corporate Regulators - who can require that Node Operators provide them with specific information, but do not necessarily communnicate with Node Operators on an individual basis
+* Corporate Regulators - who can require that Node Operators provide them with specific information, but do not necessarily communicate with Node Operators on an individual basis
 
 Node operators will almost certainly also have <dfn>Anonymous Stakeholders</dfn>, who might follow a Node Operator's public information channels,
 or operate independently, but who do not provide individual communication information to Operators.
@@ -1973,7 +1973,7 @@ A website can be maintained long-term or the information can be removed, informa
 while information in e.g. a Slack or Telegram channel could be deleted after a matter of days or weeks
 
 It is also important, especially for services used for two-way communication with [=Known Stakeholders=], to consider the security and privacy of the channels used.
-While channels such as Telegram or Whatsapp use encryption, in the case of the former all communication is decoded at some unknnown centralized point, in the latter large amounts of metadata are available to the service provider.
+While channels such as Telegram or Whatsapp use encryption, in the case of the former all communication is decoded at some unknown centralized point, in the latter large amounts of metadata are available to the service provider.
 
 While many messaging services can behave in either manner, some such as websites are well-suited to broadcast communication
 while others are specifically suited to individual two-way communication.
@@ -1986,7 +1986,7 @@ Common communication tools that stakeholders are likely to find familiar and act
 The following procedures enable appropriate consideration and management of relevant stakeholders:
 
 1. Define all stakeholders that are relevant to your organization
-2. Define and align communciation channels that you intend to use for engagement with your stakeholders
+2. Define and align communication channels that you intend to use for engagement with your stakeholders
 3. Perform a stakeholder mapping and define your individual ways of engagement with the different stakeholder groups
 4. Document all defined stakeholders with the respective management measures in the stakeholder register. Also take best practices covering [=Incident Communication=] into account.
 5. Define appropriate intervals to review accuracy and relevance of documented contents in the stakeholder register
@@ -2018,7 +2018,7 @@ A [Stakeholder Map](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base/~
 
 
 <div class="info">
-##### Tools for stakholder management include
+##### Tools for stakeholder management include
 
 A stakeholder register listing all stakeholders with details about their roles, interests, and impact on the organization.
 This can be helpful for managing stakeholders, and effective communication with them.
@@ -2809,7 +2809,7 @@ This is a broad area. A few specific controls are included in this specification
 
 
 * All [Slashing Risks](#sec-risks-slashing)
-* [DOW2](#risks-dow-2), [DOW10](#risks-dow-10), [DOW11](#risks-dow-11), [DOW12](#risks-dow-12), [DOW13](#risks-dow-13), [DOW14](#risks-dow-14), [DOW20](#risks-dow-20)
+* [DOW2](#risk-dow-2), [DOW10](#risk-dow-10), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW20](#risk-dow-20)
 * [KEC7](#risk-kec-7)
 * [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5)
 * [GIR6](#risk-gir-6), [GIR10](#risk-gir-10), [GIR11](#risk-gir-11), [GIR12](#risk-gir-12), [GIR13](#risk-gir-13), [GIR14](#risk-gir-14), [GIR15](#risk-gir-15)
@@ -2830,7 +2830,7 @@ This is a broad area. A few specific controls are included in this specification
 
 ##### Managed software updates help address the following risks
 
-* [SLS6](#risks-sls-6), [SLS7](#risks-sls-7)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR4](#risk-gir-4), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19)
 * [SPS0](#risk-sps-0)
@@ -2846,9 +2846,9 @@ This covers all changes to code, including when it is necessary to roll back an 
 
 <div class="info">
 
-##### Using Code Respotories help address the following risks
+##### Using Code Repositories help address the following risks
 
-* [SLS6](#risks-sls-6), [SLS7](#risks-sls-7)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR4](#risk-gir-4), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR21](#risk-gir-21)
 * [SPS0](#risk-sps-0)
@@ -2892,7 +2892,7 @@ are held to high standards of confidentiality, and work with a well-defined set 
 
 ##### Verifying configurations on update helps address the following risks
 
-* [SLS7](#risks-sls-7)
+* [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW13](#risk-dow-13), [DOW21](#risk-dow-21)
 * [GIR3](#risk-gir-3), [GIR15](#risk-gir-15)
 </div>
@@ -2936,7 +2936,7 @@ Multiple tools can help meet these requirements, including
 
 <a href="#req-test-coverage">🔗</a> <b id="req-test-coverage">Node Operators MUST have thorough test coverage of their software and operating procedures</b>
 
-There is no magic percentage figure, but ideally unit tests and integration tests cover every funtionality and interaction
+There is no magic percentage figure, but ideally unit tests and integration tests cover every functionality and interaction
 managed by code the Node Operator uses, whether self-managed or provided by a third party.
 
 <div class="info">
@@ -2960,7 +2960,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 ##### Testing all updated interactions helps address the following risks
 
-* [SLS6](#risks-sls-6), [SLS7](#risks-sls-7)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR4](#risk-gir-4), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR21](#risk-gir-21)
 * [SPS0](#risk-sps-0)
@@ -2979,7 +2979,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 ##### Using test environments helps address the following risks
 
-* [SLS6](#risks-sls-6), [SLS7](#risks-sls-7)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR4](#risk-gir-4), [GIR11](#risk-gir-11), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR21](#risk-gir-21)
 * [SPS0](#risk-sps-0)
@@ -2993,7 +2993,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 ##### Using test environments helps address the following risks
 
-* [SLS6](#risks-sls-6), [SLS7](#risks-sls-7)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR4](#risk-gir-4), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR21](#risk-gir-21)
 * [SPS0](#risk-sps-0)
