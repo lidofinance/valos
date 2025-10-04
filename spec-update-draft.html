@@ -14,6 +14,10 @@
     tr:has(option:nth-child(2):checked), tr:has(option:nth-child(3):checked) {background-color: #9f9}
     tr:has(option:nth-child(4):checked) {background-color: #ff9}
     tr:has(option:nth-child(5):checked) {background-color: #f99}
+
+    @media print {
+      #summaryTable { margin-left: -6em;}
+    }
     </style>
   </head>
   <body>
@@ -890,7 +894,9 @@ There are best practices to do this effectively:
 
 <div class="info">
 
-##### Internal risk assessment is an important part of addressing all risks
+##### Risks that internal risk assessment helps address
+
+- All risks
 
 </div>
 
@@ -915,7 +921,7 @@ with a goal of eventually using access granted willingly to rob, damage, or dest
 
 <div class="info">
 
-##### Identifying individuals involved in managing Validators helps address the following Risks
+##### Risks that identifying individuals involved in managing Validators helps address
 
 * [FIN1](#risk-fin-1)
 * [KEC7](#risk-kec-7)
@@ -937,7 +943,7 @@ there are a number of areas where up-to-date skills matter, such as:
 
 <div class="info">
 
-##### Training helps address the following Risks
+##### Risks that training helps address
 
 * [FIN1](#risk-fin-1), [FIN7](#risk-fin-7)
 * [SLS17](#risk-sls-17)
@@ -969,7 +975,7 @@ Best practise includes "version-pinning", actively managing dependencies, and te
 
   - [Controls for Development and Update](#sec-controls-updates)
 
-##### Updated software helps address the following risks
+##### Risks that updated software helps address
 
 * [FIN1](#risk-fin-1)
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3)
@@ -993,7 +999,7 @@ More information on anti-slashing databases (and links to documentation for othe
 
 <div class="info">
 
-##### A local anti-slashing database helps address the following risks
+##### Risks that a local anti-slashing database helps address
 
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 </div>
@@ -1015,7 +1021,7 @@ Tools such as Web3Signer and Dirk help manage signatures securely, when properly
 
 <div class="info">
 
-##### Signature management helps address the following risks
+##### Risks that signature management helps address
 
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4)
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
@@ -1039,7 +1045,7 @@ as further explained by the Ethereum Foundation's Dankrad Feist in [[[?ETHdivers
 
 <div class="info">
 
-##### Client diversity helps address the following risks
+##### Risks that client diversity helps address
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS20](#risk-sls-20)
 * [DOW2](#risk-dow-2), [DOW19](#risk-dow-19), [DOW21](#risk-dow-21)
@@ -1052,7 +1058,7 @@ This results in an opportunity cost realised as monetary losses.
 
 <div class="info">
 
-##### Handling delinquent state helps address the following risks
+##### Risks that handling delinquent state helps address
 
 * [SPS1](#risk-sps-1)
 </div>
@@ -1075,7 +1081,7 @@ Using [=multi-sig=] wallets requiring authorization from multiple parties for sp
 
 <div class="info">
 
-##### Secret access management helps address the following risks
+##### Risks that secret access management helps address
 
 * [FIN1](#risk-fin-1)
 * [SLS5](#risk-sls-5)
@@ -1093,7 +1099,7 @@ It is therefore crucial to ensure that confidential data is only stored and tran
 
 <div class="info">
 
-##### Data encryption helps address the following risks
+##### Risks that data encryption helps address
 
 * [SLS8](#risk-sls-8)
 * [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8),[KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
@@ -1109,7 +1115,7 @@ by making it more difficult for malicious entities to access the information and
 
 <div class="info">
 
-##### Cold storage helps address the following risks
+##### Risks that cold storage helps address
 
 * [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
 * [GIR10](#risk-gir-10), [GIR17](#risk-gir-17)
@@ -1139,7 +1145,7 @@ Modern vault systems enable the enforcement of policies to ensure that access to
 
 <div class="info">
 
-##### Key management helps address the following risks
+##### Risks that key management helps address
 
 * [FIN1](#risk-fin-1)
 * [SLS1](#risk-sls-1), [SLS3](#risk-sls-3), [SLS5](#risk-sls-5), [SLS8](#risk-sls-8)
@@ -1164,7 +1170,7 @@ Documentation, even if rarely actively read by those responsible for operations 
 
 <div class="info">
 
-##### Operational information management helps address the following risks:
+##### Risks that operational information management helps address:
 
 * [FIN2](#risk-fin-2), [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
 * [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS10](#risk-sls-10), [SLS14](#risk-sls-14)
@@ -1185,7 +1191,7 @@ Best Practise includes having journaled backups of important information.
 
 <div class="info">
 
-##### Deletion Protection helps address the following risks:
+##### Risks that deletion Protection helps address:
 
 * [FIN6](#risk-fin-6)
 * [SLS4](#risk-sls-4)
@@ -1257,7 +1263,7 @@ without having authorizations they do not need.
 
 <div class="info">
 
-##### Least privilege helps address the following risks
+##### Risks that least privilege helps address
 
 * [FIN1](#risk-fin-1)
 * [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
@@ -1278,7 +1284,7 @@ covering role changes as well as termination, transfer, and promotion procedures
 
 <div class="info">
 
-##### Employee authorization process helps address the following risks
+##### Risks that employee authorization process helps address
 
 * [FIN1](#risk-fin-1)
 * [DOW4](#risk-dow-4)
@@ -1300,7 +1306,7 @@ and does not allow generic probing mechanisms such as open port scans that can h
 
 <div class="info">
 
-##### Managed network access helps address the following risks
+##### Risks that managed network access helps address
 
 * [HCK4](#risk-hck-4)
 * [GIR9](#risk-gir-9), [GIR17](#risk-gir-17)
@@ -1312,7 +1318,7 @@ Best practice is to use password and related authentication policies to ensure t
 
 <div class="info">
 
-##### Authentication policy helps address the following risks
+##### Risks that authentication policy helps address
 
 * [FIN1](#risk-fin-1)
 * [SLS13](#risk-sls-13)
@@ -1366,7 +1372,7 @@ It is important to log and audit access sufficiently frequently to detect proble
 
 <div class="info">
 
-##### Managed physical access helps address the following risks
+##### Risks that managed physical access helps address
 
 * [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW10](#risk-dow-10)
 * [GIR9](#risk-gir-9), [GIR17](#risk-gir-17)
@@ -1389,7 +1395,7 @@ Likewise, maintaining multiple validators running on separate hardware and softw
 
 <div class="info">
 
-##### Distributed Infrastructure helps address the following risks
+##### Risks that distributed Infrastructure helps address
 
 * [SLS1](#risk-sls-1)
 * [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
@@ -1407,7 +1413,7 @@ These calculations mean economies of scale often enable larger-scale operations 
 
 <div class="info">
 
-##### Protection against utility failure threats helps address the following risks
+##### Risks that protection against utility failure threats helps address
 
 * [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW15](#risk-dow-15)
 </div>
@@ -1420,7 +1426,7 @@ but will generally revolve around siting of facilities, their architecture, and 
 
 <div class="info">
 
-##### Protection against environmental threats helps address the following risks
+##### Risks that protection against environmental threats helps address
 
 * [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
 * [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW15](#risk-dow-15)
@@ -1438,7 +1444,7 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 <div class="info">
 
-##### Equipment life-cycle management helps address the following risks
+##### Risks that equipment life-cycle management helps address
 
 * [DOW3](#risk-dow-3), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW15](#risk-dow-15), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
@@ -1455,7 +1461,7 @@ Best practices include the use of auditable version control systems, with thorou
 
 <div class="info">
 
-##### Secure development lifecycle helps address the following risks
+##### Risks that secure development lifecycle helps address
 
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4)
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS17](#risk-sls-17), [SLS19](#risk-sls-19)
@@ -1482,7 +1488,7 @@ help ensure that coverage is sufficiently comprehensive to detect errors that ca
 
 <div class="info">
 
-##### Testing and code review helps address the following risks
+##### Risks that testing and code review helps address
 
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4)
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
@@ -1506,7 +1512,7 @@ Additionally, it is important to validate inputs against the relevant parameters
 
 <div class="info">
 
-##### Input checking helps address the following risks
+##### Risks that input checking helps address
 
 * [DOW10](#risk-dow-10)
 * [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC9](#risk-kec-9)
@@ -1542,7 +1548,7 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 
 <div class="info">
 
-##### Not customising third-party software helps address the following risks
+##### Risks that not customising third-party software helps address
 
 * [SLS5](#risk-sls-5), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
@@ -1569,7 +1575,7 @@ while automated tools to track and scan for best practices are available such as
 
 <div class="info">
 
-##### Managing configuration helps address the following risks
+##### Risks that managing configuration helps address
 
 * [SLS1](#risk-sls-1), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6)
 * [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW21](#risk-dow-21)
@@ -1589,7 +1595,7 @@ Protection against malware needs to be implemented on all assets and users need 
 
 <div class="info">
 
-##### Protection against supply-chain malware helps address the following risks
+##### Risks that protection against supply-chain malware helps address
 
 * All [Slashing Risks](#sec-risks-slashing)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW14](#risk-dow-14)
@@ -1607,7 +1613,7 @@ This minimizes a potential blast radius. It is important to run any change (even
 
 <div class="info">
 
-##### Pre-deployment testing helps address the following risks
+##### Risks that pre-deployment testing helps address
 
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS14](#risk-sls-14)
@@ -1621,7 +1627,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 
 <div class="info">
 
-##### Containerized environments help address the following risks
+##### Risks that containerized environments help address
 
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW21](#risk-dow-21)
@@ -1640,7 +1646,7 @@ When correctly configured pipelines and job-mechanisms such as GitHub Actions, A
 
 <div class="info">
 
-##### Process automation helps address the following risks
+##### Risks that process automation helps address
 
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
@@ -1700,7 +1706,7 @@ Among many aspects of Validator Operations to monitor directly are the following
 
 <div class="info">
 
-###### Blockchain monitoring helps address the following risks
+###### Risks that blockchain monitoring helps address
 
 * [FIN5](#risk-fin-5)
 * All [Slashing Risks](#sec-risks-slashing)
@@ -1721,7 +1727,7 @@ Among many aspects of Validator Operations to monitor directly are the following
 
 <div class="info">
 
-##### System monitoring helps address the following risks
+##### Risks that system monitoring helps address
 
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4)
 * All [Slashing Risks](#sec-risks-slashing)
@@ -1750,7 +1756,7 @@ such as 2FA configuration or VPNs.
 
 <div class="info">
 
-##### Security and compliance monitoring helps address the following risks
+##### Risks that security and compliance monitoring helps address
 
 * [FIN1](#risk-fin-1), [FIN2](#risk-fin-2), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
 * [DOW4](#risk-dow-4), [DOW10](#risk-dow-10), [DOW12](#risk-dow-12), [DOW19](#risk-dow-19)
@@ -1767,7 +1773,7 @@ such as 2FA configuration or VPNs.
 
 <div class="info">
 
-##### Monitoring upgrades helps address the following risks
+##### Risks that monitoring upgrades helps address
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW17](#risk-dow-17), [DOW18](#risk-dow-18), [DOW19](#risk-dow-19)
@@ -1780,7 +1786,7 @@ Detecting that two validators with the same identifiers are running at the same 
 
 <div class="info">
 
-##### Doppelgänger protection helps address the following risks
+##### Risks that doppelgänger protection helps address
 
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS5](#risk-sls-5)
 * [DOW2](#risk-dow-2), [DOW10](#risk-dow-10)
@@ -1906,7 +1912,7 @@ or a more advanced CRM system, depending on the needs of the Node Operator.
 
 
 
-##### Stakeholder management helps address the following risks
+##### Risks that stakeholder management helps address
 
 * [FIN1](#risk-fin-1), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
 * [SPS0](#risk-sps-0)
@@ -1934,7 +1940,7 @@ Best practices for Incident response plans include
 
 <div class="info">
 
-##### Incident response planning helps address the following risks
+##### Risks that incident response planning helps address
 
 * [FIN1](#risk-fin-1), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
 * [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
@@ -1958,7 +1964,7 @@ with alerting and potentially direct reaction mechanisms. Although learning from
 
 <div class="info">
 
-##### Identifying and responding to security incidents helps address the following risks
+##### Risks that identifying and responding to security incidents helps address
 
 * [FIN6](#risk-fin-6)
 * [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
@@ -1980,7 +1986,7 @@ and consider what changes can be implemented to prevent or mitigate similar even
 
 <div class="info">
 
-##### Analyzing security events helps address the following risks
+##### Risks that analyzing security events helps address
 
 * [FIN7](#risk-fin-7)
 * [SLS5](#risk-sls-5), [SLS9](#risk-sls-9), [SLS14](#risk-sls-14), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
@@ -2004,7 +2010,7 @@ Sample Disaster Recovery Plan templates:
 * [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 * [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
 
-##### Disaster recovery plans help address the following risks
+##### Risks that disaster recovery plans help address
 
 * [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
 * [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9)
@@ -2038,7 +2044,10 @@ offer further information on how to plan and implement simulations, and how to d
 * [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 * [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
 
-##### Incident simulations help address all risks
+##### Risks that incident simulations help address
+
+- All risks
+
 </div>
 
 #### Incident Communication {#sec-mit-incident-communication}
@@ -2054,7 +2063,7 @@ Best practice for [=Incident Communication=] includes providing a detailed post-
 
 <div class="info">
 
-##### Incident communications help address the following risks:
+##### Risks that incident communications help address:
 
 * [FIN7](#risk-fin-6)
 * [HCK4](#risk-hck-4)
@@ -2100,7 +2109,7 @@ External suppliers can change terms, shut down products or support, and key staf
 
 <div class="info">
 
-##### Assessment of activities' relevance helps address the following risks
+##### Assessing dependency replacement helps address the following risks
 
 - [FIN1](#risk-fin-1)
 - [SLS6](#risk-sls-6)
@@ -3088,7 +3097,8 @@ function Summary () {
 //Blergh! This is pretty hacky hard-coding, but it works.
 
   var controlsTable = document.createElement("table");
-  controlsTable.style = "width:180%"
+  controlsTable.id = "summaryTable";
+  controlsTable.style = "max-width: 90%";
   controlsTable.appendChild(document.createElement("thead"));
   headerRow = document.createElement("tr");
 
