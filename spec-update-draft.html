@@ -1815,12 +1815,25 @@ There are therefore two core parts to a Nore Operator's communication strategy:
 - Normal Operational Communication provides information about ongoing operations, to ensure confidence in and transparency of everyday operations.
 - <dfn>Incident Communication</dfn> is the collection of communications processes that occur as part of an [=Incident Response Plan=]
 
-Both rely on understanding the Stakeholders, and developing appropriate communication channels and procedures to ensure those stakeholders have timely access to relevant information.
+Developing appropriate communication procedures relies on understanding both the communications channels an organisation has or can have, and its stakeholders.
+The goal is to ensure those stakeholders have timely access to relevant information in a useful format.
 
-#### Stakeholder Overview {#sec-mit-comms-stakeholders}
+#### Stakeholder Communication Management {#sec-mit-comms-stakeholders}
 
-Some key stakeholders are <dfn>Known Stakeholders</dfn>, who have an identity known to the Node Operator
-that includes at least one direct communications cannel such as messaging, email, or telephone. These typically include
+Some key stakeholders are <dfn>Anonymous Stakeholders</dfn>, who might follow a Node Operator's public information channels,
+or operate independently, but who do not provide individual communication information to Operators.
+
+* Low stake investors
+* Potential investors
+* Communities developing technical standards
+* Education Providers
+* Corporate Regulators
+
+Regulators of various kinds can require that Node Operators provide them with specific information,
+but do not necessarily communicate with Node Operators on an individual basis
+
+Node operators will also have <dfn>Known Stakeholders</dfn>, who have an identity known to the Node Operator
+that includes at least one direct communications cannel such as messaging, email, or telephone. These typically include at least some of
 
 * High stake investors - with some of whom the Operator could also have contractual obligations
 * Service Partners, who might be involved in operating and managing protocols and requiring governance votes, or hosting, managing or operating infrastructure as part of the node operation setup
@@ -1828,28 +1841,13 @@ that includes at least one direct communications cannel such as messaging, email
 * Other Node Operators running validators on the same network
 * Staff such as those developing and maintaining critical node operations software
 * Individuals or organizations using additional service provided by Node Operators (e.g., API users, customers for white-label solutions etc.)
-* Corporate Regulators - who can require that Node Operators provide them with specific information, but do not necessarily communicate with Node Operators on an individual basis
 
-Node operators will almost certainly also have <dfn>Anonymous Stakeholders</dfn>, who might follow a Node Operator's public information channels,
-or operate independently, but who do not provide individual communication information to Operators.
+Stakeholders' preferences for communication channels differ. While many [=Known Stakeholders=] will have explicitly requested direct communication,
+it is important to have additional channels that enable [=Anonymous Stakeholders=] to follow important developments.
 
-As well as those who could be [=Known Stakeholders=], such as high stake investors, media and other node operators these can include
+Broadly, communication channels can be considered <b>two-way</b>, enabling communication with an individual Known Stakeholder or with all of them at once,
+or <b>broadcast</b>, enabling [=Anonymous Stakeholders=] to receive important information, often while preserving their anonymity.
 
-* Low stake investors
-* Potential investors
-* Communities involved in the ecosystem for motives as diverse as lobbying regulators, developing technical standards, education, and more.
-
-
-#### Communication Channels {#sec-mit-comms-channels}
-
-Stakeholders' preferences for communication channels differ.
-Where possible for [=Known Stakeholders=] it is good practice to identify them, and their individual channel preferences in advance.
-However it is also important to note that a number of jurisdictions (such as the EU, with the [[?GDPR]]) regulate the use of information about individuals
-that includes communication channel information.
-It is important to include channels that enable [=Anonymous Stakeholders=] to follow important developments.
-
-Broadly, communication channels can be considered two-way, enabling communication with an individual Known Stakeholder or with all of them at once,
-or broadcast, enabling [=Anonymous Stakeholders=] to receive important information.
 Additionally, some mechanisms allow for persistent information, while others are only temporary;
 A website can be maintained long-term or the information can be removed, information sent by email can easily be retained by the recipient in perpetuity,
 while information in e.g. a Slack or Telegram channel could be deleted after a matter of days or weeks
@@ -1858,57 +1856,36 @@ It is also important, especially for services used for two-way communication wit
 While channels such as Telegram or Whatsapp use encryption, in the case of the former all communication is decoded at some unknown centralized point, in the latter large amounts of metadata are available to the service provider.
 
 While many messaging services can behave in either manner, some such as websites are well-suited to broadcast communication
-while others are specifically suited to individual two-way communication.
+and others are more suited to individual two-way communication.
 
-Common communication tools that stakeholders are likely to find familiar and actively use include Websites, email, message-based services such as Telegram, Discord, Slack, Signal, Whatsapp and "post"-oriented services such as X (the former Twitter), BlueSky, Facebook/Instagram, and the like.
+As well as identifying the most appropriate channels for communication with [=Known Stakeholders=] or classes of [=Anonymous Stakeholders=],
+it is important to understand what it is appropriate to communicate, and to whom.
+Some stakeholders will expect a "close management", with direct individualized two-way communication,
+and very rapid reporting on incidents and important information.
+Others will want to know that they are informed in case of security incidents, or important regulatory changes,
+but prefer a lower volume of information. It is likely that different circumstances will mean that a given Stakeholder moves between "categories",
+with different communications strategies or procedures being more appropriate depending on specific context.
 
+<div class="info-tools">
 
-#### Stakeholder Management {#sec-mit-stakeholder-management}
-
-The following procedures enable appropriate consideration and management of relevant stakeholders:
-
-1. Define all stakeholders that are relevant to your organization
-2. Define and align communication channels that you intend to use for engagement with your stakeholders
-3. Perform a stakeholder mapping and define your individual ways of engagement with the different stakeholder groups
-4. Document all defined stakeholders with the respective management measures in the stakeholder register. Also take best practices covering [=Incident Communication=] into account.
-5. Define appropriate intervals to review accuracy and relevance of documented contents in the stakeholder register
-
-A [Stakeholder Map](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base/~gitbook/image?url=https%3A%2F%2F3935398949-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FxTRnDyIanlwU7cCKcAju%252Fuploads%252Fhdg4kca5vuEMKsr01CxP%252FStakeholder_Map_Template.png%3Falt%3Dmedia%26token%3Dc83db7a4-f0ed-464f-ab69-630ba1450597&width=768&dpr=4&quality=100&sign=7ea4928c&sv=2) can help categorize individual stakeholders into different communication groups. It can be used as an initial assessment for further review and adaption to your individual stakeholder landscape. Review each stakeholder individually, to assess the appropriate communication plans.
-
-<dl>
-  <dt>Manage Closely</dt>
-<dd>
-* Use direct two-way communication channels
-* Provide individual status reporting and communications
-* Perform immediate alignment in case of incidents
-</dd>
-<dt>Keep Satisfied</dt>
-<dd>
-* Provide regular status reporting of important operational information
-* Provide summary and updates in case of incidents
-</dd>
-<dt>Keep Informed</dt>
-<dd>
-* Select communication channels depending on the need for responsiveness
-* Provide summaries and updates in case of incidents
-</dd>
-<dt>Monitor</dt>
-<dd>
-* Monitor activities and react to activities and requests
-</dd>
-</dl>
-
-
-<div class="info">
-
-##### Tools for stakeholder management include
+##### Tools for stakeholder communication management include
 
 A stakeholder register listing all stakeholders with details about their roles, interests, and impact on the organization.
 This can be helpful for managing stakeholders, and effective communication with them.
 It can be as simple as a [Stakeholder Register Spreadsheet](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true),
 or a more advanced CRM system, depending on the needs of the Node Operator.
+A number of jurisdictions (such as the EU, with the [[?GDPR]]) regulate the use of information about individuals,
+and it is important to understand and comply with such regulations to avoid reputational, legal and financial risks.
 
 
+A [Stakeholder Map](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base/~gitbook/image?url=https%3A%2F%2F3935398949-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FxTRnDyIanlwU7cCKcAju%252Fuploads%252Fhdg4kca5vuEMKsr01CxP%252FStakeholder_Map_Template.png%3Falt%3Dmedia%26token%3Dc83db7a4-f0ed-464f-ab69-630ba1450597&width=768&dpr=4&quality=100&sign=7ea4928c&sv=2) can help categorize individual stakeholders into different communication groups. It can be used as an initial assessment for further review and adaption to your individual stakeholder landscape. Review each stakeholder individually, to assess the appropriate communication plans.
+
+Common broadcast communication tools that stakeholders are likely to find familiar and actively use include Websites, X (the former Twitter), BlueSky, Facebook/Instagram, and the like.
+
+Email, and message-based services such as Telegram, Discord, Slack, Signal, and Whatsapp are widely-used as two-way communication tools,
+
+</div>
+<div class="info">
 
 ##### Risks that stakeholder management helps address
 
@@ -1927,8 +1904,8 @@ To be useful, it is necessary that relevant employees know the plans exist, and 
 
 Best practices for Incident response plans include
 
-- Identify relevant participants in advance, with well-defined decision-making responsibilities.
-  Redundancy against specific failures such as a key employee being unavailable is important.
+- Identify relevant participants in advance, with well-defined decision-making responsibilities
+- Redundancy against specific failures such as a key employee being unavailable
 - Clear information about how to investigate and triage incidents,
   including when to notify and involve particular participants and how to escalate issues to the most appropriate person or team.
 - Define clear procedures to follow for specific sets of circumstances. Where it is possible and appropriate, automated responses and alerting triggered by
