@@ -14,6 +14,10 @@
     tr:has(option:nth-child(2):checked), tr:has(option:nth-child(3):checked) {background-color: #9f9}
     tr:has(option:nth-child(4):checked) {background-color: #ff9}
     tr:has(option:nth-child(5):checked) {background-color: #f99}
+
+    @media print {
+      #summaryTable { margin-left: -6em;}
+    }
     </style>
   </head>
   <body>
@@ -65,8 +69,6 @@ In general, risk identifiers correspond to DUCK and will remain stable. This may
 
 These are risks explicitly arising from management of financial and regulatory compliance processes. (Many other risk cateogries have a direct financial impact).
 
-**Note**: This section is new in ValOS, and the identifiers are not yet stable - they may change before release.
-
 <table>
 <thead>
 <tr>
@@ -75,7 +77,6 @@ These are risks explicitly arising from management of financial and regulatory c
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
 <th>Relevant Mitigations</th>
-</tr>
 </tr></thead>
 <tbody>
 <tr>
@@ -85,14 +86,12 @@ These are risks explicitly arising from management of financial and regulatory c
 <td>Onboarded entities are not adequately vetted to ensure financial, operational, regulatory, or reputational appropriateness, resulting in potential financial, legal, or reputational damage</td>
 <td></td>
 </tr>
-</tr>
 <tr>
 <td id="risk-fin-2">FIN2</td>
 <td>Infrastructure</td>
 <td>Deposit</td>
 <td>Fiat and digital assets deposited are not received in the appropriate currency, address, or fiat account, leading to financial loss</td>
 <td></td>
-</tr>
 </tr>
 <tr>
 <td id="risk-fin-3">FIN3</td>
@@ -101,7 +100,6 @@ These are risks explicitly arising from management of financial and regulatory c
 <td>Fiat and digital assets are not correctly processed and assets are misallocated to individuals, entities, or operational addresses leading to financial loss</td>
 <td></td>
 </tr>
-</tr>
 <tr>
 <td id="risk-fin-4">FIN4</td>
 <td>Process</td>
@@ -109,30 +107,26 @@ These are risks explicitly arising from management of financial and regulatory c
 <td>Fiat and digital assets are not correctly disbursed to individuals, entities, or addresses, leading to financial and reputational loss</td>
 <td></td>
 </tr>
-</tr>
 <tr>
-<td id="risk-fin-6">FIN6</td>
+<td id="risk-fin-5">FIN5</td>
 <td>Infrastructure</td>
 <td>Compounding</td>
 <td>Staking rewards are not appropriately collected, governed, restaked, compounded, or allocated to clients leading to financial loss</td>
 <td></td>
 </tr>
-</tr>
 <tr>
-<td id="risk-fin-7">FIN7</td>
+<td id="risk-fin-6">FIN6</td>
 <td>Process</td>
 <td>Reporting</td>
 <td>Financial reporting requirements are not adhered to or inconsistently applied, leading to regulatory, legal, and financial consequences</td>
 <td></td>
 </tr>
-</tr>
 <tr>
-<td id="risk-fin-9">FIN9</td>
+<td id="risk-fin-7">FIN7</td>
 <td>Process</td>
 <td>Up to date compliance</td>
 <td>Failure to review relevant regulation and update compliance procedures leading to financial, legal, and regulatory repercussions</td>
 <td></td>
-</tr>
 </tr>
 </tbody>
 </table>
@@ -150,7 +144,6 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
 <th>Relevant Mitigations</th>
-</tr>
 </tr></thead>
 <tbody>
 <tr>
@@ -160,14 +153,12 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>Single node signs two different blocks through failure in setting up the anti-slashing mechanism correctly (e.g. local anti-slashing database is disabled or has been deleted) or failure in the validator migration process.</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sls-2">SLS2</td>
   <td>Infrastructure</td>
   <td>Operational Failure: Shutting down validator only temporarily</td>
   <td>Validator shuts down temporarily. System spins up a new validator with the same key</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-sls-3">SLS3</td>
@@ -176,14 +167,12 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>System takes the same keys twice from the key database and deploys them on two different validators.</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sls-4">SLS4</td>
   <td>Infrastructure</td>
   <td>Operational Failure: Failure in setting up the anti-slashing mechanisms correctly</td>
   <td>Failure in setting up the anti-slashing mechanisms correctly (e.g. Web3Signer has no slashing protection enabled, no database, database only in memory and not on disk, 2 or several copies of Web3Signer, slashing database can be deleted)</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-sls-5">SLS5</td>
@@ -192,14 +181,12 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>Usage of same key within different environments causing a slashing</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sls-6">SLS6</td>
   <td>Software</td>
   <td>Software Bug (e.g. Validator Client) (Intentional or accidental) through update</td>
   <td>New versions of a validator client that may cause errors that lead to slashing<br>Supply chain attack</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-sls-7">SLS7</td>
@@ -208,42 +195,35 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>New versions of a validator client has errors that lead to slashing</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sls-8">SLS8</td>
   <td colspan="3">Now <a href="#risk-hck-1">HCK1</a></td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-sls-9">SLS9</td>
   <td colspan="3">Now <a href="#risk-hck-2">HCK2</a></td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sls-10">SLS10</td>
   <td colspan="3">Now <a href="#risk-hck-3">HCK3</a></td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-sls-11">SLS11</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sls-12">SLS12</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sls-13">SLS13</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-sls-14">SLS14</td>
@@ -252,7 +232,6 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>If the failover does not ensure that old system is not still alive in some way or is using a stale version of the anti-slashing database, e.g.: failover system starts accidentally although primary system is not down</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sls-15">SLS15</td>
   <td>Process</td>
@@ -260,12 +239,10 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>If the failover does not ensure that old system is not still alive in some way or is using a stale version of the anti-slashing database, e.g.: failover system starts (manually / automatically) because primary system is down and primary system comes back online</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sls-16">SLS16</td>
   <td colspan="3">Removed</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-sls-17">SLS17</td>
@@ -274,7 +251,6 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>Slashing events continue or recur because alerts are not monitored</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sls-18">SLS18</td>
   <td>Process</td>
@@ -282,14 +258,12 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>Slashing continues because monitoring system fails to automatically shut down malfunctioning validator</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sls-19">SLS19</td>
   <td>Process</td>
   <td>Incident Response does not update Slashing Database</td>
   <td>A slashing event recurs, because the database is not updated as part of Incident Response</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-sls-20">SLS20</td>
@@ -312,7 +286,6 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
 <th>Relevant Mitigations</th>
-</tr>
 </tr></thead>
 <tbody>
 <tr>
@@ -322,14 +295,12 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td>Cloud Downtime, malfunction</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-dow-2">DOW2</td>
   <td>Infrastructure</td>
   <td>Operational Failure of own bare metal set-up due to malfunction software</td>
   <td>Malfunction of software (e.g. validator client or third party software) leads to downtime</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-dow-3">DOW3</td>
@@ -338,14 +309,12 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td>Malfunction of hardware (e.g. physical network, computer system, CPU, RAM) leads to downtime</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-dow-4">DOW4</td>
   <td>Infrastructure</td>
   <td>External: Operational Failure of own bare metal set-up due to people (ManMade)</td>
   <td>Employees are responsible for the downtime event (accidentally or intentionally)</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-dow-5">DOW5</td>
@@ -354,14 +323,12 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td>A natural event (e.g. earthquake, flood, hurricane,...) leads to an downtime</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-dow-6">DOW6</td>
   <td>Infrastructure</td>
   <td>Failure to design for high availability</td>
   <td>Having too few beacon nodes relative to validator clients, leading to:<br>- opportunity costs<br>- slashing on some networks</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-dow-7">DOW7</td>
@@ -370,12 +337,10 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td>Loss of infrastructure network connection due to:<br>- Sudden cloud outage<br>- Sudden internet failure in on-premise machines<br>- Accidental firewall change locks out access.</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-dow-8">DOW8</td>
   <td colspan="3">This risk has been merged into <a href="#risk-dow-9">DOW9</a></td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-dow-9">DOW9</td>
@@ -384,14 +349,12 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td>Volatile power supply damages infrastructure or causes system downtime</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-dow-10">DOW10</td>
   <td>Infrastructure</td>
   <td>External: DDOS attack</td>
   <td>Systems unresponsive, slowed down, and compromized</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-dow-11">DOW11</td>
@@ -400,14 +363,12 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td>Downtime or accidental interpretation of dishonest behavior</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-dow-12">DOW12</td>
   <td>Software</td>
   <td>Software Bug in the Validator Client (Intentional or accidental) through software update</td>
   <td>New versions of a validator client that may cause errors that lead to downtime<br>(Supply chain attack)</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-dow-13">DOW13</td>
@@ -416,14 +377,12 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td><br>New versions of a validator client may cause errors that lead to downtime</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-dow-14">DOW14</td>
   <td>Software</td>
   <td>Software Bug in third party software</td>
   <td><br>Third party software failure can lead to downtime of the whole system</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-dow-15">DOW15</td>
@@ -432,24 +391,20 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td>Latency / Failure of relays </td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-dow-16">DOW16</td>
   <td colspan="3">Now <a href="#risk-hck-2">HCK2</a></td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-dow-17">DOW17</td>
   <td colspan="3">Now <a href="#risk-hck-3">HCK3</a></td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-dow-18">DOW18</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-dow-19">DOW19</td>
@@ -458,14 +413,12 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td>The node operator os not updating its validator software</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-dow-20">DOW20</td>
   <td>Software</td>
   <td>Validator client update incompatible with IT system</td>
   <td>System downtime after validator client update caused by incompatibility</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-dow-21">DOW21</td>
@@ -474,17 +427,15 @@ These risks are due to connectivity issues that lead to reduced rewards, in effe
   <td>System downtime caused by software update processes taking longer than planned, with no failover capacity</td>
 <td></td>
 </tr>
-</tr>
 </tbody></table>
 
 ### Key Custody Risk {#sec-risks-keys}
 
-The risks associated with key custody are divided in this specification according to the type of Key:
+The risks associated with key custody cover all private keys and key material. However in some cases the way a risk manifests or impacts depends on the type of key.
+For example:
 
-- Validator Keys enable the operator to manage their nodes. [Validator Key Custody Risks](#validator-key-custody-risk) if realised, have a direct impact on operations, which is very likely to have a financial and reputational impact, and possibly leaving an operator unable to meet contractual obligations.
-- Withdrawal Keys enable the operator to manage their digital assets, and [Withdrawal Key Custody Risks](#withdrawal-key-custody-risk) have a direct financial impact, as well as a likely reputational impact.
-
-#### Validator Key Custody Risk {#sec-risks-keys-validator}
+- Validator Keys enable the operator to manage their nodes so compromises have a direct impact on operations, which is very likely to have a financial and reputational impact.
+- Withdrawal Keys enable the operator to manage their digital assets so compromises often have a direct financial impact, as well as a likely reputational impact.
 
 <table>
 <thead>
@@ -494,7 +445,6 @@ The risks associated with key custody are divided in this specification accordin
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
 <th>Relevant Mitigations</th>
-</tr>
 </tr></thead>
 <tbody>
 <tr>
@@ -504,30 +454,24 @@ The risks associated with key custody are divided in this specification accordin
   <td>No audit trail and controlled access to secrets</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-kec-2">KEC2</td>
   <td colspan="3">Now <a href="#risk-hck-1">HCK1</a>, <a href="#risk-hck-2">HCK2</a></td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-kec-3">KEC3</td>
   <td colspan="3">Now <a href="#risk-hck-1">HCK1</a>, <a href="#risk-hck-2">HCK2</a></td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-kec-4">KEC4</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-kec-5">KEC5</td>
-  <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
-<td></td>
-</tr>
+  <td colspan="4">Now <a href="#risk-hck-4">HCK4</a></td>
 </tr>
 <tr>
   <td id="risk-kec-6">KEC6</td>
@@ -536,7 +480,6 @@ The risks associated with key custody are divided in this specification accordin
   <td>Signing keys are lost in an operational process</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-kec-7">KEC7</td>
   <td>Process</td>
@@ -544,29 +487,10 @@ The risks associated with key custody are divided in this specification accordin
   <td>Someone with access to one service/node can increase their privileges and do more harm on further nodes.</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-kec-8">KEC8</td>
-  <td>Infrastructure</td>
-  <td>Failure to protect infrastructure against physical access</td>
-  <td>Someone who gains physical access to a server can have access to locally exposed ports and can access the software API</td>
-<td></td>
+  <td colspan="4">Now <a href="#risk-hck-6">HCK6</a></td>
 </tr>
-</tr></tbody></table>
-
-#### Withdrawal Key Custody Risk {#sec-risks-keys-withdrawal}
-
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th>Risk Group</th>
-<th>Risk Vectors</th>
-<th>Risk Vector Description</th>
-<th>Relevant Mitigations</th>
-</tr>
-</tr></thead>
-<tbody>
 <tr>
   <td id="risk-kec-9">KEC9</td>
   <td>Process</td>
@@ -574,18 +498,15 @@ The risks associated with key custody are divided in this specification accordin
   <td>Loss of Withdrawal Keys (Operational Failure)</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-kec-10">KEC10</td>
   <td colspan="3">Now <a href="#risk-hck-1">HCK1</a>, <a href="#risk-hck-2">HCK2</a></td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-kec-11">KEC11</td>
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
 <td></td>
-</tr>
 </tr></tbody></table>
 
 ### Hacking Risk {#sec-risks-hacking}
@@ -601,7 +522,6 @@ or facilitated by a current or former member of the operational team.
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
 <th>Relevant Mitigations</th>
-</tr>
 </tr></thead>
 <tbody>
 <tr>
@@ -610,7 +530,6 @@ or facilitated by a current or former member of the operational team.
   <td>Malicious Internal Employee intentionally causes operational failure with appropriate user rights</td>
   <td>Anything that an internal employee has access to is at risk of being exploited to sabotage the operation resulting in a slashing incident.</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-hck-2">HCK2 (was SLS9, DOW16, KEC2, KEC3, KEC10, GIR2)</td>
@@ -639,6 +558,11 @@ or facilitated by a current or former member of the operational team.
   <td>No Input validation</td>
   <td>Attacks induce buffer overflow, DoS, code injection, etc.</td>
 </tr>
+<td id="risk-hck-6">HCK6 (was KEC8)</td>
+  <td>Infrastructure</td>
+  <td>Failure to protect infrastructure against physical access</td>
+  <td>Someone who gains physical access to a server can have access to locally exposed ports and can access the software API</td>
+  <td></td>
 </tbody></table>
 
 
@@ -654,7 +578,6 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <th>Risk Vectors</th>
   <th>Risk Vector Description</th>
 <th>Relevant Mitigations</th>
-</tr>
 </tr></thead>
 <tbody>
 <tr>
@@ -662,12 +585,10 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td colspan="3">Now <a href="#risk-hck-4">HCK4</a></td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-gir-2">GIR2</td>
   <td colspan="3">Now <a href="#risk-hck-2">HCK2</a>, <a href="#risk-hck-3">HCK3</a></td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-gir-3">GIR3</td>
@@ -676,7 +597,6 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>Downtime if a system needs to be just re-started if newest version is accidentally pulled</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-gir-4">GIR4</td>
   <td>Process</td>
@@ -684,12 +604,10 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>- Inability to learn from incidents<br>- Late detection of incidents<br>- insufficient automation to react to incidents</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-gir-5">GIR5</td>
   <td colspan="3">Now <a href="#risk-hck-3">HCK3</a></td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-gir-6">GIR6</td>
@@ -698,14 +616,12 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>- Leak of passwords<br>- brute force</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-gir-7">GIR7</td>
   <td>Process</td>
   <td>Use of direct auth</td>
   <td>Authentication information does not expire timely and can be used later.</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-gir-8">GIR8</td>
@@ -718,14 +634,12 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>Having containers or nodes accessible from any IP addresses increases the attack vector enormously</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-gir-10">GIR10</td>
   <td>Infrastructure</td>
   <td>Lack of encrypted traffic between services and deployment scripts</td>
   <td>Anyone on the network can sniff out packages with secrets included, and may be able to steal passwords and tokens in this way</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-gir-11">GIR11</td>
@@ -734,22 +648,12 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>Improper change management and testing of software updates "in production"</td>
 <td></td>
 </tr>
-</tr>
-<tr>
-  <td id="risk-gir-12">GIR12</td>
-  <td>Infrastructure</td>
-  <td>General architectural flaws</td>
-  <td>General risk category that can cause downtime, slashing, etc.<br>This includes, but is not limited to:<br>- Non-scalable deployments<br>- Use of tools not made for this purpose<br>- Lack of robustness/redundancy<br>- Bad change management<br>- Bad container isolation</td>
-<td></td>
-</tr>
-</tr>
 <tr>
   <td id="risk-gir-13">GIR13</td>
   <td>Infrastructure</td>
   <td>High Blast radius of software bug in overall system</td>
   <td>A small error affects the whole system and all clients right away, instead of being caught early with limited effect on the whole system.</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-gir-14">GIR14</td>
@@ -758,14 +662,12 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>Hacks through the apis of the infrastructure provider</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-gir-15">GIR15</td>
   <td>Infrastructure</td>
   <td>CVE Monitoring</td>
   <td>Attack on the system suddenly possible once published</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-gir-16">GIR16</td>
@@ -774,14 +676,12 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>Anything a human can touch can go wrong</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-gir-17">GIR17</td>
   <td>Process</td>
   <td>Use of non-hardened images</td>
   <td>Attack on the system using the weakest link of a given node/container</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-gir-18">GIR18</td>
@@ -790,14 +690,12 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>- Downtime on update<br>- Slow down in reaction time to incident</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-gir-19">GIR19</td>
   <td>Process</td>
   <td>Lack of automation for deployment</td>
   <td>- Downtime on update<br>- Slow down in reaction time to incident</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-gir-20">GIR20</td>
@@ -806,14 +704,12 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>- Downtime on update<br>- Slow down in reaction time to incident</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-gir-21">GIR21</td>
   <td>Process</td>
   <td>Lack of enforced code review</td>
   <td>- Downtime on update<br>- Slow down in reaction time to incident</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-gir-22">GIR22</td>
@@ -822,14 +718,12 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>Employees spill secrets</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-gir-23">GIR23</td>
   <td>Process</td>
   <td>Make-shift container orchestration procedures</td>
   <td>Failure when e.g. failover is actually needed to be performed</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-gir-24">GIR24</td>
@@ -838,14 +732,12 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>Suboptimal third-party software practices</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-gir-25">GIR25</td>
   <td>People</td>
   <td>Centralized knowledge</td>
   <td>If the infrastructure knowledge is not shared across the team, this could lead to a heavy dependency on a single person</td>
 <td></td>
-</tr>
 </tr></tbody></table>
 
 ### Service Partner Specific Risk {#sec-risks-partner}
@@ -860,7 +752,6 @@ Risk related to partners and specific third-party services.
 <th>Risk Vectors</th>
 <th>Risk Vector Description</th>
 <th>Relevant Mitigations</th>
-</tr>
 </tr></thead>
 <tbody>
 <tr>
@@ -871,14 +762,12 @@ Risk related to partners and specific third-party services.
   but in most case at least some and often the bulk of the consequences for a failure will be borne by the node operator.</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-sps-1">SPS1</td>
   <td>Process</td>
   <td>Exit Risk - Delinquent state</td>
   <td><ul><li>No new stake will be allocated to the Node Operator (happens automatically)</li><li>the daily rewards sent to the Node Operator will be halved (with the remaining half sent towards that day’s rebase) (happens automatically)</li><li>reduced rewards will continue for the duration of a cooldown period long enough to determine whether, immediately after service restoration by the Node Operator, subsequently received validator exit requests are processed in a timely manner.</li></ul></td>
 <td></td>
-</tr>
 </tr>
 </tbody></table>
 
@@ -894,7 +783,6 @@ Risks that impact the reputation of a Node Operator, likely to lead potential an
 <th>Risk Vector</th>
 <th>Description</th>
 <th>Relevant Mitigations</th>
-</tr>
 </tr></thead>
 <tbody>
 <tr>
@@ -904,14 +792,12 @@ Risks that impact the reputation of a Node Operator, likely to lead potential an
   <td>Reputation damage due to mismanagement of slashing, downtime or access loss to keys</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-rer-2">RER2</td>
   <td>People</td>
   <td>Negative appearance in public</td>
   <td>Damage to reputation due to bad behavior in public</td>
 <td></td>
-</tr>
 </tr>
 <tr>
   <td id="risk-rer-3">RER3</td>
@@ -920,7 +806,6 @@ Risks that impact the reputation of a Node Operator, likely to lead potential an
   <td>Reputation damage due to mismanagement of Post-slashing, -downtime or access loss to keys</td>
 <td></td>
 </tr>
-</tr>
 <tr>
 <td id="risk-rer-4">RER4</td>
 <td>Infrastructure</td>
@@ -928,14 +813,12 @@ Risks that impact the reputation of a Node Operator, likely to lead potential an
 <td>Staking withdrawal requests cannot be met efficiently, leading to delays in payment processing causing reputational loss</td>
 <td></td>
 </tr>
-</tr>
 <tr>
   <td id="risk-rer-5">RER5</td>
   <td>Process</td>
   <td>Poor Communication</td>
   <td>Poor reputation or reputational damage due to insufficient operational communication and overall transparency</td>
 <td></td>
-</tr>
 </tr>
 </tbody></table>
 
@@ -1009,7 +892,9 @@ There are best practices to do this effectively:
 
 <div class="info">
 
-##### Internal risk assessment is an important part of addressing all risks
+##### Risks that internal risk assessment helps address
+
+- All risks
 
 </div>
 
@@ -1034,7 +919,7 @@ with a goal of eventually using access granted willingly to rob, damage, or dest
 
 <div class="info">
 
-##### Identifying individuals involved in managing Validators helps address the following Risks
+##### Risks that identifying individuals involved in managing Validators helps address
 
 * [FIN1](#risk-fin-1)
 * [KEC7](#risk-kec-7)
@@ -1056,9 +941,9 @@ there are a number of areas where up-to-date skills matter, such as:
 
 <div class="info">
 
-##### Training helps address the following Risks
+##### Risks that training helps address
 
-* [FIN1](#risk-fin-1), [FIN9](#risk-fin-9)
+* [FIN1](#risk-fin-1), [FIN7](#risk-fin-7)
 * [SLS17](#risk-sls-17)
 * [DOW21](#risk-dow-21)
 * [GIR16](#risk-gir-16), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
@@ -1088,7 +973,7 @@ Best practise includes "version-pinning", actively managing dependencies, and te
 
   - [Controls for Development and Update](#sec-controls-updates)
 
-##### Updated software helps address the following risks
+##### Risks that updated software helps address
 
 * [FIN1](#risk-fin-1)
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3)
@@ -1107,7 +992,7 @@ The data needs to be reliably persistent, and properly connected to the systems 
 
 <div class="info">
 
-##### A local anti-slashing database helps address the following risks
+##### Risks that a local anti-slashing database helps address
 
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 </div>
@@ -1129,7 +1014,7 @@ Tools such as Web3Signer and Dirk help manage signatures securely, when properly
 
 <div class="info">
 
-##### Signature management helps address the following risks
+##### Risks that signature management helps address
 
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4)
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
@@ -1153,7 +1038,7 @@ as further explained by the Ethereum Foundation's Dankrad Feist in [[[?ETHdivers
 
 <div class="info">
 
-##### Client diversity helps address the following risks
+##### Risks that client diversity helps address
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS20](#risk-sls-20)
 * [DOW2](#risk-dow-2), [DOW19](#risk-dow-19), [DOW21](#risk-dow-21)
@@ -1166,7 +1051,7 @@ This results in an opportunity cost realised as monetary losses.
 
 <div class="info">
 
-##### Handling delinquent state helps address the following risks
+##### Risks that handling delinquent state helps address
 
 * [SPS1](#risk-sps-1)
 </div>
@@ -1189,7 +1074,7 @@ Using [=multi-sig=] wallets requiring authorization from multiple parties for sp
 
 <div class="info">
 
-##### Secret access management helps address the following risks
+##### Risks that secret access management helps address
 
 * [FIN1](#risk-fin-1)
 * [SLS5](#risk-sls-5)
@@ -1207,7 +1092,7 @@ It is therefore crucial to ensure that confidential data is only stored and tran
 
 <div class="info">
 
-##### Data encryption helps address the following risks
+##### Risks that data encryption helps address
 
 * [SLS8](#risk-sls-8)
 * [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8),[KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
@@ -1223,7 +1108,7 @@ by making it more difficult for malicious entities to access the information and
 
 <div class="info">
 
-##### Cold storage helps address the following risks
+##### Risks that cold storage helps address
 
 * [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
 * [GIR10](#risk-gir-10), [GIR17](#risk-gir-17)
@@ -1231,43 +1116,35 @@ by making it more difficult for malicious entities to access the information and
 
 #### Key Management {#sec-mit-key-management}
 
-It is important to protect private keys from accidental or malicious misuse, and in particular deletion.
+A node operator'operations potentially encompass the use of a range of keys, including amoong others
+
+* Keys used by signature management tools
+* A vault
+* SSH keys
+* API keys for cloud infrastructure
+
+It is important to protect private keys from accidental or malicious misuse, and in particular unplanned deletion.
 It is not normal to provide broad access to unencrypted signing keys.
 
-Best practices include ensuring that there are no single individuals with the capability to access or delete them, and having backups.
+Best practise is to follow established standards for key management, of which several are available such as [[[?CCSS]]] and [[[?KMS]]].
+
+These standards generally include
+- ensuring that there are no single individuals with the capability to access or delete them,
+- having backups with strong acess control,
+- actively managing access to keys and key material, and
+- "key rotation", i.e. periodic changes of keys as well as rapid managed changes if a data breach occurs.
+
 Modern vault systems enable the enforcement of policies to ensure that access to keys is only available with verified roles, and deletion is managed according to established protocols.
 
 <div class="info">
 
-##### Key management helps address the following risks
+##### Risks that key management helps address
 
 * [FIN1](#risk-fin-1)
-* [SLS1](#risk-sls-1), [SLS3](#risk-sls-3), [SLS5](#risk-sls-5)
+* [SLS1](#risk-sls-1), [SLS3](#risk-sls-3), [SLS5](#risk-sls-5), [SLS8](#risk-sls-8)
 * [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9)
 * [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK](#risk-hck-4)
-* [GIR6](#risk-gir-6), [GIR14](#risk-gir-14), [GIR16](#risk-gir-16), [GIR18](#risk-gir-18)
-</div>
-
-#### Key Rotation {#sec-mit-key-rotation}
-
-Key rotation following a proper process help protect infrastructure from a potential misuse of credentials.
-
-Best practise is generally "When in doubt, rotate". It is important to rotate keys whenever a data breach occurs,
-but it is widely considered a good practise to require periodic key rotation to mitigate against exposure in the event that a data breach is undetected.
-
-Keys to rotate include, but are not limited to:
-
-* Keys used by signature management tools
-* The vault itself
-* Any SSH keys
-* Any API keys for your cloud infrastructure
-
-<div class="info">
-
-##### Key rotation helps address the following risks
-
-* [SLS8](#risk-sls-8)
-* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7)
+* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7), [GIR14](#risk-gir-14), [GIR16](#risk-gir-16), [GIR18](#risk-gir-18)
 </div>
 
 #### Operational Information Management {#sec-mit-operational-info-management}
@@ -1286,9 +1163,9 @@ Documentation, even if rarely actively read by those responsible for operations 
 
 <div class="info">
 
-##### Operational information management helps address the following risks:
+##### Risks that operational information management helps address:
 
-* [FIN2](#risk-fin-2), [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN7](#risk-fin-6), [FIN9](#risk-fin-9)
+* [FIN2](#risk-fin-2), [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
 * [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS10](#risk-sls-10), [SLS14](#risk-sls-14)
 * [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW16](#risk-dow-16), [DOW18](#risk-dow-18), [DOW21](#risk-dow-21)
 * [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC9](#risk-kec-9)
@@ -1307,9 +1184,9 @@ Best Practise includes having journaled backups of important information.
 
 <div class="info">
 
-##### Deletion Protection helps address the following risks:
+##### Risks that deletion Protection helps address:
 
-* [FIN7](#risk-fin-7)
+* [FIN6](#risk-fin-6)
 * [SLS4](#risk-sls-4)
 * [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW20](#risk-dow-20)
 * [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
@@ -1379,7 +1256,7 @@ without having authorizations they do not need.
 
 <div class="info">
 
-##### Least privilege helps address the following risks
+##### Risks that least privilege helps address
 
 * [FIN1](#risk-fin-1)
 * [SLS8](#risk-sls-8), [SLS9](#risk-sls-9)
@@ -1400,7 +1277,7 @@ covering role changes as well as termination, transfer, and promotion procedures
 
 <div class="info">
 
-##### Employee authorization process helps address the following risks
+##### Risks that employee authorization process helps address
 
 * [FIN1](#risk-fin-1)
 * [DOW4](#risk-dow-4)
@@ -1422,7 +1299,7 @@ and does not allow generic probing mechanisms such as open port scans that can h
 
 <div class="info">
 
-##### Managed network access helps address the following risks
+##### Risks that managed network access helps address
 
 * [HCK4](#risk-hck-4)
 * [GIR9](#risk-gir-9), [GIR17](#risk-gir-17)
@@ -1434,7 +1311,7 @@ Best practice is to use password and related authentication policies to ensure t
 
 <div class="info">
 
-##### Authentication policy helps address the following risks
+##### Risks that authentication policy helps address
 
 * [FIN1](#risk-fin-1)
 * [SLS13](#risk-sls-13)
@@ -1488,7 +1365,7 @@ It is important to log and audit access sufficiently frequently to detect proble
 
 <div class="info">
 
-##### Managed physical access helps address the following risks
+##### Risks that managed physical access helps address
 
 * [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW10](#risk-dow-10)
 * [GIR9](#risk-gir-9), [GIR17](#risk-gir-17)
@@ -1511,7 +1388,7 @@ Likewise, maintaining multiple validators running on separate hardware and softw
 
 <div class="info">
 
-##### Distributed Infrastructure helps address the following risks
+##### Risks that distributed Infrastructure helps address
 
 * [SLS1](#risk-sls-1)
 * [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
@@ -1529,7 +1406,7 @@ These calculations mean economies of scale often enable larger-scale operations 
 
 <div class="info">
 
-##### Protection against utility failure threats helps address the following risks
+##### Risks that protection against utility failure threats helps address
 
 * [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW15](#risk-dow-15)
 </div>
@@ -1542,7 +1419,7 @@ but will generally revolve around siting of facilities, their architecture, and 
 
 <div class="info">
 
-##### Protection against environmental threats helps address the following risks
+##### Risks that protection against environmental threats helps address
 
 * [SLS14](#risk-sls-14), [SLS15](#risk-sls-15)
 * [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW15](#risk-dow-15)
@@ -1560,7 +1437,7 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 <div class="info">
 
-##### Equipment life-cycle management helps address the following risks
+##### Risks that equipment life-cycle management helps address
 
 * [DOW3](#risk-dow-3), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW15](#risk-dow-15), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC8](#risk-kec-8)
@@ -1577,7 +1454,7 @@ Best practices include the use of auditable version control systems, with thorou
 
 <div class="info">
 
-##### Secure development lifecycle helps address the following risks
+##### Risks that secure development lifecycle helps address
 
 
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4)
@@ -1604,7 +1481,7 @@ help ensure that coverage is sufficiently comprehensive to detect errors that ca
 
 <div class="info">
 
-##### Testing and code review helps address the following risks
+##### Risks that testing and code review helps address
 
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4)
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
@@ -1628,7 +1505,7 @@ Additionally, it is important to validate inputs against the relevant parameters
 
 <div class="info">
 
-##### Input checking helps address the following risks
+##### Risks that input checking helps address
 
 * [DOW10](#risk-dow-10)
 * [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC9](#risk-kec-9)
@@ -1664,7 +1541,7 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 
 <div class="info">
 
-##### Not customising third-party software helps address the following risks
+##### Risks that not customising third-party software helps address
 
 * [SLS5](#risk-sls-5), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
@@ -1691,7 +1568,7 @@ while automated tools to track and scan for best practices are available such as
 
 <div class="info">
 
-##### Managing configuration helps address the following risks
+##### Risks that managing configuration helps address
 
 * [SLS1](#risk-sls-1), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6)
 * [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW21](#risk-dow-21)
@@ -1711,7 +1588,7 @@ Protection against malware needs to be implemented on all assets and users need 
 
 <div class="info">
 
-##### Protection against supply-chain malware helps address the following risks
+##### Risks that protection against supply-chain malware helps address
 
 * All [Slashing Risks](#sec-risks-slashing)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW14](#risk-dow-14)
@@ -1729,7 +1606,7 @@ This minimizes a potential blast radius. It is important to run any change (even
 
 <div class="info">
 
-##### Pre-deployment testing helps address the following risks
+##### Risks that pre-deployment testing helps address
 
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS14](#risk-sls-14)
@@ -1743,7 +1620,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 
 <div class="info">
 
-##### Containerized environments help address the following risks
+##### Risks that containerized environments help address
 
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW21](#risk-dow-21)
@@ -1762,9 +1639,9 @@ When correctly configured pipelines and job-mechanisms such as GitHub Actions, A
 
 <div class="info">
 
-##### Process automation helps address the following risks
+##### Risks that process automation helps address
 
-* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 * [DOW4](#risk-dow-4), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
 * [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
@@ -1822,9 +1699,9 @@ Among many aspects of Validator Operations to monitor directly are the following
 
 <div class="info">
 
-###### Blockchain monitoring helps address the following risks
+###### Risks that blockchain monitoring helps address
 
-* [FIN6](#risk-fin-6)
+* [FIN5](#risk-fin-5)
 * All [Slashing Risks](#sec-risks-slashing)
 * [DOW1](#risk-dow-1), [DOW7](#risk-dow-7), [DOW10](#risk-dow-10), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW15](#risk-dow-15), [DOW19](#risk-dow-19)
 * [GIR4](#risk-gir-4)
@@ -1843,7 +1720,7 @@ Among many aspects of Validator Operations to monitor directly are the following
 
 <div class="info">
 
-##### System monitoring helps address the following risks
+##### Risks that system monitoring helps address
 
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4)
 * All [Slashing Risks](#sec-risks-slashing)
@@ -1872,9 +1749,9 @@ such as 2FA configuration or VPNs.
 
 <div class="info">
 
-##### Security and compliance monitoring helps address the following risks
+##### Risks that security and compliance monitoring helps address
 
-* [FIN1](#risk-fin-1), [FIN2](#risk-fin-2), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7), [FIN9](#risk-fin-9)
+* [FIN1](#risk-fin-1), [FIN2](#risk-fin-2), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
 * [DOW4](#risk-dow-4), [DOW10](#risk-dow-10), [DOW12](#risk-dow-12), [DOW19](#risk-dow-19)
 * [KEC8](#risk-kec-8), [FIN2](#risk-fin-2)
 * [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
@@ -1889,7 +1766,7 @@ such as 2FA configuration or VPNs.
 
 <div class="info">
 
-##### Monitoring upgrades helps address the following risks
+##### Risks that monitoring upgrades helps address
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW17](#risk-dow-17), [DOW18](#risk-dow-18), [DOW19](#risk-dow-19)
@@ -1902,7 +1779,7 @@ Detecting that two validators with the same identifiers are running at the same 
 
 <div class="info">
 
-##### Doppelgänger protection helps address the following risks
+##### Risks that doppelgänger protection helps address
 
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS5](#risk-sls-5)
 * [DOW2](#risk-dow-2), [DOW10](#risk-dow-10)
@@ -2028,9 +1905,9 @@ or a more advanced CRM system, depending on the needs of the Node Operator.
 
 
 
-##### Stakeholder management helps address the following risks
+##### Risks that stakeholder management helps address
 
-* [FIN1](#risk-fin-1), [FIN7](#risk-fin-7), [FIN9](#risk-fin-9)
+* [FIN1](#risk-fin-1), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
 * [SPS0](#risk-sps-0)
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 </div>
@@ -2056,9 +1933,9 @@ Best practices for Incident response plans include
 
 <div class="info">
 
-##### Incident response planning helps address the following risks
+##### Risks that incident response planning helps address
 
-* [FIN1](#risk-fin-1), [FIN7](#risk-fin-7), [FIN9](#risk-fin-9)
+* [FIN1](#risk-fin-1), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
 * [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 * [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW10](#risk-dow-10), [DOW21](#risk-dow-21)
 * [HCK3](#risk-hck-3)
@@ -2080,9 +1957,9 @@ with alerting and potentially direct reaction mechanisms. Although learning from
 
 <div class="info">
 
-##### Identifying and responding to security incidents helps address the following risks
+##### Risks that identifying and responding to security incidents helps address
 
-* [FIN7](#risk-fin-7)
+* [FIN6](#risk-fin-6)
 * [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 * All [Downtime Risks](#sec-risks-downtime)
 * [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9)
@@ -2102,9 +1979,9 @@ and consider what changes can be implemented to prevent or mitigate similar even
 
 <div class="info">
 
-##### Analyzing security events helps address the following risks
+##### Risks that analyzing security events helps address
 
-* [FIN9](#risk-fin-9)
+* [FIN7](#risk-fin-7)
 * [SLS5](#risk-sls-5), [SLS9](#risk-sls-9), [SLS14](#risk-sls-14), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 * [DOW4](#risk-dow-4), [DOW6](#risk-dow-6), [DOW10](#risk-dow-10)
 * [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9)
@@ -2126,7 +2003,7 @@ Sample Disaster Recovery Plan templates:
 * [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 * [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
 
-##### Disaster recovery plans help address the following risks
+##### Risks that disaster recovery plans help address
 
 * [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
 * [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC8](#risk-kec-8), [KEC9](#risk-kec-9)
@@ -2160,7 +2037,10 @@ offer further information on how to plan and implement simulations, and how to d
 * [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 * [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
 
-##### Incident simulations help address all risks
+##### Risks that incident simulations help address
+
+- All risks
+
 </div>
 
 #### Incident Communication {#sec-mit-incident-communication}
@@ -2176,9 +2056,9 @@ Best practice for [=Incident Communication=] includes providing a detailed post-
 
 <div class="info">
 
-##### Incident communications help address the following risks:
+##### Risks that incident communications help address:
 
-* [FIN9](#risk-fin-7)
+* [FIN7](#risk-fin-6)
 * [HCK4](#risk-hck-4)
 * [SPS0](#risk-sps-0)
 * [RER1](#risk-rer-1), [RER2](#risk-rer-2), [RER3](#risk-rer-3)
@@ -2223,7 +2103,7 @@ External suppliers can change terms, shut down products or support, and key staf
 
 <div class="info">
 
-##### Assessment of activities' relevance helps address the following risks
+##### Assessing dependency replacement helps address the following risks
 
 - [FIN1](#risk-fin-1)
 - [SLS6](#risk-sls-6)
@@ -2255,7 +2135,7 @@ Best practice is to ensure that where possible, [processes are automated](#proce
 
 ##### Following processes helps address the following risks
 
-* [FIN1](#risk-fin-1), [FIN2](#risk-fin-2), [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
+* [FIN1](#risk-fin-1), [FIN2](#risk-fin-2), [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 </div>
 
 ### Controls for Financial and Regulatory Risk {#sec-controls-fin-reg}
@@ -2268,7 +2148,7 @@ Best practice is to ensure that where possible, [processes are automated](#proce
 
 ##### Payment rails help address the following risks
 
-* [FIN2](#risk-fin-2), [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
+* [FIN2](#risk-fin-2), [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 * [HCK1](#risk-hck-1)
 * [RER4](#risk-rer-4)
 </div>
@@ -2281,7 +2161,7 @@ Best practice is to ensure that where possible, [processes are automated](#proce
 
 ##### Updated regulatory compliance helps address the following risks:
 
-* [FIN7](#risk-fin-7)
+* [FIN6](#risk-fin-6)
 * [RER2](#risk-rer-2)
 </div>
 
@@ -2339,7 +2219,7 @@ In the case of corporate third-party providers, sensible due diligence does not 
 
 ##### Training helps address the following Risks
 
-* [FIN1](#risk-fin-1), [FIN9](#risk-fin-9)
+* [FIN1](#risk-fin-1), [FIN7](#risk-fin-7)
 * [SLS17](#risk-sls-17)
 * [DOW21](#risk-dow-21)
 * [GIR16](#risk-gir-16), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
@@ -2499,7 +2379,7 @@ These requirements cover all information required by controls in this specificat
 <div class="info">
 
 ##### Protection against information loss helps address the following risks:
-* [FIN7](#risk-fin-7)
+* [FIN6](#risk-fin-6)
 * [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12)
 * [DOW16](#risk-dow-18), [DOW16](#risk-dow-18)
 * [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
@@ -2516,7 +2396,7 @@ Best practice is to use a documentation management system. While this is likely 
 <div class="info">
 
 ##### Recording operational knowledge helps address the following risks:
-* [FIN1](#risk-fin-1), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
+* [FIN1](#risk-fin-1), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 * [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS14](#risk-sls-14)
 * [DOW1](#risk-dow-1), [DOW4](#risk-dow-4), [DOW16](#risk-dow-18), [DOW16](#risk-dow-18)
 * [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC6](#risk-kec-6), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10), [KEC11](#risk-kec-11)
@@ -2822,7 +2702,7 @@ This is a broad area. A few specific controls are included in this specification
 * [DOW2](#risk-dow-2), [DOW10](#risk-dow-10), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW20](#risk-dow-20)
 * [KEC7](#risk-kec-7)
 * [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5)
-* [GIR6](#risk-gir-6), [GIR10](#risk-gir-10), [GIR11](#risk-gir-11), [GIR12](#risk-gir-12), [GIR13](#risk-gir-13), [GIR14](#risk-gir-14), [GIR15](#risk-gir-15)
+* [GIR6](#risk-gir-6), [GIR10](#risk-gir-10), [GIR11](#risk-gir-11), [GIR13](#risk-gir-13), [GIR14](#risk-gir-14), [GIR15](#risk-gir-15)
 * [SPS0](#risk-sps-0)
 </div>
 
@@ -2885,7 +2765,7 @@ are held to high standards of confidentiality, and work with a well-defined set 
 * [[?SOC2]] CC 8.1
 
 ##### Checking third-party software helps address the following Risks
-* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS6](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 * [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14)
 * [KEC7](#risk-kec-7)
@@ -3001,7 +2881,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 <div class="info">
 
-##### An emergency rollback procedure helps address the following risks
+##### Emergency rollback helps address the following risks
 
 * [FIN3](#risk-fin-3), [FIN](#risk-fin-4), [FIN](#risk-fin-5), [FIN](#risk-fin-6)
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
@@ -3027,7 +2907,7 @@ and to show operational strengths, and plans to address perceived weaknesses and
 
 ##### Operational communications help address the following risks
 
-* [FIN7](#risk-fin-7)
+* [FIN6](#risk-fin-6)
 * [RER5](#risk-rer-5)
 </div>
 
@@ -3212,7 +3092,8 @@ function Summary () {
 //Blergh! This is pretty hacky hard-coding, but it works.
 
   var controlsTable = document.createElement("table");
-  controlsTable.style = "width:180%"
+  controlsTable.id = "summaryTable";
+  controlsTable.style = "max-width: 90%";
   controlsTable.appendChild(document.createElement("thead"));
   headerRow = document.createElement("tr");
 
