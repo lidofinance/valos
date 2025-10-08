@@ -990,6 +990,11 @@ To avoid double signing, validators can maintain a history of messages they sign
 This data is crucial, as inconsistencies can cause a double-signing event.
 The data needs to be reliably persistent, and properly connected to the systems that use it.
 
+A common format for anti-slashing data is defined by [[[?EIP3076]]].
+
+More information on anti-slashing databases (and links to documentation for other clients) are available from the
+[Lighthouse Client anti-slashing documentation](https://lighthouse-book.sigmaprime.io/validator_slashing_protection.html) [[?LighthouseAS]].
+
 <div class="info">
 
 ##### Risks that a local anti-slashing database helps address
@@ -3266,6 +3271,13 @@ The following have contributed directly to the production of this specific versi
         publisher: "Ethereum Foundation",
         href: "https://ethereum.org/staking/dvt/"
       },
+      EIP3076: {
+        title: "Slashing Protection Interchange Format",
+        authors: ["Michael Sproul (@michaelsproul)","Sacha Saint-Leger (@sachayves)","Danny Ryan (@djrtwo)"],
+        date: "2020-10-27",
+        publisher: "Ethereum Foundation",
+        href: "https://eips.ethereum.org/EIPS/eip-3076"
+      },
       ETHdiverse: {
         title: "Ethereum Merge: Run the majority client at your own peril!",
         authors: ["Dankrad Feist"],
@@ -3289,6 +3301,11 @@ The following have contributed directly to the production of this specific versi
         publisher: "ISO",
         date: "2022",
         href: "https://www.iso.org/standard/27001"
+      },
+      LighthouseAS: {
+        title: "Slashing Protection - Lighthouse Book",
+        publisher: "SigmaPrime",
+        href: "https://lighthouse-book.sigmaprime.io/validator_slashing_protection.html"
       },
       NIST800_115: {
         title: "Technical Guide to Information Security Testing and Assessment",
