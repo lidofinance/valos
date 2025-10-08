@@ -962,7 +962,10 @@ and then use appropriate technology to meet those goals.
 Updates to software components provided by third-parties often address newly-discovered or longstanding vulnerabilities.
 It is a best practice to update software regularly, but it is important to [check for vulnerabilities](#req-check-vulnerabilities)
 that can be introduced by an upgrade as part of a supply-chain attack, and to verify that any customisation of open-source software, or
-[specific configuration](#req-check-config-on-update) options, are compatible with an update and do not create new vulnerabilities on updating.
+[specific configuration](#req-check-config-on-update) options, as well as other software used by the node operator,
+are all compatible with an update and do not create new vulnerabilities on updating.
+
+Best practise includes "version-pinning", actively managing dependencies, and testing updates, rather than automatically applying updates that are pushed from a vendor.
 
 <div class="info">
 
@@ -1520,7 +1523,7 @@ As well as having control over the update process, it is important to have the c
 * Use [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) for infrastructure.
 * Using GIT to manage infrastructure code and configurations.
 * Use database migration systems such as [Liquibase](https://www.liquibase.org)
-* The "Blue-Green Deployment pattern" [[[?WikipediaBG]]] uses two identical environments with a staged transfer of data,
+* The "Blue-Green Deployment pattern" [[[?WikipediaBG]]] [[?WikipediaBG]] uses two identical environments with a staged transfer of data,
   that can enable rapid rollback if a problem is detected.
 </div>
 
@@ -1599,7 +1602,7 @@ Protection against malware needs to be implemented on all assets and users need 
 
 Use separate tests and staging environments
 
-This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first, and then roll it out in a staged fashion. If it causes some slashing event, it is then contained to the few nodes that it was rolled out to.
+This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first to maximize the likelihood that any errors can be discovered before they impact a production environment.
 
 <div class="info">
 
@@ -2228,6 +2231,14 @@ In the case of corporate third-party providers, sensible due diligence does not 
 #### Keep Software Updated
 
 <a href="#req-update-3p-software">🔗</a> <b id="req-update-3p-software">Node Operators MUST keep third-party software up to date</b>
+
+This control does not imply that the latest available update is automatically applied,
+rather that Node Operators have clear and effective mechanisms to ensure they are aware of updates and apply them in accordance with their update management procedures,
+taking into account the controls in <a href="#sec-controls-updates"></a>.
+
+Best practise is to monitor software in use, to know when an update is available,
+and to update as fast as possible while following procedures to manage those updates securely.
+In some cases, assessing an update will lead to a decision that there is no need to apply a specific update, or a risk in doing so that outweighs the benefits.
 
 <div class="info">
 
@@ -2872,6 +2883,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 ##### Emergency rollback helps address the following risks
 
+* [FIN3](#risk-fin-3), [FIN](#risk-fin-4), [FIN](#risk-fin-5), [FIN](#risk-fin-6)
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR4](#risk-gir-4), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR21](#risk-gir-21)
