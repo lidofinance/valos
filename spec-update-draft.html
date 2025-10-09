@@ -864,6 +864,8 @@ as well as potential costs of compensation or legal costs.
 
 It is also useful to consider opportunity costs such as reputational damage, or competitors taking advantage of an incident to promote themselves as a better alternative.
 
+[Validator Penalty Simulator](https://portal.llamarisk.com/penalty/slashing)
+
 ##### Assessing Incident Probability {#sec-mitigating-assess-risk-probability}
 
 Predicting the likelihood of an unexpected future event is generally difficult, and results are unlikely to precisely match the predictions.
@@ -978,8 +980,17 @@ The data needs to be reliably persistent, and properly connected to the systems 
 
 A common format for anti-slashing data is defined by [[[?EIP3076]]].
 
-More information on anti-slashing databases (and links to documentation for other clients) are available from the
-[Lighthouse Client anti-slashing documentation](https://lighthouse-book.sigmaprime.io/validator_slashing_protection.html) [[?LighthouseAS]].
+<details>
+  <summary>Tools to support anti-slashing databases</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>[Lighthouse](https://lighthouse-book.sigmaprime.io/validator_slashing_protection.html)</li>
+    <li>[Lodestar](https://chainsafe.github.io/lodestar/reference/cli/#validator-slashing-protection-export)</li>
+    <li>[Nimbus](https://nimbus.guide/migration.html#2-export-slashing-protection-history)</li>
+    <li>[Prysm](https://docs.prylabs.network/docs/wallet/slashing-protection#exporting-your-validators-slashing-protection-history)</li>
+    <li>[Teku](https://docs.teku.consensys.net/HowTo/Prevent-Slashing#export-a-slashing-protection-file)</li>
+  </ul>
+</details>
 
 <div class="info">
 
@@ -1001,7 +1012,15 @@ As well as the use of various kind of "<dfn>multi-sig</dfn>", which can include 
 or incorporate such techniques as multi-part compute ("MPC") or the like,
 signature management tools can include automated verification steps in the process of authorizing a transaction.
 
-Tools such as Web3Signer and Dirk help manage signatures securely, when properly used.
+<details>
+  <summary>Tools to support signature management</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>[Web3Signer](https://docs.web3signer.consensys.net)</li>
+    <li>[Dirk](https://github.com/attestantio/dirk)</li>
+  </ul>
+</details>
+
 
 <div class="info">
 
@@ -1107,7 +1126,7 @@ by making it more difficult for malicious entities to access the information and
 
 #### Key Management {#sec-mit-key-management}
 
-A node operator'operations potentially encompass the use of a range of keys, including amoong others
+A node operator'operations potentially encompass the use of a range of keys, including among others
 
 * Keys used by signature management tools
 * A vault
@@ -1126,6 +1145,15 @@ These standards generally include
 - "key rotation", i.e. periodic changes of keys as well as rapid managed changes if a data breach occurs.
 
 Modern vault systems enable the enforcement of policies to ensure that access to keys is only available with verified roles, and deletion is managed according to established protocols.
+
+<details>
+  <summary>Tools to support key management</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>[Web3Signer](https://docs.web3signer.consensys.net)</li>
+    <li>[Dirk](https://github.com/attestantio/dirk)</li>
+  </ul>
+</details>
 
 <div class="info">
 
@@ -1200,13 +1228,22 @@ Tracking this information is important to ensure that access can be audited and 
 **Examples for best practices:**
 
 * Creation and continuous analysis of Software Bill of Materials [[?SBOM]].
-* Use of Clients, roles and groups when using [AWS IAM](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html).
 * Have an internal virtual private network and only have well-defined endpoints be accessible from the web.
 * Use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) mechanism.
 * Disable meta-data serving through public endpoints (like what server is running in what version).
 * Limit the outbound traffic of a node that runs a certain service.
 * Apply rate limits to ensure that internal services cannot unintentionally DDos each other.
 * Where possible apply the use of authentication tokens that have a limited lifetime.
+
+<details>
+  <summary>Tools to support signature management</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>[Web3Signer](https://docs.web3signer.consensys.net)</li>
+    <li>[Dirk](https://github.com/attestantio/dirk)</li>
+    <li>[AWS IAM](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html)
+  </ul>
+</details>
 
 <div class="info">
 
@@ -1491,6 +1528,26 @@ Unchecked inputs are a major vector for a range of attacks. These include
 Ideally, the load balancer in front of the node filters out all traffic with payloads that cause overflow.
 Additionally, it is important to validate inputs against the relevant parameters, particularly where these allow a range of functionalities to be triggered.
 
+Best practice includes using a data schema such as [JSON schema](https://json-schema.org) and [schema evolution techniques](https://en.wikipedia.org/wiki/Schema_evolution),
+with defined minimum and maximum input sizes and MIME types.
+
+<details>
+  <summary>Tools to support input and output validation</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>[ajv](https://www.npmjs.com/package/ajv)</li>
+    <li>[Apache Ranger](https://ranger.apache.org)</li>
+    <li>In the Apache web-server, control request sizes of different pieces of the request:<ul>
+      <li>[LimitRequestBody](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestbody)</li>
+      <li>[LimitRequestFields](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestfields)</li></ul></li>
+    <li>ORM systems exist for almost all programming languages and frameworks, such as<ul>
+        <li>[Hibernate](https://hibernate.org/orm/documentation/getting-started/)</li>
+        <li>[SQLAlchemy](https://www.sqlalchemy.org)</li>
+        <li>[TypeORM](https://typeorm.io)</li> </ul></li>
+    <li>[validatorjs](https://github.com/validatorjs/validator.js)</li>
+  </ul>
+</details>
+
 <div class="info">
 
 ##### Risks that input checking can mitigate
@@ -1549,10 +1606,15 @@ Software configuration to follow includes, among others:
   * Database configurations
   * Webserver/Load balancer configurations
 
-[CIS benchmarks](https://www.cisecurity.org) provide configuration standards for many pieces of software,
-while automated tools to track and scan for best practices are available such as [CoGuard](https://www.coguard.io).
+[CIS benchmarks](https://www.cisecurity.org) provide configuration standards for many pieces of software.
 
-
+<details>
+  <summary>Tools to support configuration management</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>[CoGuard](https://www.coguard.io)</li>
+  </ul>
+</details>
 
 <div class="info">
 
@@ -1570,8 +1632,16 @@ Protection against malware needs to be implemented on all assets and users need 
 
 **Examples for best practices:**
 
-- Regularly check the latest [CVE entries.](https://cve.mitre.org), to cover all software tools used. Tools such as [Trivy](https://github.com/aquasecurity/trivy) can help with this.
+- Regularly check the latest [CVE entries.](https://cve.mitre.org), to cover all software tools used.
 - Specifically check for any announcements of vulnerabilities before upgrading any software component
+
+<details>
+  <summary>Tools to support supply-chain protection</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>[Trivy](https://github.com/aquasecurity/trivy)</li>
+  </ul>
+</details>
 
 <div class="info">
 
@@ -1771,15 +1841,19 @@ The following are among indicators of a security issue, and information that can
 If two validators with the same identifiers are running at the same time is important to shut one down as fast as possible.
 Most validators provide built-in mechanisms to detect doppelgangers. Other tools and technicques can also detect and act on this.
 
-##### Tools to support Doppelgänger protection
-
-- [Lighthouse](https://lighthouse-book.sigmaprime.io/validator_doppelganger.html)
-- [Prysm](https://prysm.offchainlabs.com/docs/backup-and-migration/slashing-protection/#what-should-i-do-if-i-cant-exportimport-my-slashing-history)
-- [Teku](https://docs.teku.consensys.io/how-to/prevent-slashing/detect-doppelgangers)
-- [Nimbus](https://nimbus.guide/doppelganger-detection.html)
-- [Doppelganger protection in `ssv.network`](https://pkg.go.dev/github.com/ssvlabs/ssv/doppelganger)
-- [DoppelBuster](https://github.com/SimplyStaking/DoppelBuster).
-- StatefulSet handling in Kubernetes
+<details>
+  <summary>Tools to support Doppelgänger protection</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>[Lighthouse](https://lighthouse-book.sigmaprime.io/validator_doppelganger.html)</li>
+    <li>[Prysm](https://prysm.offchainlabs.com/docs/backup-and-migration/slashing-protection/)</li>
+    <li>[Teku](https://docs.teku.consensys.io/how-to/prevent-slashing/detect-doppelgangers)</li>
+    <li>[Nimbus](https://nimbus.guide/doppelganger-detection.html)</li>
+    <li>[Doppelganger protection in `ssv.network`](https://pkg.go.dev/github.com/ssvlabs/ssv/doppelganger)</li>
+    <li>[DoppelBuster](https://github.com/SimplyStaking/DoppelBuster)</li>
+    <li>StatefulSet handling in Kubernetes</li>
+  </ul>
+</details>
 
 <div class="info">
 
@@ -1790,23 +1864,20 @@ Most validators provide built-in mechanisms to detect doppelgangers. Other tools
 * [SPS0](#risk-sps-0)
 </div>
 
-
-
-<div class="info">
-
-#### Tools for Monitoring
-
-Many tools are available to support monitoring. The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation
-
-* Within AWS, Cognito's [Userpool Addons for auditing authentications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html) and the [WAF module](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html) to filter anomalies are just examples of the range of tools available.
-* [ELK stack](https://www.elastic.co/elastic-stack/)
-* [ESD monitors slashing events on the Ethereum chain](https://github.com/attestantio/esd)
-* [Ethereum validator monitoring](https://github.com/lidofinance/ethereum-validators-monitoring)
-* [Grafana](https://grafana.com) - an example of [alerting setup in Grafana](https://grafana.com/docs/grafana/latest/alerting/set-up/)
-* [MEV monitoring tool from SimplyStaking](https://github.com/SimplyStaking/eth-block-proposal-monitor)
-* [Prometheus](https://prometheus.io/docs/introduction/overview/)
-* [Wazuh](https://wazuh.com)
-</div>
+<details>
+  <summary>Tools to support Monitoring</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>Within AWS, Cognito's [Userpool Addons for auditing authentications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html) and the [WAF module](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html) to filter anomalies are just examples of the range of tools available</li>
+    <li>[ELK stack](https://www.elastic.co/elastic-stack/)</li>
+    <li>[ESD monitors slashing events on the Ethereum chain](https://github.com/attestantio/esd)</li>
+    <li>[Ethereum validator monitoring](https://github.com/lidofinance/ethereum-validators-monitoring)</li>
+    <li>[Grafana](https://grafana.com) - an example of [alerting setup in Grafana](https://grafana.com/docs/grafana/latest/alerting/set-up/)</li>
+    <li>[MEV monitoring tool from SimplyStaking](https://github.com/SimplyStaking/eth-block-proposal-monitor)</li>
+    <li>[Prometheus](https://prometheus.io/docs/introduction/overview/)
+    <li>[Wazuh](https://wazuh.com)</li>
+  </ul>
+</details>
 
 ### Communications and Incident Response {#sec-mitigations-incident-response}
 
@@ -1868,25 +1939,24 @@ Others will want to know that they are informed in case of security incidents, o
 but prefer a lower volume of information. It is likely that different circumstances will mean that a given Stakeholder moves between "categories",
 with different communications strategies or procedures being more appropriate depending on specific context.
 
-<div class="info-tools">
 
-##### Tools for stakeholder communication management include
 
-A stakeholder register listing all stakeholders with details about their roles, interests, and impact on the organization.
-This can be helpful for managing stakeholders, and effective communication with them.
-It can be as simple as a [Stakeholder Register Spreadsheet](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true),
-or a more advanced CRM system, depending on the needs of the Node Operator.
+<details>
+  <summary>Tools to support stakeholder management</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>Broadcast communication tools include Websites, X (the former Twitter), BlueSky, Facebook/Instagram</li>
+    <li>A Stakeholder Map](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base/~gitbook/image?url=https%3A%2F%2F3935398949-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FxTRnDyIanlwU7cCKcAju%252Fuploads%252Fhdg4kca5vuEMKsr01CxP%252FStakeholder_Map_Template.png%3Falt%3Dmedia%26token%3Dc83db7a4-f0ed-464f-ab69-630ba1450597&width=768&dpr=4&quality=100&sign=7ea4928c&sv=2)</li>
+    <li>[A Stakeholder Register Spreadsheet](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing)</li>
+    <li>CRM systems</li>
+    <li>Email</li>
+    <li>Messaging services such as Telegram, Discord, Slack, Signal, and Whatsapp</li>
+  </ul>
+</details>
+
 A number of jurisdictions (such as the EU, with the [[?GDPR]]) regulate the use of information about individuals,
 and it is important to understand and comply with such regulations to avoid reputational, legal and financial risks.
 
-
-A [Stakeholder Map](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base/~gitbook/image?url=https%3A%2F%2F3935398949-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FxTRnDyIanlwU7cCKcAju%252Fuploads%252Fhdg4kca5vuEMKsr01CxP%252FStakeholder_Map_Template.png%3Falt%3Dmedia%26token%3Dc83db7a4-f0ed-464f-ab69-630ba1450597&width=768&dpr=4&quality=100&sign=7ea4928c&sv=2) can help categorize individual stakeholders into different communication groups. It can be used as an initial assessment for further review and adaption to your individual stakeholder landscape. Review each stakeholder individually, to assess the appropriate communication plans.
-
-Common broadcast communication tools that stakeholders are likely to find familiar and actively use include Websites, X (the former Twitter), BlueSky, Facebook/Instagram, and the like.
-
-Email, and message-based services such as Telegram, Discord, Slack, Signal, and Whatsapp are widely-used as two-way communication tools,
-
-</div>
 <div class="info">
 
 ##### Risks that stakeholder management can mitigate
@@ -2547,7 +2617,6 @@ Current best practice includes assessing the cost and risk associated with movin
 * [GIR10](#risk-gir-10)
 </div>
 
-
 ### Controls for Automated Monitoring {#sec-controls-monitoring}
 
 #### Log and Analyze Network Traffic
@@ -2682,7 +2751,6 @@ as well as processes that ensure equipment is correctly retired including removi
 * [HCK4](#risk-hck-4), [HCK6](#risk-hck-6)
 </div>
 
-
 ### Controls for Development and Update Process {#sec-controls-updates}
 
 #### Develop Software as Secure by Design
@@ -2698,7 +2766,6 @@ This is a broad area. A few specific controls are included in this specification
 
 ##### Secure software development lifecycle (SSDLC) helps address the following risks
 
-
 * All [Slashing Risks](#sec-risks-slashing)
 * [DOW2](#risk-dow-2), [DOW10](#risk-dow-10), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW20](#risk-dow-20)
 * [KEC7](#risk-kec-7)
@@ -2706,7 +2773,6 @@ This is a broad area. A few specific controls are included in this specification
 * [GIR6](#risk-gir-6), [GIR10](#risk-gir-10), [GIR11](#risk-gir-11), [GIR13](#risk-gir-13), [GIR14](#risk-gir-14), [GIR15](#risk-gir-15)
 * [SPS0](#risk-sps-0)
 </div>
-
 
 #### Follow Update Procedures
 
@@ -2797,16 +2863,6 @@ are held to high standards of confidentiality, and work with a well-defined set 
 <a href="#req-protect-vs-ssrf">🔗</a> <b id="req-protect-vs-ssrf">Components SHOULD use [[[CORS]]] and [[[CSP]]] to protect against Server Side Request Forgery</b>
 
 These requirements ensure that data passed between software components can be handled safely by the receiving component. It includes data entered manually by users.
-
-Best practice includes using JSON [schema](https://json-schema.org) and [schema evolution techniques](https://en.wikipedia.org/wiki/Schema_evolution),
-and defined minimum and maximum input sizes and MIME types ([Microsoft IIS example](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/mimemap)).
-
-Multiple tools can help meet these requirements, including
-* [ajv](https://www.npmjs.com/package/ajv), [validatorjs](https://github.com/validatorjs/validator.js), [Apache Ranger](https://ranger.apache.org)
-* ORM systems exist for almost all programming languages and frameworks. Some of the most common ones are [Hibernate](https://hibernate.org/orm/documentation/getting-started/), [TypeORM](https://typeorm.io) and [SQLAlchemy](https://www.sqlalchemy.org).
-* In the Apache web-server, one can control the request size of different pieces of the request:
-  * [LimitRequestBody](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestbody)
-  * [LimitRequestFields](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestfields)
 
 <div class="info">
 
@@ -3041,8 +3097,12 @@ The original content of this specification was developed as the D.U.C.K Knowledg
 In updating it, there are several changes being made. The key change is to move from a general explanation of risks and good practices
 to a specification that is well-suited to assessment of conformance.
 
-Several somewhat cosmetic-seeming changes have been made. Most obviously, the name has been changed to ValOS - the Validator Operator Standard -
+Several somewhat cosmetic changes have been made. Most obviously, the name has been changed to ValOS - the Validator Operator Standard -
 and instead of a multi-page website it is available primarily as a single-page specification, in particular enabling easier use offline.
+
+More importantly, there is a set of controls specific to ValOS, rather than only references to individual controls from other frameworks.
+
+
 
 The update process aims to meet some general goals:
 
