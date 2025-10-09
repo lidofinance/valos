@@ -10,7 +10,7 @@
     <style>
     td, th {border: 1px black solid; padding: 0.3em 1em}
     p:has(b[id^=req]) {border: 1px solid blue; background-color: #ffd}
-    .info {background-color:#efe}
+    .info, details {background-color:#efe; padding: 0em 0em 0.5em 1em}
     tr:has(option:nth-child(2):checked), tr:has(option:nth-child(3):checked) {background-color: #9f9}
     tr:has(option:nth-child(4):checked) {background-color: #ff9}
     tr:has(option:nth-child(5):checked) {background-color: #f99}
@@ -984,11 +984,11 @@ A common format for anti-slashing data is defined by [[[?EIP3076]]].
   <summary>Tools to support anti-slashing databases</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li>[Lighthouse](https://lighthouse-book.sigmaprime.io/validator_slashing_protection.html)</li>
-    <li>[Lodestar](https://chainsafe.github.io/lodestar/reference/cli/#validator-slashing-protection-export)</li>
-    <li>[Nimbus](https://nimbus.guide/migration.html#2-export-slashing-protection-history)</li>
-    <li>[Prysm](https://docs.prylabs.network/docs/wallet/slashing-protection#exporting-your-validators-slashing-protection-history)</li>
-    <li>[Teku](https://docs.teku.consensys.net/HowTo/Prevent-Slashing#export-a-slashing-protection-file)</li>
+    <li><a href="https://lighthouse-book.sigmaprime.io/validator_slashing_protection.html">Lighthouse</a></li>
+    <li><a href="https://chainsafe.github.io/lodestar/reference/cli/#validator-slashing-protection-export">Lodestar</a></li>
+    <li><a href="https://nimbus.guide/migration.html#2-export-slashing-protection-history">Nimbus</a></li>
+    <li><a href="https://docs.prylabs.network/docs/wallet/slashing-protection#exporting-your-validators-slashing-protection-history">Prysm</a></li>
+    <li><a href="https://docs.teku.consensys.net/HowTo/Prevent-Slashing#export-a-slashing-protection-file">Teku</a></li>
   </ul>
 </details>
 
@@ -1016,8 +1016,8 @@ signature management tools can include automated verification steps in the proce
   <summary>Tools to support signature management</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li>[Web3Signer](https://docs.web3signer.consensys.net)</li>
-    <li>[Dirk](https://github.com/attestantio/dirk)</li>
+    <li><a href="https://docs.web3signer.consensys.net">Web3Signer</a></li>
+    <li><a href="https://github.com/attestantio/dirk">Dirk</a></li>
   </ul>
 </details>
 
@@ -1150,8 +1150,8 @@ Modern vault systems enable the enforcement of policies to ensure that access to
   <summary>Tools to support key management</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li>[Web3Signer](https://docs.web3signer.consensys.net)</li>
-    <li>[Dirk](https://github.com/attestantio/dirk)</li>
+    <li><a href="https://docs.web3signer.consensys.net">Web3Signer</a></li>
+    <li><a href="https://github.com/attestantio/dirk">Dirk</a></li>
   </ul>
 </details>
 
@@ -1239,9 +1239,9 @@ Tracking this information is important to ensure that access can be audited and 
   <summary>Tools to support signature management</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li>[Web3Signer](https://docs.web3signer.consensys.net)</li>
-    <li>[Dirk](https://github.com/attestantio/dirk)</li>
-    <li>[AWS IAM](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html)
+    <li><a href="https://docs.web3signer.consensys.net">Web3Signer</a></li>
+    <li><a href="https://github.com/attestantio/dirk">Dirk</a></li>
+    <li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">AWS IAM</a>
   </ul>
 </details>
 
@@ -1535,16 +1535,16 @@ with defined minimum and maximum input sizes and MIME types.
   <summary>Tools to support input and output validation</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li>[ajv](https://www.npmjs.com/package/ajv)</li>
-    <li>[Apache Ranger](https://ranger.apache.org)</li>
+    <li><a href="https://www.npmjs.com/package/ajv">ajv</a></li>
+    <li><a href="https://ranger.apache.org">Apache Ranger</a></li>
     <li>In the Apache web-server, control request sizes of different pieces of the request:<ul>
-      <li>[LimitRequestBody](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestbody)</li>
-      <li>[LimitRequestFields](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestfields)</li></ul></li>
+      <li><a href="https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestbody">LimitRequestBody</a></li>
+      <li><a href="https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestfields">LimitRequestFields</a></li></ul></li>
     <li>ORM systems exist for almost all programming languages and frameworks, such as<ul>
-        <li>[Hibernate](https://hibernate.org/orm/documentation/getting-started/)</li>
-        <li>[SQLAlchemy](https://www.sqlalchemy.org)</li>
-        <li>[TypeORM](https://typeorm.io)</li> </ul></li>
-    <li>[validatorjs](https://github.com/validatorjs/validator.js)</li>
+        <li><a href="https://hibernate.org/orm/documentation/getting-started/">Hibernate</a></li>
+        <li><a href="https://www.sqlalchemy.org">SQLAlchemy</a></li>
+        <li><a href="https://typeorm.io">TypeORM</a></li> </ul></li>
+    <li><a href="https://github.com/validatorjs/validator.js">validatorjs</a></li>
   </ul>
 </details>
 
@@ -1612,7 +1612,7 @@ Software configuration to follow includes, among others:
   <summary>Tools to support configuration management</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li>[CoGuard](https://www.coguard.io)</li>
+    <li><a href="https://www.coguard.io">CoGuard</a></li>
   </ul>
 </details>
 
@@ -1639,7 +1639,7 @@ Protection against malware needs to be implemented on all assets and users need 
   <summary>Tools to support supply-chain protection</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li>[Trivy](https://github.com/aquasecurity/trivy)</li>
+    <li><a href="https://github.com/aquasecurity/trivy">Trivy</a></li>
   </ul>
 </details>
 
@@ -1845,12 +1845,12 @@ Most validators provide built-in mechanisms to detect doppelgangers. Other tools
   <summary>Tools to support Doppelgänger protection</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li>[Lighthouse](https://lighthouse-book.sigmaprime.io/validator_doppelganger.html)</li>
-    <li>[Prysm](https://prysm.offchainlabs.com/docs/backup-and-migration/slashing-protection/)</li>
-    <li>[Teku](https://docs.teku.consensys.io/how-to/prevent-slashing/detect-doppelgangers)</li>
-    <li>[Nimbus](https://nimbus.guide/doppelganger-detection.html)</li>
-    <li>[Doppelganger protection in `ssv.network`](https://pkg.go.dev/github.com/ssvlabs/ssv/doppelganger)</li>
-    <li>[DoppelBuster](https://github.com/SimplyStaking/DoppelBuster)</li>
+    <li><a href="https://lighthouse-book.sigmaprime.io/validator_doppelganger.html">Lighthouse</a></li>
+    <li><a href="https://prysm.offchainlabs.com/docs/backup-and-migration/slashing-protection/">Prysm</a></li>
+    <li><a href="https://docs.teku.consensys.io/how-to/prevent-slashing/detect-doppelgangers">Teku</a></li>
+    <li><a href="https://nimbus.guide/doppelganger-detection.html">Nimbus</a></li>
+    <li><a href="https://pkg.go.dev/github.com/ssvlabs/ssv/doppelganger">Doppelganger protection in `ssv.network`</a></li>
+    <li><a href="https://github.com/SimplyStaking/DoppelBuster">DoppelBuster</a></li>
     <li>StatefulSet handling in Kubernetes</li>
   </ul>
 </details>
@@ -1869,13 +1869,13 @@ Most validators provide built-in mechanisms to detect doppelgangers. Other tools
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
     <li>Within AWS, Cognito's [Userpool Addons for auditing authentications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html) and the [WAF module](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html) to filter anomalies are just examples of the range of tools available</li>
-    <li>[ELK stack](https://www.elastic.co/elastic-stack/)</li>
-    <li>[ESD monitors slashing events on the Ethereum chain](https://github.com/attestantio/esd)</li>
-    <li>[Ethereum validator monitoring](https://github.com/lidofinance/ethereum-validators-monitoring)</li>
-    <li>[Grafana](https://grafana.com) - an example of [alerting setup in Grafana](https://grafana.com/docs/grafana/latest/alerting/set-up/)</li>
-    <li>[MEV monitoring tool from SimplyStaking](https://github.com/SimplyStaking/eth-block-proposal-monitor)</li>
-    <li>[Prometheus](https://prometheus.io/docs/introduction/overview/)
-    <li>[Wazuh](https://wazuh.com)</li>
+    <li><a href="https://www.elastic.co/elastic-stack/">ELK stack</a></li>
+    <li><a href="https://github.com/attestantio/esd">ESD monitors slashing events on the Ethereum chain</a></li>
+    <li><a href="https://github.com/lidofinance/ethereum-validators-monitoring">Ethereum validator monitoring</a></li>
+    <li><a href="https://grafana.com/docs/grafana/latest/alerting/set-up/">Grafana](https://grafana.com) - an example of [alerting setup in Grafana</a></li>
+    <li><a href="https://github.com/SimplyStaking/eth-block-proposal-monitor">MEV monitoring tool from SimplyStaking</a></li>
+    <li><a href="https://prometheus.io/docs/introduction/overview/">Prometheus</a>
+    <li><a href="https://wazuh.com">Wazuh</a></li>
   </ul>
 </details>
 
@@ -1947,7 +1947,7 @@ with different communications strategies or procedures being more appropriate de
   <ul>
     <li>Broadcast communication tools include Websites, X (the former Twitter), BlueSky, Facebook/Instagram</li>
     <li>A Stakeholder Map](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base/~gitbook/image?url=https%3A%2F%2F3935398949-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FxTRnDyIanlwU7cCKcAju%252Fuploads%252Fhdg4kca5vuEMKsr01CxP%252FStakeholder_Map_Template.png%3Falt%3Dmedia%26token%3Dc83db7a4-f0ed-464f-ab69-630ba1450597&width=768&dpr=4&quality=100&sign=7ea4928c&sv=2)</li>
-    <li>[A Stakeholder Register Spreadsheet](https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing)</li>
+    <li><a href="https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing">A Stakeholder Register Spreadsheet</a></li>
     <li>CRM systems</li>
     <li>Email</li>
     <li>Messaging services such as Telegram, Discord, Slack, Signal, and Whatsapp</li>
