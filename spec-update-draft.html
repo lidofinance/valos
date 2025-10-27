@@ -849,14 +849,22 @@ provide a simple initial ranking for priority of mitigating each risk.
 Since the cost of risk mitigation varies considerably, the overall priority for addressing risk, or deciding that a given level of risk is acceptable,
 generally depends on comparing the risk ranking with the cost of mitigation, and available resources.
 
-#### Best practises for assessing risk include
+##### Best practises for assessing risk include
 
 * Identify relevant staff and others responsible for identifying, assessing, and determining how to manage risks
 * Ensure that every service, where possible, is configuration hardened. Common benchmarks such as [CIS](https://www.cisecurity.org) provide helpful guidance.
 * Analyze each infrastructure component's security, availability, processing integrity, confidentiality and privacy.
 * Creation and continuous analysis of a Software Bill of Materials [[?SBOM]].
 
-##### Assessing Financial Impact {#sec-mitigating-assess-risk-impact}
+<div class="info">
+
+##### Risks that risk assessment can mitigate
+
+- All risks
+
+</div>
+
+#### Assessing Financial Impact {#sec-mitigating-assess-risk-impact}
 
 There are a number of factors to take into account when assessing the overall financial impact of a given risk, with the direct cost incurred as the most obvious.
 It is important to understand the time required to mitigate the impact of an event, and the cost that will be incurred over that time.
@@ -868,19 +876,27 @@ as well as potential costs of compensation or legal costs.
 It is also useful to consider opportunity costs such as competitors taking advantage of an incident to promote themselves as a better alternative.
 
 <details class="tools">
-  <summary>Tools to support configuration management</summary>
+  <summary>Tools to support assessing financial impact</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
     <li><a href="https://portal.llamarisk.com/penalty/slashing">Validator Penalty Simulator</a></li>
   </ul>
 </details>
 
-##### Assessing Incident Probability {#sec-mitigating-assess-risk-probability}
+<div class="info">
+
+##### Risks that assessing financial impact can mitigate
+
+- All risks
+
+</div>
+
+#### Assessing Incident Probability {#sec-mitigating-assess-risk-probability}
 
 Predicting the likelihood of an unexpected future event is generally difficult, and results are unlikely to precisely match the predictions.
 Nevertheless it is important to consider the context of a specific operation and attempt useful predictions.
 
-##### Best practices for risk assessment
+##### Best practices for assessing incident probability include
 
 * Analyzing historical data to understand past trends and incidents (external, internal incidents, and near-miss incidents)
 * Reviewing industry reports for insights into common risks and their fiscal consequences in similar scenarios
@@ -889,7 +905,7 @@ Nevertheless it is important to consider the context of a specific operation and
 
 <div class="info">
 
-##### Risks that risk assessment can mitigate
+##### Risks that assessing incident probability can mitigate
 
 - All risks
 
@@ -2027,7 +2043,7 @@ To be useful, it is necessary that relevant employees know the plans exist, and 
   <summary>Tools to support incident response planning</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li><a href="https://csrc.nist.gov/pubs/sp/800/61/r2/final">NIST Incident Response template</a> [[?NIST SP 800-61]]</li>
+    <li><a href="https://csrc.nist.gov/pubs/sp/800/61/r2/final">NIST Incident Response template</a> [[?NIST800_61]]</li>
     <li><a href="https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing">DUCK Incident Response Template</a></li>
   </ul>
 </details>
@@ -3472,6 +3488,10 @@ function ControlTableSummary () {
         date: "2008",
         href: "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf"
       },
+      NIST800_61: {
+        title: "",
+        href: "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
+    },
       OWASP_ACCESS_CONTROL: {
         title: "OWASP Top 10: A01:2021 - Broken Access Control",
         publisher: "OWASP",
@@ -3521,7 +3541,7 @@ function ControlTableSummary () {
 [NIST-800-115] <a href="#ref-nist-800-115" id="ref-nist-800-115">🔗</a>
 "Technical Guide to Information Security Testing and Assessment", Karen Scarfone, Murugiah Souppaya, Amanda Cody, and Angela Orebaugh. NIST 2008. [https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
 - [NIST SP 800-34 Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
-- [NIST SP 800-61](https://csrc.nist.gov/pubs/sp/800/61/r2/final)
+-
 
 ### Tools:
 
