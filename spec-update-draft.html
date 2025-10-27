@@ -1521,7 +1521,7 @@ Static and Dynamic analysis is important, as well as user testing wherever chang
 Measuring test coverage, and requiring new tests that are reviewed as part of and code review,
 help ensure that coverage is sufficiently comprehensive to detect errors that can arise through later changes.
 
-##### Best practices for testing code changes
+##### Best practices for testing code changes include
 
 - incorporating static and dynamic testing in the integration pipeline for code development.
 
@@ -1549,8 +1549,10 @@ Unchecked inputs are a major vector for a range of attacks. These include
 Ideally, the load balancer in front of the node filters out all traffic with payloads that cause overflow.
 Additionally, it is important to validate inputs against the relevant parameters, particularly where these allow a range of functionalities to be triggered.
 
-Best practice includes using a data schema such as [JSON schema](https://json-schema.org) and [schema evolution techniques](https://en.wikipedia.org/wiki/Schema_evolution),
-with defined minimum and maximum input sizes and MIME types.
+##### Best practices for input and output validation include
+
+- using a data schema such as [JSON schema](https://json-schema.org) with [schema evolution techniques](https://en.wikipedia.org/wiki/Schema_evolution),
+- defining minimum and maximum input sizes and MIME types.
 
 <details class="tools">
   <summary>Tools to support input and output validation</summary>
@@ -1583,15 +1585,7 @@ with defined minimum and maximum input sizes and MIME types.
 Updating software is a major risk vector. Good processes for software development and managing the deployment of updates are important to mitigate some of this risk.
 As well as having control over the update process, it is important to have the capacity to revert to a known environment in an emergency where an update has been found to introduce unexpected problems.
 
-<div class="info">
-**Examples for best practices:**
 
-* Use [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) for infrastructure.
-* Using GIT to manage infrastructure code and configurations.
-* Use database migration systems such as [Liquibase](https://www.liquibase.org)
-* The "Blue-Green Deployment pattern" [[[?WikipediaBG]]] [[?WikipediaBG]] uses two identical environments with a staged transfer of data,
-  that can enable rapid rollback if a problem is detected.
-</div>
 
 #### Avoid Customizing Third-party Software {#sec-mit-minimize-customizing-software}
 
@@ -1602,7 +1596,7 @@ In addition customizations can produce incompatibilities when software is update
 This means that any customization introduces a need for continued extra testing,
 in particular whenever relevant software is updated.
 Customization also increases the risk that test coverage is inadequate,
-so that a future error will not be found in pre-deployment testing and only discovered through a failure operating in production,
+meaning a future error will not be found in pre-deployment testing and only discovered through a failure operating in production,
 with attendant risks of reputational damage, direct losses, and increased cost for incident management.
 
 <div class="info">
@@ -1613,6 +1607,7 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 * [DOW2](#risk-dow-2), [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [HCK2](#risk-hck-2), [HCK3](#risk-hck-3)
 * [GIR3](#risk-gir-3), [GIR16](#risk-gir-16)
+* [RER1](#risk-rer-1), [RER4](#risk-rer-4)
 </div>
 
 #### Configuration Management {#sec-mit-configuration-management}
@@ -1627,13 +1622,15 @@ Software configuration to follow includes, among others:
   * Database configurations
   * Webserver/Load balancer configurations
 
-[CIS benchmarks](https://www.cisecurity.org) provide configuration standards for many pieces of software.
 
 <details class="tools">
   <summary>Tools to support configuration management</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
+    <li><a href="https://www.cisecurity.org">CIS benchmarks</a></li>
     <li><a href="https://www.coguard.io">CoGuard</a></li>
+    <li>Using GIT to manage configurations</li>
+    <li><a href="https://www.liquibase.org">Liquibase</a></li>
   </ul>
 </details>
 
@@ -1651,7 +1648,7 @@ Software configuration to follow includes, among others:
 
 Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
 
-**Examples for best practices:**
+##### Best practices for protecting against supply-chain malware include
 
 - Regularly check the latest [CVE entries.](https://cve.mitre.org), to cover all software tools used.
 - Specifically check for any announcements of vulnerabilities before upgrading any software component
@@ -1676,15 +1673,23 @@ Protection against malware needs to be implemented on all assets and users need 
 * [SPS0](#risk-sps-0)
 </div>
 
-#### Pre-deployment testing environments {#sec-mit-test-predeployment}
+#### Deployment testing environments {#sec-mit-test-predeployment}
 
 Use separate tests and staging environments
 
 This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first to maximize the likelihood that any errors can be discovered before they impact a production environment.
 
+<details class="tools">
+  <summary>Tools to support deployment testing</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>The "Blue-Green Deployment pattern" [[[?WikipediaBG]]] [[?WikipediaBG]]</li>
+  </ul>
+</details>
+
 <div class="info">
 
-##### Risks that pre-deployment testing can mitigate
+##### Risks that deployment testing can mitigate
 
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS14](#risk-sls-14)
@@ -1698,7 +1703,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 
 <div class="info">
 
-##### Risks that containerized environments help address
+##### Risks that containerized environments can mitigate
 
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW21](#risk-dow-21)
@@ -1713,7 +1718,16 @@ Human error is always a risk. An automated script, whether or not invoked by a h
 
 Another benefit of properly set up automation is that it can help reduce the risk of exposing secrets.
 
-When correctly configured pipelines and job-mechanisms such as GitHub Actions, Apache Airflow, or Apache Nifi can significantly reduce the potential for inadvertent errors to create problems
+<details class="tools">
+  <summary>Tools to support process automation</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li><a href="https://airflow.apache.org">Apache Airflow</a></li>
+    <li><a href="https://nifi.apache.org">Apache Nifi</a></li>
+    <li><a href="https://docs.github.com/en/actions">GitHub Actions</a></li>
+    <li><a href="https://about.gitlab.com/topics/gitops/#what-is-git-ops">GitOps lifecycle</a></li>
+  </ul>
+</details>
 
 <div class="info">
 
@@ -1827,7 +1841,7 @@ The following are among indicators of a security issue, and information that can
 * Attacks on **Firewalls** and **Endpoint Attacks**, both for employee devices and infrastructure nodes, or directed at **Bastion Nodes**.
   These can be indicative of an attack or exploit in preparation or underway
 * **Relay behavior** such as compliance aspects and availability metrics.
-* Ideally, **Bug Reports* and **Community Discussion** will not be the first source of notification about a problem, but it is important to monitor them.
+* Ideally, **Bug Reports** and **Community Discussion** will not be the first source of notification about a problem, but it is important to monitor them.
 * Various services can monitor whether **Confidential Data** are available publicly, demonstrating there has been a data breach.
 
 <div class="info">
@@ -1960,7 +1974,10 @@ Others will want to know that they are informed in case of security incidents, o
 but prefer a lower volume of information. It is likely that different circumstances will mean that a given Stakeholder moves between "categories",
 with different communications strategies or procedures being more appropriate depending on specific context.
 
+##### Best practises for stakeholder management include
 
+- Track and categorise [=Known Stakeholders=]
+- Assess communication tools relevant to [=Anonymous Stakeholders=]
 
 <details class="tools">
   <summary>Tools to support stakeholder management</summary>
@@ -1995,7 +2012,7 @@ A well-documented Incident Response Plan helps employees in a high-stress situat
 To be useful, it is necessary that relevant employees know the plans exist, and how to find them.
 
 
-Best practices for Incident response plans include
+##### Best practices for incident response plans include
 
 - Identify relevant participants in advance, with well-defined decision-making responsibilities
 - Redundancy against specific failures such as a key employee being unavailable
@@ -2005,6 +2022,15 @@ Best practices for Incident response plans include
   [Monitoring](#sec-mitigations-monitoring) can help ensure rapid response.
 - Data collection and distribution to enable effective response, external communication, and [=Post Mortem=] analysis
 - Identify relevant Stakeholders and define communication strategies for both internal and external communications
+
+<details class="tools">
+  <summary>Tools to support incident response planning</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li><a href="https://csrc.nist.gov/pubs/sp/800/61/r2/final">NIST Incident Response template</a> [[?NIST SP 800-61]]</li>
+    <li><a href="https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing">DUCK Incident Response Template</a></li>
+  </ul>
+</details>
 
 <div class="info">
 
@@ -2022,13 +2048,6 @@ Best practices for Incident response plans include
 
 There are several ways to identify that a security incident is taking place. Best practice is to have extensive monitoring in place, to identify anomalies early,
 with alerting and potentially direct reaction mechanisms. Although learning from third-party discussions is a terrible way to find out about an incident, it is still better than simply not discovering it, so monitoring channels where such discussions take place is a valuable part of an overall strategy.
-
-**Examples for best practices:**
-
-* There are several incident response templates available.
-  - One example is [[NIST SP 800-61]](https://csrc.nist.gov/pubs/sp/800/61/r2/final).
-  - Another can be found at:
-  [https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true](https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true)
 
 <div class="info">
 
@@ -2049,8 +2068,11 @@ with alerting and potentially direct reaction mechanisms. Although learning from
 This is often referred to as a "<dfn>Post Mortem</dfn>",
 used to learn from the event and improve relevant Incident Response Plans.
 
-Best practices are to determine the root cause or causes of an incident, examine how the incident was allowed to occur,
-and consider what changes can be implemented to prevent or mitigate similar events from occurring.
+##### Best practices for analyzing security events include
+
+- Determine the root cause or causes of an incident
+- Examine how the incident was allowed to occur
+- Consider what changes can be implemented to prevent or mitigate similar events from occurring.
 
 <div class="info">
 
@@ -2070,15 +2092,21 @@ A <dfn>Disaster Recovery Plan</dfn> is a specialized [=Incident Response Plan=]
 that gives guidance on recovering one or more information systems at an alternate facility,
 in response to a major hardware or software failure including the partial or complete destruction of facilities.
 
-Best practices include maintaining secured up-to-date copies of production environments to enable fast restoration.
+##### Best practices for disaster recovery plans include
+
+- Maintain secured up-to-date copies of production environments to enable fast restoration.
+
+<details class="tools">
+  <summary>Tools to support disaster recovery plans</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li><a href="https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx">NIST Disaster Response template</a></li>
+  </ul>
+</details>
 
 <div class="info">
-Sample Disaster Recovery Plan templates:
 
-* [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
-* [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
-
-##### Risks that disaster recovery plans help address
+##### Risks that disaster recovery plans can mitigate
 
 * [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
 * [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC9](#risk-kec-9)
@@ -2113,7 +2141,7 @@ offer further information on how to plan and implement simulations, and how to d
 * [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 * [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
 
-##### Risks that incident simulations help address
+##### Risks that incident simulations can mitigate
 
 - All risks
 
@@ -2128,7 +2156,10 @@ It is important to note that inappropriate communication during an incident can 
 External communication has to balance stakeholders' need for information that enables them to respond in a well-informed manner
 against the importance of providing clear information with as much certainty as feasible that it will not later be contradicted.
 
-Best practice for [=Incident Communication=] includes providing a detailed post-incident summary.
+##### Best practice for incident communication include
+
+- Providing information as soon as possible
+- Providing a detailed post-incident summary.
 
 <div class="info">
 
