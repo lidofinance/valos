@@ -10,7 +10,7 @@
     <style>
     td, th {border: 1px black solid; padding: 0.3em 1em}
     p:has(b[id^=req]) {border: 1px solid blue; background-color: #ffd}
-    .info, details {background-color:#efe; padding: 0em 0em 0.5em 1em}
+    .info, details.tools {background-color:#efe; padding: 0em 0em 0.5em 1em}
     tr:has(option:nth-child(2):checked), tr:has(option:nth-child(3):checked) {background-color: #9f9}
     tr:has(option:nth-child(4):checked) {background-color: #ff9}
     tr:has(option:nth-child(5):checked) {background-color: #f99}
@@ -45,16 +45,17 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
 
 ### Purpose {#sec-purpose}
 
-This specification builds on the DUCK knowledge base as an evolution. In addition to the risk framework, updated based on feedback from practitioners,
-and an explanation of mitigation strategies that has likewise been updated, it provides a single set of controls - statements of requirement that can be tested,
+This specification builds on the [DUCK knowledge base](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base) [[?DUCK]].
+The risk framework and explanation of mitigation strategies have been updated, based on feedback from practitioners.
+A specific set of controls has been added; statements of requirement that can be tested,
 to ensure that as far as possible a Node Operator is following the recognised best practices to minimise risk and effectively maximise their returns.
 
-While there are other standards such as AICPA's SOC 2® [[?SOC2]] or ISO's 27001 standard [[?ISO27001]] that can be applied to Node Operators,
+While other standards such as AICPA's SOC 2® [[?SOC2]] or ISO's 27001 standard [[?ISO27001]] can be applied to Node Operators,
 they often include more general requirements than this specification, reflecting a broader scope.
 
 The relevant controls from several such standards are explicitly linked to the controls in this specification. The purpose of this is twofold:
 to simplify the process of certifying conformance to this specification for Operators who have already undergone testing against those standards,
-and to simplify the process of assessing against those standards Node Operators who have been certified as conforming to this specification.
+and to simplify the process of assessing Node Operators who have been certified as conforming to this specification against those specifications.
 
 <section id="conformance">
 
@@ -65,11 +66,11 @@ Conformance to this specification is based on meeting the requirements expressed
 
 This specification divides risk into seven categories for Node Operators to consider in ensuring the quality of their overall setup.
 
-In general, risk identifiers correspond to DUCK and will remain stable. This may mean that some identifiers are retired and will not be re-used.
+Where applicable, risk identifiers correspond to those that were introduced in [[?DUCK]], and will remain stable. This may mean that some identifiers are retired and will not be re-used.
 
 ### Financial and Regulatory Risk {#sec-risks-financial}
 
-These are risks explicitly arising from management of financial and regulatory compliance processes. (Many other risk cateogries have a direct financial impact).
+These are risks explicitly arising from management of financial and regulatory compliance processes. (Many other risk categories have a direct financial impact).
 
 <table>
 <thead>
@@ -272,7 +273,8 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
 
 ### Downtime Risk {#sec-risks-downtime}
 
-These risks are due to connectivity issues that lead to reduced rewards, in effect an opportunity cost.
+These risks are due to connectivity issues. Depending on the network these can lead to reduced rewards, in effect an opportunity cost,
+or to more direct financial penalties.
 
 <table>
 <thead>
@@ -813,47 +815,56 @@ Risks that impact the reputation of a Node Operator, likely to lead potential an
 
 ## Risk Mitigation Strategies {#sec-mitigation}
 
-The Mitigation Strategies section serves as a go-to resource for node operators,
+This Mitigation Strategies section serves as a go-to resource for node operators,
 providing actionable insights and mitigation options to enhance the security, reliability, and efficiency of their operations.
 
 Most of the best practices that optimize up-time, access control and general stability directly apply to operating a node properly.
-However, there are a few risks that are very specific to running a node-operator, and to mitigate them,
-higher levels of process segregation need to be achieved.
+However, for some risks specific to running a node operator, high levels of process segregation need to be achieved for mitigation to be effective.
 
 
 ### Risk Management {#sec-mitigations-risk-management}
 
 A core principle for mitigating risks is to actively identify and manage the risks.
-This means understanding the particular risks, and the likelihood of something going wrong and the likely impact if that does occur.
+This means understanding the particular risks, the likelihood of something going wrong, and the likely impact if that does occur.
 That information enables a Node Operator to decide what level of risk is reasonable and how to prioritise available resources to mitigate risk.
+
 Risk management decisions need to take into account any regulation that obliges a Node Operator to meet specific benchmarks or implement specific mitigation strategies
 or other activities.
 
-A first step for effective risk management is to document the potential risks, as well as the tools and processes currently in place.
-Documentation needs to include an assessment of the relevant risks, what is acceptable,
+A first step for effective risk management is to document the potential risks, as well as the tools and processes currently in place to address those risks.
+
+Documentation needs to include an assessment of the relevant risks, an explanation of what level of risk is acceptable and why,
 and how each process or infrastructure component contributes to and protects against risks.
 
 This enables Node Operators to identify activities that are not contributing to the business, or that actually increase the potential risks they face.
 The accuracy, availability and completeness of this information is of crucial import.
 
-Best practices include:
-
-* Identify relevant staff and others responsible for identifying, assessing, and determining how to manage risks
-* Ensure that every service, where possible, is configuration hardened using common benchmarks such as [CIS](https://www.cisecurity.org).
-* Analyze each component in your infrastructure environment in terms of security, availability, processing integrity, confidentiality and privacy.
-* Outline directly which risks are a high priority, and which ones are more acceptable, and the scenarios where it applies. For example, downtime comes only with an opportunity cost for ETH stakers, but may cause a slashing event in Polkadot.
-
 #### Assessing risks {#sec-mit-assess-risk}
 
-A standard industry approach to assessing risks is to consider the probability of an event occurring and the likely impact of that event.
+A common industry approach to assessing risks is to consider the probability of an event occurring and the likely impact of that event.
 
 If these are ranked on a linear numerical scale (e.g. probability between 0 and 1), and an approximate overall financial impact, they can be multiplied,
-provide a ranking for priority of mitigating each risk.
+provide a simple initial ranking for priority of mitigating each risk.
 
 Since the cost of risk mitigation varies considerably, the overall priority for addressing risk, or deciding that a given level of risk is acceptable,
 generally depends on comparing the risk ranking with the cost of mitigation, and available resources.
 
-##### Assessing Financial Impact {#sec-mitigating-assess-risk-impact}
+##### Best practises for assessing risk include
+
+* Identify relevant staff and others responsible for identifying, assessing, and determining how to manage risks
+* Ensure that every service, where possible, is configuration hardened. Common benchmarks such as [CIS](https://www.cisecurity.org) provide helpful guidance.
+* Analyze each infrastructure component's security, availability, processing integrity, confidentiality and privacy.
+* Creation and continuous analysis of a Software Bill of Materials [[?SBOM]].
+
+<div class="info">
+
+##### Risks that risk assessment can mitigate
+
+- All risks
+
+</div>
+
+#### Assessing Financial Impact {#sec-mitigating-assess-risk-impact}
 
 There are a number of factors to take into account when assessing the overall financial impact of a given risk, with the direct cost incurred as the most obvious.
 It is important to understand the time required to mitigate the impact of an event, and the cost that will be incurred over that time.
@@ -862,25 +873,39 @@ An incident can incur a variety of costs in terms of employee time spent managin
 new mitigations implemented to mitigate concrete or reputational damage such as replacement or additional infrastructure,
 as well as potential costs of compensation or legal costs.
 
-It is also useful to consider opportunity costs such as reputational damage, or competitors taking advantage of an incident to promote themselves as a better alternative.
+It is also useful to consider opportunity costs such as competitors taking advantage of an incident to promote themselves as a better alternative.
 
-[Validator Penalty Simulator](https://portal.llamarisk.com/penalty/slashing)
+<details class="tools">
+  <summary>Tools to support assessing financial impact</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li><a href="https://portal.llamarisk.com/penalty/slashing">Validator Penalty Simulator</a></li>
+  </ul>
+</details>
 
-##### Assessing Incident Probability {#sec-mitigating-assess-risk-probability}
+<div class="info">
+
+##### Risks that assessing financial impact can mitigate
+
+- All risks
+
+</div>
+
+#### Assessing Incident Probability {#sec-mitigating-assess-risk-probability}
 
 Predicting the likelihood of an unexpected future event is generally difficult, and results are unlikely to precisely match the predictions.
-Nevertheless it is important to consider the context of a specific operation and attempt accurate predictions.
+Nevertheless it is important to consider the context of a specific operation and attempt useful predictions.
 
-There are best practices to do this effectively:
+##### Best practices for assessing incident probability include
 
 * Analyzing historical data to understand past trends and incidents (external, internal incidents, and near-miss incidents)
 * Reviewing industry reports for insights into common risks and their fiscal consequences in similar scenarios
 * Consulting with experts in the field to gain a comprehensive perspective on risk probabilities and impacts
-* Utilizing risk assessment tools or software for a more data-driven analysis
+* Using risk assessment tools or software for a more data-driven analysis
 
 <div class="info">
 
-##### Risks that internal risk assessment can mitigate
+##### Risks that assessing incident probability can mitigate
 
 - All risks
 
@@ -953,7 +978,11 @@ that can be introduced by an upgrade as part of a supply-chain attack, and to ve
 [specific configuration](#req-check-config-on-update) options, as well as other software used by the node operator,
 are all compatible with an update and do not create new vulnerabilities on updating.
 
-Best practise includes "version-pinning", actively managing dependencies, and testing updates, rather than automatically applying updates that are pushed from a vendor.
+##### Best practises for updating software include
+
+- "version-pinning"
+- actively managing dependencies
+- testing updates before automatically deplying them
 
 ##### Relevant controls for updated software
 
@@ -980,7 +1009,7 @@ The data needs to be reliably persistent, and properly connected to the systems 
 
 A common format for anti-slashing data is defined by [[[?EIP3076]]].
 
-<details>
+<details class="tools">
   <summary>Tools to support anti-slashing databases</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
@@ -1012,12 +1041,12 @@ As well as the use of various kind of "<dfn>multi-sig</dfn>", which can include 
 or incorporate such techniques as multi-part compute ("MPC") or the like,
 signature management tools can include automated verification steps in the process of authorizing a transaction.
 
-<details>
+<details class="tools">
   <summary>Tools to support signature management</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li><a href="https://docs.web3signer.consensys.net">Web3Signer</a></li>
     <li><a href="https://github.com/attestantio/dirk">Dirk</a></li>
+    <li><a href="https://docs.web3signer.consensys.net">Web3Signer</a></li>
   </ul>
 </details>
 
@@ -1037,14 +1066,17 @@ signature management tools can include automated verification steps in the proce
 
 A diverse set of clients for different protocols can reduce "blast radius" in a case where one client has a protocol error or other bug.
 This can be especially important if the bug causes a chain split.
-The most common scenario for this being realized is likely when an upgrade introduces a problem.
+A common scenario is when an upgrade introduces a problem.
 The ability to migrate relevant keys to a different client, if a specific client error is observed, provides an important layer of protection.
 In addition, maintaining client diversity helps ensure that the network as a whole does so,
-ideally providing real protection against a vulnerability present in a single version of a single client by ensuring that particular version is not able to dominate the network.
+ideally providing real protection against a vulnerability present in a single version of a single client by ensuring that particular version does not dominate the network.
 
 Note that there are often a different range of clients available at different levels of the infrastructure.
-For example in Ethereum, it is possible to run different clients on each of the Execution and Consensus layers, and indeed best practice is to do so,
-as further explained by the Ethereum Foundation's Dankrad Feist in [[[?ETHdiverse]]] [[?ETHdiverse]]
+For example in Ethereum, it is possible to run different clients on each of the Execution and Consensus layers.
+
+##### Best practice fo client diversity includes
+
+- Running multiple Execution and Consensus clients. See also [[[?ETHdiverse]]] [[?ETHdiverse]]
 
 <div class="info">
 
@@ -1054,10 +1086,10 @@ as further explained by the Ethereum Foundation's Dankrad Feist in [[[?ETHdivers
 * [DOW2](#risk-dow-2), [DOW19](#risk-dow-19), [DOW21](#risk-dow-21)
 </div>
 
-#### Lido-specific: Handling of Delinquent State {#sec-mit-lido-delinquent-state}
+#### Delinquent State {#sec-mit-delinquent-state}
 
-Node operators need to withdraw validators correctly, as they are otherwise put into a delinquent state.
-This results in an opportunity cost realised as monetary losses.
+Node operators need to withdraw validators correctly, as they can otherwise be put into a delinquent state.
+This can result in direct penalties, or an opportunity cost realised as monetary losses.
 
 <div class="info">
 
@@ -1126,7 +1158,7 @@ by making it more difficult for malicious entities to access the information and
 
 #### Key Management {#sec-mit-key-management}
 
-A node operator'operations potentially encompass the use of a range of keys, including among others
+Operating a node normally entails the use of a range of keys, such as
 
 * Keys used by signature management tools
 * A vault
@@ -1136,9 +1168,9 @@ A node operator'operations potentially encompass the use of a range of keys, inc
 It is important to protect private keys from accidental or malicious misuse, and in particular unplanned deletion.
 It is not normal to provide broad access to unencrypted signing keys.
 
-Best practise is to follow established standards for key management, of which several are available such as [[[?CCSS]]] and [[[?KMS]]].
+##### Best practise for key management include
 
-These standards generally include
+- follow relevant standards such as [[[?CCSS]]] and [[[?KMS]]]
 - ensuring that there are no single individuals with the capability to access or delete them,
 - having backups with strong acess control,
 - actively managing access to keys and key material, and
@@ -1146,12 +1178,12 @@ These standards generally include
 
 Modern vault systems enable the enforcement of policies to ensure that access to keys is only available with verified roles, and deletion is managed according to established protocols.
 
-<details>
+<details class="tools">
   <summary>Tools to support key management</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li><a href="https://docs.web3signer.consensys.net">Web3Signer</a></li>
     <li><a href="https://github.com/attestantio/dirk">Dirk</a></li>
+    <li><a href="https://docs.web3signer.consensys.net">Web3Signer</a></li>
   </ul>
 </details>
 
@@ -1225,23 +1257,13 @@ This is generally achieved by using some form of [=Role-Based Access Control=], 
 
 Tracking this information is important to ensure that access can be audited and verified.
 
-**Examples for best practices:**
-
-* Creation and continuous analysis of Software Bill of Materials [[?SBOM]].
-* Have an internal virtual private network and only have well-defined endpoints be accessible from the web.
-* Use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) mechanism.
-* Disable meta-data serving through public endpoints (like what server is running in what version).
-* Limit the outbound traffic of a node that runs a certain service.
-* Apply rate limits to ensure that internal services cannot unintentionally DDos each other.
-* Where possible apply the use of authentication tokens that have a limited lifetime.
-
-<details>
-  <summary>Tools to support signature management</summary>
+<details class="tools">
+  <summary>Tools to support access control</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li><a href="https://docs.web3signer.consensys.net">Web3Signer</a></li>
-    <li><a href="https://github.com/attestantio/dirk">Dirk</a></li>
     <li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">AWS IAM</a>
+    <li><a href="https://github.com/attestantio/dirk">Dirk</a></li>
+    <li><a href="https://docs.web3signer.consensys.net">Web3Signer</a></li>
   </ul>
 </details>
 
@@ -1269,18 +1291,22 @@ with individual users assigned relevant roles that are revoked or deliberately r
 It is important to ensure that individuals can fulfil their designated tasks,
 without having authorizations they do not need.
 
+##### Best practises for access control include
 
-**Example best practices:**
-
-* Assignation and revocation of roles needs to be efficient and rapid
-* Disable privilege escalation mechanisms ([like executing as root user inside a Docker container](https://docs.docker.com/engine/reference/commandline/container_exec/), `docker exec -uroot`)
-* [Impersonation mechanisms need to be audited (if it is enabled).](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc)
-* Credentials rotation needs to be in place to ensure that there is no interruption in the service when it is done.
-* Off-boarding of a terminated employee does not take more than an hour. Ideally, one would only disable them inside a single-sign-on service such as [Cognito](https://aws.amazon.com/cognito/) or [Keycloak](https://www.keycloak.org).
-* Review of roles and permissions on a regular basis for both users and programs, to determine if these are too narrow or wide.
+* A [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) mechanism that allows rapid assigning and revoking of roles
+* Authentication tokens that have a limited lifetime
+* Regular review of roles and permissions for both users and software
+* Disable privilege escalation mechanisms ([e.g. executing as root user in Docker](https://docs.docker.com/engine/reference/commandline/container_exec/), `docker exec -uroot`, or [impersonation in Keycloak](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc))
 * Use of roles on the API endpoint level to determine the correct authorization.
-* [Webserver authentication configuration of Microsoft IIS servers.](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/) Observe how different authentication methods are possible to be set there. `anonymousAuthentication` would allow anyone to access as `anonymous`, which is rarely the intention except for the starting page. `basicAuthentication` is better than nothing, but makes user management not scalable. `clientCertificateMappingAuthentication` and `digestAuthentication` are the better ways to also implement RBAC.
 
+<details class="tools">
+  <summary>Tools to support least privilege control</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li><a href="https://aws.amazon.com/cognito/">Cognito</a>
+    <li><a href="https://www.keycloak.org">Keycloak</a></li>
+  </ul>
+</details>
 
 <div class="info">
 
@@ -1296,10 +1322,12 @@ without having authorizations they do not need.
 
 #### Employee Authorization Management {#sec-mit-employee-auth-management}
 
-Ensuring that employees whose roles have changed do not have lingering credentials reduces the risk they others can misuse those credentials to cause harm.
+Ensuring that employees whose roles have changed do not have lingering credentials reduces the risk they or others can misuse those credentials to cause harm.
 
-Best practices is to ensure authorization changes are automated as part of management of employee lifecycles,
-covering role changes as well as termination, transfer, and promotion procedures
+##### Best practises for employee authorization process includes
+
+- ensure authorization changes are automated as part of management of employee lifecycles,
+  covering role changes as well as termination, transfer, and promotion procedures
 
 <div class="info">
 
@@ -1316,12 +1344,14 @@ covering role changes as well as termination, transfer, and promotion procedures
 
 Following the principles of defense in depth and [**least privilege**](#def-least-privilege), it is important that nodes are not directly accessible without permission, and that they do not leak information to the Web that can help malicious parties gain unauthorized access.
 
+##### Best practises for managed network access include
 
-As well as controlling physical access where possible, it is best practice to ensure that nodes are only responsive through restricted access networks,
-for example restricting web access through a VPN, and load-balancer that has a firewall,
-as well as ensuring any remote access capability is clearly justified.
-Further, it is important to ensure the hardware running nodes does not have extraneous software,
-and does not allow generic probing mechanisms such as open port scans that can help malicious parties learn the topology of target systems.
+* An internal virtual private network with only have well-defined endpoints accessible from the web
+* A load-balancer that has a firewall
+* Disable meta-data serving through public endpoints (e.g. port scans, or what server is running in what version)
+* Limits on outbound traffic of a node that runs a certain service
+* Rate limits to ensure that internal services cannot unintentionally DDos each other
+* Require explicit authorization of external access capability
 
 <div class="info">
 
@@ -1452,17 +1482,19 @@ but will generally revolve around siting of facilities, their architecture, and 
 
 [Monitoring](#sec-mitigations-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
 
-#### Manage Equipment Life-cycle {#sec-mit-manage-equipment-life}
+#### Manage Equipment Lifecycle {#sec-mit-manage-equipment-life}
 
 The lifecycle of equipment, most particularly node servers and computers used to access and manage them, is a determinant of overall security.
 
-Best practices for lifecycle management include the ability to remotely pause, shut down, and wipe devices clean, although this needs to be considered in the context of the risk of malicious access to those capabilities.
+##### Best practices for lifecycle management include
+
+- a capability to remotely pause, shut down, and wipe devices clean
 
 [Monitoring](#sec-mitigations-monitoring) can also identify specific conditions that adversely affect equipment and suggest that a lifecycle plan needs adjustment - whether writing off equipment destroyed by fire, or increasing preventive maintenance for physical access systems that are being used far in excess of expectations that drove the existing maintenance plan.
 
 <div class="info">
 
-##### Risks that equipment life-cycle management can mitigate
+##### Risks that equipment lifecycle management can mitigate
 
 * [DOW3](#risk-dow-3), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW15](#risk-dow-15), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [KEC1](#risk-kec-1), [KEC6](#risk-kec-6)
@@ -1471,11 +1503,14 @@ Best practices for lifecycle management include the ability to remotely pause, s
 
 ### Software Development and Update Process {#sec-mitigations-development-and-updates}
 
-#### Secure Development Life Cycle {#sec-mit-ssdlc}
+#### Secure Development Lifecycle {#sec-mit-ssdlc}
 
 A secure development lifecycle helps ensure that vulnerabilities are not introduced to codebases, and subsequently deployed.
 
-Best practices include the use of auditable version control systems, with thorough testing and authorisation before changes are accepted.
+##### Best practices for secure development lifcycle include
+
+- auditable version control systems
+- thorough testing and authorisation before changes are accepted
 
 <div class="info">
 
@@ -1497,12 +1532,14 @@ Best practices include the use of auditable version control systems, with thorou
 A comprehensive test suite helps ensure changes do not introduce new vulnerabilities or situations that lead to operational failures.
 Equally, it is important that someone other than the developer who produces Code changes reviews them.
 
-Best practices is to enable this through a code repository, incorporating static and dynamic testing in the integration pipeline for code development.
-
 Static and Dynamic analysis is important, as well as user testing wherever changes impact user interface or user-generated content.
 
 Measuring test coverage, and requiring new tests that are reviewed as part of and code review,
 help ensure that coverage is sufficiently comprehensive to detect errors that can arise through later changes.
+
+##### Best practices for testing code changes include
+
+- incorporating static and dynamic testing in the integration pipeline for code development.
 
 <div class="info">
 
@@ -1528,10 +1565,12 @@ Unchecked inputs are a major vector for a range of attacks. These include
 Ideally, the load balancer in front of the node filters out all traffic with payloads that cause overflow.
 Additionally, it is important to validate inputs against the relevant parameters, particularly where these allow a range of functionalities to be triggered.
 
-Best practice includes using a data schema such as [JSON schema](https://json-schema.org) and [schema evolution techniques](https://en.wikipedia.org/wiki/Schema_evolution),
-with defined minimum and maximum input sizes and MIME types.
+##### Best practices for input and output validation include
 
-<details>
+- using a data schema such as [JSON schema](https://json-schema.org) with [schema evolution techniques](https://en.wikipedia.org/wiki/Schema_evolution),
+- defining minimum and maximum input sizes and MIME types.
+
+<details class="tools">
   <summary>Tools to support input and output validation</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
@@ -1562,15 +1601,7 @@ with defined minimum and maximum input sizes and MIME types.
 Updating software is a major risk vector. Good processes for software development and managing the deployment of updates are important to mitigate some of this risk.
 As well as having control over the update process, it is important to have the capacity to revert to a known environment in an emergency where an update has been found to introduce unexpected problems.
 
-<div class="info">
-**Examples for best practices:**
 
-* Use [GitOps lifecycle](https://about.gitlab.com/topics/gitops/#what-is-git-ops) for infrastructure.
-* Using GIT to manage infrastructure code and configurations.
-* Use database migration systems such as [Liquibase](https://www.liquibase.org)
-* The "Blue-Green Deployment pattern" [[[?WikipediaBG]]] [[?WikipediaBG]] uses two identical environments with a staged transfer of data,
-  that can enable rapid rollback if a problem is detected.
-</div>
 
 #### Avoid Customizing Third-party Software {#sec-mit-minimize-customizing-software}
 
@@ -1581,7 +1612,7 @@ In addition customizations can produce incompatibilities when software is update
 This means that any customization introduces a need for continued extra testing,
 in particular whenever relevant software is updated.
 Customization also increases the risk that test coverage is inadequate,
-so that a future error will not be found in pre-deployment testing and only discovered through a failure operating in production,
+meaning a future error will not be found in pre-deployment testing and only discovered through a failure operating in production,
 with attendant risks of reputational damage, direct losses, and increased cost for incident management.
 
 <div class="info">
@@ -1592,6 +1623,7 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 * [DOW2](#risk-dow-2), [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [HCK2](#risk-hck-2), [HCK3](#risk-hck-3)
 * [GIR3](#risk-gir-3), [GIR16](#risk-gir-16)
+* [RER1](#risk-rer-1), [RER4](#risk-rer-4)
 </div>
 
 #### Configuration Management {#sec-mit-configuration-management}
@@ -1606,13 +1638,15 @@ Software configuration to follow includes, among others:
   * Database configurations
   * Webserver/Load balancer configurations
 
-[CIS benchmarks](https://www.cisecurity.org) provide configuration standards for many pieces of software.
 
-<details>
+<details class="tools">
   <summary>Tools to support configuration management</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
+    <li><a href="https://www.cisecurity.org">CIS benchmarks</a></li>
     <li><a href="https://www.coguard.io">CoGuard</a></li>
+    <li>Using GIT to manage configurations</li>
+    <li><a href="https://www.liquibase.org">Liquibase</a></li>
   </ul>
 </details>
 
@@ -1630,12 +1664,12 @@ Software configuration to follow includes, among others:
 
 Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
 
-**Examples for best practices:**
+##### Best practices for protecting against supply-chain malware include
 
 - Regularly check the latest [CVE entries.](https://cve.mitre.org), to cover all software tools used.
 - Specifically check for any announcements of vulnerabilities before upgrading any software component
 
-<details>
+<details class="tools">
   <summary>Tools to support supply-chain protection</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
@@ -1655,15 +1689,23 @@ Protection against malware needs to be implemented on all assets and users need 
 * [SPS0](#risk-sps-0)
 </div>
 
-#### Pre-deployment testing environments {#sec-mit-test-predeployment}
+#### Deployment testing environments {#sec-mit-test-predeployment}
 
 Use separate tests and staging environments
 
 This minimizes a potential blast radius. It is important to run any change (even an update of a validator software or Web3Signer) through a test environment first to maximize the likelihood that any errors can be discovered before they impact a production environment.
 
+<details class="tools">
+  <summary>Tools to support deployment testing</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li>The "Blue-Green Deployment pattern" [[[?WikipediaBG]]] [[?WikipediaBG]]</li>
+  </ul>
+</details>
+
 <div class="info">
 
-##### Risks that pre-deployment testing can mitigate
+##### Risks that deployment testing can mitigate
 
 
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS14](#risk-sls-14)
@@ -1677,7 +1719,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 
 <div class="info">
 
-##### Risks that containerized environments help address
+##### Risks that containerized environments can mitigate
 
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW21](#risk-dow-21)
@@ -1692,7 +1734,16 @@ Human error is always a risk. An automated script, whether or not invoked by a h
 
 Another benefit of properly set up automation is that it can help reduce the risk of exposing secrets.
 
-When correctly configured pipelines and job-mechanisms such as GitHub Actions, Apache Airflow, or Apache Nifi can significantly reduce the potential for inadvertent errors to create problems
+<details class="tools">
+  <summary>Tools to support process automation</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li><a href="https://airflow.apache.org">Apache Airflow</a></li>
+    <li><a href="https://nifi.apache.org">Apache Nifi</a></li>
+    <li><a href="https://docs.github.com/en/actions">GitHub Actions</a></li>
+    <li><a href="https://about.gitlab.com/topics/gitops/#what-is-git-ops">GitOps lifecycle</a></li>
+  </ul>
+</details>
 
 <div class="info">
 
@@ -1806,7 +1857,7 @@ The following are among indicators of a security issue, and information that can
 * Attacks on **Firewalls** and **Endpoint Attacks**, both for employee devices and infrastructure nodes, or directed at **Bastion Nodes**.
   These can be indicative of an attack or exploit in preparation or underway
 * **Relay behavior** such as compliance aspects and availability metrics.
-* Ideally, **Bug Reports* and **Community Discussion** will not be the first source of notification about a problem, but it is important to monitor them.
+* Ideally, **Bug Reports** and **Community Discussion** will not be the first source of notification about a problem, but it is important to monitor them.
 * Various services can monitor whether **Confidential Data** are available publicly, demonstrating there has been a data breach.
 
 <div class="info">
@@ -1841,7 +1892,7 @@ The following are among indicators of a security issue, and information that can
 If two validators with the same identifiers are running at the same time is important to shut one down as fast as possible.
 Most validators provide built-in mechanisms to detect doppelgangers. Other tools and technicques can also detect and act on this.
 
-<details>
+<details class="tools">
   <summary>Tools to support Doppelgänger protection</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
@@ -1864,7 +1915,7 @@ Most validators provide built-in mechanisms to detect doppelgangers. Other tools
 * [SPS0](#risk-sps-0)
 </div>
 
-<details>
+<details class="tools">
   <summary>Tools to support Monitoring</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
@@ -1939,9 +1990,12 @@ Others will want to know that they are informed in case of security incidents, o
 but prefer a lower volume of information. It is likely that different circumstances will mean that a given Stakeholder moves between "categories",
 with different communications strategies or procedures being more appropriate depending on specific context.
 
+##### Best practises for stakeholder management include
 
+- Track and categorise [=Known Stakeholders=]
+- Assess communication tools relevant to [=Anonymous Stakeholders=]
 
-<details>
+<details class="tools">
   <summary>Tools to support stakeholder management</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
@@ -1974,7 +2028,7 @@ A well-documented Incident Response Plan helps employees in a high-stress situat
 To be useful, it is necessary that relevant employees know the plans exist, and how to find them.
 
 
-Best practices for Incident response plans include
+##### Best practices for incident response plans include
 
 - Identify relevant participants in advance, with well-defined decision-making responsibilities
 - Redundancy against specific failures such as a key employee being unavailable
@@ -1984,6 +2038,15 @@ Best practices for Incident response plans include
   [Monitoring](#sec-mitigations-monitoring) can help ensure rapid response.
 - Data collection and distribution to enable effective response, external communication, and [=Post Mortem=] analysis
 - Identify relevant Stakeholders and define communication strategies for both internal and external communications
+
+<details class="tools">
+  <summary>Tools to support incident response planning</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li><a href="https://csrc.nist.gov/pubs/sp/800/61/r2/final">NIST Incident Response template</a> [[?NIST800_61]]</li>
+    <li><a href="https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing">DUCK Incident Response Template</a></li>
+  </ul>
+</details>
 
 <div class="info">
 
@@ -2001,13 +2064,6 @@ Best practices for Incident response plans include
 
 There are several ways to identify that a security incident is taking place. Best practice is to have extensive monitoring in place, to identify anomalies early,
 with alerting and potentially direct reaction mechanisms. Although learning from third-party discussions is a terrible way to find out about an incident, it is still better than simply not discovering it, so monitoring channels where such discussions take place is a valuable part of an overall strategy.
-
-**Examples for best practices:**
-
-* There are several incident response templates available.
-  - One example is [[NIST SP 800-61]](https://csrc.nist.gov/pubs/sp/800/61/r2/final).
-  - Another can be found at:
-  [https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true](https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing\&ouid=117284374075970906179\&rtpof=true\&sd=true)
 
 <div class="info">
 
@@ -2028,8 +2084,11 @@ with alerting and potentially direct reaction mechanisms. Although learning from
 This is often referred to as a "<dfn>Post Mortem</dfn>",
 used to learn from the event and improve relevant Incident Response Plans.
 
-Best practices are to determine the root cause or causes of an incident, examine how the incident was allowed to occur,
-and consider what changes can be implemented to prevent or mitigate similar events from occurring.
+##### Best practices for analyzing security events include
+
+- Determine the root cause or causes of an incident
+- Examine how the incident was allowed to occur
+- Consider what changes can be implemented to prevent or mitigate similar events from occurring.
 
 <div class="info">
 
@@ -2049,15 +2108,21 @@ A <dfn>Disaster Recovery Plan</dfn> is a specialized [=Incident Response Plan=]
 that gives guidance on recovering one or more information systems at an alternate facility,
 in response to a major hardware or software failure including the partial or complete destruction of facilities.
 
-Best practices include maintaining secured up-to-date copies of production environments to enable fast restoration.
+##### Best practices for disaster recovery plans include
+
+- Maintain secured up-to-date copies of production environments to enable fast restoration.
+
+<details class="tools">
+  <summary>Tools to support disaster recovery plans</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li><a href="https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx">NIST Disaster Response template</a></li>
+  </ul>
+</details>
 
 <div class="info">
-Sample Disaster Recovery Plan templates:
 
-* [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
-* [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
-
-##### Risks that disaster recovery plans help address
+##### Risks that disaster recovery plans can mitigate
 
 * [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW6](#risk-dow-6), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
 * [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC9](#risk-kec-9)
@@ -2092,7 +2157,7 @@ offer further information on how to plan and implement simulations, and how to d
 * [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
 * [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
 
-##### Risks that incident simulations help address
+##### Risks that incident simulations can mitigate
 
 - All risks
 
@@ -2107,7 +2172,10 @@ It is important to note that inappropriate communication during an incident can 
 External communication has to balance stakeholders' need for information that enables them to respond in a well-informed manner
 against the importance of providing clear information with as much certainty as feasible that it will not later be contradicted.
 
-Best practice for [=Incident Communication=] includes providing a detailed post-incident summary.
+##### Best practice for incident communication include
+
+- Providing information as soon as possible
+- Providing a detailed post-incident summary.
 
 <div class="info">
 
@@ -2381,7 +2449,13 @@ This applies to servers acting as validators, but also to devices authorized to 
 * [[?SOC2]] CC 7.1
 * [[?ISO27001]] Annex A 8.9
 
+##### Configuration management helps address the following risks
 
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
+* [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
+* [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
+* [GIR3](#risk-gir-3), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR20](#risk-gir-20)
+* [RER1](#risk-rer-1), [RER4](#risk-rer-4)
 </div>
 
 ### Controls for Information and Secret Management {#sec-controls-info-secrets}
@@ -3350,6 +3424,10 @@ function ControlTableSummary () {
     format: "markdown",
     status: "base",
     localBiblio: {
+      DUCK: {
+        title: "D.U.C.K Knowledge Base",
+        href: "https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base"
+      },
       KMS: {
         title: "BSSC Key Management Standard version 1",
         authors: ["J Kemp","M Nesbitt", "eds."],
@@ -3410,6 +3488,10 @@ function ControlTableSummary () {
         date: "2008",
         href: "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf"
       },
+      NIST800_61: {
+        title: "",
+        href: "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
+    },
       OWASP_ACCESS_CONTROL: {
         title: "OWASP Top 10: A01:2021 - Broken Access Control",
         publisher: "OWASP",
@@ -3459,31 +3541,16 @@ function ControlTableSummary () {
 [NIST-800-115] <a href="#ref-nist-800-115" id="ref-nist-800-115">🔗</a>
 "Technical Guide to Information Security Testing and Assessment", Karen Scarfone, Murugiah Souppaya, Amanda Cody, and Angela Orebaugh. NIST 2008. [https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
 - [NIST SP 800-34 Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
-- [NIST SP 800-61](https://csrc.nist.gov/pubs/sp/800/61/r2/final)
+-
 
 ### Tools:
 
-- Apache web-server [LimitRequestBody](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestbody), [LimitRequestFields](https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestfields)
-- [AWS WAF module](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html), [AWS IAM](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html)
-- [CIS benchmarks](https://www.cisecurity.org)
-- [Cognito](https://aws.amazon.com/cognito/), [Cognito's Userpool Addons for auditing authentications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html)
-- [CoGuard](https://www.coguard.io)
-- [docker-compose](https://docs.docker.com/compose/) [like executing as root user inside a Docker container](https://docs.docker.com/engine/reference/commandline/container_exec/))
-- [DoppelBuster](https://github.com/SimplyStaking/DoppelBuster)
-- [ELK stack](https://www.elastic.co/elastic-stack/)
-- [Grafana](https://grafana.com), [alerting setup in Grafana.](https://grafana.com/docs/grafana/latest/alerting/set-up/)
-- [Hibernate](https://hibernate.org/orm/documentation/getting-started/)
-- [Keycloak](https://www.keycloak.org) [Impersonation mechanisms need to be audited (if it is enabled).](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc)
 - [Kubernetes Cluster Networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
 - [Liquibase](https://www.liquibase.org)
-- Microsoft IIS [Microsoft IIS (input limits) example](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/mimemap), [Webserver authentication configuration of Microsoft IIS servers.](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/)
+- Microsoft IIS [Microsoft IIS (input limits) example](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/mimemap),
+  - [Webserver authentication configuration of Microsoft IIS servers.](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/) Observe how different authentication methods are possible to be set there. `anonymousAuthentication` would allow anyone to access as `anonymous`, which is rarely the intention except for the starting page. `basicAuthentication` is better than nothing, but makes user management not scalable. `clientCertificateMappingAuthentication` and `digestAuthentication` are the better ways to also implement RBAC.
 - [minikube](https://minikube.sigs.k8s.io/docs/)
-- [shred](https://man.archlinux.org/man/shred.1.en)
-- [SQLAlchemy](https://www.sqlalchemy.org)
-- [Trivy](https://github.com/aquasecurity/trivy)
-- [TypeORM](https://typeorm.io)
 - [vault SSH certificate mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates)
-- <a id="tool-zabbix"></a>[Zabbix reference](https://www.zabbix.com/documentation/6.4/en/manual/appendix/items/activepassive?hl=CPU%2Cload)
 
 -->
 </body>
