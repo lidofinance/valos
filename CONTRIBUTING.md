@@ -16,7 +16,7 @@ incorporating changes that are proposed but not necessarily agreed.
 
 Please provide feedback based on that document.
 
-(**NB** For now, you need to download [the file](spec-update-draft.html](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open it locally in a browser, to read it. We expect to fix this very soon).
+(**NB** To read the lastest draft you need to download [the file `spec-update-draft.html`](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open the file in a browser).
 
 ## What
 
@@ -81,9 +81,7 @@ even if you do not have time to understand and replicate the various conventions
 
 ## What happens next?
 
-Issues and Pull Requests are assigned at least one milestone, which refers to a decision point at which they can be approved, or returned for more discussion.
-
-Items on the milestone will be published to the Telegram Community on Fridays. If there is no objection raised, they will be merged into the `staging` branch, or closed as proposed, on the following Wednesday.
+Issues and Pull Requests are likely to begin being reflected in a draft update in the second half of 2026.
 
 When all the approved items have been merged into the staging branch, the update will be checked then merged to the `main` branch.
 
