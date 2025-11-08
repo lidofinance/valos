@@ -10,25 +10,17 @@ BY CONTRIBUTING TO THIS REPOSITORY, YOU AGREE:
 2. TO PROVIDE YOUR CONTRIBUTIONS UNDER THE TERMS OF THE [APACHE 2.0 LICENSE](LICENSE.md), AND
 3. TO PROVIDE LIDO FINANCE, IN EXCHANGE FOR THEIR CONTRIBUTION TO THE MAINTENANCE OF THIS WORK, A NON-EXCLUSIVE WORLDWIDE IRREVOCABLE LICENSE TO IMPLEMENT, PERFORM, COPY, MODIFY DISTRIBUTE ADN OTHERWISE USE YOUR CONTRIBUTIONS, WHETHER COMMERCIALLY OR OTHERWISE, AS THEY CHOOSE IN THEIR SOLE DISCRETION.
 
-The version of [**current update draft**](spec-update-draft.html)
-in the [`advanced-staging` branch](https://github.com/lidofinance/valos/tree/advance-staging) is the latest development state of the proposal for a new version,
-incorporating changes that are proposed but not necessarily agreed.
-
-Please provide feedback based on that document.
-
-(**NB** For now, you need to download [the file](spec-update-draft.html](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open it locally in a browser, to read it. We expect to fix this very soon).
-
 ## What
 
 ### What feedback is useful?
 
-Simple fixes such as correcting broken links, typos, and the like are welcome and appreciated.
+Simple fixes such as correcting broken links, typos, and the like are very welcome and appreciated.
 
-If you are looking for something to contribute on, please consider the items labeled
+If you are looking for something more substantial to contribute to, please consider the items labeled
 "[Good First Issue](https://github.com/lidofinance/valos/good%20first%20issue)", or
 "[Help Wanted](https://github.com/lidofinance/valos/labels/help%20wanted)".
 
-If there is something that you think could and should be improved, please tell us.
+If there is something you believe could and should be improved that isn't in the existing issues / pull requests, please raise a new issue.
 Importantly, this should include explaining why something doesn't work as well as it could -
 for example explaining the situation where it causes a problem, or doesn't resolve a doubt.
 
@@ -70,20 +62,11 @@ This discussion can lead to changes, or even not adopting the proposed solution,
 You can also make a Pull Request. If you do:
 
 - Please work on a temporary branch and make a Pull Request against the `staging` branch, which is the working branch for the next replacement version.
-  If it is a typo or other fix that should also be taken into the existing DUCK v1, the editorial team will cherry-pick it.
 - Please provide the name you wish to be acknowledged by, if you are not already an acknowledged contributor.
 - In general, smaller Pull Requests that each address one issue are preferable to a single large Pull Request that touches multiple parts of the document.
   This is because unless a large Pull request is adopted very quickly, it complicates the development of all other Pull Requests while it is pending.
-- It is helpful if you manage to follow all the editorial conventions, provide links, etc.
-
-All Pull Requests will be reviewed and edited as necessary, so feel free to make a proposal and know that your contribution is appreciated
-even if you do not have time to understand and replicate the various conventions of the existing source code.
+- It is helpful if you manage to follow all the editorial conventions, provide links, etc. However, all Pull Requests will be reviewed and edited as necessary, so feel free to make a proposal and know that your contribution is appreciated even if you do not have time to understand and replicate the various conventions of the existing source code.
 
 ## What happens next?
 
-Issues and Pull Requests are assigned at least one milestone, which refers to a decision point at which they can be approved, or returned for more discussion.
-
-Items on the milestone will be published to the Telegram Community on Fridays. If there is no objection raised, they will be merged into the `staging` branch, or closed as proposed, on the following Wednesday.
-
-When all the approved items have been merged into the staging branch, the update will be checked then merged to the `main` branch.
-
+Feedback is expected to begin being reflected into a draft update some time in the second half of 2026.
