@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>ValOS</title>
+    <title>ValOS v1</title>
     <script
       src="https://www.w3.org/Tools/respec/respec-w3c"
       class="remove"
@@ -3160,49 +3160,21 @@ response times and Service Level Agreements, security procedures, and the like a
 
 ## Status and Feedback
 
-This document is an Editor's draft, for a proposed revision to the [DUCK Knowledge Base (version 1)](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base).
+This document is Version 1 of the Validator Operations Standard, a revision to the [DUCK Knowledge Base (version 1)](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base).
 
-Feedback is welcome, and is preferred as Issues, Pull requests and comments in this Github Repository. Please note the [Conditions of Contributing](./CONTRIBUTING.md).
+Feedback is welcome, and is preferred as Issues, Pull requests and comments in the public [ValOS Github Repository](https://github.com/lidofinance/valos/). Please note the [Conditions of Contributing](./CONTRIBUTING.md). There is also a [Telegram group](https://t.me/valoscommunity) you are welcome to join to discuss and give feedback on this specification.
+
+The steering group responsible for this document expects to publish a revision in around one year, based on feedback received from implementation testing.
 
 ### History and Future
 
-The original content of this specification was developed as the D.U.C.K Knowledge Base, and the current work is a direct evolution of that content.
+The original content of this specification was developed as the D.U.C.K Knowledge Base, and this document is a direct evolution of that content.
 
-In updating it, there are several changes being made. The key change is to move from a general explanation of risks and good practices
-to a specification that is well-suited to assessment of conformance.
+This specification includes a set of controls specific to ValOS, rather than only references to individual controls from other frameworks.
 
-Several somewhat cosmetic changes have been made. Most obviously, the name has been changed to ValOS - the Validator Operator Standard -
-and instead of a multi-page website it is available primarily as a single-page specification, in particular enabling easier use offline.
+In addition, the Risks and Mitigations have been expanded, with new information, and some re-organisation and rationalization.
+Note that the specification aims to keep the risk identifiers consistent with those in the original DUCK knowledge base.
 
-More importantly, there is a set of controls specific to ValOS, rather than only references to individual controls from other frameworks.
-
-
-
-The update process aims to meet some general goals:
-
-- Simplify redundancy
-- Use linking more effectively
-- Respond to feedback from real-world use, to improve the utility of the specification
-- Increase the transparency of and community participation in the maintenance of the specification
-
-### Versions and Version Numbers
-
-The approach to versions for this specification is to maintain a publicly visible "latest Editor's draft",
-representing the current state of what has been proposed and agreed as updates for a new version, and release versions, numbered 1, 2, 3 etc.
-
-The "Editor's Draft" version may change frequently, for example weekly.
-It is primarily to serve the needs of the community involved or interested in the process of updating the specification.
-Part of that community is practitioners such as Node Operators themselves, developers and service providers, and assessors,
-who want to understand changes that they will need to make to their workflows in the short- to medium-term future.
-
-We seek to provide transparency into proposed changes,
-and the process by which they are agreed or rejected, as well as the history of changes that have been made.
-
-The release versions are intended to provide stable reference points, primarily for clarity in understanding the meaning of a specific assessment against a specific version.
-
-The timing of new release versions seeks to balance keeping up with current best practice, and providing a stable target for learning and implementing.
-It is likely that a release cycle will be on the order of 6 to 18 months. The motivation for a new release can be the time elapsed since the last version,
-a major change to best practices or risks, or a combination of these factors, among others.
 
 </section>
 
@@ -3211,7 +3183,7 @@ a major change to best practices or risks, or a combination of these factors, am
 <h2>Summary of Controls</h2>
 
 This section provides a summary of the Controls provided by this Specification.
-
+It can be used as a checklist for an audit, by editing the status and comments for each group of controls.
 
 
 </section>
@@ -3393,15 +3365,16 @@ function ControlTableSummary () {
   // All config options at https://respec.org/docs/
   var respecConfig = {
     postProcess: [clean, RiskTableMitigations, ControlTableSummary],
-    subTitle: "Validator Operations Standard (Editor's draft)",
+    subTitle: "Validator Operations Standard, version 1",
     specStatus: "base",
-    latestVersion: "https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base",
+    latestVersion: "https://valos.tech/spec/",
     edDraftURI: "https://github.com/lidofinance/valos/spec-update-draft.html",
     copyrightStart: "2025",
       editors: [{ name: "chaals nevile", url: "chaals@fastmail.fm" }],
     authors: [
-      { name: "This work builds on the gratefully acknowledged work of all those who contributed to the D.U.C.K. knowledge base."},
-      { name: "The following have contributed directly to the production of this specific version:"},
+      { name: "This work builds directly on the D.U.C.K. knowledge base."},
+      { name: "We gratefully acknowledged the work of all those who contributed to that."},
+      { name: "The following have contributed directly to this specific document:"},
       { name: "Sean Anderson"},
       { name: "Ivan Ang"},
       { name: "Antonio Bartulovic"},
@@ -3420,7 +3393,7 @@ function ControlTableSummary () {
       { name: "Lucas"},
       { name: "Mehdi Zerouali"}
     ],
-    github: "lido-finance/valos",
+    github: "lidofinance/valos",
     format: "markdown",
     status: "base",
     localBiblio: {
@@ -3536,22 +3509,6 @@ function ControlTableSummary () {
   };
 </script>
 
-<!--
 
-[NIST-800-115] <a href="#ref-nist-800-115" id="ref-nist-800-115">🔗</a>
-"Technical Guide to Information Security Testing and Assessment", Karen Scarfone, Murugiah Souppaya, Amanda Cody, and Angela Orebaugh. NIST 2008. [https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
-- [NIST SP 800-34 Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
--
-
-### Tools:
-
-- [Kubernetes Cluster Networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
-- [Liquibase](https://www.liquibase.org)
-- Microsoft IIS [Microsoft IIS (input limits) example](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/mimemap),
-  - [Webserver authentication configuration of Microsoft IIS servers.](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/) Observe how different authentication methods are possible to be set there. `anonymousAuthentication` would allow anyone to access as `anonymous`, which is rarely the intention except for the starting page. `basicAuthentication` is better than nothing, but makes user management not scalable. `clientCertificateMappingAuthentication` and `digestAuthentication` are the better ways to also implement RBAC.
-- [minikube](https://minikube.sigs.k8s.io/docs/)
-- [vault SSH certificate mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates)
-
--->
 </body>
 </html>
