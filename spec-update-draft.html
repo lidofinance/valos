@@ -1889,18 +1889,26 @@ The following are among indicators of a security issue, and information that can
 
 #### Doppelgänger Protection {#sec-mit-doppelganger-protection}
 
-If two validators with the same identifiers are running at the same time is important to shut one down as fast as possible.
-Most validators provide built-in mechanisms to detect doppelgangers. Other tools and technicques can also detect and act on this.
+If the same validator key is loaded in multiple locations, this situation should be detected and conflicting votes
+should be prevented by shutting down one of the locations as quickly as possible.
+Most validator clients provide built-in mechanisms to detect doppelgängers. Other tools and techniques
+can also detect and automatically act on this.
 
 <details class="tools">
   <summary>Tools to support Doppelgänger protection</summary>
-  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation.</p>
+  <p>Clients with built-in doppelgänger protection:</p>
   <ul>
     <li><a href="https://lighthouse-book.sigmaprime.io/validator_doppelganger.html">Lighthouse</a></li>
-    <li><a href="https://prysm.offchainlabs.com/docs/backup-and-migration/slashing-protection/">Prysm</a></li>
-    <li><a href="https://docs.teku.consensys.io/how-to/prevent-slashing/detect-doppelgangers">Teku</a></li>
+    <li><a href="https://chainsafe.github.io/lodestar/run/validator-management/validator-cli#--doppelgangerprotection">Lodestar</a></li>
     <li><a href="https://nimbus.guide/doppelganger-detection.html">Nimbus</a></li>
-    <li><a href="https://pkg.go.dev/github.com/ssvlabs/ssv/doppelganger">Doppelganger protection in `ssv.network`</a></li>
+    <li><a href="https://prysm.offchainlabs.com/docs/backup-and-migration/slashing-protection/">Prysm</a></li>
+    <li><a href="https://pkg.go.dev/github.com/ssvlabs/ssv/doppelganger">SSV Node</a></li>
+    <li><a href="https://docs.teku.consensys.io/how-to/prevent-slashing/detect-doppelgangers">Teku</a> (supports <a href="https://docs.teku.consensys.io/how-to/prevent-slashing/detect-slashing">auto-shutdown</a>)</li>
+    <li><a href="https://vero.docs.serenita.io/reference/slashing_protection/">Vero</a> (supports <a href="https://vero.docs.serenita.io/reference/slashing_protection/#reactive-measures">auto-shutdown</a>)</li>
+  </ul>
+  <p>External doppelgänger protection:</p>
+  <ul>
     <li><a href="https://github.com/SimplyStaking/DoppelBuster">DoppelBuster</a></li>
     <li>StatefulSet handling in Kubernetes</li>
   </ul>
