@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <title>ValOS</title>
+    <!-- respec v35.6.1 - vendored locally for SRI/supply-chain security (issue #132) -->
     <script
-      src="https://www.w3.org/Tools/respec/respec-w3c"
+      src="./vendor/respec-w3c-35.6.1.js"
       class="remove"
       defer></script>
     <style>
@@ -1785,7 +1786,7 @@ but can also mask a broader issue that the system is expected to detect.
 With a good monitoring system in place providing broad coverage of operations, there needs to be useful and targeted alerting system based on the monitoring system.
 
 To learn that a potential problem has been identified, as soon as possible, and act on it effectively, a monitoring system needs a robust targeted alerting system.
-A system that overloads its watchers with alerts is likely to lead to <dfn>alert fatigue</dfn>,
+A system that overloads its watchers with alerts is likely to lead to <b>alert fatigue</b>,
 where the alerts are ignored in practice because too often they require an onerous human response when they are not identifying a real problem.
 Like monitoring systems in general, redundancy in alert systems is important.
 
