@@ -3230,7 +3230,10 @@ function RiskTableMitigations () {
   var mitigationsArray = document.querySelectorAll("[id^=sec-mit-]");
   for(i = 0; i < mitigationsArray.length; i++) {
     thisMitigation = document.createElement("li");
-    thisMitigation.innerHTML = '<a href="#' + mitigationsArray[i].id + '">' + mitigationsArray[i].innerText + '</a>';
+    var link = document.createElement("a");
+    link.setAttribute("href", "#" + mitigationsArray[i].id);
+    link.textContent = mitigationsArray[i].innerText;
+    thisMitigation.appendChild(link);
     console.log("succeeded: " + thisMitigation.innerText);
 
     // HACKY MESS Alert!
