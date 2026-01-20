@@ -1889,8 +1889,7 @@ The following are among indicators of a security issue, and information that can
 
 #### Doppelgänger Protection {#sec-mit-doppelganger-protection}
 
-If the same validator key is loaded in multiple locations, this situation should be detected and conflicting votes
-should be prevented by shutting down one of the locations as quickly as possible.
+It is important to detect whether a validator key currently already in use is being loaded into or used in a new validator instance, and shut down duplicates as quickly as possible.
 Most validator clients provide built-in mechanisms to detect doppelgängers. Other tools and techniques
 can also detect and automatically act on this.
 
