@@ -79,6 +79,14 @@ You can also make a Pull Request. If you do:
 All Pull Requests will be reviewed and edited as necessary, so feel free to make a proposal and know that your contribution is appreciated
 even if you do not have time to understand and replicate the various conventions of the existing source code.
 
+### Commit Signing
+
+Core team members **must** sign commits with GPG. For external contributors:
+
+- Signed commits are appreciated but not required
+- We will review your code and sign commits on merge using squash-and-merge
+- If you'd like to sign your commits, see [GitHub's commit signature verification guide](https://docs.github.com/en/authentication/managing-commit-signature-verification)
+
 ## What happens next?
 
 Issues and Pull Requests are likely to begin being reflected in a draft update in the second half of 2026.
