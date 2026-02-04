@@ -23,12 +23,13 @@ This document verifies the integrity of vendored JavaScript files against their 
 ### respec-w3c-35.6.1.js
 - **Source**: npm respec@35.6.1 (builds/respec-w3c.js)
 - **Base SHA256**: `4af427b606cc5b9331bf4d398aa31412d9051184049e5ad39873e7fd9fdf94c4`
-- **Current SHA256**: `83c4274c7fd3ce32598a166c6ccea3c4429bc6761ef839d74ebd01304e4834a3`
+- **Current SHA256**: `469aba1f727310458b631b317617bbf1f2cb343c0e30c8c7ba6b8d902e90774f`
 - **Status**: ✅ Verified (modified for local deployment)
 - **Changes**: 
   1. Line ~1116: URL for respec-highlight.js changed from CDN (`https://www.w3.org/Tools/respec/respec-highlight`) to dynamic path (`self.location.origin + '/vendor/respec-highlight.js'`) to support vendored deployment across all platforms and fix worker blob context path resolution
-- **Note**: Dynamically loads axe.min.js and respec-highlight.js as needed
-- **Modification Reason**: Vendored respec-highlight.js locally (see below) requires dynamic path resolution in worker context
+  2. Line ~743: URL for fixup.js changed from W3C (`https://www.w3.org/scripts/TR/2021/fixup.js`) to dynamic path (`self.location.origin + '/vendor/fixup.js'`) for supply chain security
+- **Note**: Dynamically loads axe.min.js, respec-highlight.js, and fixup.js from local vendor folder
+- **Modification Reason**: Vendored both respec-highlight.js and fixup.js locally requires dynamic path resolution using `self.location.origin` to work across all deployment platforms (localhost, GitHub Pages, production servers)
 
 ### fixup.js
 - **Source**: W3C TR Scripts (`https://www.w3.org/scripts/TR/2021/fixup.js`)
