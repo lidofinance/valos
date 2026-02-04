@@ -47,7 +47,7 @@ You can also see the specification as it would appear if currently proposed chan
 ## Feedback?
 
 You can provide any feedback or comments by raising or commenting on issues or pull requests in
-[this github repository](https://github.com/lidofinance/valos/), or through [a google form](https://forms.gle/RaUWtoKdNWivJb5R8).
+[this github repository](https://github.com/lidofinance/valos/).
 
 Please read the [contributor guidelines](CONTRIBUTING.md) to understand the expectations and (mostly lightweight) conditions before making your first contribution.
 
