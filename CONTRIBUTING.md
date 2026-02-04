@@ -16,7 +16,11 @@ incorporating changes that are proposed but not necessarily agreed.
 
 Please provide feedback based on that document.
 
+<<<<<<< HEAD
 (**NB** To read the lastest draft you need to download [the file `spec-update-draft.html`](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open the file in a browser).
+=======
+(**NB** For now, you need to download [the file](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open it locally in a browser, to read it. We expect to fix this very soon).
+>>>>>>> 3f85c0d (fix: broken links and footing wording to address issue #138)
 
 ## What
 
