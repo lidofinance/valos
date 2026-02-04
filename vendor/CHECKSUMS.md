@@ -18,14 +18,24 @@ This document verifies the integrity of vendored JavaScript files against their 
 - **SHA256**: `bb3a399f42113070cd0efcd3e2b93cf59680721a94808721b1ccff7b18928b5b`
 - **Verified**: ✅ Matches official respec package
 - **Command**: `npm pack respec@35.6.1 && tar -xzf respec-35.6.1.tgz && sha256sum package/builds/respec-highlight.js`
+- **Reason for Vendoring**: Originally loaded dynamically by respec-w3c-35.6.1.js. Vendored locally to satisfy CSP requirements (`script-src 'self' 'unsafe-inline'`) and avoid external CDN dependency for supply chain security compliance
 
 ### respec-w3c-35.6.1.js
 - **Source**: npm respec@35.6.1 (builds/respec-w3c.js)
 - **Base SHA256**: `4af427b606cc5b9331bf4d398aa31412d9051184049e5ad39873e7fd9fdf94c4`
-- **Local SHA256**: `5e9c7fcd4e0d76389398bddc5e4eb17a6ceb110a6baccbc69fb32cf29d9c64f2`
-- **Status**: ✅ Verified (modified for local path configuration)
-- **Changes**: URL for respec-highlight.js changed from CDN (`https://www.w3.org/Tools/respec/respec-highlight`) to local path (`/vendor/respec-highlight.js`) to support vendored deployment
+- **Current SHA256**: `83c4274c7fd3ce32598a166c6ccea3c4429bc6761ef839d74ebd01304e4834a3`
+- **Status**: ✅ Verified (modified for local deployment)
+- **Changes**: 
+  1. Line ~1116: URL for respec-highlight.js changed from CDN (`https://www.w3.org/Tools/respec/respec-highlight`) to dynamic path (`self.location.origin + '/vendor/respec-highlight.js'`) to support vendored deployment across all platforms and fix worker blob context path resolution
 - **Note**: Dynamically loads axe.min.js and respec-highlight.js as needed
+- **Modification Reason**: Vendored respec-highlight.js locally (see below) requires dynamic path resolution in worker context
+
+### fixup.js
+- **Source**: W3C TR Scripts (`https://www.w3.org/scripts/TR/2021/fixup.js`)
+- **SHA256**: `81bd814cfab6e6be40978c9d22f93472635040df12c51071f2a7e557a36474d8`
+- **Verified**: ✅ Downloaded 2026-02-04
+- **Command**: `curl https://www.w3.org/scripts/TR/2021/fixup.js | sha256sum`
+- **Note**: W3C fixup script for TR document formatting, vendored to satisfy CSP requirements
 
 ## Re-verification
 

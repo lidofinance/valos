@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'; worker-src 'self' blob:" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline';" />
     <title>ValOS</title>
     <!-- respec v35.6.1 - vendored locally for SRI/supply-chain security (issue #132) -->
     <script
@@ -3228,14 +3228,16 @@ function clean() {
 function RiskTableMitigations () {
 
   // Loop through mitigation sections
-  var mitigationsArray = document.querySelectorAll("[id^=sec-mit-]");
-  for(i = 0; i < mitigationsArray.length; i++) {
-    thisMitigation = document.createElement("li");
-    var link = document.createElement("a");
-    link.setAttribute("href", "#" + mitigationsArray[i].id);
+  const mitigationsArray = document.querySelectorAll("[id^=sec-mit-]");
+  for(let i = 0; i < mitigationsArray.length; i++) {
+    const thisMitigation = document.createElement("li");
+    const link = document.createElement("a");
+
+    link.href = `#${mitigationsArray[i].id}`;
     link.textContent = mitigationsArray[i].innerText;
+
     thisMitigation.appendChild(link);
-    console.log("succeeded: " + thisMitigation.innerText);
+    // console.log("succeeded: " + thisMitigation.innerText);
 
     // HACKY MESS Alert!
     // This finds the list of risks based on them being in a div that's within a grandparent element of the mitigations header (typically a section element)
