@@ -16,7 +16,7 @@ incorporating changes that are proposed but not necessarily agreed.
 
 Please provide feedback based on that document.
 
-(**NB** For now, you need to download [the file](spec-update-draft.html](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open it locally in a browser, to read it. We expect to fix this very soon).
+(**NB** For now, you need to download [the file](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open it locally in a browser, to read it. We expect to fix this very soon).
 
 ## What
 
