@@ -25,9 +25,11 @@ This document verifies the integrity of vendored JavaScript files against their 
 - **Base SHA256**: `4af427b606cc5b9331bf4d398aa31412d9051184049e5ad39873e7fd9fdf94c4`
 - **Current SHA256**: `83c4274c7fd3ce32598a166c6ccea3c4429bc6761ef839d74ebd01304e4834a3`
 - **Status**: ✅ Verified (modified for local deployment)
-- **Changes** (1 string replacement):
-  1. `"https://www.w3.org/Tools/respec/respec-highlight"` → `self.location.origin+"/vendor/respec-highlight.js"`
-- **Note**: respec-highlight.js is loaded via Web Worker during processing. fixup.js loads from W3C CDN (whitelisted in CSP).
+- **Changes** (3 string replacements):
+  1. `"https://www.w3.org/Tools/respec/respec-highlight"` → `"/vendor/respec-highlight.js"` (preload hint URL)
+  2. `"https://cdn.jsdelivr.net/npm/axe-core@4/axe.min.js"` → `"/vendor/axe.min.js"` (axe-core script src)
+  3. `importScripts("https://www.w3.org/Tools/respec/respec-highlight")` → `importScripts(self.location.origin+"/vendor/respec-highlight.js")` (Web Worker importScripts)
+- **Note**: All three changes replace external CDN URLs with local paths to satisfy CSP requirements and avoid external dependencies. fixup.js loads from W3C CDN (whitelisted in CSP).
 
 
 
