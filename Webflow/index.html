@@ -1,4 +1,4 @@
-<!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Fri Feb 13 2026 11:58:59 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Thu Feb 19 2026 12:21:59 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="6941470cf6e7d13a7d7d7ceb" data-wf-site="6941470cf6e7d13a7d7d7ced">
 <head>
   <meta charset="utf-8">
@@ -16,6 +16,39 @@
   <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png" rel="apple-touch-icon">
   <style>
+.dropdown-custom { position: relative; }
+.dropdown-content { 
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 260ms ease, opacity 180ms ease, transform 180ms ease;
+  will-change: max-height, opacity, transform;
+}
+.dropdown-trigger{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  cursor:pointer;
+}
+.dropdown-arrow{
+  display:inline-block;
+  transition: transform 200ms ease;
+  transform: rotate(0deg);
+  transform-origin: 50% 50%;
+}
+.dropdown-custom.is-open .dropdown-content {   
+	max-height: 1500px; 
+  opacity: 1;
+  transform: translateY(0);
+}
+.dropdown-custom.is-open .dropdown-arrow{
+  transform: rotate(180deg);
+}
+@media (prefers-reduced-motion: reduce){
+  .dropdown-content{ transition: none; }
+}
 @media (min-width: 1282px) {
 	.grid-container, .container {
   border-left: 1px solid black;
@@ -112,19 +145,19 @@
       <div class="cell-with-image"><img src="images/Group-37.svg" loading="lazy" alt=""></div>
       <div class="cell-with-heading">
         <h2 class="heading">The Blueprint for Staking Excellence</h2>
-        <div class="text-block">Open-Source and community-driven standard for running validators according to industry best-practices.</div>
+        <div class="text-block">Open-source and community-driven standard for running validators according to industry best practices.</div>
       </div>
       <div class="cell"><img src="images/Group-41.svg" loading="lazy" alt="">
         <div class="text-dm-mono-black">Supported by the Lido Labs Foundation</div>
       </div>
       <div class="cell-2">
-        <a href="https://lidofinance.github.io/valos/spec-update-draft.html" target="_blank" class="button text-dm-mono-black text-white bg-orange width-50 w-button">Get the STANDARD →</a>
+        <a href="https://lidofinance.github.io/valos/valos-spec.html" target="_blank" class="button text-dm-mono-black text-white bg-orange width-50 w-button">Get the STANDARD →</a>
         <a href="https://t.me/valoscommunity" target="_blank" class="button text-dm-mono-black width-50 w-button">Join the Community →</a>
       </div>
       <div class="cell-3 p-100">
         <div id="ABOUT" class="text-block-2">[About]</div>
         <h1 class="heading3">Secure. Robust. Verifiable.</h1>
-        <p class="text-block">The Validator Operations Standard (ValOS) sets the benchmark for running staking infrastructure with confidence. Built on proven governance and risk frameworks, ValOS provides node operators with a comprehensive toolkit to identify and mitigate risks, improve internal processes, strengthen infrastructure, and ensure operational excellence.</p>
+        <p class="text-block">The Validator Operations Standard (ValOS) sets the benchmark for running staking infrastructure with confidence. <br><br>Built on proven governance and risk frameworks, ValOS provides node operators with a comprehensive toolkit to identify and mitigate risks, improve internal processes, strengthen infrastructure, and ensure operational excellence.</p>
         <p class="text-block">ValOS originated from the DUCK initiative and was developed as a joint effort between industry leaders across staking, risk, security, and infrastructure operations. Contributors include:</p>
       </div>
       <div class="cell-5 slider-wrapper">
@@ -150,7 +183,7 @@
         </div>
       </div>
       <div id="w-node-_38b793d2-d3b8-da59-a5e0-b746963b97dd-7d7d7ceb" class="cell-6">
-        <div class="text-block-2 color-black text-align-center">Together, this collective ensures that ValOS is not just a theoretical standard—but an industry-DRIVEN benchmark for secure and resilient validator operations.</div>
+        <div class="text-block-2 color-black text-align-center">Together, this collective ensures that ValOS is not just a theoretical standard but an industry-DRIVEN benchmark for secure and resilient validator operations.</div>
       </div>
       <div id="w-node-c58bc0a1-7302-ea7d-c52b-abbacc065696-7d7d7ceb" class="cell-7">
         <h1 class="heading3">Why ValOS?</h1>
@@ -160,7 +193,7 @@
               <div class="text-block-2 color-black z-index">1</div>
             </div>
             <div class="div-block-4">
-              <h4 class="text-block bold line-height-30">Clear standards</h4>
+              <h4 class="text-block bold line-height-30">Cromprehensive clear standard</h4>
               <div class="text-block line-height-30">For secure, reliable, and enterprise-ready validator operations.</div>
             </div>
           </div>
@@ -169,7 +202,7 @@
               <div class="text-block-2 color-black z-index">2</div>
             </div>
             <div class="div-block-4">
-              <h4 class="text-block bold line-height-30">Industry Best Practices</h4>
+              <h4 class="text-block bold line-height-30">Industry best practices</h4>
               <div class="text-block line-height-30">Aligned with established standards: ISO 27001 and SOC 2.</div>
             </div>
           </div>
@@ -178,7 +211,7 @@
               <div class="text-block-2 color-black z-index">3</div>
             </div>
             <div class="div-block-4">
-              <h4 class="text-block bold line-height-30">Community-driven</h4>
+              <h4 class="text-block bold line-height-30">Community-driven framework</h4>
               <div class="text-block line-height-30">Shaped through open review, contribution, and shared expertise.</div>
             </div>
           </div>
@@ -194,32 +227,31 @@
         </div>
       </div>
       <div id="w-node-ae5dffa6-386c-4832-edf1-df96e2d402f0-7d7d7ceb" class="cell-11">
-        <a href="https://lidofinance.github.io/valos/spec-update-draft.html" target="_blank" class="button bg-orange text-dm-mono-black text-white w-button">Safer staking starts here →</a>
+        <a href="https://lidofinance.github.io/valos/spec-update-draft.html" target="_blank" class="button bg-orange text-dm-mono-black text-white w-button">Safer Validation starts here →</a>
       </div>
-      <div id="w-node-c06415b7-4636-055b-a4d7-b7f09f03fa26-7d7d7ceb" class="cell-15">
+      <div id="w-node-dfbb01d7-a210-7b08-6709-f50d3cea4ab0-7d7d7ceb" class="cell-15">
         <div id="GETSTARTED" class="text-block-2 badge">[Get Started]</div>
-        <div data-hover="false" data-delay="3" data-w-id="71459779-0f00-49a2-9462-f9f27f9695a4" class="dropdown w-dropdown">
-          <div class="dropdown-toggle w-dropdown-toggle">
-            <div data-w-id="71459779-0f00-49a2-9462-f9f27f9695a6" class="w-icon-dropdown-toggle"></div>
-            <div class="heading3">For Node Operators</div>
+        <div class="dropdown-custom">
+          <div class="dropdown-trigger">
+            <div class="heading3">For Node Operators</div><img src="images/downChevron.svg" loading="lazy" alt="" class="dropdown-arrow">
           </div>
-          <div class="dropdown-list w-dropdown-list">
+          <div class="dropdown-content">
             <div class="div-block-11">
               <div class="div-block-12">
                 <div class="div-block-4 width-100">
                   <h4 class="text-block bold line-height-30">Self-assess</h4>
                   <div class="text-block line-height-30 fs-18">Evaluate your own processes and controls using the ValOS framework to see where you stand, identify gaps and improvement plans, and chart your trajectory to a third-party external review.</div>
-                  <a href="https://lidofinance.github.io/valos/spec-update-draft.html#sec-summary-of-controls" class="button text-dm-mono-black button-sm mt-10 w-button">Self-assessment framework</a>
+                  <a href="https://lidofinance.github.io/valos/valos-spec.html#sec-summary-of-controls" target="_blank" class="button text-dm-mono-black button-sm mt-10 w-button">Self-assessment framework</a>
                 </div>
                 <div class="div-block-4 width-100">
                   <h4 class="text-block bold line-height-30">Improve</h4>
                   <div class="text-block line-height-30 fs-18">Implement process and control improvements to increase the security, redundancy, operational effectiveness, and risk mitigation aspects of your validator infrastructure operations.</div>
-                  <a href="https://lidofinance.github.io/valos/spec-update-draft.html" class="button text-dm-mono-black button-sm mt-10 w-button">SPecs</a>
+                  <a href="https://lidofinance.github.io/valos/spec-update-draft.html" target="_blank" class="button text-dm-mono-black button-sm mt-10 w-button">SPecIFICATIONS</a>
                 </div>
                 <div class="div-block-4 width-100">
                   <h4 class="text-block bold line-height-30">Contribute</h4>
                   <div class="text-block line-height-30 fs-18">Help to evolve ValOS by bringing your hands-on expertise through open-source contribution shaping the standard that reflect real-world validator operations.</div>
-                  <a href="https://github.com/lidofinance/valos" class="button text-dm-mono-black button-sm mt-10 w-button">github</a>
+                  <a href="https://github.com/lidofinance/valos" target="_blank" class="button text-dm-mono-black button-sm mt-10 w-button">github</a>
                 </div>
                 <div class="div-block-4 width-100">
                   <h4 class="text-block bold line-height-30">Get Certified</h4>
@@ -228,25 +260,24 @@
                 </div>
               </div>
               <div class="div-block-13">
-                <div class="div-block-2 size-big"><img src="images/For-Node-Operators.png" loading="lazy" sizes="100vw" srcset="images/For-Node-Operators-p-500.png 500w, images/For-Node-Operators-p-800.png 800w, images/For-Node-Operators-p-1080.png 1080w, images/For-Node-Operators.png 1560w" alt="" class="image-6"></div>
+                <div class="div-block-2 size-big"><img src="images/For-Node-Operators.png" loading="lazy" alt="" class="image-6"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div id="w-node-e116bd58-c41d-1190-69e2-71f78883786e-7d7d7ceb" class="cell-15">
-        <div data-hover="false" data-delay="3" class="dropdown w-dropdown">
-          <div class="dropdown-toggle w-dropdown-toggle">
-            <div data-w-id="1f612d0a-7849-3c70-1a15-f1c8a56e2738" class="w-icon-dropdown-toggle"></div>
-            <div class="heading3 wrap">For Auditors &amp; Security Professionals</div>
+        <div class="dropdown-custom">
+          <div class="dropdown-trigger">
+            <div class="heading3 wrap">For Auditors &amp; Security Professionals</div><img src="images/downChevron.svg" loading="lazy" alt="" class="dropdown-arrow">
           </div>
-          <div class="dropdown-list w-dropdown-list">
+          <div class="dropdown-content">
             <div class="div-block-11">
               <div class="div-block-12">
                 <div class="div-block-4 width-100">
                   <h4 class="text-block bold line-height-30"><strong>Understand The Standard</strong></h4>
                   <div class="text-block line-height-30 fs-18">Understand how ValOS aligns with industry standards such as SOC 2 and ISO 27001, explore the framework, and learn how to build on it to assess node operators.</div>
-                  <a href="#" class="button text-dm-mono-black button-sm mt-10 w-button">specIFICATIONS</a>
+                  <a href="https://lidofinance.github.io/valos/valos-spec.html" target="_blank" class="button text-dm-mono-black button-sm mt-10 w-button">specIFICATIONS</a>
                 </div>
                 <div class="div-block-4 width-100">
                   <h4 class="text-block bold line-height-30"><strong>Become An Approved Assessor</strong></h4>
@@ -259,19 +290,18 @@
                 </div>
               </div>
               <div class="div-block-13">
-                <div class="div-block-2 size-big"><img src="images/For-Auditors--Security-Professionals.png" loading="lazy" sizes="100vw" srcset="images/For-Auditors--Security-Professionals-p-500.png 500w, images/For-Auditors--Security-Professionals-p-800.png 800w, images/For-Auditors--Security-Professionals-p-1080.png 1080w, images/For-Auditors--Security-Professionals.png 1560w" alt="" class="image-6"></div>
+                <div class="div-block-2 size-big"><img src="images/For-Auditors--Security-Professionals.png" loading="lazy" alt="" class="image-6"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div id="w-node-fdf54512-eb26-9c73-290e-319bba9d008c-7d7d7ceb" class="cell-15">
-        <div data-hover="false" data-delay="3" data-w-id="54d310d0-b8ee-ee48-26e0-596c941ff589" class="dropdown w-dropdown">
-          <div class="dropdown-toggle w-dropdown-toggle">
-            <div data-w-id="54d310d0-b8ee-ee48-26e0-596c941ff58b" class="w-icon-dropdown-toggle"></div>
-            <div class="heading3">For Stakers</div>
+        <div class="dropdown-custom">
+          <div class="dropdown-trigger">
+            <div class="heading3">For Stakers</div><img src="images/downChevron.svg" loading="lazy" alt="" class="dropdown-arrow">
           </div>
-          <div class="dropdown-list w-dropdown-list">
+          <div class="dropdown-content">
             <div class="div-block-11">
               <div class="div-block-12">
                 <div class="div-block-4 width-100">
@@ -287,7 +317,7 @@
                 <div class="div-block-4 width-100">
                   <h4 class="text-block bold line-height-30"><strong>Know The Standard</strong></h4>
                   <div class="text-block line-height-30 fs-18">Understand what is expected of node operators under ValOS, and how these expectations may help you better evaluate risks and safeguards around your stake.</div>
-                  <a href="https://lidofinance.github.io/valos/spec-update-draft.html" target="_blank" class="button text-dm-mono-black button-sm mt-10 w-button">specIFICATIONs</a>
+                  <a href="https://lidofinance.github.io/valos/valos-spec.html" target="_blank" class="button text-dm-mono-black button-sm mt-10 w-button">specIFICATIONs</a>
                 </div>
               </div>
               <div class="div-block-13">
@@ -313,7 +343,7 @@
             <div class="div-block-2">
               <div class="text-block-2 color-black z-index">2</div>
             </div>
-            <div class="text-block line-height-30">Share risk mitigation practices, insights, and useful tooling.</div>
+            <div class="text-block line-height-30">Share risk mitigation practices, insights, and useful operator tooling.</div>
           </div>
           <div class="div-block-3 gap-30 width-33">
             <div class="div-block-2">
@@ -324,18 +354,18 @@
         </div>
       </div>
       <div id="w-node-_57606f3b-7247-164b-1b6c-759d8fc75aaf-7d7d7ceb" class="cell-11">
-        <a href="https://t.me/valoscommunity" class="button bg-orange text-dm-mono-black text-white w-button">Join the conversation →</a>
+        <a href="https://t.me/valoscommunity" target="_blank" class="button bg-orange text-dm-mono-black text-white w-button">Join the conversation →</a>
       </div>
       <div id="assurance" class="cell-3 p-100 gap-32 w-node-_5b9125a5-a461-6b2d-74f4-d85e8dec3c75-7d7d7ceb">
         <div id="ASSURANCE" class="text-block-2">[ASSURANCE]</div>
         <h1 class="heading3">Approved Assessors</h1>
         <div class="div-block-5">
           <p class="text-block bold line-height-30">Independent professionals providing node operator assessments.</p>
-          <p class="text-block fs-18">ValOS network of independent assessors is currently being established. If you are an experienced auditor, consultant, or industry professional interested in becoming an approved assessor, reach out to <a href="mailto:valos@lionscraft.io">info@valos.global</a>.</p>
+          <p class="text-block fs-18">ValOS network of independent assessors is currently being established. If you are an experienced auditor, consultant, or industry professional interested in becoming an approved assessor, reach out to <a href="mailto:info@valos.global?subject=Contact">info@valos.global</a>.</p>
         </div>
-        <a href="mailto:info@valos.global" class="button text-dm-mono-black button-sm w-button">Contact Us</a>
+        <a href="mailto:info@valos.global?subject=Contact" class="button text-dm-mono-black button-sm w-button">Contact Us</a>
         <h1 class="heading3">Reviewed Node Operators</h1>
-        <p class="text-block bold line-height-30">Verified operators demonstrating adherence to the ValOS framework.</p>
+        <p class="text-block bold line-height-30">Verified operators demonstrating adherence to ValOS framework.</p>
         <p class="text-block fs-18">A growing number of node operators are actively preparing to adopt ValOS and progress toward formal assessment. The first cohort of independently reviewed and verified operators will be published below in the coming months.</p>
       </div>
       <div id="w-node-_802f6366-ef5a-68ac-b8b3-fbf218bdc319-7d7d7ceb" class="cell-7 p-80">
@@ -346,14 +376,14 @@
               <h1 class="heading3 mw">Specification</h1>
               <div class="text-block fs-18 lh-27">The comprehensive standard for validator operations</div>
             </div>
-            <a href="https://lidofinance.github.io/valos/spec-update-draft.html" target="_blank" class="button text-dm-mono-black button-sm width-300 w-button">SPECS</a>
+            <a href="https://lidofinance.github.io/valos/valos-spec.html" target="_blank" class="button text-dm-mono-black button-sm width-300 w-button">SPECificationS</a>
           </div>
           <div class="div-block-7">
             <div class="div-block-8">
               <h1 class="heading3 mw">Governance Guidelines</h1>
               <div class="text-block fs-18 lh-27">Transparent processes that guide the standard evolution</div>
             </div>
-            <a href="mailto:info@valos.global?subject=Request%20for%20Governance%20Guidelines" class="button text-dm-mono-black button-sm width-300 w-button">GUIDELINES</a>
+            <a href="documents/ValOS_Governance.pdf" target="_blank" class="button text-dm-mono-black button-sm width-300 w-button">GUIDELINES</a>
           </div>
           <div class="div-block-7">
             <div class="div-block-8">
@@ -365,9 +395,9 @@
           <div class="div-block-7">
             <div class="div-block-8">
               <h1 class="heading3 mw">Repository</h1>
-              <div class="text-block fs-18 lh-27">Platform for ValOS edits and improvements</div>
+              <div class="text-block fs-18 lh-27">Platform for ValOS updates and improvements</div>
             </div>
-            <a href="https://github.com/lidofinance/valos" target="_blank" class="button text-dm-mono-black button-sm width-300 w-button">GITHUB</a>
+            <a href="https://lidofinance.github.io/valos/valos-spec.html" target="_blank" class="button text-dm-mono-black button-sm width-300 w-button">GITHUB</a>
           </div>
         </div>
       </div>
@@ -396,30 +426,49 @@
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6941470cf6e7d13a7d7d7ced" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
   <script>
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const burger = document.querySelector(".burger-button");
   const header = document.querySelector(".header");
   const menu = document.querySelector(".nav-menu");
-  if (!burger || !header || !menu) return;
-  function toggleMenu(e) {
+  function closeBurger() {
+    if (header) header.classList.remove("custom-nav-open");
+  }
+  function toggleBurger(e) {
     e.preventDefault();
     e.stopPropagation();
     header.classList.toggle("custom-nav-open");
   }
-  burger.addEventListener("click", toggleMenu);
-  burger.addEventListener("touchstart", toggleMenu);
-  menu.addEventListener("click", (e) => {
-    const link = e.target.closest("a");
-    if (link) header.classList.remove("custom-nav-open");
-  });
-  document.addEventListener("click", (e) => {
-    if (!header.contains(e.target)) header.classList.remove("custom-nav-open");
-  });
-  document.addEventListener("touchstart", (e) => {
-    if (!header.contains(e.target)) header.classList.remove("custom-nav-open");
-  });
+  if (burger && header && menu) {
+    burger.style.cursor = "pointer";
+    burger.style.touchAction = "manipulation";
+    burger.addEventListener("pointerup", toggleBurger);
+    menu.addEventListener("click", (e) => {
+      const link = e.target.closest("a");
+      if (link) closeBurger();
+    });
+    document.addEventListener("pointerdown", (e) => {
+      if (!header.contains(e.target)) closeBurger();
+    });
+  }
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") header.classList.remove("custom-nav-open");
+    if (e.key === "Escape") closeBurger();
+  });
+    document.querySelectorAll(".dropdown-custom").forEach((dd) => {
+    const trigger = dd.querySelector(".dropdown-trigger");
+    const content = dd.querySelector(".dropdown-content");
+    if (!trigger || !content) return;
+    // тач-friendly
+    trigger.style.touchAction = "manipulation";
+    trigger.addEventListener("pointerup", (e) => {
+      e.preventDefault();
+      dd.classList.toggle("is-open");
+    });
+  });
+  // (опционально) закрывать по клику вне — если не надо, удали блок
+  document.addEventListener("pointerdown", (e) => {
+    if (e.target.closest(".dropdown-custom")) return;
+    document.querySelectorAll(".dropdown-custom.is-open")
+      .forEach(dd => dd.classList.remove("is-open"));
   });
 });
 </script>
