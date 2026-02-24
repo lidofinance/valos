@@ -1,0 +1,15 @@
+name: Validate Risk References
+
+on:
+  pull_request:
+    branches: [main, gh-pages, staging, advance-staging]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate risk references
+        run: bash ./scripts/validate-risk-refs.sh

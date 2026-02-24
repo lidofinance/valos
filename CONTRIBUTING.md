@@ -7,7 +7,7 @@ Your feedback is important to help us improve the Validator Operator Specificati
 BY CONTRIBUTING TO THIS REPOSITORY, YOU AGREE:
 
 1. THAT THE CONTRIBUTIONS ARE YOUR OWN WORK OR WORK YOU HAVE PERMISSION TO SHARE UNDER THESE TERMS OF CONTRIBUTION, AND
-2. TO PROVIDE YOUR CONTRIBUTIONS UNDER THE TERMS OF THE [APACHE 2.0 LICENSE](LICENSE.md), AND
+2. TO PROVIDE YOUR CONTRIBUTIONS UNDER THE TERMS OF THE [APACHE 2.0 LICENSE](LICENSE), AND
 3. TO PROVIDE LIDO FINANCE, IN EXCHANGE FOR THEIR CONTRIBUTION TO THE MAINTENANCE OF THIS WORK, A NON-EXCLUSIVE WORLDWIDE IRREVOCABLE LICENSE TO IMPLEMENT, PERFORM, COPY, MODIFY DISTRIBUTE ADN OTHERWISE USE YOUR CONTRIBUTIONS, WHETHER COMMERCIALLY OR OTHERWISE, AS THEY CHOOSE IN THEIR SOLE DISCRETION.
 
 The version of [**current update draft**](spec-update-draft.html)
@@ -16,7 +16,7 @@ incorporating changes that are proposed but not necessarily agreed.
 
 Please provide feedback based on that document.
 
-(**NB** For now, you need to download [the file](spec-update-draft.html](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open it locally in a browser, to read it. We expect to fix this very soon).
+(**NB** For now, you need to download [the file](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open it locally in a browser, to read it. We expect to fix this very soon).
 
 ## What
 
@@ -25,7 +25,7 @@ Please provide feedback based on that document.
 Simple fixes such as correcting broken links, typos, and the like are welcome and appreciated.
 
 If you are looking for something to contribute on, please consider the items labeled
-"[Good First Issue](https://github.com/lidofinance/valos/good%20first%20issue)", or
+"[Good First Issue](https://github.com/lidofinance/valos/labels/good%20first%20issue)", or
 "[Help Wanted](https://github.com/lidofinance/valos/labels/help%20wanted)".
 
 If there is something that you think could and should be improved, please tell us.
@@ -79,6 +79,14 @@ You can also make a Pull Request. If you do:
 All Pull Requests will be reviewed and edited as necessary, so feel free to make a proposal and know that your contribution is appreciated
 even if you do not have time to understand and replicate the various conventions of the existing source code.
 
+### Commit Signing
+
+Core team members **must** sign commits with GPG. For external contributors:
+
+- Signed commits are appreciated but not required
+- We will review your code and sign commits on merge using squash-and-merge
+- If you'd like to sign your commits, see [GitHub's commit signature verification guide](https://docs.github.com/en/authentication/managing-commit-signature-verification)
+
 ## What happens next?
 
 Issues and Pull Requests are assigned at least one milestone, which refers to a decision point at which they can be approved, or returned for more discussion.
@@ -86,4 +94,3 @@ Issues and Pull Requests are assigned at least one milestone, which refers to a 
 Items on the milestone will be published to the Telegram Community on Fridays. If there is no objection raised, they will be merged into the `staging` branch, or closed as proposed, on the following Wednesday.
 
 When all the approved items have been merged into the staging branch, the update will be checked then merged to the `main` branch.
-
