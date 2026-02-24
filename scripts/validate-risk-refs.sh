@@ -1,5 +1,5 @@
 #!/bin/bash
-# Validates risk references in spec-update-draft.html
+# Validates risk references in valos-spec.html
 # Checks:
 # 1. Risk labels match their anchor links
 # 2. No unintentional duplicate risks in the same list
@@ -7,7 +7,7 @@
 
 set -e
 
-SPEC_FILE="spec-update-draft.html"
+SPEC_FILE="valos-spec.html"
 ERRORS=0
 
 echo "Validating risk references in $SPEC_FILE..."
