@@ -1,22 +1,22 @@
 # Providing Feedback
 
-Your feedback is important to help us improve the Validator Operator Specification (ValOS). We are grateful for and would like to acknowledge contributions, but there are some important points to consider when providing them.
+Your feedback is important to help us improve the Validator Operations Standard (ValOS). We are grateful for and would like to acknowledge contributions, but there are some important points to consider when providing them.
 
-##  Terms and Conditions
+## Terms and Conditions
 
 BY CONTRIBUTING TO THIS REPOSITORY, YOU AGREE:
 
 1. THAT THE CONTRIBUTIONS ARE YOUR OWN WORK OR WORK YOU HAVE PERMISSION TO SHARE UNDER THESE TERMS OF CONTRIBUTION, AND
 2. TO PROVIDE YOUR CONTRIBUTIONS UNDER THE TERMS OF THE [APACHE 2.0 LICENSE](LICENSE), AND
-3. TO PROVIDE LIDO FINANCE, IN EXCHANGE FOR THEIR CONTRIBUTION TO THE MAINTENANCE OF THIS WORK, A NON-EXCLUSIVE WORLDWIDE IRREVOCABLE LICENSE TO IMPLEMENT, PERFORM, COPY, MODIFY DISTRIBUTE ADN OTHERWISE USE YOUR CONTRIBUTIONS, WHETHER COMMERCIALLY OR OTHERWISE, AS THEY CHOOSE IN THEIR SOLE DISCRETION.
+3. TO PROVIDE LIDO LABS FOUNDATION, IN EXCHANGE FOR THEIR CONTRIBUTION TO THE MAINTENANCE OF THIS WORK, A NON-EXCLUSIVE WORLDWIDE IRREVOCABLE LICENSE TO IMPLEMENT, PERFORM, COPY, MODIFY DISTRIBUTE AND OTHERWISE USE YOUR CONTRIBUTIONS, WHETHER COMMERCIALLY OR OTHERWISE, AS THEY CHOOSE IN THEIR SOLE DISCRETION.
 
-The version of [**current update draft**](spec-update-draft.html)
-in the [`advanced-staging` branch](https://github.com/lidofinance/valos/tree/advance-staging) is the latest development state of the proposal for a new version,
+The version of [**current update draft**](valos-spec.html)
+in the [`advance-staging` branch](https://github.com/lidofinance/valos/tree/advance-staging) is the latest development state of the proposal for a new version,
 incorporating changes that are proposed but not necessarily agreed.
 
 Please provide feedback based on that document.
 
-(**NB** To read the lastest draft you need to download [the file `spec-update-draft.html`](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open the file in a browser).
+(**NB** To read the latest draft you need to download [the file `valos-spec.html`](https://github.com/lidofinance/valos/blob/advance-staging/valos-spec.html), and open the file in a browser).
 
 ## What
 

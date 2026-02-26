@@ -2,7 +2,7 @@ name: Validate Risk References
 
 on:
   pull_request:
-    branches: [main, gh-pages, staging, advance-staging]
+    branches: [main, staging, advance-staging]
 
 jobs:
   validate:
