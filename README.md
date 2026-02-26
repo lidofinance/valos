@@ -8,16 +8,16 @@ This repository is where we develop updates for the ValOS specification. We welc
 
 There are three "permanent" branches:
 
-- The [`main` branch](https://github.com/lidofinance/valos/) is the default branch, and shows the latest resolved state of the Editor's draft. I.e. it incorporates proposals that have been resolved at a [decision point]. The version in this branch is the "official" [Editor's Draft](https://lidofinance.github.io/valos/spec-update-draft.html).
-- The [`staging` branch](https://github.com/lidofinance/valos/tree/staging) is used to collect pull requests that the has approved for merge, to enable review before merging the changes to the `main` branch. **Pull Requests proposing changes are made against the `staging` branch**
-- The [`advanced-staging` branch](https://github.com/lidofinance/valos/tree/advance-staging) has all proposed PRs merged.
+- The [`main` branch](https://github.com/lidofinance/valos/) is the default branch, and shows the latest resolved state of the Editor's draft. I.e. it incorporates resolved proposals. The version in this branch is the "official" [Editor's Draft](https://lidofinance.github.io/valos/valos-spec.html).
+- The [`staging` branch](https://github.com/lidofinance/valos/tree/staging) is used to collect pull requests that have been approved for merge, to enable review before merging the changes to the `main` branch. **Pull Requests proposing changes are made against the `staging` branch**
+- The [`advance-staging` branch](https://github.com/lidofinance/valos/tree/advance-staging) has all proposed PRs merged.
   That can be useful to look at when considering a new Pull Request, to avoid duplicating work or being surprised by a conflicting change proposal.
 
 ## What is ValOS?
 
 The Validator Operations Standard (ValOS) describes risks that Node Operators face, and mitigation and control strategies, how to assess whether the risks are adequately managed.
 
-ValOS is the next stage evolution of the [D.U.C.K Knowledge Base](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base),
+ValOS is the next stage evolution of the [DUCK Knowledge Base](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base),
 bringing the core content together in a specification that is updated and maintained through a transparent process
 to make it easier to understand what needs to be done and how to test whether it is, with a less flippant name.
 
@@ -38,11 +38,11 @@ and to understand what an auditor will be checking for when they are assessing a
 
 ## Updates
 
-ValOS is being revised over the course of 2025 with a new version expected before the end of the year.
+ValOS is being revised with a new version expected in the second half of 2026.
 
-Proposed updates are accepted (or returned for more work) on a weekly basis. The [spec-update-draft.html](./spec-update-draft.html) in the `main` branch shows the draft specification with all the changes that have been accepted so far. As well as source code in the repository we provide an [online view of the Editor's Draft](https://lidofinance.github.io/valos/spec-update-draft.html) - what the current version looks like.
+Proposed updates are accepted (or returned for more work) on a weekly basis. The [valos-spec.html](./valos-spec.html) in the `main` branch shows the draft specification with all the changes that have been accepted so far. As well as source code in the repository we provide an [online view of the Editor's Draft](https://lidofinance.github.io/valos/valos-spec.html) - what the current version looks like.
 
-You can also see the specification as it would appear if currently proposed changes are accepted, by looking in the `advance-staging` branch for [spec-update-draft.html](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html) (note that to view it as intended you need to clone the branch or download the HTML file, and open the local file in a browser).
+You can also see the specification as it would appear if currently proposed changes are accepted, by looking in the `advance-staging` branch for [valos-spec.html](https://github.com/lidofinance/valos/blob/advance-staging/valos-spec.html) (note that to view it as intended you need to clone the branch or download the HTML file, and open the local file in a browser).
 
 ## Feedback?
 
