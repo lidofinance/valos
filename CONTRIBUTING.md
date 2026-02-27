@@ -1,22 +1,22 @@
 # Providing Feedback
 
-Your feedback is important to help us improve the Validator Operator Specification (ValOS). We are grateful for and would like to acknowledge contributions, but there are some important points to consider when providing them.
+Your feedback is important to help us improve the Validator Operations Standard (ValOS). We are grateful for and would like to acknowledge contributions, but there are some important points to consider when providing them.
 
-##  Terms and Conditions
+## Terms and Conditions
 
 BY CONTRIBUTING TO THIS REPOSITORY, YOU AGREE:
 
 1. THAT THE CONTRIBUTIONS ARE YOUR OWN WORK OR WORK YOU HAVE PERMISSION TO SHARE UNDER THESE TERMS OF CONTRIBUTION, AND
-2. TO PROVIDE YOUR CONTRIBUTIONS UNDER THE TERMS OF THE [APACHE 2.0 LICENSE](LICENSE.md), AND
-3. TO PROVIDE LIDO FINANCE, IN EXCHANGE FOR THEIR CONTRIBUTION TO THE MAINTENANCE OF THIS WORK, A NON-EXCLUSIVE WORLDWIDE IRREVOCABLE LICENSE TO IMPLEMENT, PERFORM, COPY, MODIFY DISTRIBUTE ADN OTHERWISE USE YOUR CONTRIBUTIONS, WHETHER COMMERCIALLY OR OTHERWISE, AS THEY CHOOSE IN THEIR SOLE DISCRETION.
+2. TO PROVIDE YOUR CONTRIBUTIONS UNDER THE TERMS OF THE [APACHE 2.0 LICENSE](LICENSE), AND
+3. TO PROVIDE LIDO LABS FOUNDATION, IN EXCHANGE FOR THEIR CONTRIBUTION TO THE MAINTENANCE OF THIS WORK, A NON-EXCLUSIVE WORLDWIDE IRREVOCABLE LICENSE TO IMPLEMENT, PERFORM, COPY, MODIFY DISTRIBUTE AND OTHERWISE USE YOUR CONTRIBUTIONS, WHETHER COMMERCIALLY OR OTHERWISE, AS THEY CHOOSE IN THEIR SOLE DISCRETION.
 
-The version of [**current update draft**](spec-update-draft.html)
-in the [`advanced-staging` branch](https://github.com/lidofinance/valos/tree/advance-staging) is the latest development state of the proposal for a new version,
+The version of [**current update draft**](valos-spec.html)
+in the [`advance-staging` branch](https://github.com/lidofinance/valos/tree/advance-staging) is the latest development state of the proposal for a new version,
 incorporating changes that are proposed but not necessarily agreed.
 
 Please provide feedback based on that document.
 
-(**NB** To read the lastest draft you need to download [the file `spec-update-draft.html`](https://github.com/lidofinance/valos/blob/advance-staging/spec-update-draft.html), and open the file in a browser).
+(**NB** To read the latest draft you need to download [the file `valos-spec.html`](https://github.com/lidofinance/valos/blob/advance-staging/valos-spec.html), and open the file in a browser).
 
 ## What
 
@@ -25,7 +25,7 @@ Please provide feedback based on that document.
 Simple fixes such as correcting broken links, typos, and the like are welcome and appreciated.
 
 If you are looking for something to contribute on, please consider the items labeled
-"[Good First Issue](https://github.com/lidofinance/valos/good%20first%20issue)", or
+"[Good First Issue](https://github.com/lidofinance/valos/labels/good%20first%20issue)", or
 "[Help Wanted](https://github.com/lidofinance/valos/labels/help%20wanted)".
 
 If there is something that you think could and should be improved, please tell us.
@@ -79,9 +79,16 @@ You can also make a Pull Request. If you do:
 All Pull Requests will be reviewed and edited as necessary, so feel free to make a proposal and know that your contribution is appreciated
 even if you do not have time to understand and replicate the various conventions of the existing source code.
 
+### Commit Signing
+
+Core team members **must** sign commits with GPG. For external contributors:
+
+- Signed commits are appreciated but not required
+- We will review your code and sign commits on merge using squash-and-merge
+- If you'd like to sign your commits, see [GitHub's commit signature verification guide](https://docs.github.com/en/authentication/managing-commit-signature-verification)
+
 ## What happens next?
 
 Issues and Pull Requests are likely to begin being reflected in a draft update in the second half of 2026.
 
 When all the approved items have been merged into the staging branch, the update will be checked then merged to the `main` branch.
-

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://www.w3.org/scripts/; style-src 'self' 'unsafe-inline' https://www.w3.org/StyleSheets/TR/2021/; worker-src 'self' blob:;" />
     <title>ValOS</title>
+    <!-- respec v35.6.1 - vendored locally for SRI/supply-chain security (issue #132) -->
     <script
-      src="https://www.w3.org/Tools/respec/respec-w3c"
+      src="./vendor/respec-w3c-35.6.1.js"
       class="remove"
       defer></script>
     <style>
@@ -24,7 +26,7 @@
   </head>
   <body>
 
-Copyright© 2025, Lido Foundation. This document may be used, modified, copied and distributed under the terms of the [Apache 2 License](./LICENSE).
+Copyright© 2026, Lido Labs Foundation. This document may be used, modified, copied and distributed under the terms of the [Apache 2 License](./LICENSE).
 
 
 
@@ -64,7 +66,7 @@ Conformance to this specification is based on meeting the requirements expressed
 
 ## Risks {#sec-risks}
 
-This specification divides risk into seven categories for Node Operators to consider in ensuring the quality of their overall setup.
+This specification divides risk into eight categories for Node Operators to consider in ensuring the quality of their overall setup.
 
 Where applicable, risk identifiers correspond to those that were introduced in [[?DUCK]], and will remain stable. This may mean that some identifiers are retired and will not be re-used.
 
@@ -759,7 +761,7 @@ Risk related to partners and specific third-party services.
 </tr>
 </tbody></table>
 
-### Reputational Risk {#sec-risk-reputation}
+### Reputational Risk {#sec-risks-reputation}
 
 Risks that impact the reputation of a Node Operator, likely to lead potential and actual customers to choose a different partner to work with.
 
@@ -849,7 +851,7 @@ provide a simple initial ranking for priority of mitigating each risk.
 Since the cost of risk mitigation varies considerably, the overall priority for addressing risk, or deciding that a given level of risk is acceptable,
 generally depends on comparing the risk ranking with the cost of mitigation, and available resources.
 
-##### Best practises for assessing risk include
+##### Best practices for assessing risk include
 
 * Identify relevant staff and others responsible for identifying, assessing, and determining how to manage risks
 * Ensure that every service, where possible, is configuration hardened. Common benchmarks such as [CIS](https://www.cisecurity.org) provide helpful guidance.
@@ -918,12 +920,12 @@ It is therefore important that appropriate management of people is part of manag
 This impacts in various areas, from mitigating the risk of hacking by unknown parties with access to privileged roles,
 to the ability to provide timely incident response and minimize the damage caused by a security incident.
 
-As well as the [Controls for People Management](#controls-for-people-management) some relevant controls are grouped with other areas, such as
+As well as the [Controls for People Management](#sec-controls-people-management) some relevant controls are grouped with other areas, such as
 - [Limit Physical Access](#req-protect-server-locations)
 - [Minimize Authorization](#req-least-privilege)
 - [Log Personnel Information](#req-log-personnel)
 
-#### Identified Individuals {sec-mit-identified-individuals}
+#### Identified Individuals {#sec-mit-identified-individuals}
 
 It is important to identify individuals who have access to and can control aspects of the operations of the Validator node.
 While a globalized workforce can provide multiple benefits, it is difficult to hold an anonymous individual accountable.
@@ -978,11 +980,11 @@ that can be introduced by an upgrade as part of a supply-chain attack, and to ve
 [specific configuration](#req-check-config-on-update) options, as well as other software used by the node operator,
 are all compatible with an update and do not create new vulnerabilities on updating.
 
-##### Best practises for updating software include
+##### Best practices for updating software include
 
 - "version-pinning"
 - actively managing dependencies
-- testing updates before automatically deplying them
+- testing updates before automatically deploying them
 
 ##### Relevant controls for updated software
 
@@ -995,7 +997,7 @@ are all compatible with an update and do not create new vulnerabilities on updat
 * [FIN1](#risk-fin-1)
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3)
 * [DOW4](#risk-dow-4), [DOW12](#risk-dow-12), [DOW21](#risk-dow-21)
-* [GIR4](#risk-gir-4), [GIR6](#risk-gir-6), [GIR16](#risk-gir-16), [GIR18](#risk-gir-18), [GIR21](#risk-gir-21), [GIR22](#risk-gir-22), [GIR18](#risk-gir-25)
+* [GIR4](#risk-gir-4), [GIR6](#risk-gir-6), [GIR16](#risk-gir-16), [GIR18](#risk-gir-18), [GIR21](#risk-gir-21), [GIR22](#risk-gir-22), [GIR25](#risk-gir-25)
 * [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
 * [SPS1](#risk-sps-1)
 * [RER1](#risk-rer-1), [RER2](#risk-rer-2), [RER3](#risk-rer-3), [RER4](#risk-rer-4), [RER5](#risk-rer-5)
@@ -1014,10 +1016,10 @@ A common format for anti-slashing data is defined by [[[?EIP3076]]].
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
     <li><a href="https://lighthouse-book.sigmaprime.io/validator_slashing_protection.html">Lighthouse</a></li>
-    <li><a href="https://chainsafe.github.io/lodestar/reference/cli/#validator-slashing-protection-export">Lodestar</a></li>
+    <li><a href="https://chainsafe.github.io/lodestar/run/validator-management/validator-cli/#validator-slashing-protection-export">Lodestar</a></li>
     <li><a href="https://nimbus.guide/migration.html#2-export-slashing-protection-history">Nimbus</a></li>
-    <li><a href="https://docs.prylabs.network/docs/wallet/slashing-protection#exporting-your-validators-slashing-protection-history">Prysm</a></li>
-    <li><a href="https://docs.teku.consensys.net/HowTo/Prevent-Slashing#export-a-slashing-protection-file">Teku</a></li>
+    <li><a href="https://prysm.offchainlabs.com/docs/backup-and-migration/slashing-protection/#exporting-your-validators-slashing-protection-history">Prysm</a></li>
+    <li><a href="https://docs.teku.consensys.io/how-to/prevent-slashing#export-a-slashing-protection-file">Teku</a></li>
   </ul>
 </details>
 
@@ -1106,7 +1108,7 @@ but it is also important to manage operational information.
 
 #### Controlled and Audited Secret Access {#sec-mit-control-secret-access}
 
-Best practise for credential management is to use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) system,
+Best practice for credential management is to use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) system,
 that gives users authorised access to secrets through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication),
 and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates).
 
@@ -1121,7 +1123,7 @@ Using [=multi-sig=] wallets requiring authorization from multiple parties for sp
 * [FIN1](#risk-fin-1)
 * [SLS5](#risk-sls-5)
 * [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
-* HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK4](#risk-hck-4), [HCK6](#risk-hck-6)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK4](#risk-hck-4), [HCK6](#risk-hck-6)
 * [GIR25](#risk-gir-25)
 </div>
 
@@ -1168,7 +1170,7 @@ Operating a node normally entails the use of a range of keys, such as
 It is important to protect private keys from accidental or malicious misuse, and in particular unplanned deletion.
 It is not normal to provide broad access to unencrypted signing keys.
 
-##### Best practise for key management include
+##### Best practices for key management include
 
 - follow relevant standards such as [[[?CCSS]]] and [[[?KMS]]]
 - ensuring that there are no single individuals with the capability to access or delete them,
@@ -1194,7 +1196,7 @@ Modern vault systems enable the enforcement of policies to ensure that access to
 * [FIN1](#risk-fin-1)
 * [SLS1](#risk-sls-1), [SLS3](#risk-sls-3), [SLS5](#risk-sls-5)
 * [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC9](#risk-kec-9)
-* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK](#risk-hck-4), [HCK6](#risk-hck-6)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK6](#risk-hck-6)
 * [GIR6](#risk-gir-6), [GIR7](#risk-gir-7), [GIR14](#risk-gir-14), [GIR16](#risk-gir-16), [GIR18](#risk-gir-18)
 </div>
 
@@ -1203,7 +1205,7 @@ Modern vault systems enable the enforcement of policies to ensure that access to
 Node operators are likely to rely on a wide range of operational information,
 including internal procedures, understanding software configurations, plans for future development, and employee management.
 
-Best practise includes ensuring there is no single point of failure due to centralized information being held by a single external provider
+Best practice includes ensuring there is no single point of failure due to centralized information being held by a single external provider
 or only being known to a single employee.
 
 Documentation, even if rarely actively read by those responsible for operations (who presumably know their job), is important for many reasons including
@@ -1261,7 +1263,7 @@ Tracking this information is important to ensure that access can be audited and 
   <summary>Tools to support access control</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">AWS IAM</a>
+    <li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">AWS IAM</a></li>
     <li><a href="https://github.com/attestantio/dirk">Dirk</a></li>
     <li><a href="https://docs.web3signer.consensys.net">Web3Signer</a></li>
   </ul>
@@ -1291,19 +1293,19 @@ with individual users assigned relevant roles that are revoked or deliberately r
 It is important to ensure that individuals can fulfil their designated tasks,
 without having authorizations they do not need.
 
-##### Best practises for access control include
+##### Best practices for access control include
 
 * A [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) mechanism that allows rapid assigning and revoking of roles
 * Authentication tokens that have a limited lifetime
 * Regular review of roles and permissions for both users and software
-* Disable privilege escalation mechanisms ([e.g. executing as root user in Docker](https://docs.docker.com/engine/reference/commandline/container_exec/), `docker exec -uroot`, or [impersonation in Keycloak](https://github.com/keycloak/keycloak/blob/main/docs/documentation/server_admin/topics/users/con-user-impersonation.adoc))
+* Disable privilege escalation mechanisms ([e.g. executing as root user in Docker](https://docs.docker.com/engine/reference/commandline/container_exec/), `docker exec -uroot`, or [impersonation in Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html#con-user-impersonation_server_administration_guide))
 * Use of roles on the API endpoint level to determine the correct authorization.
 
 <details class="tools">
   <summary>Tools to support least privilege control</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li><a href="https://aws.amazon.com/cognito/">Cognito</a>
+    <li><a href="https://aws.amazon.com/cognito/">Cognito</a></li>
     <li><a href="https://www.keycloak.org">Keycloak</a></li>
   </ul>
 </details>
@@ -1324,7 +1326,7 @@ without having authorizations they do not need.
 
 Ensuring that employees whose roles have changed do not have lingering credentials reduces the risk they or others can misuse those credentials to cause harm.
 
-##### Best practises for employee authorization process includes
+##### Best practices for employee authorization process includes
 
 - ensure authorization changes are automated as part of management of employee lifecycles,
   covering role changes as well as termination, transfer, and promotion procedures
@@ -1344,7 +1346,7 @@ Ensuring that employees whose roles have changed do not have lingering credentia
 
 Following the principles of defense in depth and [**least privilege**](#def-least-privilege), it is important that nodes are not directly accessible without permission, and that they do not leak information to the Web that can help malicious parties gain unauthorized access.
 
-##### Best practises for managed network access include
+##### Best practices for managed network access include
 
 * An internal virtual private network with only have well-defined endpoints accessible from the web
 * A load-balancer that has a firewall
@@ -1507,7 +1509,7 @@ The lifecycle of equipment, most particularly node servers and computers used to
 
 A secure development lifecycle helps ensure that vulnerabilities are not introduced to codebases, and subsequently deployed.
 
-##### Best practices for secure development lifcycle include
+##### Best practices for secure development lifecycle include
 
 - auditable version control systems
 - thorough testing and authorisation before changes are accepted
@@ -1550,7 +1552,7 @@ help ensure that coverage is sufficiently comprehensive to detect errors that ca
 * [DOW2](#risk-dow-2), [DOW6](#risk-dow-6), [DOW10](#risk-dow-10), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14),  [DOW19](#risk-dow-19), [DOW20](#risk-dow-20)
 * [KEC7](#risk-kec-7)
 * [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK5](#risk-hck-5), [HCK6](#risk-hck-6)
-* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR10](#risk-gir-10), [GIR11](#risk-gir-11), [GIR13](#risk-gir-13), [GIR15](#risk-gir-15), [GIR17](#risk-gir-17), [GIR18](#risk-gir-18), [GIR21](#risk-gir-21), [GIR21](#risk-gir-21), [GIR23](#risk-gir-23), [GIR24](#risk-gir-24)
+* [GIR6](#risk-gir-6), [GIR7](#risk-gir-7), [GIR9](#risk-gir-9), [GIR10](#risk-gir-10), [GIR11](#risk-gir-11), [GIR13](#risk-gir-13), [GIR15](#risk-gir-15), [GIR17](#risk-gir-17), [GIR18](#risk-gir-18), [GIR21](#risk-gir-21), [GIR23](#risk-gir-23), [GIR24](#risk-gir-24)
 * [SPS1](#risk-sps-1)
 </div>
 
@@ -1577,8 +1579,8 @@ Additionally, it is important to validate inputs against the relevant parameters
     <li><a href="https://www.npmjs.com/package/ajv">ajv</a></li>
     <li><a href="https://ranger.apache.org">Apache Ranger</a></li>
     <li>In the Apache web-server, control request sizes of different pieces of the request:<ul>
-      <li><a href="https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestbody">LimitRequestBody</a></li>
-      <li><a href="https://httpd.apache.org/docs/2.0/mod/core.html#limitrequestfields">LimitRequestFields</a></li></ul></li>
+      <li><a href="https://httpd.apache.org/docs/2.4/mod/core.html#limitrequestbody">LimitRequestBody</a></li>
+      <li><a href="https://httpd.apache.org/docs/2.4/mod/core.html#limitrequestfields">LimitRequestFields</a></li></ul></li>
     <li>ORM systems exist for almost all programming languages and frameworks, such as<ul>
         <li><a href="https://hibernate.org/orm/documentation/getting-started/">Hibernate</a></li>
         <li><a href="https://www.sqlalchemy.org">SQLAlchemy</a></li>
@@ -1685,7 +1687,7 @@ Protection against malware needs to be implemented on all assets and users need 
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW14](#risk-dow-14)
 * [KEC6](#risk-kec-6), [KEC7](#risk-kec-7), [KEC9](#risk-kec-9)
 * [HCK2](#risk-hck-2), [HCK4](#risk-hck-4), [HCK6](#risk-hck-6)
-* [GIR15](#risk-gir-15), [GIR17](#risk-gir-17), [GIR15](#risk-gir-15), [GIR15](#risk-gir-15), [GIR15](#risk-gir-15)
+* [GIR15](#risk-gir-15), [GIR17](#risk-gir-17)
 * [SPS0](#risk-sps-0)
 </div>
 
@@ -1765,7 +1767,7 @@ Monitoring takes many forms. It can be done internally, and provided as a servic
 The latter is especially common for monitoring the health of widely available third-party infrastructure such as blockchains, and cloud services.
 
 Monitoring can take place throughout the ecosystem. Low-level indicators such as whether network traffic is within expected or design parameters,
-whether databases are being updated at expected rates, or whether server facilities are maintaining an appropriate temperature are all examples of motitoring
+whether databases are being updated at expected rates, or whether server facilities are maintaining an appropriate temperature are all examples of monitoring
 with fairly obvious value, and where immediate remediations or further investigation is straightforward.
 
 Monitoring access to physical infrastructure is more complex, and the resulting information about people is subject to privacy requirements,
@@ -1774,7 +1776,7 @@ but can be a useful diagnostic tool if something goes very wrong, or if you just
 As well as monitoring in real time, logging information allows analysis to discover information that is only observable though variations
 (or non-variations) in specific monitored information over time.
 
-Given the importance of logged information, and of privacy requirements, best practise is to have a clearly documented policy for record retention.
+Given the importance of logged information, and of privacy requirements, best practice is to have a clearly documented policy for record retention.
 This needs to retain enough information to enable historical analysis and comparison.
 Some data are best only retained in anonymized form, or stored with extra security provisions applied.
 
@@ -1785,7 +1787,7 @@ but can also mask a broader issue that the system is expected to detect.
 With a good monitoring system in place providing broad coverage of operations, there needs to be useful and targeted alerting system based on the monitoring system.
 
 To learn that a potential problem has been identified, as soon as possible, and act on it effectively, a monitoring system needs a robust targeted alerting system.
-A system that overloads its watchers with alerts is likely to lead to <dfn>alert fatigue</dfn>,
+A system that overloads its watchers with alerts is likely to lead to <b>alert fatigue</b>,
 where the alerts are ignored in practice because too often they require an onerous human response when they are not identifying a real problem.
 Like monitoring systems in general, redundancy in alert systems is important.
 
@@ -1867,7 +1869,7 @@ The following are among indicators of a security issue, and information that can
 * [FIN1](#risk-fin-1), [FIN2](#risk-fin-2), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
 * [DOW4](#risk-dow-4), [DOW10](#risk-dow-10), [DOW12](#risk-dow-12), [DOW19](#risk-dow-19)
 * [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK6](#risk-hck-6)
-* [GIR6](#risk-gir-6), [GIR9](#risk-gir-9), [GIR14](#risk-gir-14), [GIR14](#risk-gir-15), [GIR17](#risk-gir-17), [GIR22](#risk-gir-22)
+* [GIR6](#risk-gir-6), [GIR9](#risk-gir-9), [GIR14](#risk-gir-14), [GIR15](#risk-gir-15), [GIR17](#risk-gir-17), [GIR22](#risk-gir-22)
 </div>
 
 #### Upgrades {#sec-mit-monitor-upgrades}
@@ -1897,7 +1899,7 @@ Most validators provide built-in mechanisms to detect doppelgangers. Other tools
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
     <li><a href="https://lighthouse-book.sigmaprime.io/validator_doppelganger.html">Lighthouse</a></li>
-    <li><a href="https://prysm.offchainlabs.com/docs/backup-and-migration/slashing-protection/">Prysm</a></li>
+    <li><a href="https://prysm.offchainlabs.com/docs/backup-and-migration/slashing-protection">Prysm</a></li>
     <li><a href="https://docs.teku.consensys.io/how-to/prevent-slashing/detect-doppelgangers">Teku</a></li>
     <li><a href="https://nimbus.guide/doppelganger-detection.html">Nimbus</a></li>
     <li><a href="https://pkg.go.dev/github.com/ssvlabs/ssv/doppelganger">Doppelganger protection in `ssv.network`</a></li>
@@ -1919,13 +1921,13 @@ Most validators provide built-in mechanisms to detect doppelgangers. Other tools
   <summary>Tools to support Monitoring</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li>Within AWS, Cognito's [Userpool Addons for auditing authentications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html) and the [WAF module](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html) to filter anomalies are just examples of the range of tools available</li>
+    <li>Within AWS, Cognito's <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userpooladdons.html">Userpool Addons for auditing authentications</a> and the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html">WAF module</a> to filter anomalies are just examples of the range of tools available</li>
     <li><a href="https://www.elastic.co/elastic-stack/">ELK stack</a></li>
     <li><a href="https://github.com/attestantio/esd">ESD monitors slashing events on the Ethereum chain</a></li>
     <li><a href="https://github.com/lidofinance/ethereum-validators-monitoring">Ethereum validator monitoring</a></li>
-    <li><a href="https://grafana.com/docs/grafana/latest/alerting/set-up/">Grafana](https://grafana.com) - an example of [alerting setup in Grafana</a></li>
+    <li><a href="https://grafana.com/docs/grafana/latest/alerting/set-up/">Grafana- an example of an alerting setup in Grafana</a></li>
     <li><a href="https://github.com/SimplyStaking/eth-block-proposal-monitor">MEV monitoring tool from SimplyStaking</a></li>
-    <li><a href="https://prometheus.io/docs/introduction/overview/">Prometheus</a>
+    <li><a href="https://prometheus.io/docs/introduction/overview/">Prometheus</a></li>
     <li><a href="https://wazuh.com">Wazuh</a></li>
   </ul>
 </details>
@@ -1957,7 +1959,7 @@ Regulators of various kinds can require that Node Operators provide them with sp
 but do not necessarily communicate with Node Operators on an individual basis
 
 Node operators will also have <dfn>Known Stakeholders</dfn>, who have an identity known to the Node Operator
-that includes at least one direct communications cannel such as messaging, email, or telephone. These typically include at least some of
+that includes at least one direct communications channel such as messaging, email, or telephone. These typically include at least some of
 
 * High stake investors - with some of whom the Operator could also have contractual obligations
 * Service Partners, who might be involved in operating and managing protocols and requiring governance votes, or hosting, managing or operating infrastructure as part of the node operation setup
@@ -1990,7 +1992,7 @@ Others will want to know that they are informed in case of security incidents, o
 but prefer a lower volume of information. It is likely that different circumstances will mean that a given Stakeholder moves between "categories",
 with different communications strategies or procedures being more appropriate depending on specific context.
 
-##### Best practises for stakeholder management include
+##### Best practices for stakeholder management include
 
 - Track and categorise [=Known Stakeholders=]
 - Assess communication tools relevant to [=Anonymous Stakeholders=]
@@ -2000,8 +2002,8 @@ with different communications strategies or procedures being more appropriate de
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
     <li>Broadcast communication tools include Websites, X (the former Twitter), BlueSky, Facebook/Instagram</li>
-    <li>A Stakeholder Map](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base/~gitbook/image?url=https%3A%2F%2F3935398949-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FxTRnDyIanlwU7cCKcAju%252Fuploads%252Fhdg4kca5vuEMKsr01CxP%252FStakeholder_Map_Template.png%3Falt%3Dmedia%26token%3Dc83db7a4-f0ed-464f-ab69-630ba1450597&width=768&dpr=4&quality=100&sign=7ea4928c&sv=2)</li>
-    <li><a href="https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS/edit?usp=sharing">A Stakeholder Register Spreadsheet</a></li>
+    <li><a href="assets/images/stakeholder-map.png">A Stakeholder Map</a></li>
+    <li><a href="https://docs.google.com/spreadsheets/d/1ovBZbYhR5c-l83F4KKgNKam8igAKPASS">A Stakeholder Register Spreadsheet</a></li>
     <li>CRM systems</li>
     <li>Email</li>
     <li>Messaging services such as Telegram, Discord, Slack, Signal, and Whatsapp</li>
@@ -2044,7 +2046,7 @@ To be useful, it is necessary that relevant employees know the plans exist, and 
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
     <li><a href="https://csrc.nist.gov/pubs/sp/800/61/r2/final">NIST Incident Response template</a> [[?NIST800_61]]</li>
-    <li><a href="https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL/edit?usp=sharing">DUCK Incident Response Template</a></li>
+    <li><a href="https://docs.google.com/document/d/1ynZfeMh3vxZu7Juh-f34b50_3WHgejiL">DUCK Incident Response Template</a></li>
   </ul>
 </details>
 
@@ -2155,7 +2157,6 @@ offer further information on how to plan and implement simulations, and how to d
 ##### Tools and templates for incident simulation
 
 * [National Institute of Standards & Technology Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
-* [#automation](../mitigation-and-controls-library/collection-of-tools-scripts-and-templates.md#automation "mention")
 
 ##### Risks that incident simulations can mitigate
 
@@ -2181,7 +2182,7 @@ against the importance of providing clear information with as much certainty as 
 
 ##### Risks that incident communications help address:
 
-* [FIN7](#risk-fin-6)
+* [FIN6](#risk-fin-6)
 * [HCK4](#risk-hck-4)
 * [SPS0](#risk-sps-0)
 * [RER1](#risk-rer-1), [RER2](#risk-rer-2), [RER3](#risk-rer-3)
@@ -2287,13 +2288,13 @@ Best practice is to ensure that where possible, [processes are automated](#proce
 * [RER2](#risk-rer-2)
 </div>
 
-### Controls for People Management
+### Controls for People Management {#sec-controls-people-management}
 
 #### Identify Relevant Entities
 
 <a href="#req-identify-staff">🔗</a> <b id="req-identify-staff">Node Operators MUST know the identity of entities who are authorized to manage operations</b>
 
-Best practise is to identify every individual who works for the Node Operator.
+Best practice is to identify every individual who works for the Node Operator.
 In the case of corporate third-party providers, sensible due diligence does not always extend to identifying specific individuals.
 
 <div class="info">
@@ -2356,9 +2357,9 @@ In the case of corporate third-party providers, sensible due diligence does not 
 
 This control does not imply that the latest available update is automatically applied,
 rather that Node Operators have clear and effective mechanisms to ensure they are aware of updates and apply them in accordance with their update management procedures,
-taking into account the controls in <a href="#sec-controls-updates"></a>.
+taking into account the controls in <a href="#sec-controls-updates">Controls for Development and Update Process</a>.
 
-Best practise is to monitor software in use, to know when an update is available,
+Best practice is to monitor software in use, to know when an update is available,
 and to update as fast as possible while following procedures to manage those updates securely.
 In some cases, assessing an update will lead to a decision that there is no need to apply a specific update, or a risk in doing so that outweighs the benefits.
 
@@ -2378,7 +2379,7 @@ In some cases, assessing an update will lead to a decision that there is no need
 
 ##### A local anti-slashing database helps address the following risks
 
-* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS17](#risk-sls-18), [SLS19](#risk-sls-19)
+* [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 </div>
 
 #### Signature management
@@ -2422,7 +2423,7 @@ This applies to servers acting as validators, but also to devices authorized to 
 ##### Securing devices helps address the following risks
 
 * [DOW2](#risk-dow-2)
-* [HCK](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
 </div>
 
 #### Validator Withdrawal
@@ -2526,10 +2527,10 @@ Best practice is to use a documentation management system. While this is likely 
 ##### Recording operational knowledge helps address the following risks:
 * [FIN1](#risk-fin-1), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 * [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS14](#risk-sls-14)
-* [DOW1](#risk-dow-1), [DOW4](#risk-dow-4), [DOW16](#risk-dow-18), [DOW16](#risk-dow-18)
+* [DOW1](#risk-dow-1), [DOW4](#risk-dow-4), [DOW16](#risk-dow-16), [DOW18](#risk-dow-18)
 * [KEC2](#risk-kec-2), [KEC3](#risk-kec-3), [KEC6](#risk-kec-6), [KEC9](#risk-kec-9), [KEC10](#risk-kec-10)
 * [HCK4](#risk-hck-4)
-* [GIR4](#risk-gir-4), [GIR2](#risk-gir-25)
+* [GIR4](#risk-gir-4), [GIR25](#risk-gir-25)
 * [SPS0](#risk-sps-0)
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 </div>
@@ -2754,7 +2755,7 @@ This includes monitoring software that has privileged access.
 
 #### Monitor hardware and network performance
 
-<a href="#req-log-perormance-maintenance">🔗</a> <b id="req-log-perormance-maintenance">Logs MUST provide a sufficiently detailed view of hardware and network performance to enable upgrade needs to be forecast,
+<a href="#req-log-performance-maintenance">🔗</a> <b id="req-log-performance-maintenance">Logs MUST provide a sufficiently detailed view of hardware and network performance to enable upgrade needs to be forecast,
 and to alert if validators are operating with excess latency</b>
 
 Tools such as [Zabbix](tool-zabbix) can also display a live feed of CPU and memory usage of each compute instance.
@@ -2907,7 +2908,7 @@ are held to high standards of confidentiality, and work with a well-defined set 
 
 ##### Checking third-party software helps address the following Risks
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
-* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS6](#risk-sls-16), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
+* [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 * [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14)
 * [KEC7](#risk-kec-7)
 * [HCK1](#risk-hck-1)
@@ -2990,7 +2991,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 #### Deploy via staging test environments
 
-<a href="#req-deply-via-testnet">🔗</a> <b id="req-deply-via-testnet">Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network</b>
+<a href="#req-deploy-via-testnet">🔗</a> <b id="req-deploy-via-testnet">Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network</b>
 
 <div class="info">
 
@@ -3014,7 +3015,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 ##### Emergency rollback helps address the following risks
 
-* [FIN3](#risk-fin-3), [FIN](#risk-fin-4), [FIN](#risk-fin-5), [FIN](#risk-fin-6)
+* [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR4](#risk-gir-4), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR21](#risk-gir-21)
@@ -3073,7 +3074,7 @@ that lead to destruction of crucial data or loss of assets</b>
 
 * [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW10](#risk-dow-10)
 * [GIR13](#risk-gir-13), [GIR19](#risk-gir-19)
-* [RER](#risk-rer-1), [RER4](#risk-rer-4), [RER5](#risk-rer-5)
+* [RER1](#risk-rer-1), [RER4](#risk-rer-4), [RER5](#risk-rer-5)
 </div>
 
 
@@ -3133,7 +3134,7 @@ response times and Service Level Agreements, security procedures, and the like a
 
 ##### Counterparty verification helps address the following risks
 
-* [FIN1](#risk-fin-1), [FIN1](#risk-fin-1)
+* [FIN1](#risk-fin-1)
 * [SLS9](#risk-sls-9)
 * [DOW1](#risk-dow-1), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9), [DOW19](#risk-dow-19)
 * [GIR5](#risk-gir-5), [GIR14](#risk-gir-14), [GIR22](#risk-gir-22), [GIR24](#risk-gir-24), [GIR25](#risk-gir-25)
@@ -3162,16 +3163,16 @@ response times and Service Level Agreements, security procedures, and the like a
 
 This document is an Editor's draft, for a proposed revision to the [DUCK Knowledge Base (version 1)](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base).
 
-Feedback is welcome, and is preferred as Issues, Pull requests and comments in this Github Repository. Please note the [Conditions of Contributing](./CONTRIBUTING.md).
+Feedback is welcome, and is preferred as Issues, Pull requests and comments in this GitHub Repository. Please note the [Conditions of Contributing](https://github.com/lidofinance/valos/blob/main/CONTRIBUTING.md).
 
 ### History and Future
 
-The original content of this specification was developed as the D.U.C.K Knowledge Base, and the current work is a direct evolution of that content.
+The original content of this specification was developed as the DUCK Knowledge Base, and the current work is a direct evolution of that content.
 
 In updating it, there are several changes being made. The key change is to move from a general explanation of risks and good practices
 to a specification that is well-suited to assessment of conformance.
 
-Several somewhat cosmetic changes have been made. Most obviously, the name has been changed to ValOS - the Validator Operator Standard -
+Several somewhat cosmetic changes have been made. Most obviously, the name has been changed to ValOS - the Validator Operations Standard -
 and instead of a multi-page website it is available primarily as a single-page specification, in particular enabling easier use offline.
 
 More importantly, there is a set of controls specific to ValOS, rather than only references to individual controls from other frameworks.
@@ -3220,187 +3221,283 @@ This section provides a summary of the Controls provided by this Specification.
 <script class="remove">
 
 function clean() {
-  document.querySelector(".head").removeChild(document.querySelector(".copyright"));
+  const head = document.querySelector(".head");
+  const copyright = document.querySelector(".copyright");
+  if (head && copyright) head.removeChild(copyright);
 }
 
-function RiskTableMitigations () {
+function RiskTableMitigations() {
+  const mitigations = document.querySelectorAll('[id^="sec-mit-"]');
 
-  // Loop through mitigation sections
-  var mitigationsArray = document.querySelectorAll("[id^=sec-mit-]");
-  for(i = 0; i < mitigationsArray.length; i++) {
-    thisMitigation = document.createElement("li");
-    thisMitigation.innerHTML = '<a href="#' + mitigationsArray[i].id + '">' + mitigationsArray[i].innerText + '</a>';
-    console.log("succeeded: " + thisMitigation.innerText);
+  mitigations.forEach((mitigation) => {
+    // Build <li><a href="#id">text</a></li>
+    const li = document.createElement("li");
+    const link = document.createElement("a");
 
-    // HACKY MESS Alert!
-    // This finds the list of risks based on them being in a div that's within a grandparent element of the mitigations header (typically a section element)
+    link.href = `#${mitigation.id}`;
+    link.textContent = mitigation.textContent || "";
 
-    var mitigatesRisks = mitigationsArray[i].parentElement.parentElement.querySelector(".info").querySelectorAll("a");
-    for(k = 0; k < mitigatesRisks.length; k++) {
-      if (mitigatesRisks[k].hash.substr(1,5) == "risk-") {
-        riskLine = mitigatesRisks[k].hash;
-        document.querySelector(riskLine + "   .autofill-mits").appendChild(thisMitigation.cloneNode(true));
-      } else if (mitigationsArray[i].parentElement.parentElement.querySelector(".info").querySelector("li").innerText == "All risks" ){ //add the mitigation to everything
-          for (m = 0; m < (theSet = document.querySelectorAll(".autofill-mits")).length; m++) {
-          theSet[m].appendChild(thisMitigation.cloneNode(true));
+    li.appendChild(link);
+
+    // Find containing section safely
+    const section = mitigation.closest("section");
+    if (!section) return;
+
+    const info = section.querySelector(".info");
+    if (!info) return;
+
+    const riskLinks = info.querySelectorAll("a");
+
+    riskLinks.forEach((riskLink) => {
+      const hash = riskLink.hash;
+
+      if (!hash) return;
+
+      // Case 1: Individual risk reference (#risk-*)
+      if (hash.startsWith("#risk-")) {
+        const target = document.querySelector(`${hash} .autofill-mits`);
+        if (target) {
+          target.appendChild(li.cloneNode(true));
         }
-      } else if (mitigatesRisks[k].hash.substr(1,9) == "sec-risks") { // Where an item "All [something] Risks" links to a table' section element not an individual row
-          for (m = 0; m < (theSet = document.querySelector(mitigatesRisks[k].hash).parentElement.parentElement.querySelectorAll(".autofill-mits")).length; m++) {
-            theSet[m].appendChild(thisMitigation.cloneNode(true));
-          }
+        return;
+      }
+
+      // Case 2: "All risks"
+      const firstListItem = info.querySelector("li");
+      if (firstListItem && firstListItem.textContent === "All risks") {
+        const allTargets = document.querySelectorAll(".autofill-mits");
+        allTargets.forEach((target) => {
+          target.appendChild(li.cloneNode(true));
+        });
+        return;
+      }
+
+      // Case 3: Section-level risk reference (#sec-risks*)
+      if (hash.startsWith("#sec-risks")) {
+        const sectionTarget = document.querySelector(hash);
+        if (!sectionTarget) return;
+
+        const autofillTargets = sectionTarget
+          .closest("section")
+          ?.querySelectorAll(".autofill-mits");
+
+        if (!autofillTargets) return;
+
+        autofillTargets.forEach((target) => {
+          target.appendChild(li.cloneNode(true));
+        });
+      }
+    });
+  });
+}
+
+function ControlTableSummary() {
+  "use strict";
+
+  const controlsTable = document.createElement("table");
+  controlsTable.id = "summaryTable";
+
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+
+  const headers = [
+    "Control Group",
+    "Control(s)",
+    "Status",
+    "Comments",
+    "Risks",
+    "External Controls",
+  ];
+
+  headers.forEach((text) => {
+    const th = document.createElement("th");
+    th.textContent = text;
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
+  controlsTable.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+
+  // Avoid :has() to prevent compatibility warnings
+  const allSections = document.querySelectorAll("section:not([id^='controls'])");
+
+  allSections.forEach((section) => {
+    if (!section.querySelector("b[id^='req-']")) return;
+
+    const item = section.cloneNode(true);
+    const row = document.createElement("tr");
+
+    // -----------------------
+    // Control Group column
+    // -----------------------
+
+    const groupCell = document.createElement("th");
+    groupCell.scope = "row";
+
+    const headingLink = item.querySelector("a[href]");
+    const headingText = item.querySelector("b");
+
+    if (headingLink && headingText) {
+      const link = document.createElement("a");
+      link.href = headingLink.href;
+      link.textContent = headingText.textContent || "";
+      groupCell.appendChild(link);
+    }
+
+    row.appendChild(groupCell);
+
+    // -----------------------
+    // Controls column
+    // -----------------------
+
+    const controlsCell = document.createElement("td");
+    const reqParagraphs = item.querySelectorAll("p");
+
+    const relevantControls = Array.from(reqParagraphs).filter((p) =>
+      p.querySelector("[id^='req-']")
+    );
+
+    let controlsElement;
+
+    if (relevantControls.length === 1) {
+      controlsElement = document.createElement("p");
+
+      const reqLink = relevantControls[0].querySelector("a");
+      const boldText = relevantControls[0].querySelector("b");
+
+      if (reqLink && boldText) {
+        controlsElement.id = `summ-${reqLink.hash.substring(1)}`;
+
+        const bold = document.createElement("b");
+        bold.textContent = boldText.textContent || "";
+        controlsElement.appendChild(bold);
+      }
+    } else {
+      controlsElement = document.createElement("ul");
+
+      relevantControls.forEach((p) => {
+        const reqLink = p.querySelector("a");
+        const boldText = p.querySelector("b");
+        if (!reqLink || !boldText) return;
+
+        const li = document.createElement("li");
+        li.id = `summ-${reqLink.hash.substring(1)}`;
+
+        const bold = document.createElement("b");
+        bold.textContent = boldText.textContent || "";
+
+        li.appendChild(bold);
+        controlsElement.appendChild(li);
+      });
+    }
+
+    if (controlsElement) {
+      controlsCell.appendChild(controlsElement);
+    }
+
+    row.appendChild(controlsCell);
+
+    // -----------------------
+    // Status column
+    // -----------------------
+
+    const statusCell = document.createElement("td");
+    const select = document.createElement("select");
+
+    select.id = `status-${item.id}`;
+    select.name = select.id;
+
+    const statusOptions = [
+      { suffix: "NT", label: "Not Tested" },
+      { suffix: "P", label: "Implemented" },
+      { suffix: "NA", label: "Not Applicable (passes)" },
+      { suffix: "PI", label: "Partial / Incomplete (fails)" },
+      { suffix: "F", label: "Fails" },
+    ];
+
+    statusOptions.forEach(({ suffix, label }) => {
+      const option = document.createElement("option");
+      option.name = `${item.id}-${suffix}`;
+      option.textContent = label;
+      select.appendChild(option);
+    });
+
+    statusCell.appendChild(select);
+    row.appendChild(statusCell);
+
+    // -----------------------
+    // Comments column
+    // -----------------------
+
+    const commentsCell = document.createElement("td");
+    commentsCell.appendChild(document.createElement("textarea"));
+    row.appendChild(commentsCell);
+
+    // -----------------------
+    // Risks column
+    // -----------------------
+
+    const risksCell = document.createElement("td");
+    const risksHeader = item.querySelector("[id$='risks']");
+
+    if (risksHeader) {
+      const risksList = risksHeader.parentElement?.nextElementSibling;
+
+      if (risksList) {
+        risksCell.appendChild(risksList.cloneNode(true));
+      } else {
+        const fallback = document.createElement("p");
+        const bold = document.createElement("b");
+        bold.textContent = "All risks";
+        fallback.appendChild(bold);
+        risksCell.appendChild(fallback);
       }
     }
 
-  }
+    row.appendChild(risksCell);
 
+    // -----------------------
+    // External Controls column
+    // -----------------------
 
-}
+    const externalCell = document.createElement("td");
+    const externalHeader = item.querySelector("[id^='relevant']");
 
-function ControlTableSummary () {
-//Blergh! This is pretty hacky hard-coding, but it works.
+    if (externalHeader) {
+      const externalList =
+        externalHeader.parentElement?.nextElementSibling;
 
-  var controlsTable = document.createElement("table");
-  controlsTable.id = "summaryTable";
-  controlsTable.appendChild(document.createElement("thead"));
-  headerRow = document.createElement("tr");
-
-  header0 = document.createElement("th");
-  header0.innerText = "Control Group";
-  headerRow.appendChild(header0);
-
-  header1 = document.createElement("th");
-  header1.innerText = "Control(s)";
-  headerRow.appendChild(header1);
-
-  header2 = document.createElement("th");
-  header2.innerText = "Status";
-  headerRow.appendChild(header2);
-
-  header3 = document.createElement("th");
-  header3.innerText = "Comments";
-  headerRow.appendChild(header3);
-
-  header4 = document.createElement("th");
-  header4.innerText = "Risks";
-  headerRow.appendChild(header4);
-
-  header5 = document.createElement("th");
-  header5.innerText = "External Controls";
-  headerRow.appendChild(header5);
-
-  controlsTable.childNodes[0].appendChild(headerRow);
-
-  controlsBody = document.createElement("tbody");
-
-  // Get all the headers for sets of controls in the specification.
-  var allItems = document.querySelectorAll("section:not([id^=controls]):has(b[id^=req-])");
-  // Loop through them.
-  for (i = 0; i < allItems.length; i++) {
-    // Clone the control.
-    var item = allItems[i].cloneNode(true);
-
-      var row = document.createElement("tr");
-
-//The heading for the controls
-      var ConGrpCell = row.appendChild(document.createElement("th"));
-      ConGrpCell.scope = "row";
-      var ControlGroupLink = document.createElement("a");
-      ControlGroupLink.href = item.firstChild.childNodes[1].href;
-      ControlGroupLink.innerHTML = item.firstChild.firstChild.innerHTML;
-      ConGrpCell.appendChild(ControlGroupLink);
-
-//individual controls
-      var controlsCell = row.appendChild(document.createElement("td"));
-      var theseControls = item.querySelectorAll("p:has([id^=req-])");
-        if (theseControls.length == 1) {
-        controls = document.createElement("p");
-        controls.id = "summ-" + theseControls[0].firstChild.hash.substr(1);
-        controls.innerHTML = "<b>"+theseControls[0].childNodes[2].innerHTML+"</b>";
-      } else {
-        controls = document.createElement("ul");
-        for (j = 0; j < theseControls.length; j++) {
-          thisItem = document.createElement("li");
-          thisItem.id = "summ-" + theseControls[j].firstChild.hash.substr(1);
-          thisItem.innerHTML = "<b>" + theseControls[j].childNodes[2].innerHTML + "</b>";
-          controls.appendChild(thisItem);
-        }
+      if (externalList) {
+        externalCell.appendChild(externalList.cloneNode(true));
       }
-      controlsCell.appendChild(controls);
+    }
 
-      //add a status menu to the row. Note: the row changes colour when the status is updated
-      statusCell = row.appendChild(document.createElement("td"));
-      statusMenu = document.createElement("select");
-      statusMenu.name = statusMenu.id = "status-" + item.id;
-      ntOption = document.createElement("option");
-      ntOption.name = item.id + "-NT";
-      ntOption.innerText = "Not Tested";
-      statusMenu.appendChild(ntOption);
-      passOption = document.createElement("option");
-      passOption.name = item.id + "-P";
-      passOption.innerText = "Implemented";
-      statusMenu.appendChild(passOption);
-      naOption = document.createElement("option");
-      naOption.name = item.id + "-NA";
-      naOption.innerText = "Not Applicable (passes)";
-      statusMenu.appendChild(naOption);
-      piOption = document.createElement("option");
-      piOption.name = item.id + "-PI";
-      piOption.innerText = "Partial / Incomplete (fails)";
-      statusMenu.appendChild(piOption);
-      fOption = document.createElement("option");
-      fOption.name = item.id + "-F";
-      fOption.innerText = "Fails";
-      statusMenu.appendChild(fOption);
-      statusCell.appendChild(statusMenu);
+    row.appendChild(externalCell);
 
-      //Add a comments field
-      commentsCell = row.appendChild(document.createElement("td"));
-      commentsCell.appendChild(document.createElement("textarea"));
+    tbody.appendChild(row);
+  });
 
-      //Collect and add the relevant Risks for the Control Group
+  controlsTable.appendChild(tbody);
 
-      // HACKY MESS Alert!
-      // This relies on the header whose id ends in "risks" being the child of a wrapper, whose next sibling is the list we want...
-      // Note in particular, if there are other headers with the same title and auto-ending, they can overlap and break this :(
-
-
-      risksCell = row.appendChild(document.createElement("td"));
-      if (theRisks = item.querySelector("[id$=risks]")) {
-
-        // If there isn't a list found (see hacky alert above ^^) then assume it covers all risks
-        if (!(theRisksList = theRisks.parentElement.nextElementSibling)) {
-          theRisksList = document.createElement('p');
-          theRisksList.innerHTML = "<b>All risks</b>";
-        }
-        risksCell.appendChild(theRisksList.cloneNode(true));
-      }
-
-
-      // Otherwise, collect and add relevant external controls to the cell
-      // HACKY MESS Alert! Same structure as above, looking for a header whose id ends in "relevant"
-
-      externalControlsCell = row.appendChild(document.createElement("td"));
-        if (theExternalControls = item.querySelector("[id^=relevant]")) {
-          externalControlsCell.appendChild(theExternalControls.parentElement.nextElementSibling.cloneNode(true));
-        }
-
-      controlsBody.appendChild(row);
+  const summaryTarget = document.getElementById("sec-summary-of-controls");
+  if (summaryTarget) {
+    summaryTarget.appendChild(controlsTable);
   }
-  controlsTable.appendChild(controlsBody);
-  document.getElementById("sec-summary-of-controls").appendChild(controlsTable);
 }
 
   // All config options at https://respec.org/docs/
   var respecConfig = {
     postProcess: [clean, RiskTableMitigations, ControlTableSummary],
-    subTitle: "Validator Operations Standard (Editor's draft)",
+    subTitle: "Validator Operations Standard",
     specStatus: "base",
-    latestVersion: "https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base",
-    edDraftURI: "https://github.com/lidofinance/valos/spec-update-draft.html",
-    copyrightStart: "2025",
-      editors: [{ name: "chaals nevile", url: "chaals@fastmail.fm" }],
+    latestVersion: "https://lidofinance.github.io/valos/valos-spec.html",
+    edDraftURI: "https://lidofinance.github.io/valos/valos-spec.html",
+    copyrightStart: "2026",
+      editors: [{ name: "Chaals Nevile", url: "mailto:chaals@fastmail.fm" }],
     authors: [
-      { name: "This work builds on the gratefully acknowledged work of all those who contributed to the D.U.C.K. knowledge base."},
+      { name: "This work builds on the gratefully acknowledged work of all those who contributed to the DUCK knowledge base."},
       { name: "The following have contributed directly to the production of this specific version:"},
       { name: "Sean Anderson"},
       { name: "Ivan Ang"},
@@ -3416,16 +3513,15 @@ function ControlTableSummary () {
       { name: "Julian Ueding"},
       { name: "Scott Waller"},
       { name: "@dracaryspierce", url: "https://github.com/dracaryspierce"},
-      { name: "Sven"},
+      { name: "Sven Brekelmans"},
       { name: "Lucas"},
       { name: "Mehdi Zerouali"}
     ],
-    github: "lido-finance/valos",
+    github: "lidofinance/valos",
     format: "markdown",
-    status: "base",
     localBiblio: {
       DUCK: {
-        title: "D.U.C.K Knowledge Base",
+        title: "DUCK Knowledge Base",
         href: "https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base"
       },
       KMS: {
@@ -3455,7 +3551,7 @@ function ControlTableSummary () {
       ETHdiverse: {
         title: "Ethereum Merge: Run the majority client at your own peril!",
         authors: ["Dankrad Feist"],
-        date: "2022-03-04",
+        date: "2022-03-24",
         href: "https://dankradfeist.de/ethereum/2022/03/24/run-the-majority-client-at-your-own-peril.html"
       },
       CRYPTOFAIL: {
@@ -3489,19 +3585,21 @@ function ControlTableSummary () {
         href: "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf"
       },
       NIST800_61: {
-        title: "",
+        title: "Computer Security Incident Handling Guide (NIST SP 800-61 Rev. 2)",
+        publisher: "NIST",
+        date: "2012",
         href: "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
-    },
+      },
       OWASP_ACCESS_CONTROL: {
         title: "OWASP Top 10: A01:2021 - Broken Access Control",
         publisher: "OWASP",
-        date: "2022",
+        date: "2021",
         href: "https://owasp.org/Top10/A01_2021-Broken_Access_Control/"
       },
       OWASP_TOP10: {
         title: "OWASP Top 10",
         publisher: "OWASP",
-        date: "2022",
+        date: "2021",
         href: "https://owasp.org/www-project-top-ten/"
       },
       PREMORTEM: {
@@ -3524,7 +3622,7 @@ function ControlTableSummary () {
       SSRF: {
         title: "OWASP Top 10: A10:2021 - Server-Side Request Forgery (SSRF)",
         publisher: "OWASP",
-        date: "2022",
+        date: "2021",
         href: "https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/"
       },
       WikipediaBG: {
@@ -3536,22 +3634,5 @@ function ControlTableSummary () {
   };
 </script>
 
-<!--
-
-[NIST-800-115] <a href="#ref-nist-800-115" id="ref-nist-800-115">🔗</a>
-"Technical Guide to Information Security Testing and Assessment", Karen Scarfone, Murugiah Souppaya, Amanda Cody, and Angela Orebaugh. NIST 2008. [https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf)
-- [NIST SP 800-34 Template](https://csrc.nist.gov/files/pubs/sp/800/34/r1/upd1/final/docs/sp800-34-rev1_cp_template_high_impact_system.docx)
--
-
-### Tools:
-
-- [Kubernetes Cluster Networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
-- [Liquibase](https://www.liquibase.org)
-- Microsoft IIS [Microsoft IIS (input limits) example](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/staticcontent/mimemap),
-  - [Webserver authentication configuration of Microsoft IIS servers.](https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/authentication/) Observe how different authentication methods are possible to be set there. `anonymousAuthentication` would allow anyone to access as `anonymous`, which is rarely the intention except for the starting page. `basicAuthentication` is better than nothing, but makes user management not scalable. `clientCertificateMappingAuthentication` and `digestAuthentication` are the better ways to also implement RBAC.
-- [minikube](https://minikube.sigs.k8s.io/docs/)
-- [vault SSH certificate mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates)
-
--->
 </body>
 </html>
