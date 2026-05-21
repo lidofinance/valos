@@ -196,51 +196,47 @@ CSP: {
 
 ### Informational
 
-#### FINDING-08: Predictable Temporary File Path in Shell Script
+#### FINDING-08: Predictable Temporary File Path in Shell Script ✅ Fixed
 
-**Severity**: Informational  
-**File**: `scripts/validate-risk-refs.sh`, lines 32–36
+**Severity**: Informational — **Resolved 2026-05-21**  
+**File**: previously `scripts/validate-risk-refs.sh`, lines 32–36 (file no longer exists)
 
 **Description**: The script writes to `/tmp/mismatches.txt` — a fixed, predictable, world-writable path. In a TOCTOU scenario, a malicious process on the same machine could pre-create this path as a symlink. In practice, this runs in an isolated GitHub Actions VM where no other user processes exist, so the risk is entirely theoretical.
 
-**Remediation**: Use `mktemp` for safety:
-```bash
-MISMATCH_FILE=$(mktemp)
-trap "rm -f $MISMATCH_FILE" EXIT
-```
+**Implementation**: Resolved as a side effect of FINDING-13's port. `scripts/validate-risk-refs.sh` was rewritten as `scripts/validate-risk-refs.mjs` (Node ESM) and the bash script deleted in commit `22dbcfd`. The new implementation builds the result list in an in-memory array and prints it directly to stdout — there is no temporary file, predictable or otherwise.
 
 ---
 
-#### FINDING-09: PDF Document Metadata — Renderer Identification
+#### FINDING-09: PDF Document Metadata — Renderer Identification ⏭️ Out of scope
 
-**Severity**: Informational  
+**Severity**: Informational — **Deferred 2026-05-21** (out of scope for this remediation cycle)  
 **File**: `Webflow/documents/ValOS_Governance.pdf`
 
 **Description**: The PDF's producer metadata reads `Skia/PDF m146 Google Docs Renderer`, identifying the document as authored in Google Docs (Chrome 146). Not a vulnerability, but discloses authoring toolchain.
 
-**Remediation**: Strip metadata if tooling disclosure is a concern: `exiftool -all= ValOS_Governance.pdf`.
+**Decision**: Deferred. The disclosure (Google Docs as authoring tool) is consistent with public information already in the spec — the spec itself references Google Docs–hosted artifacts (FINDING-11) — so the residual marginal disclosure is minimal. The PDF is treated as a build input under `Webflow/documents/` and would need either a one-shot metadata strip (which the next Webflow re-export of the PDF would undo) or a build-time stripping step. If the disclosure becomes a concern, the simplest remediation is a `node scripts/strip-pdf-metadata.mjs` build step using `pdf-lib` (or equivalent) run from `process-webflow.mjs`. Tracking residual risk; no fix in this PR.
 
 ---
 
-#### FINDING-10: `.claude/` Historical Commit Risk
+#### FINDING-10: `.claude/` Historical Commit Risk ✅ Fixed
 
-**Severity**: Informational  
+**Severity**: Informational — **Resolved 2026-05-21**  
 **File**: `.claude/settings.local.json`
 
 **Description**: `.claude/settings.local.json` contains a historical entry showing a command was used to remove the `.claude/` directory from git history (`git rebase -i ... --exec "git rm -rf --cached --ignore-unmatch .claude"`). This suggests `.claude/` may have been accidentally committed at some point. The directory is correctly excluded by `.gitignore` now.
 
-**Remediation**: Run `git log --all --oneline -- .claude/` to verify no historical commits contain this directory. If any do, assess whether content is sensitive — if so, use `git filter-repo` or BFG for history rewrite.
+**Investigation**: `git log --all --name-only --pretty=format: -- .claude/` (run 2026-05-21) returned a single tracked path: `.claude/security-audit.md`, intentionally committed in `1de1cbf` ("chore: share Claude's security review"). No `.claude/settings.local.json`, no Claude history files, and no other Claude-private state has ever been committed to this repository under any branch. The remediation command in the original audit ("assess whether content is sensitive — if so, history rewrite") therefore does not apply: there is no sensitive content in history to remove. `.gitignore` continues to exclude the rest of `.claude/`, and the existing rebase-exec safeguard in `settings.local.json` remains as defense in depth in case future accidental commits occur.
 
 ---
 
-#### FINDING-11: Google Docs Links — Access Control and Link Rot
+#### FINDING-11: Google Docs Links — Access Control and Link Rot ⏭️ Out of scope
 
-**Severity**: Informational  
-**File**: `valos-spec.html`, lines 2006, 2049
+**Severity**: Informational — **Deferred 2026-05-21** (out of scope for this remediation cycle)  
+**File**: `valos-spec.html`, lines 2007 and 2050
 
 **Description**: Two Google Docs links are embedded in the specification (Stakeholder Register Spreadsheet, DUCK Incident Response Template). If these have permissive sharing settings ("anyone with the link"), they are effectively public. If the owning account is compromised or documents deleted, links break or could theoretically point to attacker-controlled content.
 
-**Remediation**: Audit sharing settings for both documents. Consider hosting reference materials within the repository or at a controlled URL. Document ownership in an access review process.
+**Decision**: Deferred to the document owners. The remediation requires actions outside the repository: auditing the sharing settings of both linked Google Docs, deciding whether to host the reference materials locally (e.g. import the Stakeholder Register and Incident Response Template into `valos-spec.html` or `Webflow/documents/`), and establishing an owner-of-record / access-review process. None of these are appropriate fixes for a security PR. Captured under the existing Residual Risk "Google Docs document continuity"; tracking by audit row only.
 
 ---
 
@@ -297,10 +293,10 @@ This is stronger than the original audit recommendation: the previous manual `sh
 | FINDING-05 | `unsafe-inline` in CSP of valos-spec.html | Should fix soon | ✅ Fixed 2026-05-21 | Ivan |
 | FINDING-06 | `fixup.js` loaded from W3C CDN without SRI | Should fix soon | ✅ Fixed 2026-05-21 | Ivan |
 | FINDING-07 | `api.specref.org` runtime API call | Should fix soon | ✅ Fixed 2026-05-21 | Sven |
-| FINDING-08 | Predictable temp file path in shell script | Informational | Open | - |
-| FINDING-09 | PDF metadata reveals authoring tool | Informational | Open | - |
-| FINDING-10 | `.claude/` historical commit risk | Informational | Open | - |
-| FINDING-11 | Google Docs links — access control and link rot | Informational | Open | - |
+| FINDING-08 | Predictable temp file path in shell script | Informational | ✅ Fixed 2026-05-21 | Ivan |
+| FINDING-09 | PDF metadata reveals authoring tool | Informational | ⏭️ Out of scope | doc owners |
+| FINDING-10 | `.claude/` historical commit risk | Informational | ✅ Fixed 2026-05-21 | Ivan |
+| FINDING-11 | Google Docs links — access control and link rot | Informational | ⏭️ Out of scope | doc owners |
 | FINDING-12 | Google Web Font loader loaded without SRI | Informational | ✅ Fixed 2026-05-21 | Ivan |
 | FINDING-13 | Vendor checksum verification is manual-only | Informational | ✅ Fixed 2026-05-21 | Ivan |
 
