@@ -102,27 +102,24 @@ Also consider pinning the checkout action to a commit SHA rather than a mutable 
 
 ---
 
-#### FINDING-04: GitHub Actions Not Pinned to Commit SHAs in deploy.yml
+#### FINDING-04: GitHub Actions Not Pinned to Commit SHAs in deploy.yml — **Remediated**
 
-**Severity**: Should fix soon  
-**File**: `.github/workflows/deploy.yml` (lines using `@v4`, `@v5`, `@v3` tags)
+**Original severity**: Should fix soon  
+**Status**: Remediated (2026-05-21, commit `f2112ed`)  
+**File**: `.github/workflows/deploy.yml`
 
-**Description**: All four actions in the deploy workflow use mutable version tags:
-- `actions/checkout@v4`
-- `actions/configure-pages@v5`
-- `actions/upload-pages-artifact@v3`
-- `actions/deploy-pages@v4`
+**Original issue**: All four actions in the deploy workflow used mutable version tags (`@v4`, `@v5`, `@v3`). A tag compromise in the `actions/` organization could have caused the workflow to run malicious code with `id-token: write` and `pages: write`, affecting what is published to GitHub Pages.
 
-**Exploitation**: An attacker who compromises the `actions/` GitHub organization could push a malicious commit under the same tag. Since tags are mutable, the workflow would automatically use the compromised version. The deploy workflow has `id-token: write` and `pages: write` permissions — a compromised action with those permissions could modify what gets deployed to GitHub Pages, potentially defacing or poisoning the publicly served ValOS specification. The `tj-actions/changed-files` incident in 2025 demonstrated exactly this attack pattern in production.
+**Resolution**: All deploy workflow actions are now pinned to immutable commit SHAs with inline version comments:
 
-**Remediation**: Pin every action to its current commit SHA:
-```yaml
-uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
-uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745  # v5.0.0
-uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa  # v3.0.1
-uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e  # v4.0.5
-```
-*(Verify exact SHAs against current releases at time of fixing.)*
+| Action | Pinned SHA | Version |
+|---|---|---|
+| `actions/checkout` | `11bd71901bbe5b1630ceea73d27597364c9af683` | v4.2.2 |
+| `actions/configure-pages` | `983d7736d9b0ae728b81ab479565c72886d7745` | v5.0.0 |
+| `actions/upload-pages-artifact` | `56afc609e74202658d3ffba0e8f6dda462b719fa` | v3.0.1 |
+| `actions/deploy-pages` | `d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e` | v4.0.5 |
+
+**Follow-up**: When upgrading actions, update both the SHA and the version comment together. Re-verify SHAs against the official release tags before merging.
 
 ---
 
@@ -268,6 +265,7 @@ trap "rm -f $MISMATCH_FILE" EXIT
 8. **Safe DOM construction**: Prior security work (commit 6272256) replaced `innerHTML` string concatenation with `createElement`/`textContent` patterns in inline JavaScript.
 9. **Minimal deployment scope**: Deploy workflow only copies `valos-spec.html`, `LICENSE`, `assets/`, and `vendor/` — not the full repository.
 10. **`.gitignore` correctly excludes sensitive paths**: `.DS_Store`, `.claude/`, `dist/` all excluded.
+11. **Deploy workflow actions pinned to commit SHAs**: All four GitHub Actions in `deploy.yml` use immutable commit references (remediation for FINDING-04, commit `f2112ed`).
 
 ---
 
@@ -278,7 +276,7 @@ trap "rm -f $MISMATCH_FILE" EXIT
 | FINDING-01 | Missing `rel="noopener noreferrer"` on external links in Webflow | High priority before launch | Ivan |
 | FINDING-02 | No Content Security Policy on Webflow/index.html | High priority before launch | Sven/DevOps |
 | FINDING-03 | Missing explicit `permissions:` in validate-risk-refs.yml | Should fix soon | Sven |
-| FINDING-04 | GitHub Actions not pinned to commit SHAs in deploy.yml | Should fix soon | Oriol |
+| FINDING-04 | GitHub Actions not pinned to commit SHAs in deploy.yml | ~~Should fix soon~~ **Remediated** (2026-05-21) | Oriol |
 | FINDING-05 | `unsafe-inline` in CSP of valos-spec.html | Should fix soon | Ivan |
 | FINDING-06 | `fixup.js` loaded from W3C CDN without SRI | Should fix soon | Ivan |
 | FINDING-07 | `api.specref.org` runtime API call | Should fix soon | Sven |
@@ -299,7 +297,7 @@ After remediation of the findings above, the following risks would remain:
 2. **Webflow platform security**: The Webflow landing page's hosting infrastructure is outside this repository's controls.
 3. **Google Docs document continuity**: The two linked Google Docs files depend on account continuity outside this repository.
 4. **specref.org API**: Runtime bibliography resolution via `api.specref.org` introduces a soft dependency that cannot be fully controlled.
-5. **GitHub Actions ecosystem**: Using GitHub-managed actions requires trust in GitHub's actions infrastructure even when pinned to SHAs.
+5. **GitHub Actions ecosystem**: The deploy workflow mitigates tag-mutation risk via SHA pinning (FINDING-04). Other workflows (e.g. `validate-risk-refs.yml`) may still use mutable tags; trust in GitHub's actions infrastructure remains a baseline dependency.
 
 ---
 
