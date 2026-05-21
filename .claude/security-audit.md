@@ -83,9 +83,9 @@ Vendor file SHA-256 checksums were recomputed and compared against `CHECKSUMS.md
 
 ### Should Fix Soon
 
-#### FINDING-03: GitHub Actions Workflow Lacks Explicit Permissions Block (validate-risk-refs.yml)
+#### FINDING-03: GitHub Actions Workflow Lacks Explicit Permissions Block (validate-risk-refs.yml) ✅ Fixed
 
-**Severity**: Should fix soon  
+**Severity**: Should fix soon — **Resolved 2026-05-21**  
 **File**: `.github/workflows/validate-risk-refs.yml`
 
 **Description**: The `validate-risk-refs.yml` workflow has no `permissions:` block. If the organization's default token permissions are set to `read-write`, this workflow receives unnecessary write access when triggered on `pull_request` events. The workflow also executes `bash ./scripts/validate-risk-refs.sh` from checked-out PR code, meaning a PR author can modify this script to run arbitrary commands in CI.
@@ -158,17 +158,40 @@ script-src 'self' 'unsafe-inline' https://www.w3.org/scripts/;
 
 ---
 
-#### FINDING-07: `api.specref.org` Runtime API Call — Privacy and Availability Dependency
+#### FINDING-07: `api.specref.org` Runtime API Call — Privacy and Availability Dependency ✅ Fixed
 
-**Severity**: Should fix soon  
-**File**: `vendor/respec-w3c-35.6.1.js` (embedded respec behavior)
+**Severity**: Should fix soon — **Resolved 2026-05-21**  
+**File**: `vendor/respec-w3c-35.6.1.js` (embedded respec behavior); `valos-spec.html` (`respecConfig`)
 
 **Description**: When `valos-spec.html` renders, respec makes an outbound API call to `https://api.specref.org/bibrefs?refs=...` to resolve bibliography references. This call:
 1. Leaks the full list of bibliography keys to a third-party service
 2. Creates a runtime availability dependency on `api.specref.org`
 3. If `api.specref.org` is ever compromised, malformed bibliography data could be injected into the rendered document
 
-**Remediation**: Verify that all bibliography entries used in the spec are already defined in the `localBiblio` configuration in `respecConfig` (lines 3522–3633 of `valos-spec.html`). `localBiblio` entries take precedence over network API calls in respec. Ensuring complete `localBiblio` coverage would prevent the outbound call entirely for those references.
+**Implementation**:
+
+The initial attempted fix was adding `noNetwork: true` to `respecConfig` in `valos-spec.html`. Browser network tab testing revealed this was insufficient: `bibrefs?refs=CORS,CSP` was still being fetched from `api.specref.org`.
+
+Investigation showed that `[[[CORS]]]` and `[[[CSP]]]` on line 2938 of `valos-spec.html` are ReSpec's triple-bracket syntax for inline spec links — these trigger a bibliography lookup just like `[[KEY]]` references, but were not present in `localBiblio`. All other 17 cited references were already covered. `noNetwork: true` in ReSpec v35.6.1 does not reliably suppress lookups for references absent from `localBiblio`.
+
+The definitive fix was adding CORS and CSP entries directly to `localBiblio` in `respecConfig`:
+```js
+CORS: {
+  title: "Cross-Origin Resource Sharing",
+  href: "https://fetch.spec.whatwg.org/#http-cors-protocol",
+  status: "Living Standard",
+  publisher: "WHATWG"
+},
+CSP: {
+  title: "Content Security Policy Level 3",
+  href: "https://www.w3.org/TR/CSP3/",
+  status: "Candidate Recommendation",
+  publisher: "W3C"
+},
+```
+`noNetwork: true` was retained as a defence-in-depth measure for any references that may be added in future without a corresponding `localBiblio` entry.
+
+**Residual**: A separate fetch to `https://www.w3.org/standards/history/valos/` (returning 404) is still visible in the network tab. This is a distinct ReSpec feature that checks W3C's publication history for the spec; `noNetwork: true` does not suppress it in v35. It fails gracefully — the 404 is expected since this is not a W3C publication — and has no functional or security impact.
 
 ---
 
@@ -275,11 +298,11 @@ trap "rm -f $MISMATCH_FILE" EXIT
 |---|---|---|---|
 | FINDING-01 | Missing `rel="noopener noreferrer"` on external links in Webflow | High priority before launch | Ivan |
 | FINDING-02 | No Content Security Policy on Webflow/index.html | High priority before launch | Sven/DevOps |
-| FINDING-03 | Missing explicit `permissions:` in validate-risk-refs.yml | Should fix soon | Sven |
+| FINDING-03 | Missing explicit `permissions:` in validate-risk-refs.yml | ✅ Fixed 2026-05-21 | Sven |
 | FINDING-04 | GitHub Actions not pinned to commit SHAs in deploy.yml | ~~Should fix soon~~ **Remediated** (2026-05-21) | Oriol |
 | FINDING-05 | `unsafe-inline` in CSP of valos-spec.html | Should fix soon | Ivan |
 | FINDING-06 | `fixup.js` loaded from W3C CDN without SRI | Should fix soon | Ivan |
-| FINDING-07 | `api.specref.org` runtime API call | Should fix soon | Sven |
+| FINDING-07 | `api.specref.org` runtime API call | ✅ Fixed 2026-05-21 | Sven |
 | FINDING-08 | Predictable temp file path in shell script | Informational | - |
 | FINDING-09 | PDF metadata reveals authoring tool | Informational | - |
 | FINDING-10 | `.claude/` historical commit risk | Informational | - |

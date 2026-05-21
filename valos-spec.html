@@ -3489,6 +3489,7 @@ function ControlTableSummary() {
 
   // All config options at https://respec.org/docs/
   var respecConfig = {
+    noNetwork: true,
     postProcess: [clean, RiskTableMitigations, ControlTableSummary],
     subTitle: "Validator Operations Standard",
     specStatus: "base",
@@ -3520,6 +3521,18 @@ function ControlTableSummary() {
     github: "lidofinance/valos",
     format: "markdown",
     localBiblio: {
+      CORS: {
+        title: "Cross-Origin Resource Sharing",
+        href: "https://fetch.spec.whatwg.org/#http-cors-protocol",
+        status: "Living Standard",
+        publisher: "WHATWG"
+      },
+      CSP: {
+        title: "Content Security Policy Level 3",
+        href: "https://www.w3.org/TR/CSP3/",
+        status: "Candidate Recommendation",
+        publisher: "W3C"
+      },
       DUCK: {
         title: "DUCK Knowledge Base",
         href: "https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base"
