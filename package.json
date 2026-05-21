@@ -1,0 +1,16 @@
+{
+  "name": "valos",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Validator Operations Standard (ValOS) specification source",
+  "type": "module",
+  "scripts": {
+    "prebuild": "npm run validate",
+    "build": "node scripts/build.mjs",
+    "preview": "npm run build && echo Open dist/valos-spec.html in a browser",
+    "validate": "node scripts/validate-risk-refs.mjs"
+  },
+  "devDependencies": {
+    "respec": "37.1.0"
+  }
+}

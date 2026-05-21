@@ -6,3 +6,6 @@
 
 # Deployment build output
 dist/
+
+# Dependency directories
+node_modules/

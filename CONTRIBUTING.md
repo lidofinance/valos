@@ -16,7 +16,7 @@ incorporating changes that are proposed but not necessarily agreed.
 
 Please provide feedback based on that document.
 
-(**NB** To read the latest draft you need to download [the file `valos-spec.html`](https://github.com/lidofinance/valos/blob/advance-staging/valos-spec.html), and open the file in a browser).
+(**NB** To read the latest draft, clone the repository, check out the `advance-staging` branch, run `npm ci`, then open `valos-spec.html` in a browser via a local HTTP server. See [Local preview](#local-preview) below.)
 
 ## What
 
@@ -78,6 +78,27 @@ You can also make a Pull Request. If you do:
 
 All Pull Requests will be reviewed and edited as necessary, so feel free to make a proposal and know that your contribution is appreciated
 even if you do not have time to understand and replicate the various conventions of the existing source code.
+
+### Local preview
+
+The spec source (`valos-spec.html`) uses [ReSpec](https://respec.org/) to render at view time. ReSpec is installed via `npm`; you need it on your machine to preview the spec locally.
+
+**Requirements:** Node.js (a recent LTS) and `npm`.
+
+**One-time setup after cloning:**
+
+```sh
+npm ci
+```
+
+This installs ReSpec into `node_modules/`. Without this step, opening `valos-spec.html` in a browser will not render correctly.
+
+**Two preview modes:**
+
+- *Quick edit & preview* — open `valos-spec.html` in a browser via a local HTTP server (e.g. `npx http-server .`). ReSpec renders the document in your browser, giving you live feedback as you edit.
+- *Preview the deployed artifact* — run `npm run build` to produce `dist/valos-spec.html`. This is the exact static HTML that GitHub Pages serves: no JavaScript runs at view time, the Content-Security-Policy is hardened, and external W3C assets (`base.css`, `fixup.js`) are served from the same origin. Recommended before opening a PR if you have changed structural elements, post-processors, or other render-time behavior.
+
+The deployed artifact is built by [`scripts/build.mjs`](scripts/build.mjs) and the `.github/workflows/deploy.yml` workflow.
 
 ### Commit Signing
 
