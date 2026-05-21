@@ -5,10 +5,11 @@
   "description": "Validator Operations Standard (ValOS) specification source",
   "type": "module",
   "scripts": {
-    "prebuild": "npm run validate",
+    "prebuild": "npm run validate && npm run verify-vendor",
     "build": "node scripts/build.mjs",
     "preview": "npm run build && echo Open dist/valos-spec.html in a browser",
-    "validate": "node scripts/validate-risk-refs.mjs"
+    "validate": "node scripts/validate-risk-refs.mjs",
+    "verify-vendor": "node scripts/verify-vendor.mjs"
   },
   "devDependencies": {
     "respec": "37.1.0"

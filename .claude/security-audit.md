@@ -49,10 +49,10 @@ Vendor file SHA-256 checksums were recomputed and compared against `CHECKSUMS.md
 
 ---
 
-#### FINDING-02: No Content Security Policy on Webflow/index.html
+#### FINDING-02: No Content Security Policy on Webflow/index.html ✅ Fixed
 
-**Severity**: High priority before launch  
-**File**: `Webflow/index.html`
+**Severity**: High priority before launch — **Resolved 2026-05-21**  
+**File**: `Webflow/index.html` (transformed at build time by `scripts/process-webflow.mjs`)
 
 **Description**: The Webflow landing page has no `Content-Security-Policy` meta tag or equivalent header. In contrast, `valos-spec.html` has a well-considered CSP. The Webflow page loads scripts from three external origins without policy enforcement:
 - `https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js` (no SRI, no CSP)
@@ -63,18 +63,25 @@ Vendor file SHA-256 checksums were recomputed and compared against `CHECKSUMS.md
 
 **Why it matters**: XSS or CDN compromise on an unprotected page is the highest-impact web attack scenario for a static site. The Google Web Font loader (`webfont.js`) is loaded without SRI, meaning any modification to that file on Google's CDN would execute with full script privileges.
 
-**Remediation**:
-1. Add a restrictive CSP meta tag to `Webflow/index.html`:
-```html
-<meta http-equiv="Content-Security-Policy" content="script-src 'self' https://ajax.googleapis.com https://d3e54v103j8qbb.cloudfront.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; default-src 'self'">
+**Implementation**: Hardened end-to-end rather than just adding a permissive CSP. All external script and font loads were eliminated by vendoring the dependencies, then the CSP was tightened to forbid any external sources at all:
+
+- **Google Web Font Loader removed**. `scripts/process-webflow.mjs` strips the `<script src="https://ajax.googleapis.com/.../webfont.js">` tag and the `WebFont.load({...})` inline call. This eliminates the un-SRI'd external script load described in FINDING-12.
+- **Google Fonts vendored**. The two font families used by the design (DM Mono, Host Grotesk) were downloaded from Google Fonts to `vendor/fonts/` (8 woff2 files) and accompanied by a rewritten `vendor/fonts.css` with `@font-face` declarations pointing at relative paths. The build copies these into `dist/` and injects a `<link rel="stylesheet" href="./fonts.css">` into the rendered head. `fonts.googleapis.com` / `fonts.gstatic.com` are no longer contacted at runtime, and the preconnect hints to those origins are stripped.
+- **jQuery vendored**. The CloudFront URL `https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=...` is rewritten to `./jquery-3.5.1.min.js`. The vendored file at `vendor/jquery-3.5.1.min.js` was verified at vendor time to match the SRI hash already on the original tag (`sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=`); that hash is preserved on the rewritten tag as a defense-in-depth signal. Version 3.5.1 was retained (not bumped to 3.7.x) because Webflow's `webflow.js` runtime was built and tested against the 3.5 API; both relevant historical jQuery XSS CVEs (CVE-2020-11022, CVE-2020-11023) are fixed in 3.5.0 so 3.5.1 has no known unpatched vulnerabilities.
+- **Hash-based CSP injected**. After the URL rewrites, `process-webflow.mjs` computes SHA-256 hashes of every remaining inline executable script (the touch-detection one-liner and the burger-menu handler) and writes a CSP `<meta>` immediately after the charset meta:
 ```
-2. Add SRI to the Google Web Font loader:
-```html
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
-        integrity="sha256-[COMPUTED_HASH]"
-        crossorigin="anonymous"></script>
+script-src 'self' 'sha256-…' 'sha256-…';
+style-src 'self' 'unsafe-inline';
+img-src 'self' data:;
+font-src 'self';
+connect-src 'self';
+frame-src 'none';
+object-src 'none';
+base-uri 'self';
+form-action 'self';
+default-src 'self';
 ```
-3. Note: Webflow's platform may impose limitations on custom code injection — check custom code settings in Webflow's hosting configuration.
+The deployed page contacts zero external origins at runtime. `Webflow/index.html` itself is unchanged — the transforms run on each build, so a re-export from Webflow does not lose the hardening. This also resolves FINDING-12 (Google Web Font Loader SRI) by eliminating that external load entirely.
 
 ---
 
@@ -237,12 +244,14 @@ trap "rm -f $MISMATCH_FILE" EXIT
 
 ---
 
-#### FINDING-12: Google Web Font Loader Loaded Without SRI
+#### FINDING-12: Google Web Font Loader Loaded Without SRI ✅ Fixed
 
-**Severity**: Informational  
-**File**: `Webflow/index.html`, line 13
+**Severity**: Informational — **Resolved 2026-05-21**  
+**File**: previously `Webflow/index.html`, line 13
 
 **Description**: `https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js` is loaded without an `integrity` attribute, while jQuery on the same page correctly uses SRI. This inconsistency means one of two external scripts is verified and one is not. Overlaps with FINDING-02 — implementing a CSP addresses this partially.
+
+**Implementation**: Resolved as part of FINDING-02. `scripts/process-webflow.mjs` strips the `<script src="https://ajax.googleapis.com/.../webfont.js">` tag and the dependent `WebFont.load({...})` inline call at build time. Fonts are served from local vendored copies. The un-SRI'd external load no longer exists in the deployed artifact.
 
 ---
 
@@ -253,7 +262,11 @@ trap "rm -f $MISMATCH_FILE" EXIT
 
 **Description**: `CHECKSUMS.md` documents correct SHA-256 hashes for vendored files and provides manual verification commands, but no CI step automatically runs these checks. A modified vendor file would not be caught before deployment.
 
-**Implementation**: The three runtime-JS dependencies tracked by `CHECKSUMS.md` (`axe.min.js`, `respec-highlight.js`, `respec-w3c-35.6.1.js`) were removed entirely as part of the migration to build-time ReSpec rendering — they no longer ship in the deployed artifact. ReSpec itself is now an `npm` devDependency pinned at `respec@37.1.0`; `npm ci` against the committed `package-lock.json` enforces cryptographic integrity of the upstream package automatically on every CI run. The remaining vendored assets — `vendor/fixup.js` (patched) and `vendor/base.css` — are committed source-of-truth files; their integrity is anchored in git history and reviewed as part of any PR that modifies them. `CHECKSUMS.md` was deleted alongside its now-irrelevant entries.
+**Implementation**: Resolved with a stronger control than the audit asked for. The three runtime-JS dependencies originally tracked (`axe.min.js`, `respec-highlight.js`, `respec-w3c-35.6.1.js`) were eliminated entirely by migrating to build-time ReSpec rendering — they no longer ship in the deployed artifact. ReSpec itself is now an `npm` devDependency pinned at `respec@37.1.0`; `npm ci` against the committed `package-lock.json` enforces upstream package integrity automatically on every CI run.
+
+A new `vendor/CHECKSUMS.md` was introduced once vendored content grew (FINDING-02 added `jquery-3.5.1.min.js`, `fonts.css`, and 8 woff2 binaries alongside the existing `fixup.js` and `base.css`). The manifest contains a fenced ```` ```sha256sum ```` block listing every file under `vendor/` (excluding `*.PATCH.md` documentation and the manifest itself) with its SHA-256 hash; `scripts/verify-vendor.mjs` parses the block and on every `npm run build` recomputes hashes, failing fast on any mismatch, any extra file lacking a recorded hash, or any recorded hash pointing at a missing file. This is wired into the `prebuild` npm hook (`prebuild: npm run validate && npm run verify-vendor`), so a tampered or accidentally-modified vendor file aborts the build before deploy. Intentional re-vendoring is supported via `node scripts/verify-vendor.mjs --update`, which regenerates the hash block for review and commit.
+
+This is stronger than the original audit recommendation: the previous manual `sha256sum -c` step is now automated end-to-end and runs both locally and in CI.
 
 ---
 
@@ -278,7 +291,7 @@ trap "rm -f $MISMATCH_FILE" EXIT
 | ID | Title | Severity | Status | Owner |
 |---|---|---|---|---|
 | FINDING-01 | Missing `rel="noopener noreferrer"` on external links in Webflow | High priority before launch | ✅ Fixed 2026-05-21 | Ivan |
-| FINDING-02 | No Content Security Policy on Webflow/index.html | High priority before launch | Open | Sven/DevOps |
+| FINDING-02 | No Content Security Policy on Webflow/index.html | High priority before launch | ✅ Fixed 2026-05-21 | Ivan |
 | FINDING-03 | Missing explicit `permissions:` in validate-risk-refs.yml | Should fix soon | ✅ Fixed 2026-05-21 | Sven |
 | FINDING-04 | GitHub Actions not pinned to commit SHAs in deploy.yml | Should fix soon | ✅ Fixed 2026-05-21 | Oriol |
 | FINDING-05 | `unsafe-inline` in CSP of valos-spec.html | Should fix soon | ✅ Fixed 2026-05-21 | Ivan |
@@ -288,7 +301,7 @@ trap "rm -f $MISMATCH_FILE" EXIT
 | FINDING-09 | PDF metadata reveals authoring tool | Informational | Open | - |
 | FINDING-10 | `.claude/` historical commit risk | Informational | Open | - |
 | FINDING-11 | Google Docs links — access control and link rot | Informational | Open | - |
-| FINDING-12 | Google Web Font loader loaded without SRI | Informational | Open | - |
+| FINDING-12 | Google Web Font loader loaded without SRI | Informational | ✅ Fixed 2026-05-21 | Ivan |
 | FINDING-13 | Vendor checksum verification is manual-only | Informational | ✅ Fixed 2026-05-21 | Ivan |
 
 ---
@@ -297,7 +310,7 @@ trap "rm -f $MISMATCH_FILE" EXIT
 
 After remediation of the findings above, the following risks would remain:
 
-1. **Webflow platform security**: The Webflow landing page's hosting infrastructure (and the original Webflow design tool) is outside this repository's controls. Note: the deployed `dist/index.html` is now produced by `scripts/process-webflow.mjs` from the committed `Webflow/index.html` export — runtime third-party loads (Google Fonts, jQuery from CloudFront, Webflow badge SVGs) are still present and tracked under FINDING-02 / FINDING-12.
+1. **Webflow platform / design tool trust**: The Webflow design tool produces the `Webflow/index.html` export that ships as the landing page. The export is reviewed at PR time and transformed by `scripts/process-webflow.mjs` to enforce security invariants (FINDING-01, FINDING-02, FINDING-12). A compromise of the Webflow design tool itself or the maintainer's Webflow account could change the export structure; the build script will warn (FINDING-01) or error (FINDING-02) if its preconditions no longer match. Any external resources that `webflow.js` attempts to fetch at runtime (e.g. the Webflow attribution badge inserted dynamically) are now blocked by the page's `img-src 'self' data:` CSP — visually cosmetic but not blocking functionality.
 2. **Google Docs document continuity**: The two linked Google Docs files depend on account continuity outside this repository.
 3. **specref.org API**: Although `noNetwork: true` plus complete `localBiblio` coverage eliminated the call at audit time, runtime bibliography resolution would resume if a future reference is added without a corresponding `localBiblio` entry. The build-time render in `scripts/build.mjs` further mitigates this — any biblio fetch happens during `node scripts/build.mjs` in CI, not in visitors' browsers — but the trust dependency on `api.specref.org` remains if the source ever adds an unresolved reference.
 4. **ReSpec build-tool dependency**: ReSpec is now a build-time devDependency (pinned to `respec@37.1.0` via `package-lock.json`). A future compromise of the `respec` npm package would inject malicious content into the rendered artifact. `npm ci` verifies the package against the lockfile's integrity hash, mitigating tag-mutation/registry attacks; trust in the npm registry remains a baseline dependency.
