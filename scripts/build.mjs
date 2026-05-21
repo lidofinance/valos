@@ -24,6 +24,7 @@ import {
 } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
+import { processWebflow } from './process-webflow.mjs';
 
 const ROOT = process.cwd();
 const DIST = join(ROOT, 'dist');
@@ -118,21 +119,7 @@ copyFileSync(join(VENDOR, 'base.css'), join(DIST, 'base.css'));
 copyFileSync(join(ROOT, 'LICENSE'), join(DIST, 'LICENSE'));
 cpSync(join(ROOT, 'assets'), join(DIST, 'assets'), { recursive: true });
 
-// 8. Write index.html so the bare URL (e.g. /valos/) redirects to the spec
-//    rather than 404-ing. valos-spec.html remains the canonical URL.
-const indexHtml = `<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>ValOS</title>
-    <link rel="canonical" href="./valos-spec.html">
-    <meta http-equiv="refresh" content="0; url=./valos-spec.html">
-  </head>
-  <body>
-    <p>Redirecting to <a href="./valos-spec.html">valos-spec.html</a>.</p>
-  </body>
-</html>
-`;
-writeFileSync(join(DIST, 'index.html'), indexHtml);
+// 8. Process Webflow landing page (writes dist/index.html plus assets).
+processWebflow(DIST);
 
 log(`done. dist/ ready for deployment.`);
