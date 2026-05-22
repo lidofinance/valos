@@ -11,7 +11,7 @@
 //   2. FINDING-02 — replace external script/font CDN loads with locally
 //      vendored copies and inject a hash-based Content-Security-Policy:
 //        - Drop the Google Web Font Loader script + WebFont.load inline call;
-//          the fonts are vendored under vendor/fonts/ and loaded via a static
+//          the fonts are vendored under vendor/webflow/fonts/ and loaded via a static
 //          fonts.css.
 //        - Drop the fonts.googleapis.com / fonts.gstatic.com preconnect hints
 //          (no longer needed; nothing on the page contacts those origins).
@@ -30,7 +30,7 @@ import { join } from 'node:path';
 
 const ROOT = process.cwd();
 const WEBFLOW = join(ROOT, 'Webflow');
-const VENDOR = join(ROOT, 'vendor');
+const VENDOR = join(ROOT, 'vendor', 'webflow');
 
 const JQUERY_FILE = 'jquery-3.5.1.min.js';
 
@@ -166,5 +166,5 @@ export function processWebflow(dist) {
   cpSync(join(VENDOR, JQUERY_FILE), join(dist, JQUERY_FILE));
   cpSync(join(VENDOR, 'fonts.css'), join(dist, 'fonts.css'));
   cpSync(join(VENDOR, 'fonts'), join(dist, 'fonts'), { recursive: true });
-  log('copied Webflow assets + vendored jquery/fonts to dist/');
+  log(`copied Webflow assets + vendored jquery/fonts into ${dist}`);
 }

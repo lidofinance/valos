@@ -6,6 +6,7 @@
 
 # Deployment build output
 dist/
+dist-webflow/
 
 # Dependency directories
 node_modules/

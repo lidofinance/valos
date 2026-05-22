@@ -119,7 +119,34 @@ copyFileSync(join(VENDOR, 'base.css'), join(DIST, 'base.css'));
 copyFileSync(join(ROOT, 'LICENSE'), join(DIST, 'LICENSE'));
 cpSync(join(ROOT, 'assets'), join(DIST, 'assets'), { recursive: true });
 
-// 8. Process Webflow landing page (writes dist/index.html plus assets).
-processWebflow(DIST);
+// 8. Write dist/index.html as a redirect to the canonical spec URL so the
+//    bare deploy URL (e.g. /valos/) does not 404 — and so the spec is the
+//    only HTML in dist/ that GitHub Pages serves. The Webflow landing page
+//    is built to dist-webflow/ (see step 9); it is intentionally not part
+//    of this deploy artifact.
+const indexHtml = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ValOS</title>
+    <link rel="canonical" href="./valos-spec.html">
+    <meta http-equiv="refresh" content="0; url=./valos-spec.html">
+  </head>
+  <body>
+    <p>Redirecting to <a href="./valos-spec.html">valos-spec.html</a>.</p>
+  </body>
+</html>
+`;
+writeFileSync(join(DIST, 'index.html'), indexHtml);
+log('wrote dist/index.html redirect to valos-spec.html');
 
-log(`done. dist/ ready for deployment.`);
+// 9. Process Webflow landing page into a separate dist-webflow/ artifact.
+//    This is built every time but is NOT shipped by .github/workflows/
+//    deploy.yml — it exists so the hardened Webflow output can be
+//    reviewed locally, and so a future workflow can deploy it elsewhere.
+const DIST_WEBFLOW = join(ROOT, 'dist-webflow');
+rmSync(DIST_WEBFLOW, { recursive: true, force: true });
+mkdirSync(DIST_WEBFLOW, { recursive: true });
+processWebflow(DIST_WEBFLOW);
+
+log(`done. dist/ ready for deployment; dist-webflow/ built for review.`);
