@@ -7,6 +7,8 @@
 name: Deploy static content to Pages
 
 on:
+  push:
+    branches: [main]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -40,6 +42,8 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Install apparmor-utils
+        run: sudo apt-get update && sudo apt-get install -y apparmor-utils
       - name: Build static spec
         run: node scripts/build.mjs
       - name: Setup Pages

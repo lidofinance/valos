@@ -44,8 +44,22 @@ mkdirSync(DIST, { recursive: true });
 // 2. Render with ReSpec CLI. --localhost spins up a local HTTP server so the
 //    source's relative paths (e.g. ./node_modules/respec/...) resolve.
 log('rendering valos-spec.html via respec CLI');
+// On Linux (incl. GitHub Actions ubuntu-latest), Ubuntu 24+ AppArmor blocks
+// the unprivileged user namespace that Puppeteer's bundled Chromium needs to
+// build its sandbox. We wrap respec under the system's existing `chrome`
+// AppArmor profile (installed by the preinstalled google-chrome-stable
+// package), which permits user namespaces — keeping Chrome's sandbox intact.
+let aaExec = '';
+if (process.platform === 'linux') {
+  try {
+    execSync('aa-exec --profile=chrome true', { stdio: 'ignore', shell: '/bin/sh' });
+    aaExec = 'aa-exec --profile=chrome ';
+  } catch {
+    log('aa-exec or `chrome` AppArmor profile unavailable; running respec without wrapper (Chrome sandbox may fail on Ubuntu 24+)');
+  }
+}
 execSync(
-  'npx respec --src=valos-spec.html --out=dist/valos-spec.html --localhost --haltonerror',
+  `${aaExec}npx respec --src=valos-spec.html --out=dist/valos-spec.html --localhost --haltonerror`,
   { stdio: 'inherit' },
 );
 
