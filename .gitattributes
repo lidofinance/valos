@@ -1,0 +1,6 @@
+# Treat all vendored content as binary (no EOL conversion) so SHA-256
+# hashes recorded in vendor/CHECKSUMS.md are stable across platforms.
+# Without this, Git on Windows with core.autocrlf=true would rewrite
+# LF -> CRLF on checkout, producing different bytes on disk than macOS
+# or Linux and breaking scripts/verify-vendor.mjs.
+vendor/** -text

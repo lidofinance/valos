@@ -34,28 +34,25 @@ Vendor file SHA-256 checksums were recomputed and compared against `CHECKSUMS.md
 
 ### High Priority Before Launch
 
-#### FINDING-01: Missing `rel="noopener noreferrer"` on All External Links in Webflow/index.html
+#### FINDING-01: Missing `rel="noopener noreferrer"` on All External Links in Webflow/index.html ✅ Fixed
 
-**Severity**: High priority before launch  
-**File**: `Webflow/index.html` (all `target="_blank"` anchors — ~18 links to external partner organizations)
+**Severity**: High priority before launch — **Resolved 2026-05-21**  
+**File**: `Webflow/index.html` (all `target="_blank"` anchors — 33 links to external partner organizations)
 
 **Description**: Every `target="_blank"` anchor in `Webflow/index.html` is missing `rel="noopener noreferrer"`. This covers all outbound links to Telegram, GitHub, and partner organization sites.
 
-**Exploitation**: When a user clicks one of these links, the opened tab receives a reference to the opener window via `window.opener`. A malicious destination page (or one that is later compromised) can call `window.opener.location = "https://phishing-site.com"` to silently redirect the original ValOS page while the user is reading the new tab. This is the well-known tabnapping attack. Given that the ValOS landing page links to 18 external partner organizations, any one being compromised in the future creates an indirect attack path against ValOS visitors.
+**Exploitation**: When a user clicks one of these links, the opened tab receives a reference to the opener window via `window.opener`. A malicious destination page (or one that is later compromised) can call `window.opener.location = "https://phishing-site.com"` to silently redirect the original ValOS page while the user is reading the new tab. This is the well-known tabnapping attack. Given that the ValOS landing page links to 33 external partner organizations, any one being compromised in the future creates an indirect attack path against ValOS visitors.
 
 **Why it matters**: The ValOS landing page is an authoritative standard used by node operators managing validator keys and staking infrastructure. A tabnapping attack could redirect operators to a phishing page impersonating ValOS, potentially capturing credentials or convincing them to download malicious tooling.
 
-**Remediation**: Add `rel="noopener noreferrer"` to every `target="_blank"` anchor:
-```html
-<a href="https://lionscraft.io" target="_blank" rel="noopener noreferrer">
-```
+**Implementation**: `scripts/process-webflow.mjs` runs at build time, reads `Webflow/index.html`, and appends `rel="noopener noreferrer"` to every `target="_blank"` anchor before writing `dist/index.html`. The transform is idempotent (regex lookahead prevents double-application) and logs the transformation count so a future Webflow re-export that changes HTML structure is visible in build logs. `Webflow/index.html` is treated as a build input and is never modified in place — re-exporting the landing page from Webflow does not lose the security transform.
 
 ---
 
-#### FINDING-02: No Content Security Policy on Webflow/index.html
+#### FINDING-02: No Content Security Policy on Webflow/index.html ✅ Fixed
 
-**Severity**: High priority before launch  
-**File**: `Webflow/index.html`
+**Severity**: High priority before launch — **Resolved 2026-05-21**  
+**File**: `Webflow/index.html` (transformed at build time by `scripts/process-webflow.mjs`)
 
 **Description**: The Webflow landing page has no `Content-Security-Policy` meta tag or equivalent header. In contrast, `valos-spec.html` has a well-considered CSP. The Webflow page loads scripts from three external origins without policy enforcement:
 - `https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js` (no SRI, no CSP)
@@ -66,18 +63,25 @@ Vendor file SHA-256 checksums were recomputed and compared against `CHECKSUMS.md
 
 **Why it matters**: XSS or CDN compromise on an unprotected page is the highest-impact web attack scenario for a static site. The Google Web Font loader (`webfont.js`) is loaded without SRI, meaning any modification to that file on Google's CDN would execute with full script privileges.
 
-**Remediation**:
-1. Add a restrictive CSP meta tag to `Webflow/index.html`:
-```html
-<meta http-equiv="Content-Security-Policy" content="script-src 'self' https://ajax.googleapis.com https://d3e54v103j8qbb.cloudfront.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; default-src 'self'">
+**Implementation**: Hardened end-to-end rather than just adding a permissive CSP. All external script and font loads were eliminated by vendoring the dependencies, then the CSP was tightened to forbid any external sources at all:
+
+- **Google Web Font Loader removed**. `scripts/process-webflow.mjs` strips the `<script src="https://ajax.googleapis.com/.../webfont.js">` tag and the `WebFont.load({...})` inline call. This eliminates the un-SRI'd external script load described in FINDING-12.
+- **Google Fonts vendored**. The two font families used by the design (DM Mono, Host Grotesk) were downloaded from Google Fonts to `vendor/fonts/` (8 woff2 files) and accompanied by a rewritten `vendor/fonts.css` with `@font-face` declarations pointing at relative paths. The build copies these into `dist/` and injects a `<link rel="stylesheet" href="./fonts.css">` into the rendered head. `fonts.googleapis.com` / `fonts.gstatic.com` are no longer contacted at runtime, and the preconnect hints to those origins are stripped.
+- **jQuery vendored**. The CloudFront URL `https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=...` is rewritten to `./jquery-3.5.1.min.js`. The vendored file at `vendor/jquery-3.5.1.min.js` was verified at vendor time to match the SRI hash already on the original tag (`sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=`); that hash is preserved on the rewritten tag as a defense-in-depth signal. Version 3.5.1 was retained (not bumped to 3.7.x) because Webflow's `webflow.js` runtime was built and tested against the 3.5 API; both relevant historical jQuery XSS CVEs (CVE-2020-11022, CVE-2020-11023) are fixed in 3.5.0 so 3.5.1 has no known unpatched vulnerabilities.
+- **Hash-based CSP injected**. After the URL rewrites, `process-webflow.mjs` computes SHA-256 hashes of every remaining inline executable script (the touch-detection one-liner and the burger-menu handler) and writes a CSP `<meta>` immediately after the charset meta:
 ```
-2. Add SRI to the Google Web Font loader:
-```html
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
-        integrity="sha256-[COMPUTED_HASH]"
-        crossorigin="anonymous"></script>
+script-src 'self' 'sha256-…' 'sha256-…';
+style-src 'self' 'unsafe-inline';
+img-src 'self' data:;
+font-src 'self';
+connect-src 'self';
+frame-src 'none';
+object-src 'none';
+base-uri 'self';
+form-action 'self';
+default-src 'self';
 ```
-3. Note: Webflow's platform may impose limitations on custom code injection — check custom code settings in Webflow's hosting configuration.
+The deployed page contacts zero external origins at runtime. `Webflow/index.html` itself is unchanged — the transforms run on each build, so a re-export from Webflow does not lose the hardening. This also resolves FINDING-12 (Google Web Font Loader SRI) by eliminating that external load entirely.
 
 ---
 
@@ -123,9 +127,9 @@ Also consider pinning the checkout action to a commit SHA rather than a mutable 
 
 ---
 
-#### FINDING-05: `unsafe-inline` in Content Security Policy (valos-spec.html)
+#### FINDING-05: `unsafe-inline` in Content Security Policy (valos-spec.html) ✅ Fixed
 
-**Severity**: Should fix soon  
+**Severity**: Should fix soon — **Resolved 2026-05-21**  
 **File**: `valos-spec.html`, line 5
 
 **Description**: The CSP on `valos-spec.html` permits `'unsafe-inline'` in `script-src`:
@@ -136,25 +140,20 @@ script-src 'self' 'unsafe-inline' https://www.w3.org/scripts/;
 
 **Context**: Since `valos-spec.html` has no user input paths, the actual XSS risk is low. An attacker would need repository write access to inject script content. This is a defense-in-depth weakness rather than a directly exploitable vulnerability in the current architecture.
 
-**Remediation options**:
-1. **Hash-based CSP** (recommended for static files): Compute the SHA-256 hash of the inline script block and replace `'unsafe-inline'` with `'sha256-{hash}'`. This allows the single known-good inline script while blocking any injected script.
-2. **Accept as residual risk**: Document explicitly given the no-user-input architecture.
+**Implementation**: The deployment model was changed from runtime ReSpec (JS framework executed in the visitor's browser) to a build-time static-snapshot render via the ReSpec CLI (`npx respec --src=... --out=...`). The deployed `dist/valos-spec.html` is now static HTML with no runtime ReSpec — the inline scripts in the output (`respec-highlight-vars`, `respec-dfn-panel`) are deterministic, baked-in strings. `scripts/build.mjs` computes their SHA-256 hashes at build time and rewrites the CSP `<meta>` tag to use `'sha256-…'` hashes in place of `'unsafe-inline'`. The deployed `script-src` is `'self' 'sha256-…' 'sha256-…'`. The source `valos-spec.html` retains `'unsafe-inline'` only because runtime ReSpec preview during local development requires it; the build script replaces the meta tag before the artifact ships.
 
 ---
 
-#### FINDING-06: `fixup.js` Loaded from W3C CDN Without SRI
+#### FINDING-06: `fixup.js` Loaded from W3C CDN Without SRI ✅ Fixed
 
-**Severity**: Should fix soon  
-**File**: `vendor/respec-w3c-35.6.1.js`, line 736
+**Severity**: Should fix soon — **Resolved 2026-05-21**  
+**File**: previously `vendor/respec-w3c-35.6.1.js`, line 736 (no longer present after migration to build-time render)
 
 **Description**: `respec-w3c-35.6.1.js` dynamically creates a `<script>` tag that loads `https://www.w3.org/scripts/TR/2021/fixup.js` at runtime without SRI. The `CHECKSUMS.md` notes this as a deliberate decision due to CORS limitations.
 
 **Exploitation**: Any modification to `fixup.js` on W3C's server would be served and executed undetected. The spec page is a reference for node operators making security decisions — a compromised `fixup.js` could inject content or perform phishing within the spec page.
 
-**Remediation**:
-1. Re-verify CORS availability: `curl -I https://www.w3.org/scripts/TR/2021/fixup.js | grep -i "access-control"`. If CORS headers are present, SRI becomes possible.
-2. If feasible, vendor `fixup.js` locally and add its hash to `CHECKSUMS.md`.
-3. If not feasible, document the accepted risk in `CHECKSUMS.md` (partially done already).
+**Implementation**: `fixup.js` was downloaded from W3C and committed to `vendor/fixup.js` as a pre-patched source-of-truth file. The patch removes the `Deprecation warning` block (upstream lines 276–366), which made a runtime `XMLHttpRequest` to `https://www.w3.org/TR/tr-outdated-spec` — dead code on a non-W3C host but defensively removed; see [vendor/fixup.js.PATCH.md](../vendor/fixup.js.PATCH.md). `scripts/build.mjs` rewrites the W3C CDN URL in the rendered HTML to `./fixup.js` and copies `vendor/fixup.js` into `dist/`, so the deployed page serves the script from the same origin. No SRI/CORS gymnastics required. The deployed artifact makes zero runtime calls to `www.w3.org/scripts/` or `www.w3.org/StyleSheets/` — `base.css` is vendored alongside via the same mechanism.
 
 ---
 
@@ -197,96 +196,87 @@ CSP: {
 
 ### Informational
 
-#### FINDING-08: Predictable Temporary File Path in Shell Script
+#### FINDING-08: Predictable Temporary File Path in Shell Script ✅ Fixed
 
-**Severity**: Informational  
-**File**: `scripts/validate-risk-refs.sh`, lines 32–36
+**Severity**: Informational — **Resolved 2026-05-21**  
+**File**: previously `scripts/validate-risk-refs.sh`, lines 32–36 (file no longer exists)
 
 **Description**: The script writes to `/tmp/mismatches.txt` — a fixed, predictable, world-writable path. In a TOCTOU scenario, a malicious process on the same machine could pre-create this path as a symlink. In practice, this runs in an isolated GitHub Actions VM where no other user processes exist, so the risk is entirely theoretical.
 
-**Remediation**: Use `mktemp` for safety:
-```bash
-MISMATCH_FILE=$(mktemp)
-trap "rm -f $MISMATCH_FILE" EXIT
-```
+**Implementation**: Resolved as a side effect of FINDING-13's port. `scripts/validate-risk-refs.sh` was rewritten as `scripts/validate-risk-refs.mjs` (Node ESM) and the bash script deleted in commit `22dbcfd`. The new implementation builds the result list in an in-memory array and prints it directly to stdout — there is no temporary file, predictable or otherwise.
 
 ---
 
-#### FINDING-09: PDF Document Metadata — Renderer Identification
+#### FINDING-09: PDF Document Metadata — Renderer Identification ⏭️ Out of scope
 
-**Severity**: Informational  
+**Severity**: Informational — **Deferred 2026-05-21** (out of scope for this remediation cycle)  
 **File**: `Webflow/documents/ValOS_Governance.pdf`
 
 **Description**: The PDF's producer metadata reads `Skia/PDF m146 Google Docs Renderer`, identifying the document as authored in Google Docs (Chrome 146). Not a vulnerability, but discloses authoring toolchain.
 
-**Remediation**: Strip metadata if tooling disclosure is a concern: `exiftool -all= ValOS_Governance.pdf`.
+**Decision**: Deferred. The disclosure (Google Docs as authoring tool) is consistent with public information already in the spec — the spec itself references Google Docs–hosted artifacts (FINDING-11) — so the residual marginal disclosure is minimal. The PDF is treated as a build input under `Webflow/documents/` and would need either a one-shot metadata strip (which the next Webflow re-export of the PDF would undo) or a build-time stripping step. If the disclosure becomes a concern, the simplest remediation is a `node scripts/strip-pdf-metadata.mjs` build step using `pdf-lib` (or equivalent) run from `process-webflow.mjs`. Tracking residual risk; no fix in this PR.
 
 ---
 
-#### FINDING-10: `.claude/` Historical Commit Risk
+#### FINDING-10: `.claude/` Historical Commit Risk ✅ Fixed
 
-**Severity**: Informational  
+**Severity**: Informational — **Resolved 2026-05-21**  
 **File**: `.claude/settings.local.json`
 
 **Description**: `.claude/settings.local.json` contains a historical entry showing a command was used to remove the `.claude/` directory from git history (`git rebase -i ... --exec "git rm -rf --cached --ignore-unmatch .claude"`). This suggests `.claude/` may have been accidentally committed at some point. The directory is correctly excluded by `.gitignore` now.
 
-**Remediation**: Run `git log --all --oneline -- .claude/` to verify no historical commits contain this directory. If any do, assess whether content is sensitive — if so, use `git filter-repo` or BFG for history rewrite.
+**Investigation**: `git log --all --name-only --pretty=format: -- .claude/` (run 2026-05-21) returned a single tracked path: `.claude/security-audit.md`, intentionally committed in `1de1cbf` ("chore: share Claude's security review"). No `.claude/settings.local.json`, no Claude history files, and no other Claude-private state has ever been committed to this repository under any branch. The remediation command in the original audit ("assess whether content is sensitive — if so, history rewrite") therefore does not apply: there is no sensitive content in history to remove. `.gitignore` continues to exclude the rest of `.claude/`, and the existing rebase-exec safeguard in `settings.local.json` remains as defense in depth in case future accidental commits occur.
 
 ---
 
-#### FINDING-11: Google Docs Links — Access Control and Link Rot
+#### FINDING-11: Google Docs Links — Access Control and Link Rot ⏭️ Out of scope
 
-**Severity**: Informational  
-**File**: `valos-spec.html`, lines 2006, 2049
+**Severity**: Informational — **Deferred 2026-05-21** (out of scope for this remediation cycle)  
+**File**: `valos-spec.html`, lines 2007 and 2050
 
 **Description**: Two Google Docs links are embedded in the specification (Stakeholder Register Spreadsheet, DUCK Incident Response Template). If these have permissive sharing settings ("anyone with the link"), they are effectively public. If the owning account is compromised or documents deleted, links break or could theoretically point to attacker-controlled content.
 
-**Remediation**: Audit sharing settings for both documents. Consider hosting reference materials within the repository or at a controlled URL. Document ownership in an access review process.
+**Decision**: Deferred to the document owners. The remediation requires actions outside the repository: auditing the sharing settings of both linked Google Docs, deciding whether to host the reference materials locally (e.g. import the Stakeholder Register and Incident Response Template into `valos-spec.html` or `Webflow/documents/`), and establishing an owner-of-record / access-review process. None of these are appropriate fixes for a security PR. Captured under the existing Residual Risk "Google Docs document continuity"; tracking by audit row only.
 
 ---
 
-#### FINDING-12: Google Web Font Loader Loaded Without SRI
+#### FINDING-12: Google Web Font Loader Loaded Without SRI ✅ Fixed
 
-**Severity**: Informational  
-**File**: `Webflow/index.html`, line 13
+**Severity**: Informational — **Resolved 2026-05-21**  
+**File**: previously `Webflow/index.html`, line 13
 
 **Description**: `https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js` is loaded without an `integrity` attribute, while jQuery on the same page correctly uses SRI. This inconsistency means one of two external scripts is verified and one is not. Overlaps with FINDING-02 — implementing a CSP addresses this partially.
 
+**Implementation**: Resolved as part of FINDING-02. `scripts/process-webflow.mjs` strips the `<script src="https://ajax.googleapis.com/.../webfont.js">` tag and the dependent `WebFont.load({...})` inline call at build time. Fonts are served from local vendored copies. The un-SRI'd external load no longer exists in the deployed artifact.
+
 ---
 
-#### FINDING-13: Vendor Checksum Verification Is Manual-Only (No CI Enforcement)
+#### FINDING-13: Vendor Checksum Verification Is Manual-Only (No CI Enforcement) ✅ Fixed
 
-**Severity**: Informational  
-**File**: `vendor/CHECKSUMS.md`
+**Severity**: Informational — **Resolved 2026-05-21**  
+**File**: previously `vendor/CHECKSUMS.md` (now removed)
 
 **Description**: `CHECKSUMS.md` documents correct SHA-256 hashes for vendored files and provides manual verification commands, but no CI step automatically runs these checks. A modified vendor file would not be caught before deployment.
 
-**Verified at audit time**: All three vendor file hashes match documented values:
-- `axe.min.js`: `7dbfabdfc6062936d79c873ddbb5f811a1219fca3928bd8cc9dd81f1e65f4720` ✓
-- `respec-highlight.js`: `bb3a399f42113070cd0efcd3e2b93cf59680721a94808721b1ccff7b18928b5b` ✓
-- `respec-w3c-35.6.1.js`: `83c4274c7fd3ce32598a166c6ccea3c4429bc6761ef839d74ebd01304e4834a3` ✓
+**Implementation**: Resolved with a stronger control than the audit asked for. The three runtime-JS dependencies originally tracked (`axe.min.js`, `respec-highlight.js`, `respec-w3c-35.6.1.js`) were eliminated entirely by migrating to build-time ReSpec rendering — they no longer ship in the deployed artifact. ReSpec itself is now an `npm` devDependency pinned at `respec@37.1.0`; `npm ci` against the committed `package-lock.json` enforces upstream package integrity automatically on every CI run.
 
-**Remediation**: Add a CI step to the deploy workflow:
-```yaml
-- name: Verify vendor checksums
-  run: |
-    echo "7dbfabdfc6062936d79c873ddbb5f811a1219fca3928bd8cc9dd81f1e65f4720  vendor/axe.min.js" | sha256sum -c
-    echo "bb3a399f42113070cd0efcd3e2b93cf59680721a94808721b1ccff7b18928b5b  vendor/respec-highlight.js" | sha256sum -c
-```
+A new `vendor/CHECKSUMS.md` was introduced once vendored content grew (FINDING-02 added `jquery-3.5.1.min.js`, `fonts.css`, and 8 woff2 binaries alongside the existing `fixup.js` and `base.css`). The manifest contains a fenced ```` ```sha256sum ```` block listing every file under `vendor/` (excluding `*.PATCH.md` documentation and the manifest itself) with its SHA-256 hash; `scripts/verify-vendor.mjs` parses the block and on every `npm run build` recomputes hashes, failing fast on any mismatch, any extra file lacking a recorded hash, or any recorded hash pointing at a missing file. This is wired into the `prebuild` npm hook (`prebuild: npm run validate && npm run verify-vendor`), so a tampered or accidentally-modified vendor file aborts the build before deploy. Intentional re-vendoring is supported via `node scripts/verify-vendor.mjs --update`, which regenerates the hash block for review and commit.
+
+This is stronger than the original audit recommendation: the previous manual `sha256sum -c` step is now automated end-to-end and runs both locally and in CI.
 
 ---
 
 ## Security Positives (Controls Already in Place)
 
-1. **Vendor dependency isolation**: All three JavaScript dependencies are vendored locally rather than loaded from external CDNs at runtime.
-2. **CSP on valos-spec.html**: Implemented with minimal necessary external origins and appropriate `worker-src 'self' blob:` for respec's Web Worker.
+1. **No runtime third-party JS on `valos-spec.html`**: The spec is rendered to static HTML at build time via the ReSpec CLI (FINDING-05/06/13 remediation). The runtime JS bundles (`respec-w3c`, `respec-highlight`, `axe.min.js`) are no longer shipped. `fixup.js` and `base.css` are vendored locally under `vendor/` and served from the same origin.
+2. **Hash-based CSP on the deployed `valos-spec.html`**: `script-src` lists explicit `'sha256-…'` hashes for the two inline scripts in the static output — no `'unsafe-inline'`. `worker-src 'self' blob:` retained for ReSpec's highlighter Web Worker.
 3. **SRI on jQuery**: `Webflow/index.html` correctly includes `integrity` and `crossorigin` attributes for the jQuery load.
 4. **No secrets in repository**: No hardcoded API keys, tokens, passwords, or credentials found anywhere.
 5. **No server-side attack surface**: Static-site architecture eliminates SQL injection, RCE, SSRF, authentication bypass, and session handling risks entirely.
 6. **`persist-credentials: false` on checkout**: Deploy workflow prevents the git credential from being written to disk.
 7. **GPG commit signing policy**: `CONTRIBUTING.md` requires core team members to sign commits with GPG.
 8. **Safe DOM construction**: Prior security work (commit 6272256) replaced `innerHTML` string concatenation with `createElement`/`textContent` patterns in inline JavaScript.
-9. **Minimal deployment scope**: Deploy workflow only copies `valos-spec.html`, `LICENSE`, `assets/`, and `vendor/` — not the full repository.
+9. **Build-time-produced deployment artifact**: The deploy workflow runs `npm ci && node scripts/build.mjs` and uploads only the resulting `dist/` directory. `dist/` contains only the rendered spec, vendored `fixup.js`/`base.css`, the Webflow landing page (with build-time security transforms applied), and supporting assets — not the full repository, `node_modules/`, or build inputs.
 10. **`.gitignore` correctly excludes sensitive paths**: `.DS_Store`, `.claude/`, `dist/` all excluded.
 11. **Deploy workflow actions pinned to commit SHAs**: All four GitHub Actions in `deploy.yml` use immutable commit references (remediation for FINDING-04, commit `f2112ed`).
 
@@ -294,21 +284,21 @@ trap "rm -f $MISMATCH_FILE" EXIT
 
 ## Summary Table
 
-| ID | Title | Severity | Owner |
-|---|---|---|---|
-| FINDING-01 | Missing `rel="noopener noreferrer"` on external links in Webflow | High priority before launch | Ivan |
-| FINDING-02 | No Content Security Policy on Webflow/index.html | High priority before launch | Sven/DevOps |
-| FINDING-03 | Missing explicit `permissions:` in validate-risk-refs.yml | ✅ Fixed 2026-05-21 | Sven |
-| FINDING-04 | GitHub Actions not pinned to commit SHAs in deploy.yml | ~~Should fix soon~~ **Remediated** (2026-05-21) | Oriol |
-| FINDING-05 | `unsafe-inline` in CSP of valos-spec.html | Should fix soon | Ivan |
-| FINDING-06 | `fixup.js` loaded from W3C CDN without SRI | Should fix soon | Ivan |
-| FINDING-07 | `api.specref.org` runtime API call | ✅ Fixed 2026-05-21 | Sven |
-| FINDING-08 | Predictable temp file path in shell script | Informational | - |
-| FINDING-09 | PDF metadata reveals authoring tool | Informational | - |
-| FINDING-10 | `.claude/` historical commit risk | Informational | - |
-| FINDING-11 | Google Docs links — access control and link rot | Informational | - |
-| FINDING-12 | Google Web Font loader loaded without SRI | Informational | - |
-| FINDING-13 | Vendor checksum verification is manual-only | Informational | Ivan |
+| ID | Title | Severity | Status | Owner |
+|---|---|---|---|---|
+| FINDING-01 | Missing `rel="noopener noreferrer"` on external links in Webflow | High priority before launch | ✅ Fixed 2026-05-21 | Ivan |
+| FINDING-02 | No Content Security Policy on Webflow/index.html | High priority before launch | ✅ Fixed 2026-05-21 | Ivan |
+| FINDING-03 | Missing explicit `permissions:` in validate-risk-refs.yml | Should fix soon | ✅ Fixed 2026-05-21 | Sven |
+| FINDING-04 | GitHub Actions not pinned to commit SHAs in deploy.yml | Should fix soon | ✅ Fixed 2026-05-21 | Oriol |
+| FINDING-05 | `unsafe-inline` in CSP of valos-spec.html | Should fix soon | ✅ Fixed 2026-05-21 | Ivan |
+| FINDING-06 | `fixup.js` loaded from W3C CDN without SRI | Should fix soon | ✅ Fixed 2026-05-21 | Ivan |
+| FINDING-07 | `api.specref.org` runtime API call | Should fix soon | ✅ Fixed 2026-05-21 | Sven |
+| FINDING-08 | Predictable temp file path in shell script | Informational | ✅ Fixed 2026-05-21 | Ivan |
+| FINDING-09 | PDF metadata reveals authoring tool | Informational | ⏭️ Out of scope | doc owners |
+| FINDING-10 | `.claude/` historical commit risk | Informational | ✅ Fixed 2026-05-21 | Ivan |
+| FINDING-11 | Google Docs links — access control and link rot | Informational | ⏭️ Out of scope | doc owners |
+| FINDING-12 | Google Web Font loader loaded without SRI | Informational | ✅ Fixed 2026-05-21 | Ivan |
+| FINDING-13 | Vendor checksum verification is manual-only | Informational | ✅ Fixed 2026-05-21 | Ivan |
 
 ---
 
@@ -316,10 +306,10 @@ trap "rm -f $MISMATCH_FILE" EXIT
 
 After remediation of the findings above, the following risks would remain:
 
-1. **W3C CDN trust**: The `fixup.js` runtime load from W3C represents a trust dependency on W3C infrastructure. Considered acceptable given W3C's role as a standards body.
-2. **Webflow platform security**: The Webflow landing page's hosting infrastructure is outside this repository's controls.
-3. **Google Docs document continuity**: The two linked Google Docs files depend on account continuity outside this repository.
-4. **specref.org API**: Runtime bibliography resolution via `api.specref.org` introduces a soft dependency that cannot be fully controlled.
+1. **Webflow platform / design tool trust**: The Webflow design tool produces the `Webflow/index.html` export that ships as the landing page. The export is reviewed at PR time and transformed by `scripts/process-webflow.mjs` to enforce security invariants (FINDING-01, FINDING-02, FINDING-12). A compromise of the Webflow design tool itself or the maintainer's Webflow account could change the export structure; the build script will warn (FINDING-01) or error (FINDING-02) if its preconditions no longer match. Any external resources that `webflow.js` attempts to fetch at runtime (e.g. the Webflow attribution badge inserted dynamically) are now blocked by the page's `img-src 'self' data:` CSP — visually cosmetic but not blocking functionality.
+2. **Google Docs document continuity**: The two linked Google Docs files depend on account continuity outside this repository.
+3. **specref.org API**: Although `noNetwork: true` plus complete `localBiblio` coverage eliminated the call at audit time, runtime bibliography resolution would resume if a future reference is added without a corresponding `localBiblio` entry. The build-time render in `scripts/build.mjs` further mitigates this — any biblio fetch happens during `node scripts/build.mjs` in CI, not in visitors' browsers — but the trust dependency on `api.specref.org` remains if the source ever adds an unresolved reference.
+4. **ReSpec build-tool dependency**: ReSpec is now a build-time devDependency (pinned to `respec@37.1.0` via `package-lock.json`). A future compromise of the `respec` npm package would inject malicious content into the rendered artifact. `npm ci` verifies the package against the lockfile's integrity hash, mitigating tag-mutation/registry attacks; trust in the npm registry remains a baseline dependency.
 5. **GitHub Actions ecosystem**: The deploy workflow mitigates tag-mutation risk via SHA pinning (FINDING-04). Other workflows (e.g. `validate-risk-refs.yml`) may still use mutable tags; trust in GitHub's actions infrastructure remains a baseline dependency.
 
 ---

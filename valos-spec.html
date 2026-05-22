@@ -2,11 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://www.w3.org/scripts/; style-src 'self' 'unsafe-inline' https://www.w3.org/StyleSheets/TR/2021/; worker-src 'self' blob:;" />
+    <!-- CSP:BUILD_REPLACE: scripts/build.mjs replaces this meta tag with a hardened, hash-based CSP for the deployed artifact. The 'unsafe-inline' below is required only for runtime-ReSpec preview during local development. -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:;" />
     <title>ValOS</title>
-    <!-- respec v35.6.1 - vendored locally for SRI/supply-chain security (issue #132) -->
+    <!-- ReSpec is installed via npm (devDependency). Loaded from node_modules for local runtime preview; stripped from the deployed artifact (class="remove"). Run `npm ci` after cloning. -->
     <script
-      src="./vendor/respec-w3c-35.6.1.js"
+      src="./node_modules/respec/builds/respec-w3c.js"
       class="remove"
       defer></script>
     <style>
@@ -3509,6 +3510,7 @@ function ControlTableSummary() {
       { name: "Seamus McNab"},
       { name: "Oriol Padilla"},
       { name: "Isidoros Passadis"},
+      { name: "Ivan Petkov"},
       { name: "Gabriella S"},
       { name: "CK Teo"},
       { name: "Julian Ueding"},
