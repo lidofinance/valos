@@ -7,11 +7,14 @@
   "scripts": {
     "prebuild": "npm run validate && npm run verify-vendor",
     "build": "node scripts/build.mjs",
-    "preview": "npm run build && echo Open dist/valos-spec.html in a browser",
+    "draft": "browser-sync start --config bs-config.cjs",
+    "preview": "npm run build && http-server dist/ -o /valos-spec.html",
     "validate": "node scripts/validate-risk-refs.mjs",
     "verify-vendor": "node scripts/verify-vendor.mjs"
   },
   "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "http-server": "^14.1.1",
     "respec": "37.1.0"
   }
 }
