@@ -77,8 +77,8 @@ basename.
 ## Hashes (machine-readable)
 
 ```sha256sum
-f9f17c6df014a785bb3d227d8d4eb21a64fe144bebfa2ea942ce21ce53b37b68  vendor/base.css
-9c3b3cd65a6006be7023ee8032df9da0395bd2bb5c1f64cd3a21a26ab6c62c06  vendor/fixup.js
+9fa5424a4a69425f2fdff6c5f8958f516915e97538ec347b7ab414df0959645e  vendor/base.css
+6c31f34c834e66a4d06cd62a43688c781f157548bad9a2f531de00d8b099f10c  vendor/fixup.js
 0d1921e1c9c954ad67ab582e4711e2e43608bce658caef57512babcf6a37f81b  vendor/fonts.css
 f83e7a31075106e71e83dbad864fcad190e63f7ae2466b1b48103ddd08c51be6  vendor/fonts/aFTR7PB1QTsUX8KYvrGyEY2tbZX9.woff2
 501783994f7dff0aa75b820bdeee9f4d1a0a2f04c51be17b278c3d339d98f3e7  vendor/fonts/aFTR7PB1QTsUX8KYvrGyEYOtbQ.woff2
