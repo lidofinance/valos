@@ -16,7 +16,7 @@ incorporating changes that are proposed but not necessarily agreed.
 
 Please provide feedback based on that document.
 
-(**NB** To read the latest draft you need to download [the file `valos-spec.html`](https://github.com/lidofinance/valos/blob/advance-staging/valos-spec.html), and open the file in a browser).
+(**NB** To read the latest draft, clone the repository, check out the `advance-staging` branch, run `npm ci`, then open `valos-spec.html` in a browser via a local HTTP server. See [Local preview](#local-preview) below.)
 
 ## What
 
@@ -78,6 +78,27 @@ You can also make a Pull Request. If you do:
 
 All Pull Requests will be reviewed and edited as necessary, so feel free to make a proposal and know that your contribution is appreciated
 even if you do not have time to understand and replicate the various conventions of the existing source code.
+
+### Local preview
+
+The spec source (`valos-spec.html`) uses [ReSpec](https://respec.org/) to render at view time. ReSpec is installed via `npm`; you need it on your machine to preview the spec locally.
+
+**Requirements:** Node.js (a recent LTS) and `npm`.
+
+**One-time setup after cloning:**
+
+```sh
+npm ci
+```
+
+This installs ReSpec into `node_modules/`. Without this step, opening `valos-spec.html` in a browser will not render correctly.
+
+**Two preview modes:**
+
+- *Quick edit & preview* — run `npm run draft`. ReSpec renders `valos-spec.html` in your browser at view time and the page reloads automatically when you save edits to the source.
+- *Preview the deployed artifact* — run `npm run preview` to build `dist/valos-spec.html` and open it in your browser. This is the exact file that is published. Recommended before opening a PR if you have changed structural elements or other render-time behavior.
+
+The deployed artifact is built by [`scripts/build.mjs`](scripts/build.mjs) and the `.github/workflows/deploy.yml` workflow.
 
 ### Commit Signing
 

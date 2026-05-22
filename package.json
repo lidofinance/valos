@@ -1,0 +1,20 @@
+{
+  "name": "valos",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Validator Operations Standard (ValOS) specification source",
+  "type": "module",
+  "scripts": {
+    "prebuild": "npm run validate && npm run verify-vendor",
+    "build": "node scripts/build.mjs",
+    "draft": "browser-sync start --config bs-config.cjs",
+    "preview": "npm run build && http-server dist/ -o /valos-spec.html",
+    "validate": "node scripts/validate-risk-refs.mjs",
+    "verify-vendor": "node scripts/verify-vendor.mjs"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "http-server": "^14.1.1",
+    "respec": "37.1.0"
+  }
+}

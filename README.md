@@ -44,12 +44,14 @@ Proposed updates are accepted (or returned for more work) on a weekly basis. The
 
 You can also see the specification as it would appear if currently proposed changes are accepted, by looking in the `advance-staging` branch for [valos-spec.html](https://github.com/lidofinance/valos/blob/advance-staging/valos-spec.html) (note that to view it as intended you need to clone the branch or download the HTML file, and open the local file in a browser).
 
+## Contributing & Local Development
+
+Please read the [contributor guidelines](CONTRIBUTING.md) before making your first contribution to understand the expectations and (mostly lightweight) conditions of the contribution process, as well as how to set up the project locally (e.g. install dependencies, build, and run the spec for review).
+
 ## Feedback?
 
 You can provide any feedback or comments by raising or commenting on issues or pull requests in
 [this github repository](https://github.com/lidofinance/valos/).
-
-Please read the [contributor guidelines](CONTRIBUTING.md) to understand the expectations and (mostly lightweight) conditions before making your first contribution.
 
 You can also join our [Telegram group](https://t.me/+ys5MxWs16T1jOWVi).
 As well as being a place to provide feedback, we highlight issues currently under discussion there,
