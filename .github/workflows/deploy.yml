@@ -40,6 +40,8 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Install apparmor-utils
+        run: sudo apt-get update && sudo apt-get install -y apparmor-utils
       - name: Build static spec
         run: node scripts/build.mjs
       - name: Setup Pages
