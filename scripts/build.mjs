@@ -52,10 +52,10 @@ log('rendering valos-spec.html via respec CLI');
 let aaExec = '';
 if (process.platform === 'linux') {
   try {
-    execSync('command -v aa-exec', { stdio: 'ignore', shell: '/bin/sh' });
+    execSync('aa-exec --profile=chrome true', { stdio: 'ignore', shell: '/bin/sh' });
     aaExec = 'aa-exec --profile=chrome ';
   } catch {
-    log('aa-exec not found; running respec without AppArmor profile wrapper (Chrome sandbox may fail on Ubuntu 24+)');
+    log('aa-exec or `chrome` AppArmor profile unavailable; running respec without wrapper (Chrome sandbox may fail on Ubuntu 24+)');
   }
 }
 execSync(
