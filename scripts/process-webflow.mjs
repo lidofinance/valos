@@ -49,7 +49,11 @@ function hashInlineScripts(html) {
     if (/\bsrc\s*=/.test(attrs)) continue;
     if (/type\s*=\s*["']application\/(ld\+)?json["']/.test(attrs)) continue;
     if (body.trim() === '') continue;
-    const digest = createHash('sha256').update(body, 'utf8').digest('base64');
+    // HTML5 parsers normalize CRLF -> LF before computing the script
+    // element's text content, which is what CSP hashes. Match that so
+    // hashes from a CRLF source still validate at runtime.
+    const normalized = body.replace(/\r\n/g, '\n');
+    const digest = createHash('sha256').update(normalized, 'utf8').digest('base64');
     hashes.push(`'sha256-${digest}'`);
   }
   return hashes;
