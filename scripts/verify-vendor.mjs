@@ -13,7 +13,7 @@
 
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
-import { join, posix, relative, sep } from 'node:path';
+import { join, posix } from 'node:path';
 
 const ROOT = process.cwd();
 const VENDOR = join(ROOT, 'vendor');
@@ -66,8 +66,8 @@ function parseManifest(md) {
     const m = line.match(/^([a-f0-9]{64})\s{2}(.+)$/);
     if (!m) fail(`malformed manifest line: ${line}`);
     const path = m[2];
-    if (!path.startsWith('vendor/')) {
-      fail(`manifest path must start with vendor/: ${path}`);
+    if (!path.startsWith('vendor/') || path.split('/').includes('..')) {
+      fail(`manifest path must be confined to vendor/: ${path}`);
     }
     entries.set(path.slice('vendor/'.length), m[1]);
   }
