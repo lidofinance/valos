@@ -95,8 +95,8 @@ This installs ReSpec into `node_modules/`. Without this step, opening `valos-spe
 
 **Two preview modes:**
 
-- *Quick edit & preview* — open `valos-spec.html` in a browser via a local HTTP server (e.g. `npx http-server .`). ReSpec renders the document in your browser, giving you live feedback as you edit.
-- *Preview the deployed artifact* — run `npm run build` to produce `dist/valos-spec.html`. This is the exact static HTML that GitHub Pages serves: no JavaScript runs at view time, the Content-Security-Policy is hardened, and external W3C assets (`base.css`, `fixup.js`) are served from the same origin. Recommended before opening a PR if you have changed structural elements, post-processors, or other render-time behavior.
+- *Quick edit & preview* — run `npm run draft`. ReSpec renders `valos-spec.html` in your browser at view time and the page reloads automatically when you save edits to the source.
+- *Preview the deployed artifact* — run `npm run preview` to build `dist/valos-spec.html` and open it in your browser. This is the exact file that is published. Recommended before opening a PR if you have changed structural elements or other render-time behavior.
 
 The deployed artifact is built by [`scripts/build.mjs`](scripts/build.mjs) and the `.github/workflows/deploy.yml` workflow.
 
