@@ -81,9 +81,9 @@ even if you do not have time to understand and replicate the various conventions
 
 ### Local preview
 
-The spec source (`valos-spec.html`) uses [ReSpec](https://respec.org/) to render at view time. ReSpec is installed via `npm`; you need it on your machine to preview the spec locally.
+The spec source (`valos-spec.html`) uses [ReSpec](https://respec.org/) to render. ReSpec is installed via `npm`; you need it on your machine to preview the spec locally.
 
-**Requirements:** Node.js (a recent LTS) and `npm`.
+**Requirements:** Node.js **>= 24** (ReSpec 37 requires it) and `npm`.
 
 **One-time setup after cloning:**
 
@@ -95,10 +95,44 @@ This installs ReSpec into `node_modules/`. Without this step, opening `valos-spe
 
 **Two preview modes:**
 
-- *Quick edit & preview* — run `npm run draft`. ReSpec renders `valos-spec.html` in your browser at view time and the page reloads automatically when you save edits to the source.
-- *Preview the deployed artifact* — run `npm run preview` to build `dist/valos-spec.html` and open it in your browser. This is the exact file that is published. Recommended before opening a PR if you have changed structural elements or other render-time behavior.
+- *Quick edit & preview* — run `npm run draft`. ReSpec renders `valos-spec.html` in your browser at view time and the page reloads automatically when you save edits to the source. **This mode renders in your own browser and needs no Chrome/Puppeteer setup** — it is all most contributors editing prose ever need.
+- *Preview the deployed artifact* — run `npm run preview` to build `dist/valos-spec.html` and open it in your browser. This is the exact file that is published. Recommended before opening a PR if you have changed structural elements or other render-time behavior. This mode runs the full build (below), which renders via headless Chrome and **does** require the extra setup.
 
 The deployed artifact is built by [`scripts/build.mjs`](scripts/build.mjs) and the `.github/workflows/deploy.yml` workflow.
+
+### Building the deployed artifact locally (`npm run build` / `npm run preview`)
+
+The build renders the spec through the ReSpec CLI, which drives a **headless Chrome via Puppeteer**. `npm ci` installs `puppeteer-core` but **does not download a browser**, and minimal Linux/WSL environments lack Chrome's runtime libraries — so the first build typically needs two extra one-time steps. (macOS and Windows usually work after just the Chrome download.)
+
+**1. Install the Chrome build Puppeteer expects.** Run the build once: if it fails with `Could not find Chrome (ver. X)`, install that exact version into Puppeteer's cache:
+
+```sh
+npx @puppeteer/browsers install chrome@<X> --path ~/.cache/puppeteer
+```
+
+Substitute the version from the error message (e.g. `chrome@148.0.7778.97`). Do **not** use bare `npx puppeteer browsers install chrome` — it installs whatever version the latest `puppeteer` pins, which may not match what ReSpec's `puppeteer-core` looks for.
+
+**2. (Linux/WSL only) Install Chrome's system libraries.** If the build then fails with `error while loading shared libraries: libnspr4.so` (or similar), install the shared objects Chrome needs:
+
+```sh
+sudo apt-get update
+sudo apt-get install -y libnspr4 libnss3 libdbus-1-3 libatk1.0-0 \
+  libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 \
+  libxdamage1 libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 \
+  libatspi2.0-0
+sudo apt-get install -y libasound2t64 || sudo apt-get install -y libasound2
+```
+
+(`libasound2t64` on Ubuntu 24+, `libasound2` on older releases.)
+
+**3. (Ubuntu 24+ / WSL only) Chrome sandbox.** Ubuntu 24's AppArmor blocks the unprivileged user namespace Chrome's sandbox needs, so the launch fails with `No usable sandbox!` / a browser-process crash. Run the render under the system Chrome AppArmor profile:
+
+```sh
+aa-exec --profile=chrome npx respec \
+  --src=valos-spec.html --out=dist/valos-spec.html --localhost --haltonerror
+```
+
+`scripts/build.mjs` applies this `aa-exec` wrapper automatically on Linux when `aa-exec` is available (`sudo apt-get install -y apparmor-utils` to provide it), so `npm run build` works once the profile is installed; the same wrapper keeps CI green.
 
 ### Commit Signing
 
