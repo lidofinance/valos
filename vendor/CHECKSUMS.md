@@ -39,8 +39,15 @@ Verbatim copy of `https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e
 (downloaded 2026-05-21 from the URL embedded in the Webflow export). At
 download time the file's SHA-256 matched the SRI hash on Webflow's original
 `<script integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=">`
-attribute, confirming bit-identical bytes to what Webflow shipped. The SRI
-attribute is preserved by `process-webflow.mjs` on the rewritten tag.
+attribute, confirming bit-identical bytes to what Webflow shipped. That same
+hash is recorded below and re-verified on every build.
+
+`process-webflow.mjs` rewrites the original CDN `<script>` tag to load this
+local copy and **drops** the runtime `integrity`/`crossorigin` attributes:
+on a same-origin file SRI triggers CORS-mode fetching that fails on `file://`
+previews, and it is redundant here because integrity is anchored by the
+build-time `verify-vendor.mjs` check against the hash below (which fails the
+build on any mismatch) rather than by a runtime SRI attribute.
 
 Version 3.5.1 is intentionally pinned to match Webflow's `webflow.js`
 runtime; do not bump without coordinating a Webflow re-export and a
