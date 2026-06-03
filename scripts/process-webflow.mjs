@@ -82,6 +82,23 @@ export function processWebflow(dist) {
     log(`added rel="noopener noreferrer" to ${relCount} anchor(s)`);
   }
 
+  // Rewrite the absolute spec URL to a relative path. The landing and the
+  // spec are siblings in dist/, so a relative link resolves on any host
+  // (fork, staging, prod) instead of always pointing at production. The
+  // #anchor variants are covered too, since they trail the replaced prefix.
+  const SPEC_ABS = 'https://lidofinance.github.io/valos/valos-spec.html';
+  const specCount = html.split(SPEC_ABS).length - 1;
+  if (specCount === 0) {
+    // Tolerable: an un-rewritten absolute link still works in production, so
+    // warn rather than fail the deploy if a re-export changes the URL.
+    log(
+      'WARNING: absolute spec URL not found; landing spec link left as-is (Webflow export may have changed).',
+    );
+  } else {
+    html = html.split(SPEC_ABS).join('./valos-spec.html');
+    log(`rewrote ${specCount} absolute spec link(s) to ./valos-spec.html`);
+  }
+
   // FINDING-02 (a): drop the Google Web Font Loader and the inline WebFont
   // call that depends on it. Fonts are vendored locally and applied via
   // fonts.css (linked below).
