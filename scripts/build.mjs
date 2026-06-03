@@ -123,6 +123,20 @@ html = html.replace(
 );
 log('replaced CSP meta tag with hash-based policy');
 
+// 5b. Inject a favicon into the rendered spec (build-time only — the source
+//     valos-spec.html is untouched). Reuses the ValOS icons that step 8
+//     (processWebflow) ships into dist/images/, so the spec and landing share
+//     one favicon. img-src isn't restricted by the spec's CSP, so same-origin
+//     icons load fine.
+const faviconLinks =
+  '  <link rel="icon" href="./images/favicon.ico" type="image/x-icon">\n' +
+  '  <link rel="apple-touch-icon" href="./images/webclip.png">\n';
+if (!/<\/head>/i.test(html)) {
+  throw new Error('Could not find </head> in rendered spec to inject favicon.');
+}
+html = html.replace(/<\/head>/i, `${faviconLinks}</head>`);
+log('injected favicon links into spec head');
+
 writeFileSync(outPath, html);
 
 // 6. Copy vendored assets into dist/.
