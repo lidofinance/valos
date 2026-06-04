@@ -2759,7 +2759,7 @@ This includes monitoring software that has privileged access.
 <a href="#req-log-performance-maintenance">🔗</a> <b id="req-log-performance-maintenance">Logs MUST provide a sufficiently detailed view of hardware and network performance to enable upgrade needs to be forecast,
 and to alert if validators are operating with excess latency</b>
 
-Tools such as [Zabbix](tool-zabbix) can also display a live feed of CPU and memory usage of each compute instance.
+Tools such as [Zabbix](https://github.com/zabbix/zabbix) can also display a live feed of CPU and memory usage of each compute instance.
 
 <div class="info">
 
@@ -3342,7 +3342,7 @@ function ControlTableSummary() {
 
     if (headingLink && headingText) {
       const link = document.createElement("a");
-      link.href = headingLink.href;
+      link.href = headingLink.getAttribute('href');
       link.textContent = headingText.textContent || "";
       groupCell.appendChild(link);
     }
