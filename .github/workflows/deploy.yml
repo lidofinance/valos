@@ -38,7 +38,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version: '24'
+          # Pinned: Node 24.16.0 breaks extract-zip, so @puppeteer/browsers
+          # leaves Chrome only partially extracted. 24.15.0 is the last good
+          # release. https://github.com/nodejs/node/issues/63487
+          node-version: '24.15.0'
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
