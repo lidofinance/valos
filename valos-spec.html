@@ -1095,13 +1095,11 @@ This is the same technique introduced under <a href="#sec-mit-distribute-hardwar
   DKG ceremony rather than splitting a pre-existing key. Splitting an existing
   key introduces a single point of compromise, the original key holder,
   during cluster creation.
-- **DKG verifiability.** Prefer a DKG that emits verifiable artifacts. Charon's
-  ceremony produces a cluster definition hash that the resulting BLS group
-  public key can sign, allowing a depositor who is not a key creator to infer
-  that at least a threshold of operators participated. (Obol's DKG documentation
-  also discusses verifiable and publicly-verifiable secret sharing as a future
-  verification direction, contingent on cheaper on-chain proof verification; it
-  is not yet a shipped primitive and is not proposed here as a requirement.)
+- **DKG verifiability.** Prefer a DKG that emits verifiable artifacts, so a party
+  who did not participate in key generation can still infer that at least a threshold
+  of participants took part. Obol's `charon` ceremony produces a cluster definition
+  hash that the resulting BLS group public key can sign; SSV's `ssv-dkg` ceremony
+  similarly produces operator-signed proofs and a signed `keyshares.json`.
 - **Independent operating entities.** Where the goal is to remove single
   operator-team compromise, the `n` key shares should be held by `n` distinct
   legal entities, with no two shares on infrastructure controlled by the same
@@ -1111,15 +1109,16 @@ This is the same technique introduced under <a href="#sec-mit-distribute-hardwar
   threshold's worth of nodes; that is, no client on `t` or more of the `n`
   signing nodes. See <a href="#sec-mit-client-diversity">Client Diversity</a>.
 - **Signed cluster configuration.** The operator set, threshold, fee recipient,
-  and withdrawal credential are recorded in a signed cluster lock file. Each
-  signing node verifies the lock file signature and hash on startup; see
-  <a href="#sec-mit-configuration-management">Configuration Management</a>.
-- **Operator identity-key custody.** Each signing node holds an SECP256K1
-  identity (ENR) key, separate from the validator key shares, used to
-  authenticate to peers. Protect it with the same controls as the validator
-  key shares.
+  and withdrawal credential are recorded in a signed configuration that each node
+  verifies before acting on it. Obol records this in a signed cluster lock file,
+  verified by each node on startup; SSV records it in the `keyshares.json` file plus
+  through an on-chain registration in the SSV Network contracts. See <a href="#sec-mit-configuration-management">Configuration Management</a>.
+- **Operator identity-key custody.** Each signing node holds an identity key,
+  separate from the validator key shares, used to authenticate the node to its peers - and, in SSV, 
+  to decrypt the node's key share. Obol uses a SECP256K1 identity key, while SSV uses an RSA operator key.
+  Protect it with the same controls as the validator key shares.
 - **Intra-cluster network policy.** Prefer direct peer-to-peer connections
-  between signing nodes. Where relays are used, configure them from trusted
+  between signing nodes. Where discovery bootnodes or relays are used, configure them from trusted
   sources only and identically across all cluster members; see
   <a href="#sec-mit-manage-network-access">Managed Network Access to Nodes</a>.
 
@@ -1127,7 +1126,8 @@ This is the same technique introduced under <a href="#sec-mit-distribute-hardwar
   <summary>Tools to support distributed validator technology</summary>
   <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
   <ul>
-    <li><a href="https://docs.obol.org/learn/charon/charon">Charon (Obol)</a></li>
+    <li><a href="https://docs.obol.org/learn/charon/">Charon (Obol)</a></li>
+    <li><a href="https://docs.ssv.network/operators/">SSV Network</a></li>
   </ul>
 </details>
 
