@@ -1064,6 +1064,85 @@ signature management tools can include automated verification steps in the proce
 * [GIR7](#risk-gir-7)
 </div>
 
+#### Distributed Validator Technology {#sec-mit-dvt}
+
+Distributed Validator Technology ([[?DVT]]) operates a single network-level
+validator across multiple independent signing nodes rather than on a single
+machine. The validator's signing key is split, via a Distributed Key Generation
+(DKG) ceremony, into BLS key shares held by the nodes, so the full validator key
+never exists on any single machine; the resulting validator is a Distributed
+Validator (DV). The signing nodes run a Byzantine-Fault-Tolerant (BFT) consensus
+protocol and produce a threshold signature.
+
+For a cluster of `n` signing nodes the signing threshold is `t = ⌈2n/3⌉`. The
+cluster tolerates up to `n - t` unavailable (crashed or offline) nodes without
+losing liveness, and up to `⌊(n-1)/3⌋` byzantine (malicious or faulty) nodes
+without losing liveness or safety. Safety, the guarantee that no slashable
+message can be produced, is lost only if more than two-thirds of the nodes
+collude.
+
+A DV operated by multiple independent legal entities removes single points of
+failure across every operational dimension simultaneously: key custody,
+infrastructure provider, client software, geographic region, and operator team.
+This is the same technique introduced under <a href="#sec-mit-distribute-hardware">Physically Distributed Infrastructure</a>, treated here as a first-class operational substrate.
+
+##### Best practice for distributed validator technology includes
+
+- **Cluster sizing for BFT.** Use a cluster size of `n ≥ 4` with threshold
+  `t = ⌈2n/3⌉`. A 3-node cluster is crash-fault-tolerant but not
+  byzantine-fault-tolerant; smaller clusters are neither.
+- **DKG ceremony from scratch.** Where possible, generate validator keys via a
+  DKG ceremony rather than splitting a pre-existing key. Splitting an existing
+  key introduces a single point of compromise, the original key holder,
+  during cluster creation.
+- **DKG verifiability.** Prefer a DKG that emits verifiable artifacts, so a party
+  who did not participate in key generation can still infer that at least a threshold
+  of participants took part. Obol's `charon` ceremony produces a cluster definition
+  hash that the resulting BLS group public key can sign; SSV's `ssv-dkg` ceremony
+  similarly produces operator-signed proofs and a signed `keyshares.json`.
+- **Independent operating entities.** Where the goal is to remove single
+  operator-team compromise, the `n` key shares should be held by `n` distinct
+  legal entities, with no two shares on infrastructure controlled by the same
+  operator.
+- **Client diversity across the cluster.** No single client at any layer
+  (Execution, Consensus, or Validator Client) should run on the signing
+  threshold's worth of nodes; that is, no client on `t` or more of the `n`
+  signing nodes. See <a href="#sec-mit-client-diversity">Client Diversity</a>.
+- **Signed cluster configuration.** The operator set, threshold, fee recipient,
+  and withdrawal credential are recorded in a signed configuration that each node
+  verifies before acting on it. Obol records this in a signed cluster lock file,
+  verified by each node on startup; SSV records it in the `keyshares.json` file plus
+  through an on-chain registration in the SSV Network contracts. See <a href="#sec-mit-configuration-management">Configuration Management</a>.
+- **Operator identity-key custody.** Each signing node holds an identity key,
+  separate from the validator key shares, used to authenticate the node to its peers - and, in SSV, 
+  to decrypt the node's key share. Obol uses a SECP256K1 identity key, while SSV uses an RSA operator key.
+  Protect it with the same controls as the validator key shares.
+- **Intra-cluster network policy.** Prefer direct peer-to-peer connections
+  between signing nodes. Where discovery bootnodes or relays are used, configure them from trusted
+  sources only and identically across all cluster members; see
+  <a href="#sec-mit-manage-network-access">Managed Network Access to Nodes</a>.
+
+<details class="tools">
+  <summary>Tools to support distributed validator technology</summary>
+  <p>The following list is an uncurated selection, alphabetically sorted, and not a specific recommendation</p>
+  <ul>
+    <li><a href="https://docs.obol.org/learn/charon/">Charon (Obol)</a></li>
+    <li><a href="https://docs.ssv.network/operators/">SSV Network</a></li>
+  </ul>
+</details>
+
+<div class="info">
+
+##### Risks that distributed validator technology can mitigate
+
+* [SLS1](#risk-sls-1), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS20](#risk-sls-20)
+* [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW5](#risk-dow-5), [DOW9](#risk-dow-9), [DOW10](#risk-dow-10), [DOW11](#risk-dow-11), [DOW19](#risk-dow-19)
+* [KEC1](#risk-kec-1), [KEC6](#risk-kec-6), [KEC7](#risk-kec-7)
+* [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4), [HCK6](#risk-hck-6)
+* [GIR13](#risk-gir-13), [GIR16](#risk-gir-16), [GIR25](#risk-gir-25)
+
+</div>
+
 #### Client Diversity {#sec-mit-client-diversity}
 
 A diverse set of clients for different protocols can reduce "blast radius" in a case where one client has a protocol error or other bug.
