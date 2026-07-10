@@ -101,14 +101,25 @@ while ((m = scriptRe.exec(html)) !== null) {
 log(`hashed ${hashes.length} inline script block(s) for CSP`);
 
 // 5. Build hardened CSP and swap in for the source CSP meta tag.
+//    default-src: 'self' — closes image/iframe/fetch/media loads by default
+//                (tracking pixels, foreign frames, exfiltration fetches).
 //    script-src: 'self' for ./fixup.js, hashes for inlines, no 'unsafe-inline'.
 //    style-src:  'self' + 'unsafe-inline' (audit FINDING-05 was script-only;
 //                style hashing is out of scope for this PR).
 //    worker-src: 'self' blob: (ReSpec's highlighter worker uses a Blob URL).
+//    object-src 'none': no plugin containers; base-uri 'self': no <base href>
+//    link hijacking; form-action 'none': the page has no forms, so nothing
+//    may ever submit anywhere. frame-ancestors is header-only and GitHub
+//    Pages cannot set response headers — documented limitation, low risk for
+//    a read-only document.
 const hardenedCsp =
+  `default-src 'self'; ` +
   `script-src 'self' ${hashes.join(' ')}; ` +
   `style-src 'self' 'unsafe-inline'; ` +
-  `worker-src 'self' blob:;`;
+  `worker-src 'self' blob:; ` +
+  `object-src 'none'; ` +
+  `base-uri 'self'; ` +
+  `form-action 'none';`;
 
 const cspMetaRe =
   /<meta\s+http-equiv="Content-Security-Policy"\s+content="[^"]*"\s*\/?>/;
