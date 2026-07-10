@@ -37,7 +37,7 @@ Copyright© 2026, Lido Labs Foundation. This document may be used, modified, cop
 
 This specification defines risks that can apply when operating a blockchain node.
 
-It describes mitigations that can minimise the likelihood that particular risks will be realised and cause a problem,
+It describes mitigations that can minimize the likelihood that particular risks will be realized and cause a problem,
 such as compromising the ability to manage a node or actions that result in reduced economic rewards, or penalties such as slashing.
 
 Finally, it provides a set of controls to verify that a Node Operator is appropriately managing the relevant risks.
@@ -51,7 +51,7 @@ Finally, it provides a set of controls to verify that a Node Operator is appropr
 This specification builds on the [DUCK knowledge base](https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base) [[?DUCK]].
 The risk framework and explanation of mitigation strategies have been updated, based on feedback from practitioners.
 A specific set of controls has been added; statements of requirement that can be tested,
-to ensure that as far as possible a Node Operator is following the recognised best practices to minimise risk and effectively maximise their returns.
+to ensure that as far as possible a Node Operator is following the recognized best practices to minimize risk and effectively maximize their returns.
 
 While other standards such as AICPA's SOC 2® [[?SOC2]] or ISO's 27001 standard [[?ISO27001]] can be applied to Node Operators,
 they often include more general requirements than this specification, reflecting a broader scope.
@@ -388,7 +388,7 @@ or to more direct financial penalties.
   <td>DOW15</td>
   <td>Software</td>
   <td>Latency / Failure of relays</td>
-  <td>Latency / Failure of relays </td>
+  <td>Latency / Failure of relays</td>
   <td><ul class="autofill-mits"></ul></td>
 </tr>
 <tr id="risk-dow-16">
@@ -534,7 +534,7 @@ or facilitated by a current or former member of the operational team.
   <td>HCK3 (replaces SLS10, DOW17, GIR2, GIR5)</td>
   <td>People</td>
   <td>Malicious Ex-Employee intentionally causes an operational failure</td>
-  <td>A former employee whose access is not blocked or removed </td>
+  <td>A former employee whose access is not blocked or removed</td>
   <td><ul class="autofill-mits"></ul></td>
 </tr>
 <tr id="risk-hck-4">
@@ -557,6 +557,7 @@ or facilitated by a current or former member of the operational team.
   <td>Failure to protect infrastructure against physical access</td>
   <td>Someone who gains physical access to a server can have access to locally exposed ports and can access the software API</td>
   <td><ul class="autofill-mits"></ul></td>
+</tr>
 </tbody></table>
 
 
@@ -750,7 +751,7 @@ Risk related to partners and specific third-party services.
   <td>Counterparty</td>
   <td>General Counterparty Risk</td>
   <td>Whenever a service is provided by a third party, the relevant risks are run by the third party,
-  but in most case at least some and often the bulk of the consequences for a failure will be borne by the node operator.</td>
+  but in most cases at least some and often the bulk of the consequences for a failure will be borne by the node operator.</td>
   <td><ul class="autofill-mits"></ul></td>
 </tr>
 <tr id="risk-sps-1">
@@ -852,7 +853,7 @@ provide a simple initial ranking for priority of mitigating each risk.
 Since the cost of risk mitigation varies considerably, the overall priority for addressing risk, or deciding that a given level of risk is acceptable,
 generally depends on comparing the risk ranking with the cost of mitigation, and available resources.
 
-##### Best practices for assessing risk include
+##### Best practices for assessing risk include {#bp-assessing-risk}
 
 * Identify relevant staff and others responsible for identifying, assessing, and determining how to manage risks
 * Ensure that every service, where possible, is configuration hardened. Common benchmarks such as [CIS](https://www.cisecurity.org) provide helpful guidance.
@@ -867,7 +868,7 @@ generally depends on comparing the risk ranking with the cost of mitigation, and
 
 </div>
 
-#### Assessing Financial Impact {#sec-mitigating-assess-risk-impact}
+#### Assessing Financial Impact {#sec-mit-assess-risk-impact}
 
 There are a number of factors to take into account when assessing the overall financial impact of a given risk, with the direct cost incurred as the most obvious.
 It is important to understand the time required to mitigate the impact of an event, and the cost that will be incurred over that time.
@@ -894,12 +895,12 @@ It is also useful to consider opportunity costs such as competitors taking advan
 
 </div>
 
-#### Assessing Incident Probability {#sec-mitigating-assess-risk-probability}
+#### Assessing Incident Probability {#sec-mit-assess-risk-probability}
 
 Predicting the likelihood of an unexpected future event is generally difficult, and results are unlikely to precisely match the predictions.
 Nevertheless it is important to consider the context of a specific operation and attempt useful predictions.
 
-##### Best practices for assessing incident probability include
+##### Best practices for assessing incident probability include {#bp-assessing-incident-probability}
 
 * Analyzing historical data to understand past trends and incidents (external, internal incidents, and near-miss incidents)
 * Reviewing industry reports for insights into common risks and their fiscal consequences in similar scenarios
@@ -977,17 +978,17 @@ and then use appropriate technology to meet those goals.
 
 Updates to software components provided by third-parties often address newly-discovered or longstanding vulnerabilities.
 It is a best practice to update software regularly, but it is important to [check for vulnerabilities](#req-check-vulnerabilities)
-that can be introduced by an upgrade as part of a supply-chain attack, and to verify that any customisation of open-source software, or
+that can be introduced by an upgrade as part of a supply-chain attack, and to verify that any customization of open-source software, or
 [specific configuration](#req-check-config-on-update) options, as well as other software used by the node operator,
 are all compatible with an update and do not create new vulnerabilities on updating.
 
-##### Best practices for updating software include
+##### Best practices for updating software include {#bp-updating-software}
 
 - "version-pinning"
 - actively managing dependencies
 - testing updates before automatically deploying them
 
-##### Relevant controls for updated software
+##### Relevant controls for updated software {#controls-for-updated-software}
 
   - [Controls for Development and Update](#sec-controls-updates)
 
@@ -1004,7 +1005,7 @@ are all compatible with an update and do not create new vulnerabilities on updat
 * [RER1](#risk-rer-1), [RER2](#risk-rer-2), [RER3](#risk-rer-3), [RER4](#risk-rer-4), [RER5](#risk-rer-5)
 </div>
 
-#### Local Anti-Slashing Database  {#sec-mit-antislash-db}
+#### Local Anti-Slashing Database {#sec-mit-antislash-db}
 
 To avoid double signing, validators can maintain a history of messages they signed.
 This data is crucial, as inconsistencies can cause a double-signing event.
@@ -1034,7 +1035,7 @@ A common format for anti-slashing data is defined by [[[?EIP3076]]].
 #### Signature Management {#sec-mit-signature-management}
 
 Tools that manage signatures for transactions generally provide a workflow that includes passive and active protection against a variety of risks.
-Using these tools helps minimise the chances that a signature is given without checking what is being signed,
+Using these tools helps minimize the chances that a signature is given without checking what is being signed,
 and that risk-bearing transactions require appropriate authorization.
 
 Properly configured signature management tools also provide the ability to recover, or mitigate any problems,
@@ -1077,7 +1078,7 @@ ideally providing real protection against a vulnerability present in a single ve
 Note that there are often a different range of clients available at different levels of the infrastructure.
 For example in Ethereum, it is possible to run different clients on each of the Execution and Consensus layers.
 
-##### Best practice for client diversity includes
+##### Best practice for client diversity includes {#bp-client-diversity}
 
 - Running multiple Execution and Consensus clients. See also [[[?ETHdiverse]]] [[?ETHdiverse]]
 
@@ -1092,7 +1093,7 @@ For example in Ethereum, it is possible to run different clients on each of the 
 #### Delinquent State {#sec-mit-delinquent-state}
 
 Node operators need to withdraw validators correctly, as they can otherwise be put into a delinquent state.
-This can result in direct penalties, or an opportunity cost realised as monetary losses.
+This can result in direct penalties, or an opportunity cost realized as monetary losses.
 
 <div class="info">
 
@@ -1110,7 +1111,7 @@ but it is also important to manage operational information.
 #### Controlled and Audited Secret Access {#sec-mit-control-secret-access}
 
 Best practice for credential management is to use a [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) system,
-that gives users authorised access to secrets through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication),
+that gives users authorized access to secrets through e.g. [certificates](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication),
 and/or [vault mechanisms](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates).
 
 In this way, everything is audited, and anomaly detection can be activated for those vaults.
@@ -1171,7 +1172,7 @@ Operating a node normally entails the use of a range of keys, such as
 It is important to protect private keys from accidental or malicious misuse, and in particular unplanned deletion.
 It is not normal to provide broad access to unencrypted signing keys.
 
-##### Best practices for key management include
+##### Best practices for key management include {#bp-key-management}
 
 - follow relevant standards such as [[[?CCSS]]] and [[[?KMS]]]
 - ensuring that there are no single individuals with the capability to access or delete them,
@@ -1211,13 +1212,13 @@ or only being known to a single employee.
 
 Documentation, even if rarely actively read by those responsible for operations (who presumably know their job), is important for many reasons including
 - to enable onboarding new employees and service partners, or helping employees take on new roles
-- to ensure smooth continued operation in the case that a key employee's role changes, particularly where they leave the organisation
+- to ensure smooth continued operation in the case that a key employee's role changes, particularly where they leave the organization
 - to enable accurate reporting as necessary
 - to enable monitoring of operations and investigation of security incidents and other failures
 
 <div class="info">
 
-##### Risks that operational information management can mitigate:
+##### Risks that operational information management can mitigate
 
 * [FIN2](#risk-fin-2), [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN6](#risk-fin-6), [FIN7](#risk-fin-7)
 * [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS5](#risk-sls-5), [SLS14](#risk-sls-14)
@@ -1234,11 +1235,11 @@ Documentation, even if rarely actively read by those responsible for operations 
 Loss of important information, especially loss of control over keys, can have a crippling impact. It is important to have mechanisms to protect against, and recover from,
 unintentional or malicious deletion of important data.
 
-Best Practise includes having journaled backups of important information.
+Best practice includes having journaled backups of important information.
 
 <div class="info">
 
-##### Risks that deletion Protection can mitigate:
+##### Risks that deletion protection can mitigate
 
 * [FIN6](#risk-fin-6)
 * [SLS4](#risk-sls-4)
@@ -1272,7 +1273,7 @@ Tracking this information is important to ensure that access can be audited and 
 
 <div class="info">
 
-#### Access control helps address the following risks
+##### Access control helps address the following risks
 
 * [FIN1](#risk-fin-1)
 * [DOW7](#risk-dow-7), [DOW16](#risk-dow-16)
@@ -1294,7 +1295,7 @@ with individual users assigned relevant roles that are revoked or deliberately r
 It is important to ensure that individuals can fulfil their designated tasks,
 without having authorizations they do not need.
 
-##### Best practices for access control include
+##### Best practices for access control include {#bp-access-control}
 
 * A [Single Sign on](https://en.wikipedia.org/wiki/Single_sign-on) mechanism that allows rapid assigning and revoking of roles
 * Authentication tokens that have a limited lifetime
@@ -1327,7 +1328,7 @@ without having authorizations they do not need.
 
 Ensuring that employees whose roles have changed do not have lingering credentials reduces the risk they or others can misuse those credentials to cause harm.
 
-##### Best practices for employee authorization process includes
+##### Best practices for employee authorization process includes {#bp-employee-authorization-process}
 
 - ensure authorization changes are automated as part of management of employee lifecycles,
   covering role changes as well as termination, transfer, and promotion procedures
@@ -1347,7 +1348,7 @@ Ensuring that employees whose roles have changed do not have lingering credentia
 
 Following the principles of defense in depth and [**least privilege**](#def-least-privilege), it is important that nodes are not directly accessible without permission, and that they do not leak information to the Web that can help malicious parties gain unauthorized access.
 
-##### Best practices for managed network access include
+##### Best practices for managed network access include {#bp-managed-network-access}
 
 * An internal virtual private network with only have well-defined endpoints accessible from the web
 * A load-balancer that has a firewall
@@ -1415,7 +1416,7 @@ In the inadvertent case, relevant mitigations include
 To minimize negligently allowed access, it is important to ensure that access systems are effectively maintained and managed to ensure there is no good reason to allow an unauthorized person access.
 This can range from the design of onboarding systems to the effectiveness of internal management feedback systems for discovering unanticipated problems faced by operators.
 
-Best practice includes managing physical access with systems that can efficiently enable access to authorised parties (keycards, biometric scanners),
+Best practice includes managing physical access with systems that can efficiently enable access to authorized parties (keycards, biometric scanners),
 and monitor actual access such as visual verification that the authorized party is the one entering.
 
 It is important to log and audit access sufficiently frequently to detect problems - see also [Monitoring](#sec-mitigations-monitoring).
@@ -1489,7 +1490,7 @@ but will generally revolve around siting of facilities, their architecture, and 
 
 The lifecycle of equipment, most particularly node servers and computers used to access and manage them, is a determinant of overall security.
 
-##### Best practices for lifecycle management include
+##### Best practices for lifecycle management include {#bp-lifecycle-management}
 
 - a capability to remotely pause, shut down, and wipe devices clean
 
@@ -1510,10 +1511,10 @@ The lifecycle of equipment, most particularly node servers and computers used to
 
 A secure development lifecycle helps ensure that vulnerabilities are not introduced to codebases, and subsequently deployed.
 
-##### Best practices for secure development lifecycle include
+##### Best practices for secure development lifecycle include {#bp-secure-development-lifecycle}
 
 - auditable version control systems
-- thorough testing and authorisation before changes are accepted
+- thorough testing and authorization before changes are accepted
 
 <div class="info">
 
@@ -1540,7 +1541,7 @@ Static and Dynamic analysis is important, as well as user testing wherever chang
 Measuring test coverage, and requiring new tests that are reviewed as part of and code review,
 help ensure that coverage is sufficiently comprehensive to detect errors that can arise through later changes.
 
-##### Best practices for testing code changes include
+##### Best practices for testing code changes include {#bp-testing-code-changes}
 
 - incorporating static and dynamic testing in the integration pipeline for code development.
 
@@ -1568,7 +1569,7 @@ Unchecked inputs are a major vector for a range of attacks. These include
 Ideally, the load balancer in front of the node filters out all traffic with payloads that cause overflow.
 Additionally, it is important to validate inputs against the relevant parameters, particularly where these allow a range of functionalities to be triggered.
 
-##### Best practices for input and output validation include
+##### Best practices for input and output validation include {#bp-input-and-output-validation}
 
 - using a data schema such as [JSON schema](https://json-schema.org) with [schema evolution techniques](https://en.wikipedia.org/wiki/Schema_evolution),
 - defining minimum and maximum input sizes and MIME types.
@@ -1609,7 +1610,7 @@ As well as having control over the update process, it is important to have the c
 #### Avoid Customizing Third-party Software {#sec-mit-minimize-customizing-software}
 
 Validator software, and other software validators use, is very often open source.
-However, customising software can introduce errors.
+However, customizing software can introduce errors.
 In addition customizations can produce incompatibilities when software is updated.
 
 This means that any customization introduces a need for continued extra testing,
@@ -1620,7 +1621,7 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 
 <div class="info">
 
-##### Risks that not customising third-party software can mitigate
+##### Risks that not customizing third-party software can mitigate
 
 * [SLS5](#risk-sls-5), [SLS7](#risk-sls-7)
 * [DOW2](#risk-dow-2), [DOW13](#risk-dow-13), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
@@ -1632,7 +1633,7 @@ with attendant risks of reputational damage, direct losses, and increased cost f
 #### Configuration Management {#sec-mit-configuration-management}
 
 It is important to manage the configuration of hardware, and software. A minimal profile helps reduce possible attack surface,
-while minimising, and carefully tracking, customisation is important to ensure smooth and safe upgrades.
+while minimizing, and carefully tracking, customization is important to ensure smooth and safe upgrades.
 
 Software configuration to follow includes, among others:
   * Firewall configurations
@@ -1667,7 +1668,7 @@ Software configuration to follow includes, among others:
 
 Protection against malware needs to be implemented on all assets and users need to exercise proper caution.
 
-##### Best practices for protecting against supply-chain malware include
+##### Best practices for protecting against supply-chain malware include {#bp-protecting-against-supply-chain-malware}
 
 - Regularly check the latest [CVE entries.](https://cve.mitre.org), to cover all software tools used.
 - Specifically check for any announcements of vulnerabilities before upgrading any software component
@@ -1718,7 +1719,7 @@ This minimizes a potential blast radius. It is important to run any change (even
 
 #### Containerized and Orchestrated Environments {#sec-mit-containerized-environments}
 
-Containerized and orchestrated environments are designed to reinforce security by automating many good practices, with mechanisms that have been widely tested in diverse environments. As tools that can be used well or badly, their best practice recommendations are important to ensure the full benefits are realised.
+Containerized and orchestrated environments are designed to reinforce security by automating many good practices, with mechanisms that have been widely tested in diverse environments. As tools that can be used well or badly, their best practice recommendations are important to ensure the full benefits are realized.
 
 <div class="info">
 
@@ -1733,7 +1734,7 @@ Containerized and orchestrated environments are designed to reinforce security b
 
 #### Process Automation {#sec-mit-process-automation}
 
-Human error is always a risk. An automated script, whether or not invoked by a human, can help minimise inadvertent errors.
+Human error is always a risk. An automated script, whether or not invoked by a human, can help minimize inadvertent errors.
 
 Another benefit of properly set up automation is that it can help reduce the risk of exposing secrets.
 
@@ -1942,7 +1943,7 @@ There are therefore two core parts to a Nore Operator's communication strategy:
 - Normal Operational Communication provides information about ongoing operations, to ensure confidence in and transparency of everyday operations.
 - <dfn>Incident Communication</dfn> is the collection of communications processes that occur as part of an [=Incident Response Plan=]
 
-Developing appropriate communication procedures relies on understanding both the communications channels an organisation has or can have, and its stakeholders.
+Developing appropriate communication procedures relies on understanding both the communications channels an organization has or can have, and its stakeholders.
 The goal is to ensure those stakeholders have timely access to relevant information in a useful format.
 
 #### Stakeholder Communication Management {#sec-mit-comms-stakeholders}
@@ -1993,7 +1994,7 @@ Others will want to know that they are informed in case of security incidents, o
 but prefer a lower volume of information. It is likely that different circumstances will mean that a given Stakeholder moves between "categories",
 with different communications strategies or procedures being more appropriate depending on specific context.
 
-##### Best practices for stakeholder management include
+##### Best practices for stakeholder management include {#bp-stakeholder-management}
 
 - Track and categorise [=Known Stakeholders=]
 - Assess communication tools relevant to [=Anonymous Stakeholders=]
@@ -2031,7 +2032,7 @@ A well-documented Incident Response Plan helps employees in a high-stress situat
 To be useful, it is necessary that relevant employees know the plans exist, and how to find them.
 
 
-##### Best practices for incident response plans include
+##### Best practices for incident response plans include {#bp-incident-response-plans}
 
 - Identify relevant participants in advance, with well-defined decision-making responsibilities
 - Redundancy against specific failures such as a key employee being unavailable
@@ -2063,7 +2064,7 @@ To be useful, it is necessary that relevant employees know the plans exist, and 
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 </div>
 
-#### Identifying and Responding to Security Incidents {#sec-mitigations-identify-incidents}
+#### Identifying and Responding to Security Incidents {#sec-mit-identify-incidents}
 
 There are several ways to identify that a security incident is taking place. Best practice is to have extensive monitoring in place, to identify anomalies early,
 with alerting and potentially direct reaction mechanisms. Although learning from third-party discussions is a terrible way to find out about an incident, it is still better than simply not discovering it, so monitoring channels where such discussions take place is a valuable part of an overall strategy.
@@ -2087,7 +2088,7 @@ with alerting and potentially direct reaction mechanisms. Although learning from
 This is often referred to as a "<dfn>Post Mortem</dfn>",
 used to learn from the event and improve relevant Incident Response Plans.
 
-##### Best practices for analyzing security events include
+##### Best practices for analyzing security events include {#bp-analyzing-security-events}
 
 - Determine the root cause or causes of an incident
 - Examine how the incident was allowed to occur
@@ -2111,7 +2112,7 @@ A <dfn>Disaster Recovery Plan</dfn> is a specialized [=Incident Response Plan=]
 that gives guidance on recovering one or more information systems at an alternate facility,
 in response to a major hardware or software failure including the partial or complete destruction of facilities.
 
-##### Best practices for disaster recovery plans include
+##### Best practices for disaster recovery plans include {#bp-disaster-recovery-plans}
 
 - Maintain secured up-to-date copies of production environments to enable fast restoration.
 
@@ -2174,14 +2175,14 @@ It is important to note that inappropriate communication during an incident can 
 External communication has to balance stakeholders' need for information that enables them to respond in a well-informed manner
 against the importance of providing clear information with as much certainty as feasible that it will not later be contradicted.
 
-##### Best practice for incident communication include
+##### Best practices for incident communication include {#bp-incident-communication}
 
 - Providing information as soon as possible
 - Providing a detailed post-incident summary.
 
 <div class="info">
 
-##### Risks that incident communications help address:
+##### Risks that incident communications help address
 
 * [FIN6](#risk-fin-6)
 * [HCK4](#risk-hck-4)
@@ -2202,7 +2203,7 @@ Where relevant, corresponding controls from those frameworks are identified and 
 
 ### Controls for Risk Management {#sec-controls-risk-management}
 
-#### Ensure Activities Support Operational Goals
+#### Ensure Activities Support Operational Goals {#ctrl-ensure-activities-support-operational-goals}
 
 <a href="#req-document-process-relevant">🔗</a> <b id="req-document-process-relevant">Node Operators MUST document how their processes and tools serve their business goals</b>
 
@@ -2219,7 +2220,7 @@ Where relevant, corresponding controls from those frameworks are identified and 
 * [GIR5](#risk-gir-5)
 </div>
 
-#### Assess Dependencies and Replacement Strategies and Costs
+#### Assess Dependencies and Replacement Strategies and Costs {#ctrl-assess-dependencies-and-replacement-strategies-and-costs}
 
 <a href="#req-review-dependency-replacement">🔗</a> <b id="req-review-dependency-replacement">Node Operators MUST review their dependencies on staff and external suppliers and how to replace key staff or suppliers every year</b>
 
@@ -2235,7 +2236,7 @@ External suppliers can change terms, shut down products or support, and key staf
 - [GIR24](#risk-gir-24), [GIR25](#risk-gir-25)
 </div>
 
-#### Document Risk Assessments
+#### Document Risk Assessments {#ctrl-document-risk-assessments}
 
 <a href="#req-document-risk-assessment">🔗</a> <b id="req-document-risk-assessment">Node Operators MUST document their assessments of risks, and what risks they class as acceptable</b>
 
@@ -2249,7 +2250,7 @@ External suppliers can change terms, shut down products or support, and key staf
 
 </div>
 
-#### Follow Processes
+#### Follow Processes {#ctrl-follow-processes}
 
 <a href="#req-follow-mitigation-process">🔗</a> <b id="req-follow-mitigation-process">Node Operators MUST ensure that processes for risk mitigation are followed in practice</b>
 
@@ -2264,7 +2265,7 @@ Best practice is to ensure that where possible, [processes are automated](#proce
 
 ### Controls for Financial and Regulatory Risk {#sec-controls-fin-reg}
 
-#### Payment rails
+#### Payment rails {#ctrl-payment-rails}
 
 <a href="#req-document-payment-rails">🔗</a> <b id="req-document-payment-rails">Node Operators MUST document payment processes including currency and exchange details</b>
 
@@ -2277,13 +2278,13 @@ Best practice is to ensure that where possible, [processes are automated](#proce
 * [RER4](#risk-rer-4)
 </div>
 
-#### Updated Regulatory Compliance
+#### Updated Regulatory Compliance {#ctrl-updated-regulatory-compliance}
 
 <a href="#req-review-regulatory-compliance">🔗</a> <b id="req-review-regulatory-compliance">Node Operators MUST review relevant regulation and update processes for compliance as necessary at least quarterly</b>
 
 <div class="info">
 
-##### Updated regulatory compliance helps address the following risks:
+##### Updated regulatory compliance helps address the following risks
 
 * [FIN6](#risk-fin-6)
 * [RER2](#risk-rer-2)
@@ -2291,7 +2292,7 @@ Best practice is to ensure that where possible, [processes are automated](#proce
 
 ### Controls for People Management {#sec-controls-people-management}
 
-#### Identify Relevant Entities
+#### Identify Relevant Entities {#ctrl-identify-relevant-entities}
 
 <a href="#req-identify-staff">🔗</a> <b id="req-identify-staff">Node Operators MUST know the identity of entities who are authorized to manage operations</b>
 
@@ -2304,7 +2305,7 @@ In the case of corporate third-party providers, sensible due diligence does not 
 
 * [[?ISO27001]] Annex A 5.16
 
-##### Identifying individuals involved in managing Validators helps address the following Risks
+##### Identifying individuals involved in managing Validators helps address the following risks
 
 * [FIN1](#risk-fin-1)
 * [KEC7](#risk-kec-7)
@@ -2313,7 +2314,7 @@ In the case of corporate third-party providers, sensible due diligence does not 
 * [RER2](#risk-rer-2)
 </div>
 
-#### Document Vendors and Partner Risk
+#### Document Vendors and Partner Risk {#ctrl-document-vendors-and-partner-risk}
 
 <a href="#req-manage-counterparty-risk">🔗</a> <b id="req-manage-counterparty-risk">Node Operators MUST implement documented procedures for evaluating and reviewing counterparty risks from vendors and partners</b>
 
@@ -2335,13 +2336,13 @@ In the case of corporate third-party providers, sensible due diligence does not 
 * [DOW1](#risk-dow-1), [DOW19](#risk-dow-19)
 </div>
 
-#### Provide Training
+#### Provide Training {#ctrl-provide-training}
 
 <a href="#req-train-staff">🔗</a> <b id="req-train-staff">Node Operators MUST ensure entities who are authorized to manage operations have and maintain the necessary knowledge to minimize risks to the Node Operator in the course of performing their work</b>
 
 <div class="info">
 
-##### Training helps address the following Risks
+##### Training helps address the following risks
 
 * [FIN1](#risk-fin-1), [FIN7](#risk-fin-7)
 * [SLS17](#risk-sls-17)
@@ -2352,7 +2353,7 @@ In the case of corporate third-party providers, sensible due diligence does not 
 
 ### Controls for Technology Stack {#sec-controls-tech-stack}
 
-#### Keep Software Updated
+#### Keep Software Updated {#ctrl-keep-software-updated}
 
 <a href="#req-update-3p-software">🔗</a> <b id="req-update-3p-software">Node Operators MUST keep third-party software up to date</b>
 
@@ -2372,7 +2373,7 @@ In some cases, assessing an update will lead to a decision that there is no need
 * [HCK4](#risk-hck-4)
 </div>
 
-#### Anti-slashing Database
+#### Anti-slashing Database {#ctrl-anti-slashing-database}
 
 <a href="#req-local-slashing-db">🔗</a> <b id="req-local-slashing-db">Node Operators MUST have a persistent local anti-slashing database</b>
 
@@ -2383,7 +2384,7 @@ In some cases, assessing an update will lead to a decision that there is no need
 * [SLS1](#risk-sls-1), [SLS2](#risk-sls-2), [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS14](#risk-sls-14), [SLS15](#risk-sls-15), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 </div>
 
-#### Signature management
+#### Signature management {#ctrl-signature-management}
 
 <a href="#req-document-signature-requirements">🔗</a> <b id="req-document-signature-requirements">Node Operators MUST document signature requirements for high-value transactions, including the definitions used to identify such transactions</b>
 
@@ -2400,7 +2401,7 @@ In some cases, assessing an update will lead to a decision that there is no need
 * [GIR7](#risk-gir-7), [GIR16](#risk-gir-16)
 </div>
 
-#### Client Diversity
+#### Client Diversity {#ctrl-client-diversity}
 
 <a href="#req-client-diversity">🔗</a> <b id="req-client-diversity">Node Operators MUST deploy at least 2 distinct client applications for any level of the blockchain where at least 3 clients are available</b>
 
@@ -2413,7 +2414,7 @@ In some cases, assessing an update will lead to a decision that there is no need
 * [GIR13](#risk-gir-13), [GIR24](#risk-gir-24)
 </div>
 
-#### Secure Devices
+#### Secure Devices {#ctrl-secure-devices}
 
 <a href="#req-dedicated-devices">🔗</a> <b id="req-dedicated-devices">Devices that control critical functions MUST be dedicated to that purpose, and configured with only the necessary software for their intended purpose</b>
 
@@ -2427,7 +2428,7 @@ This applies to servers acting as validators, but also to devices authorized to 
 * [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
 </div>
 
-#### Validator Withdrawal
+#### Validator Withdrawal {#ctrl-validator-withdrawal}
 
 <a href="#req-document-withdrawal-process">🔗</a> <b id="req-document-withdrawal-process">Node Operators MUST implement processes to withdraw validators from a network in such a way that they are not penalised for disappearing</b>
 
@@ -2440,7 +2441,7 @@ This applies to servers acting as validators, but also to devices authorized to 
 * [SPS1](#risk-sps-1)
 </div>
 
-#### Manage Software and Hardware Configuration
+#### Manage Software and Hardware Configuration {#ctrl-manage-software-and-hardware-configuration}
 
 <a href="#req-document-configuration">🔗</a> <b id="req-document-configuration">Node Operators MUST document configuration of software and hardware</b>
 
@@ -2462,15 +2463,15 @@ This applies to servers acting as validators, but also to devices authorized to 
 
 ### Controls for Information and Secret Management {#sec-controls-info-secrets}
 
-#### Key Management
+#### Key Management {#ctrl-key-management}
 
 <a href="#req-manage-keys">🔗</a> <b id="req-manage-keys">Node Operators MUST implement appropriate key management procedures</b>
 
 
-Best Practise includes following a commonly recognised key management standard such as
+Best practice includes following a commonly recognized key management standard such as
 
 - [[?CCSS]]: a set of requirements for securing Cryptocurrency systems, focusing on Key Management. Certification for systems is available at three levels, and is granted by certified CCSS Auditors.
-- [[?KMS]]: a set of requirements for Key Management designed for organisations working in blockchain, allowing self-attestation of conformance.
+- [[?KMS]]: a set of requirements for Key Management designed for organizations working in blockchain, allowing self-attestation of conformance.
 
 <div class="info">
 
@@ -2480,7 +2481,7 @@ Best Practise includes following a commonly recognised key management standard s
 * [HCK1](#risk-hck-1), [HCK2](#risk-hck-2), [HCK3](#risk-hck-3), [HCK4](#risk-hck-4)
 </div>
 
-#### Manage Information Lifecycles
+#### Manage Information Lifecycles {#ctrl-manage-information-lifecycles}
 
 <a href="#req-manage-information-lifecycle">🔗</a> <b id="req-manage-information-lifecycle">Node Operators MUST document and follow information lifecycle processes for important operational information</b>
 
@@ -2488,15 +2489,15 @@ This includes the definition and enforcement of retention periods, and the use o
 
 <div class="info">
 
-##### Relevant external controls for information lifecycles:
+##### Relevant external controls for information lifecycles
 * [[?ISO27001]] Annex A 8.10
 
-#### Information Lifecycle management helps address the following risks:
+##### Information Lifecycle management helps address the following risks
 * [SLS10](#risk-sls-10)
 * [DOW17](#risk-dow-17)
 </div>
 
-#### Backup and Protect Data against Loss
+#### Backup and Protect Data against Loss {#ctrl-backup-and-protect-data-against-loss}
 
 <a href="#req-backup-daily">🔗</a> <b id="req-backup-daily">Node Operators MUST implement backup procedures, at minimum daily, for important operational data</b>
 
@@ -2508,7 +2509,7 @@ These requirements cover all information required by controls in this specificat
 
 <div class="info">
 
-##### Protection against information loss helps address the following risks:
+##### Protection against information loss helps address the following risks
 * [FIN6](#risk-fin-6)
 * [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12)
 * [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
@@ -2517,7 +2518,7 @@ These requirements cover all information required by controls in this specificat
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 </div>
 
-#### Record Important Operational Knowledge
+#### Record Important Operational Knowledge {#ctrl-record-important-operational-knowledge}
 
 <a href="#req-maintain-records">🔗</a> <b id="req-maintain-records">Node Operators MUST record and maintain important operational information</b>
 
@@ -2525,7 +2526,7 @@ Best practice is to use a documentation management system. While this is likely 
 
 <div class="info">
 
-##### Recording operational knowledge helps address the following risks:
+##### Recording operational knowledge helps address the following risks
 * [FIN1](#risk-fin-1), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 * [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS14](#risk-sls-14)
 * [DOW1](#risk-dow-1), [DOW4](#risk-dow-4), [DOW16](#risk-dow-16), [DOW18](#risk-dow-18)
@@ -2536,7 +2537,7 @@ Best practice is to use a documentation management system. While this is likely 
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
 </div>
 
-#### Document data retention policy
+#### Document data retention policy {#ctrl-document-data-retention-policy}
 
 <a href="#req-data-retention-policy">🔗</a> <b id="req-data-retention-policy">Node Operators MUST have a policy for data retention</b>
 
@@ -2556,14 +2557,14 @@ while minimizing stored data and ensuring compliance with relevant data protecti
 
 <div class="info">
 
-#### Relevant external controls for Access Management in General
+##### Relevant external controls for Access Management in General
 
 * [[?OWASP_ACCESS_CONTROL]]
 * [[?ISO27001]] Annex A 5.15
 * [[?SOC2]] CC 6.1
 </div>
 
-#### Authentication required for services
+#### Authentication required for services {#ctrl-authentication-required-for-services}
 
 <a href="#req-appropriate-authentication">🔗</a> <b id="req-appropriate-authentication">All services MUST require appropriate authentication privileges</b>
 
@@ -2580,7 +2581,7 @@ For example, a Node does not respond to anonymous requests from an unknown user.
 * [GIR22](#risk-gir-22)
 </div>
 
-#### Segment Networks to Limit Access
+#### Segment Networks to Limit Access {#ctrl-segment-networks-to-limit-access}
 
 <a href="#req-segment-networks">🔗</a> <b id="req-segment-networks">Networks MUST be segmented, to restrict access to systems that are identified as needing it</b>
 
@@ -2601,7 +2602,7 @@ Fulfilling this requirement means maintaining a whitelist of individual services
 * [HCK6](#risk-hck-6)
 </div>
 
-#### Access to physical hardware is limited
+#### Access to physical hardware is limited {#ctrl-access-to-physical-hardware-is-limited}
 
 <a href="#req-protect-server-locations">🔗</a> <b id="req-protect-server-locations">Entry to physical server locations MUST require authorization</b>
 
@@ -2609,13 +2610,13 @@ For example, a biometric scan or the use of a keycard.
 
 <div class="info">
 
-#### Limiting access to hardware helps address the following risks
+##### Limiting access to hardware helps address the following risks
 
   * [DOW3](#risk-dow-3), [DOW4](#risk-dow-4)
   * [HCK6](#risk-hck-6)
 </div>
 
-#### Least Privilege is applied to individuals and software
+#### Least Privilege is applied to individuals and software {#ctrl-least-privilege-is-applied-to-individuals-and-software}
 
 <a href="#req-least-privilege">🔗</a> <b id="req-least-privilege">Software MUST NOT run with, and a user MUST NOT have a higher level of privilege than necessary</b>
 
@@ -2637,7 +2638,7 @@ For example, check that software does not run as root, that users do not log in 
 * [[?ISO27001]] Annex A 8.18
 </div>
 
-#### Regularly Review Access Rights Management
+#### Regularly Review Access Rights Management {#ctrl-regularly-review-access-rights-management}
 
 <a href="#req-review-access-rights">🔗</a> <b id="req-review-access-rights">A review of Access Rights MUST take place regularly</b>
 
@@ -2648,7 +2649,7 @@ Best practice for this review includes:
 - analyzing access logs for physical access to hardware, and ensuring authorized individuals are not given access to hardware
 - verifying access to signing keys is limited to individuals whose roles mean they need it, and that all who need that access have it
 - ensuring that processes are effectively followed and meet the Node Operator's business needs
-- verify that software is run in a way that minimises its access
+- verify that software is run in a way that minimizes its access
 
 <div class="info">
 
@@ -2665,7 +2666,7 @@ Best practice for this review includes:
 * [[?ISO27001]] Annex A 8.18
 </div>
 
-#### Protect Data in Transit and Storage
+#### Protect Data in Transit and Storage {#ctrl-protect-data-in-transit-and-storage}
 
 <a href="#req-encrypt-data">🔗</a> <b id="req-encrypt-data">All data in transit MUST be encrypted</b>, <a href="#req-direct-transmission">🔗</a> <b id="req-direct-transmission">and SHOULD use the most direct transmission available</b>
 
@@ -2695,9 +2696,9 @@ Current best practice includes assessing the cost and risk associated with movin
 
 ### Controls for Automated Monitoring {#sec-controls-monitoring}
 
-#### Log and Analyze Network Traffic
+#### Log and Analyze Network Traffic {#ctrl-log-and-analyze-network-traffic}
 
-<a href="#req-log-traffic">🔗</a> <b id="req-log-traffic">Node Operators MUST log network traffic, and analyze the logs for anomalous behaviour</b>
+<a href="#req-log-traffic">🔗</a> <b id="req-log-traffic">Node Operators MUST log network traffic, and analyze the logs for anomalous behavior</b>
 
 <div class="info">
 
@@ -2707,7 +2708,7 @@ Current best practice includes assessing the cost and risk associated with movin
 - [DOW1](#risk-dow-1)
 </div>
 
-#### Log privileged access
+#### Log privileged access {#ctrl-log-privileged-access}
 
 <a href="#req-log-access">🔗</a> <b id="req-log-access">Any operation that requires privileged access MUST be logged</b>
 
@@ -2721,26 +2722,26 @@ This includes monitoring software that has privileged access.
 
 * [[?ISO27001]] Annex A 8.18
 
-##### Logging privileged access helps address the following risks:
+##### Logging privileged access helps address the following risks
 
 * [FIN1](#risk-fin-1)
 
 </div>
 
-#### Log personnel changes
+#### Log personnel changes {#ctrl-log-personnel-changes}
 
 <a href="#req-log-personnel">🔗</a> <b id="req-log-personnel">Every change in the status of people who have access to any function of the Node, or physical access to any hardware, MUST be logged</b>
 
 <div class="info">
 
-##### Logging personnel changes helps address the following risks:
+##### Logging personnel changes helps address the following risks
 
 * [FIN1](#risk-fin-1)
 * [HCK3](#risk-hck-3)
 
 </div>
 
-#### Log slashing events
+#### Log slashing events {#ctrl-log-slashing-events}
 
 <a href="#req-log-slashing">🔗</a> <b id="req-log-slashing">Any event that results in slashing MUST be logged</b>
 
@@ -2754,7 +2755,7 @@ This includes monitoring software that has privileged access.
 </div>
 
 
-#### Monitor hardware and network performance
+#### Monitor hardware and network performance {#ctrl-monitor-hardware-and-network-performance}
 
 <a href="#req-log-performance-maintenance">🔗</a> <b id="req-log-performance-maintenance">Logs MUST provide a sufficiently detailed view of hardware and network performance to enable upgrade needs to be forecast,
 and to alert if validators are operating with excess latency</b>
@@ -2763,7 +2764,7 @@ Tools such as [Zabbix](https://github.com/zabbix/zabbix) can also display a live
 
 <div class="info">
 
-#### Relevant external controls for Monitoring
+##### Relevant external controls for Monitoring
 
 - [[?SOC2]] A 1.1
 - [[?SOC2]] CC 7.2
@@ -2778,7 +2779,7 @@ Tools such as [Zabbix](https://github.com/zabbix/zabbix) can also display a live
 
 ### Controls for Environmental Threat Management {#sec-controls-environment}
 
-#### Manage Environmental Threats
+#### Manage Environmental Threats {#ctrl-manage-environmental-threats}
 
 <a href="#req-log-environment">🔗</a> <b id="req-log-environment">Node Operators SHOULD have processes in place to manage environmental threats</b>
 
@@ -2797,7 +2798,7 @@ and physically decentralized infrastructure. It can also incorporate the use of 
 * [DOW1](#risk-dow-1), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
 </div>
 
-#### Distribute Validators physically
+#### Distribute Validators physically {#ctrl-distribute-validators-physically}
 
 <a href="#req-use-dvt">🔗</a> <b id="req-use-dvt">Node Operators SHOULD implement failover validators in different physical locations</b>
 
@@ -2808,7 +2809,7 @@ and physically decentralized infrastructure. It can also incorporate the use of 
 * [DOW1](#risk-dow-1), [DOW2](#risk-dow-2), [DOW3](#risk-dow-3), [DOW4](#risk-dow-4), [DOW5](#risk-dow-5), [DOW7](#risk-dow-7), [DOW9](#risk-dow-9)
 </div>
 
-#### Manage Equipment Lifecycles
+#### Manage Equipment Lifecycles {#ctrl-manage-equipment-lifecycles}
 
 <a href="#req-manage-equipment-lifecycle">🔗</a> <b id="req-manage-equipment-lifecycle">Node Operators SHOULD have processes in place to manage equipment lifecycles</b>
 
@@ -2829,7 +2830,7 @@ as well as processes that ensure equipment is correctly retired including removi
 
 ### Controls for Development and Update Process {#sec-controls-updates}
 
-#### Develop Software as Secure by Design
+#### Develop Software as Secure by Design {#ctrl-develop-software-as-secure-by-design}
 
 <a href="#req-secure-development">🔗</a> <b id="req-secure-development">Code development MUST follow secure development processes to avoid introducing security risks</b>
 
@@ -2850,7 +2851,7 @@ This is a broad area. A few specific controls are included in this specification
 * [SPS0](#risk-sps-0)
 </div>
 
-#### Follow Update Procedures
+#### Follow Update Procedures {#ctrl-follow-update-procedures}
 
 <a href="#req-document-update-process">🔗</a> <b id="req-document-update-process">Node Operators MUST document procedures for updates to code</b>
 
@@ -2869,7 +2870,7 @@ This is a broad area. A few specific controls are included in this specification
 * [SPS0](#risk-sps-0)
 </div>
 
-#### Use Code Repositories
+#### Use Code Repositories {#ctrl-use-code-repositories}
 
 <a href="#req-use-code-repo">🔗</a> <b id="req-use-code-repo">Source code MUST be managed in a repository</b>
 
@@ -2887,7 +2888,7 @@ This covers all changes to code, including when it is necessary to roll back an 
 * [SPS0](#risk-sps-0)
 </div>
 
-#### Check Third-party Code for Vulnerabilities before Updating
+#### Check Third-party Code for Vulnerabilities before Updating {#ctrl-check-third-party-code-for-vulnerabilities-before-updating}
 
 <a href="#req-check-vulnerabilities">🔗</a> <b id="req-check-vulnerabilities">Updates to third-party software MUST be checked for vulnerabilities before deployment</b>
 
@@ -2907,7 +2908,7 @@ are held to high standards of confidentiality, and work with a well-defined set 
 * [[?ISO27001]] Annex A 8.32
 * [[?SOC2]] CC 8.1
 
-##### Checking third-party software helps address the following Risks
+##### Checking third-party software helps address the following risks
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 * [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14)
@@ -2917,7 +2918,7 @@ are held to high standards of confidentiality, and work with a well-defined set 
 
 </div>
 
-#### Verify Configuration on Update
+#### Verify Configuration on Update {#ctrl-verify-configuration-on-update}
 
 <a href="#req-check-config-on-update">🔗</a> <b id="req-check-config-on-update">Software update procedures MUST include an assessment and application of configuration settings</b>
 
@@ -2930,7 +2931,7 @@ are held to high standards of confidentiality, and work with a well-defined set 
 * [GIR3](#risk-gir-3), [GIR15](#risk-gir-15)
 </div>
 
-#### Validate Inputs and outputs
+#### Validate Inputs and outputs {#ctrl-validate-inputs-and-outputs}
 
 <a href="#req-verify-inputs">🔗</a> <b id="req-verify-inputs">Code MUST verify that input is safe before operating on it</b>
 
@@ -2948,14 +2949,14 @@ These requirements ensure that data passed between software components can be ha
 * [[?SOC2]] PI 1.2
 * [[?SOC2]] PI 1.3
 
-#### Data validation helps address the following risks
+##### Data validation helps address the following risks
 
 * [HCK5](#risk-hck-5)
 * [GIR16](#risk-gir-16)
 
 </div>
 
-#### Ensure Good Test Coverage
+#### Ensure Good Test Coverage {#ctrl-ensure-good-test-coverage}
 
 <a href="#req-test-coverage">🔗</a> <b id="req-test-coverage">Node Operators MUST have thorough test coverage of their software and operating procedures</b>
 
@@ -2973,7 +2974,7 @@ managed by code the Node Operator uses, whether self-managed or provided by a th
 </div>
 
 
-#### Test All Interactions Impacted by Software Updates
+#### Test All Interactions Impacted by Software Updates {#ctrl-test-all-interactions-impacted-by-software-updates}
 
 <a href="#req-reaudit-everything-impacted">🔗</a> <b id="req-reaudit-everything-impacted">Updates MUST include an audit of all code and user interactions they impact</b>
 
@@ -2990,7 +2991,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 </div>
 
-#### Deploy via staging test environments
+#### Deploy via staging test environments {#ctrl-deploy-via-staging-test-environments}
 
 <a href="#req-deploy-via-testnet">🔗</a> <b id="req-deploy-via-testnet">Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network</b>
 
@@ -3008,7 +3009,7 @@ This means testing not just the new code deployed, but also existing code that i
 * [SPS0](#risk-sps-0)
 </div>
 
-#### Maintain Emergency Rollback Procedures
+#### Maintain Emergency Rollback Procedures {#ctrl-maintain-emergency-rollback-procedures}
 
 <a href="#req-enable-rollback">🔗</a> <b id="req-enable-rollback">Node Operators MUST have a process to enable emergency rollback of upgrades</b>
 
@@ -3025,7 +3026,7 @@ This means testing not just the new code deployed, but also existing code that i
 
 ### Controls for Communication and Incident Response {#sec-controls-response}
 
-#### Provide Operational Communication
+#### Provide Operational Communication {#ctrl-provide-operational-communication}
 
 <a href="#req-regular-communication">🔗</a> <b id="req-regular-communication">Node Operators SHOULD provide regular normal operational communication</b>
 
@@ -3044,7 +3045,7 @@ and to show operational strengths, and plans to address perceived weaknesses and
 * [RER5](#risk-rer-5)
 </div>
 
-#### Document Adequate Incident Response Plans
+#### Document Adequate Incident Response Plans {#ctrl-document-adequate-incident-response-plans}
 
 <a href="#req-incident-response-plans">🔗</a> <b id="req-incident-response-plans">The Node Operator MUST have documented [=Incident Response Plans=] corresponding to all risks identified in this specification</b>
 
@@ -3060,7 +3061,7 @@ and to show operational strengths, and plans to address perceived weaknesses and
 
 
 
-#### Document Disaster Recovery Plans
+#### Document Disaster Recovery Plans {#ctrl-document-disaster-recovery-plans}
 
 <a href="#req-disaster-recovery-plan">🔗</a> <b id="req-disaster-recovery-plan">The Node Operator MUST have documented [=Disaster Recovery Plans=] corresponding to risks identified in this specification
 that lead to destruction of crucial data or loss of assets</b>
@@ -3079,7 +3080,7 @@ that lead to destruction of crucial data or loss of assets</b>
 </div>
 
 
-#### Analyze Incidents
+#### Analyze Incidents {#ctrl-analyze-incidents}
 
 <a href="#req-revise-response-plans">🔗</a> <b id="req-revise-response-plans">[=Incident Response Plans=]
 and [=Disaster Recovery Plans=] MUST include revising the relevant plans whenever they are activated, based on lessons learned</b>
@@ -3095,7 +3096,7 @@ This covers both responses to real incidents and Simulated activation, or [=Pre-
 ##### Analyzing incidents helps address all risks
 </div>
 
-#### Perform Regular Incident Response Simulations
+#### Perform Regular Incident Response Simulations {#ctrl-perform-regular-incident-response-simulations}
 
 <a href="#req-run-incident-simulations">🔗</a> <b id="req-run-incident-simulations">Node Operators MUST perform a simulated Incident and activation of the associated [=Incident Response Plan=]
 or [=Disaster Recovery Plans=] at least twice per year</b>
@@ -3105,7 +3106,7 @@ or [=Disaster Recovery Plans=] at least twice per year</b>
 ##### Incident simulations help address all risks
 </div>
 
-#### Plan Incident Communication
+#### Plan Incident Communication {#ctrl-plan-incident-communication}
 
 <a href="#req-communication-strategy">🔗</a> <b id="req-communication-strategy">Node Operators MUST document [=Incident Communication=] strategies or policies</b>
 
@@ -3118,7 +3119,7 @@ This requirement includes internal and external communication, both during and a
 * [RER5](#risk-rer-5)
 </div>
 
-#### Verify Counterparty Compliance
+#### Verify Counterparty Compliance {#ctrl-verify-counterparty-compliance}
 
 <a href="#req-verify-3rdparty-compliance">🔗</a> <b id="req-verify-3rdparty-compliance">Node Operators MUST verify that third parties providing services, or with whom the Node Operator contracts,
 are in compliance with relevant standards (including this one) and regulations</b>
@@ -3144,7 +3145,7 @@ response times and Service Level Agreements, security procedures, and the like a
 </div>
 
 
-#### Manage Counterparty Relationship Lifecycles
+#### Manage Counterparty Relationship Lifecycles {#ctrl-manage-counterparty-relationship-lifecycles}
 
 <a href="#req-termination-procedures">🔗</a> <b id="req-termination-procedures">Service agreements MUST specify termination procedures and obligations</b>
 
@@ -3166,7 +3167,7 @@ This document is an Editor's draft, for a proposed revision to the [DUCK Knowled
 
 Feedback is welcome, and is preferred as Issues, Pull requests and comments in this GitHub Repository. Please note the [Conditions of Contributing](https://github.com/lidofinance/valos/blob/main/CONTRIBUTING.md).
 
-### History and Future
+### History and Future {#sec-history}
 
 The original content of this specification was developed as the DUCK Knowledge Base, and the current work is a direct evolution of that content.
 
@@ -3187,7 +3188,7 @@ The update process aims to meet some general goals:
 - Respond to feedback from real-world use, to improve the utility of the specification
 - Increase the transparency of and community participation in the maintenance of the specification
 
-### Versions and Version Numbers
+### Versions and Version Numbers {#sec-versions}
 
 The approach to versions for this specification is to maintain a publicly visible "latest Editor's draft",
 representing the current state of what has been proposed and agreed as updates for a new version, and release versions, numbered 1, 2, 3 etc.
