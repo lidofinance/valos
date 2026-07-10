@@ -1,0 +1,108 @@
+section:
+  id: sec-controls-people-management
+  title: Controls for People Management
+controls:
+  - title: Identify Relevant Entities
+    headingId: ctrl-identify-relevant-entities
+    requirements:
+      - id: req-identify-staff
+        statement: Node Operators MUST know the identity of entities who are authorized to manage operations
+        after: >-
+          Best practice is to identify every individual who works for the Node Operator.
+
+          In the case of corporate third-party providers, sensible due diligence does not always
+          extend to identifying specific individuals.
+    info:
+      - heading: Relevant external controls for Identifying individuals
+        level: 5
+        entries:
+          - external:
+              standard: ISO27001
+              ref: Annex A 5.16
+            bullet: "*"
+      - heading: Identifying individuals involved in managing Validators helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN1
+            bullet: "*"
+          - risks:
+              - KEC7
+            bullet: "*"
+          - risks:
+              - HCK1
+              - HCK2
+              - HCK3
+            bullet: "*"
+          - risks:
+              - SPS0
+            bullet: "*"
+          - risks:
+              - RER2
+            bullet: "*"
+  - title: Document Vendors and Partner Risk
+    headingId: ctrl-document-vendors-and-partner-risk
+    requirements:
+      - id: req-manage-counterparty-risk
+        statement: Node Operators MUST implement documented procedures for evaluating and reviewing
+          counterparty risks from vendors and partners
+        after: >-
+          * Establishing a process for Vendor and Business Partner engagement and assessing existing
+          as well as new vendors and business partners
+
+          * Ensuring that any identified issues are fixed, and regressions can be identified.
+
+          * Terminating relationships efficiently where problems arise, or the relationship ends.
+    info:
+      - heading: Relevant external controls for counterparty risk management
+        level: 5
+        entries:
+          - external:
+              standard: SOC2
+              ref: CC 9.2
+            bullet: "*"
+      - heading: Counterparty risk management helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN1
+            bullet: "*"
+          - risks:
+              - SLS9
+            bullet: "*"
+          - risks:
+              - GIR5
+            bullet: "*"
+          - risks:
+              - DOW1
+              - DOW19
+            bullet: "*"
+  - title: Provide Training
+    headingId: ctrl-provide-training
+    requirements:
+      - id: req-train-staff
+        statement: Node Operators MUST ensure entities who are authorized to manage operations have and
+          maintain the necessary knowledge to minimize risks to the Node Operator in the course of
+          performing their work
+    info:
+      - heading: Training helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN1
+              - FIN7
+            bullet: "*"
+          - risks:
+              - SLS17
+            bullet: "*"
+          - risks:
+              - DOW21
+            bullet: "*"
+          - risks:
+              - GIR16
+              - GIR22
+              - GIR25
+            bullet: "*"
+          - risks:
+              - RER2
+            bullet: "*"

@@ -1,0 +1,72 @@
+section:
+  id: sec-risks-keys
+  title: Key Custody Risk
+  intro: >-
+    The risks associated with key custody cover all private keys and key material. However in some
+    cases the way a risk manifests or impacts depends on the type of key.
+
+    For example:
+
+
+    - Validator Keys enable the operator to manage their nodes so compromises have a direct impact
+    on operations, which is very likely to have a financial and reputational impact.
+
+    - Withdrawal Keys enable the operator to manage their digital assets so compromises often have a
+    direct financial impact, as well as a likely reputational impact.
+columns:
+  - label: ID
+  - label: Risk Group
+  - label: Risk Vectors
+    width: 20%
+  - label: Risk Vector Description
+    width: 25%
+  - label: Relevant Mitigations
+risks:
+  - id: KEC1
+    group: Infrastructure
+    vector: Failure to use vault system
+    description: No audit trail and controlled access to secrets
+  - id: KEC2
+    retired:
+      replacedBy:
+        - HCK1
+        - HCK2
+  - id: KEC3
+    retired:
+      replacedBy:
+        - HCK1
+        - HCK2
+  - id: KEC4
+    retired:
+      replacedBy:
+        - HCK4
+  - id: KEC5
+    retired:
+      replacedBy:
+        - HCK4
+  - id: KEC6
+    group: Process
+    vector: Loss of Signing Keys (Operational Failure)
+    description: Signing keys are lost in an operational process
+  - id: KEC7
+    group: Process
+    vector: Privilege escalation mechanisms not prevented
+    description: Someone with access to one service/node can increase their privileges and do more harm
+      on further nodes.
+  - id: KEC8
+    retired:
+      replacedBy:
+        - HCK6
+  - id: KEC9
+    group: Process
+    vector: Loss of Withdrawal Keys (Operational Failure)
+    description: Loss of Withdrawal Keys (Operational Failure)
+  - id: KEC10
+    retired:
+      replacedBy:
+        - HCK1
+        - HCK2
+  - id: KEC11
+    retired:
+      replacedBy:
+        - HCK4

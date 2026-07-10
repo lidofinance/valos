@@ -65,6 +65,7 @@ and to simplify the process of assessing Node Operators who have been certified 
 Conformance to this specification is based on meeting the requirements expressed in the [Controls Catalog](#sec-controls-catalog).
 </section>
 
+
 ## Risks {#sec-risks}
 
 This specification divides risk into eight categories for Node Operators to consider in ensuring the quality of their overall setup.
@@ -271,8 +272,8 @@ Note that frequent slashing penalties are likely to incur a reputational risk.
   <td>After a chainsplit occurs, continuing to support the leading fork can lead to a larger penalty if it is later rejected</td>
   <td><ul class="autofill-mits"></ul></td>
 </tr>
-</tbody></table>
-
+</tbody>
+</table>
 
 ### Downtime Risk {#sec-risks-downtime}
 
@@ -424,7 +425,8 @@ or to more direct financial penalties.
   <td>System downtime caused by software update processes taking longer than planned, with no failover capacity</td>
   <td><ul class="autofill-mits"></ul></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 
 ### Key Custody Risk {#sec-risks-keys}
 
@@ -499,7 +501,9 @@ For example:
 <tr id="risk-kec-11">
   <td>KEC11</td>
   <td colspan="4">Replaced by <a href="#risk-hck-4">HCK4</a></td>
-</tr></tbody></table>
+</tr>
+</tbody>
+</table>
 
 ### Hacking Risk {#sec-risks-hacking}
 
@@ -558,8 +562,8 @@ or facilitated by a current or former member of the operational team.
   <td>Someone who gains physical access to a server can have access to locally exposed ports and can access the software API</td>
   <td><ul class="autofill-mits"></ul></td>
 </tr>
-</tbody></table>
-
+</tbody>
+</table>
 
 ### General Infrastructure Risk {#sec-risks-infra}
 
@@ -568,10 +572,10 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
 <table>
 <thead>
 <tr>
-  <th>ID</th>
-  <th>Risk Group</th>
-  <th width="20%">Risk Vectors</th>
-  <th width="25%">Risk Vector Description</th>
+<th>ID</th>
+<th>Risk Group</th>
+<th width="20%">Risk Vectors</th>
+<th width="25%">Risk Vector Description</th>
 <th>Relevant Mitigations</th>
 </tr></thead>
 <tbody>
@@ -730,7 +734,9 @@ Risks related to process errors, inefficiencies, and weak general infrastructure
   <td>Centralized knowledge</td>
   <td>If the infrastructure knowledge is not shared across the team, this could lead to a heavy dependency on a single person</td>
   <td><ul class="autofill-mits"></ul></td>
-</tr></tbody></table>
+</tr>
+</tbody>
+</table>
 
 ### Service Partner Specific Risk {#sec-risks-partner}
 
@@ -750,8 +756,7 @@ Risk related to partners and specific third-party services.
   <td>SPS0</td>
   <td>Counterparty</td>
   <td>General Counterparty Risk</td>
-  <td>Whenever a service is provided by a third party, the relevant risks are run by the third party,
-  but in most cases at least some and often the bulk of the consequences for a failure will be borne by the node operator.</td>
+  <td>Whenever a service is provided by a third party, the relevant risks are run by the third party, but in most cases at least some and often the bulk of the consequences for a failure will be borne by the node operator.</td>
   <td><ul class="autofill-mits"></ul></td>
 </tr>
 <tr id="risk-sps-1">
@@ -761,7 +766,8 @@ Risk related to partners and specific third-party services.
   <td><ul><li>No new stake will be allocated to the Node Operator (happens automatically)</li><li>the daily rewards sent to the Node Operator will be halved (with the remaining half sent towards that day’s rebase) (happens automatically)</li><li>reduced rewards will continue for the duration of a cooldown period long enough to determine whether, immediately after service restoration by the Node Operator, subsequently received validator exit requests are processed in a timely manner.</li></ul></td>
   <td><ul class="autofill-mits"></ul></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 
 ### Reputational Risk {#sec-risks-reputation}
 
@@ -812,9 +818,8 @@ Risks that impact the reputation of a Node Operator, likely to lead potential an
   <td>Poor reputation or reputational damage due to insufficient operational communication and overall transparency</td>
   <td><ul class="autofill-mits"></ul></td>
 </tr>
-</tbody></table>
-
-
+</tbody>
+</table>
 
 
 ## Risk Mitigation Strategies {#sec-mitigation}
@@ -1530,7 +1535,6 @@ A secure development lifecycle helps ensure that vulnerabilities are not introdu
 
 </div>
 
-
 #### Comprehensive Testing for Changes to Code {#sec-mit-code-testing}
 
 A comprehensive test suite helps ensure changes do not introduce new vulnerabilities or situations that lead to operational failures.
@@ -1604,8 +1608,6 @@ Additionally, it is important to validate inputs against the relevant parameters
 
 Updating software is a major risk vector. Good processes for software development and managing the deployment of updates are important to mitigate some of this risk.
 As well as having control over the update process, it is important to have the capacity to revert to a known environment in an emergency where an update has been found to introduce unexpected problems.
-
-
 
 #### Avoid Customizing Third-party Software {#sec-mit-minimize-customizing-software}
 
@@ -2190,6 +2192,7 @@ against the importance of providing clear information with as much certainty as 
 * [RER1](#risk-rer-1), [RER2](#risk-rer-2), [RER3](#risk-rer-3)
 </div>
 
+
 ## Controls Catalog {#sec-controls-catalog}
 
 This section contains controls that are material to Node Operator risks.
@@ -2247,7 +2250,6 @@ External suppliers can change terms, shut down products or support, and key staf
 * [[?SOC2]] CC 3.1
 
 ##### Internal risk assessment is an important part of addressing all risks
-
 </div>
 
 #### Follow Processes {#ctrl-follow-processes}
@@ -2432,7 +2434,6 @@ This applies to servers acting as validators, but also to devices authorized to 
 
 <a href="#req-document-withdrawal-process">🔗</a> <b id="req-document-withdrawal-process">Node Operators MUST implement processes to withdraw validators from a network in such a way that they are not penalised for disappearing</b>
 
-
 <div class="info">
 
 ##### Managed validator withdrawal helps address the following risks
@@ -2467,7 +2468,6 @@ This applies to servers acting as validators, but also to devices authorized to 
 
 <a href="#req-manage-keys">🔗</a> <b id="req-manage-keys">Node Operators MUST implement appropriate key management procedures</b>
 
-
 Best practice includes following a commonly recognized key management standard such as
 
 - [[?CCSS]]: a set of requirements for securing Cryptocurrency systems, focusing on Key Management. Certification for systems is available at three levels, and is granted by certified CCSS Auditors.
@@ -2490,9 +2490,11 @@ This includes the definition and enforcement of retention periods, and the use o
 <div class="info">
 
 ##### Relevant external controls for information lifecycles
+
 * [[?ISO27001]] Annex A 8.10
 
 ##### Information Lifecycle management helps address the following risks
+
 * [SLS10](#risk-sls-10)
 * [DOW17](#risk-dow-17)
 </div>
@@ -2510,6 +2512,7 @@ These requirements cover all information required by controls in this specificat
 <div class="info">
 
 ##### Protection against information loss helps address the following risks
+
 * [FIN6](#risk-fin-6)
 * [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS11](#risk-sls-11), [SLS12](#risk-sls-12)
 * [KEC6](#risk-kec-6), [KEC9](#risk-kec-9)
@@ -2527,6 +2530,7 @@ Best practice is to use a documentation management system. While this is likely 
 <div class="info">
 
 ##### Recording operational knowledge helps address the following risks
+
 * [FIN1](#risk-fin-1), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 * [SLS3](#risk-sls-3), [SLS4](#risk-sls-4), [SLS10](#risk-sls-10), [SLS14](#risk-sls-14)
 * [DOW1](#risk-dow-1), [DOW4](#risk-dow-4), [DOW16](#risk-dow-16), [DOW18](#risk-dow-18)
@@ -2670,7 +2674,7 @@ Best practice for this review includes:
 
 <a href="#req-encrypt-data">🔗</a> <b id="req-encrypt-data">All data in transit MUST be encrypted</b>, <a href="#req-direct-transmission">🔗</a> <b id="req-direct-transmission">and SHOULD use the most direct transmission available</b>
 
-<a href="#req-store-encrypted">🔗</a> <b id="req-store-encrypted">All data "at rest" MUST be stored in encrypted form</b>
+<a href="#req-store-encrypted">🔗</a> <b id="req-store-encrypted">All data &quot;at rest&quot; MUST be stored in encrypted form</b>
 
 This covers all services that communicate data, such as Databases, Web servers, Load balancers, Authentication systems, CI/CD pipeline tools, etc.
 
@@ -2725,7 +2729,6 @@ This includes monitoring software that has privileged access.
 ##### Logging privileged access helps address the following risks
 
 * [FIN1](#risk-fin-1)
-
 </div>
 
 #### Log personnel changes {#ctrl-log-personnel-changes}
@@ -2738,7 +2741,6 @@ This includes monitoring software that has privileged access.
 
 * [FIN1](#risk-fin-1)
 * [HCK3](#risk-hck-3)
-
 </div>
 
 #### Log slashing events {#ctrl-log-slashing-events}
@@ -2751,9 +2753,7 @@ This includes monitoring software that has privileged access.
 
 * [SLS4](#risk-sls-4), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19), [SLS20](#risk-sls-20)
 * [RER1](#risk-rer-1), [RER3](#risk-rer-3)
-
 </div>
-
 
 #### Monitor hardware and network performance {#ctrl-monitor-hardware-and-network-performance}
 
@@ -2819,6 +2819,7 @@ as well as processes that ensure equipment is correctly retired including removi
 <div class="info">
 
 ##### Relevant external controls for equipment lifecycles
+
 * [[?ISO27001]] Annex A 7
 
 ##### Equipment life-cycle management helps address the following risks
@@ -2839,6 +2840,7 @@ This is a broad area. A few specific controls are included in this specification
 <div class="info">
 
 ##### Relevant external controls for secure development
+
 * [[?ISO27001]] Annex A 8.25
 
 ##### Secure software development lifecycle (SSDLC) helps address the following risks
@@ -2909,13 +2911,13 @@ are held to high standards of confidentiality, and work with a well-defined set 
 * [[?SOC2]] CC 8.1
 
 ##### Checking third-party software helps address the following risks
+
 * [FIN3](#risk-fin-3), [FIN4](#risk-fin-4), [FIN5](#risk-fin-5), [FIN6](#risk-fin-6)
 * [SLS6](#risk-sls-6), [SLS7](#risk-sls-7), [SLS17](#risk-sls-17), [SLS18](#risk-sls-18), [SLS19](#risk-sls-19)
 * [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14)
 * [KEC7](#risk-kec-7)
 * [HCK1](#risk-hck-1)
 * [SPS0](#risk-sps-0)
-
 </div>
 
 #### Verify Configuration on Update {#ctrl-verify-configuration-on-update}
@@ -2953,7 +2955,6 @@ These requirements ensure that data passed between software components can be ha
 
 * [HCK5](#risk-hck-5)
 * [GIR16](#risk-gir-16)
-
 </div>
 
 #### Ensure Good Test Coverage {#ctrl-ensure-good-test-coverage}
@@ -2970,9 +2971,7 @@ managed by code the Node Operator uses, whether self-managed or provided by a th
 * [[?ISO27001]] Annex A 8.29
 
 ##### Good test coverage helps address all risks
-
 </div>
-
 
 #### Test All Interactions Impacted by Software Updates {#ctrl-test-all-interactions-impacted-by-software-updates}
 
@@ -2988,12 +2987,11 @@ This means testing not just the new code deployed, but also existing code that i
 * [DOW2](#risk-dow-2), [DOW11](#risk-dow-11), [DOW12](#risk-dow-12), [DOW13](#risk-dow-13), [DOW14](#risk-dow-14), [DOW19](#risk-dow-19), [DOW20](#risk-dow-20), [DOW21](#risk-dow-21)
 * [GIR4](#risk-gir-4), [GIR13](#risk-gir-13), [GIR18](#risk-gir-18), [GIR19](#risk-gir-19), [GIR21](#risk-gir-21)
 * [SPS0](#risk-sps-0)
-
 </div>
 
 #### Deploy via staging test environments {#ctrl-deploy-via-staging-test-environments}
 
-<a href="#req-deploy-via-testnet">🔗</a> <b id="req-deploy-via-testnet">Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as "production" on a live network</b>
+<a href="#req-deploy-via-testnet">🔗</a> <b id="req-deploy-via-testnet">Updates MUST be tested on a staging environment that as closely as possible matches the proposed deployment environment before deployment as &quot;production&quot; on a live network</b>
 
 <div class="info">
 
@@ -3059,8 +3057,6 @@ and to show operational strengths, and plans to address perceived weaknesses and
 ##### Incident Response Planning help address almost all risks
 </div>
 
-
-
 #### Document Disaster Recovery Plans {#ctrl-document-disaster-recovery-plans}
 
 <a href="#req-disaster-recovery-plan">🔗</a> <b id="req-disaster-recovery-plan">The Node Operator MUST have documented [=Disaster Recovery Plans=] corresponding to risks identified in this specification
@@ -3078,7 +3074,6 @@ that lead to destruction of crucial data or loss of assets</b>
 * [GIR13](#risk-gir-13), [GIR19](#risk-gir-19)
 * [RER1](#risk-rer-1), [RER4](#risk-rer-4), [RER5](#risk-rer-5)
 </div>
-
 
 #### Analyze Incidents {#ctrl-analyze-incidents}
 
@@ -3144,11 +3139,9 @@ response times and Service Level Agreements, security procedures, and the like a
 * [RER2](#risk-rer-2), [RER5](#risk-rer-5)
 </div>
 
-
 #### Manage Counterparty Relationship Lifecycles {#ctrl-manage-counterparty-relationship-lifecycles}
 
 <a href="#req-termination-procedures">🔗</a> <b id="req-termination-procedures">Service agreements MUST specify termination procedures and obligations</b>
-
 
 <div class="info">
 
@@ -3491,6 +3484,7 @@ function ControlTableSummary() {
 
   // All config options at https://respec.org/docs/
   var respecConfig = {
+    publishDate: "2026-07-10",
     noNetwork: true,
     postProcess: [clean, RiskTableMitigations, ControlTableSummary],
     subTitle: "Validator Operations Standard",

@@ -1,8 +1,10 @@
 # PR CI: runs the full production build (npm run build), which via the
-# prebuild script also performs risk-reference validation and vendored
+# prebuild script also performs source assembly + validation and vendored
 # asset checksum verification. This ensures PRs cannot merge while
 # breaking ReSpec rendering, vendored asset assumptions, CSP injection,
-# or the Pages output that deploy.yml publishes.
+# or the Pages output that deploy.yml publishes. A final step verifies the
+# committed valos-spec.html matches what assemble regenerates, so the
+# generated file can never drift from the structured sources.
 name: Validate and Build
 
 on:
@@ -39,3 +41,13 @@ jobs:
 
       - name: Build static spec
         run: npm run build
+
+      # npm run build regenerates valos-spec.html via prebuild -> assemble.
+      # If the committed copy differs, a contributor edited the sources but
+      # did not re-run `npm run assemble` (or hand-edited the generated file).
+      - name: Verify generated spec is in sync with sources
+        run: |
+          if ! git diff --exit-code -- valos-spec.html; then
+            echo "::error::valos-spec.html is out of sync with the structured sources. Run 'npm run assemble' and commit the regenerated file."
+            exit 1
+          fi

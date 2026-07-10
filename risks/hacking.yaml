@@ -1,0 +1,76 @@
+section:
+  id: sec-risks-hacking
+  title: Hacking Risk
+  intro: >-
+    Many risks arise through vulnerability to hacking, whether carried out by a malicious external
+    actor,
+
+    or facilitated by a current or former member of the operational team.
+columns:
+  - label: ID
+    width: 12%
+  - label: Risk Group
+  - label: Risk Vectors
+    width: 20%
+  - label: Risk Vector Description
+    width: 25%
+  - label: Relevant Mitigations
+risks:
+  - id: HCK1
+    replaces:
+      - SLS8
+      - KEC2
+      - KEC3
+      - KEC10
+    group: People
+    vector: Malicious Internal Employee intentionally causes operational failure with appropriate user
+      rights
+    description: Anything that an internal employee has access to is at risk of being exploited to
+      sabotage the operation resulting in a slashing incident.
+  - id: HCK2
+    replaces:
+      - SLS9
+      - DOW16
+      - KEC2
+      - KEC3
+      - KEC10
+      - GIR2
+    group: People
+    vector: Malicious Internal Employee intentionally causes operational failure via privilege escalation
+    description: A malicious internal employee can get additional rights via privilege escalation.
+  - id: HCK3
+    replaces:
+      - SLS10
+      - DOW17
+      - GIR2
+      - GIR5
+    group: People
+    vector: Malicious Ex-Employee intentionally causes an operational failure
+    description: A former employee whose access is not blocked or removed
+  - id: HCK4
+    replaces:
+      - SLS11
+      - SLS12
+      - SLS13
+      - DOW18
+      - KEC4
+      - KEC5
+      - KEC11
+      - GIR1
+    group: People
+    vector: Malicious External Hacker intentionally causes operational failure
+    description: Malicious External Hacker gets system access through absence of or weak cyber security
+      standards
+  - id: HCK5
+    replaces:
+      - GIR8
+    group: Process
+    vector: No Input validation
+    description: Attacks induce buffer overflow, DoS, code injection, etc.
+  - id: HCK6
+    replaces:
+      - KEC8
+    group: Infrastructure
+    vector: Failure to protect infrastructure against physical access
+    description: Someone who gains physical access to a server can have access to locally exposed ports
+      and can access the software API

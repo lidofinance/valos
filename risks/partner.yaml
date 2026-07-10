@@ -1,0 +1,28 @@
+section:
+  id: sec-risks-partner
+  title: Service Partner Specific Risk
+  intro: Risk related to partners and specific third-party services.
+columns:
+  - label: ID
+  - label: Risk Group
+  - label: Risk Vectors
+    width: 20%
+  - label: Risk Vector Description
+    width: 25%
+  - label: Relevant Mitigations
+risks:
+  - id: SPS0
+    group: Counterparty
+    vector: General Counterparty Risk
+    description: Whenever a service is provided by a third party, the relevant risks are run by the
+      third party, but in most cases at least some and often the bulk of the consequences for a
+      failure will be borne by the node operator.
+  - id: SPS1
+    group: Process
+    vector: Exit Risk - Delinquent state
+    description: <ul><li>No new stake will be allocated to the Node Operator (happens
+      automatically)</li><li>the daily rewards sent to the Node Operator will be halved (with the
+      remaining half sent towards that day’s rebase) (happens automatically)</li><li>reduced rewards
+      will continue for the duration of a cooldown period long enough to determine whether,
+      immediately after service restoration by the Node Operator, subsequently received validator
+      exit requests are processed in a timely manner.</li></ul>

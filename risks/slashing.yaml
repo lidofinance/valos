@@ -1,0 +1,108 @@
+section:
+  id: sec-risks-slashing
+  title: Slashing Risk
+  intro: >-
+    These risks arise from performing slashable actions, that lead to penalties.
+
+    Note that frequent slashing penalties are likely to incur a reputational risk.
+columns:
+  - label: ID
+  - label: Risk Group
+  - label: Risk Vectors
+    width: 20%
+  - label: Risk Vector Description
+    width: 25%
+  - label: Relevant Mitigations
+risks:
+  - id: SLS1
+    group: Infrastructure
+    vector: "Operational Failure: Single validator signs two different blocks"
+    description: Single node signs two different blocks through failure in setting up the anti-slashing
+      mechanism correctly (e.g. local anti-slashing database is disabled or has been deleted) or
+      failure in the validator migration process.
+  - id: SLS2
+    group: Infrastructure
+    vector: "Operational Failure: Shutting down validator only temporarily"
+    description: Validator shuts down temporarily. System spins up a new validator with the same key
+  - id: SLS3
+    group: Infrastructure
+    vector: "Operational Failure: Validator keys are used on 2 different validators"
+    description: System takes the same keys twice from the key database and deploys them on two
+      different validators.
+  - id: SLS4
+    group: Infrastructure
+    vector: "Operational Failure: Failure in setting up the anti-slashing mechanisms correctly"
+    description: Failure in setting up the anti-slashing mechanisms correctly (e.g. Web3Signer has no
+      slashing protection enabled, no database, database only in memory and not on disk, 2 or
+      several copies of Web3Signer, slashing database can be deleted)
+  - id: SLS5
+    group: Infrastructure
+    vector: Double key usage in the CI/CD pipeline
+    description: Usage of same key within different environments causing a slashing
+  - id: SLS6
+    group: Software
+    vector: Software Bug (e.g. Validator Client) (Intentional or accidental) through update
+    description: New versions of a validator client that may cause errors that lead to
+      slashing<br>Supply chain attack
+  - id: SLS7
+    group: Software
+    vector: Software Bug (e.g. Validator Client) through software customization
+    description: New versions of a validator client has errors that lead to slashing
+  - id: SLS8
+    retired:
+      replacedBy:
+        - HCK1
+  - id: SLS9
+    retired:
+      replacedBy:
+        - HCK2
+  - id: SLS10
+    retired:
+      replacedBy:
+        - HCK3
+  - id: SLS11
+    retired:
+      replacedBy:
+        - HCK4
+  - id: SLS12
+    retired:
+      replacedBy:
+        - HCK4
+  - id: SLS13
+    retired:
+      replacedBy:
+        - HCK4
+  - id: SLS14
+    group: Process
+    vector: "Operational Failure: Incorrect implementation of the failover mechanism: Failover system
+      comes unexpectedly online"
+    description: "If the failover does not ensure that old system is not still alive in some way or is
+      using a stale version of the anti-slashing database, e.g.: failover system starts accidentally
+      although primary system is not down"
+  - id: SLS15
+    group: Process
+    vector: "Operational Failure: Incorrect implementation of the failover mechanism: Primary system
+      comes unexpectedly back online"
+    description: "If the failover does not ensure that old system is not still alive in some way or is
+      using a stale version of the anti-slashing database, e.g.: failover system starts (manually /
+      automatically) because primary system is down and primary system comes back online"
+  - id: SLS16
+    retired: removed
+  - id: SLS17
+    group: Process
+    vector: "Operational Failure: Slashing monitoring ignores alerts"
+    description: Slashing events continue or recur because alerts are not monitored
+  - id: SLS18
+    group: Process
+    vector: "Operational Failure: Slashing monitoring does not shut down the validators"
+    description: Slashing continues because monitoring system fails to automatically shut down
+      malfunctioning validator
+  - id: SLS19
+    group: Process
+    vector: Incident Response does not update Slashing Database
+    description: A slashing event recurs, because the database is not updated as part of Incident Response
+  - id: SLS20
+    group: Infrastructure
+    vector: Chainsplit increases slashing penalty
+    description: After a chainsplit occurs, continuing to support the leading fork can lead to a larger
+      penalty if it is later rejected

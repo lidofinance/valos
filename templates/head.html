@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- CSP:BUILD_REPLACE: scripts/build.mjs replaces this meta tag with a hardened, hash-based CSP for the deployed artifact. The 'unsafe-inline' below is required only for runtime-ReSpec preview during local development. -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:;" />
+    <title>ValOS</title>
+    <!-- ReSpec is installed via npm (devDependency). Loaded from node_modules for local runtime preview; stripped from the deployed artifact (class="remove"). Run `npm ci` after cloning. -->
+    <script
+      src="./node_modules/respec/builds/respec-w3c.js"
+      class="remove"
+      defer></script>
+    <style>
+    td, th {border: 1px black solid; padding: 0.3em 1em}
+    p:has(b[id^=req]) {border: 1px solid blue; background-color: #ffd}
+    .info, details.tools {background-color:#efe; padding: 0em 0em 0.5em 1em}
+    tr:has(option:nth-child(2):checked), tr:has(option:nth-child(3):checked) {background-color: #9f9}
+    tr:has(option:nth-child(4):checked) {background-color: #ff9}
+    tr:has(option:nth-child(5):checked) {background-color: #f99}
+
+    body { max-width: 90% !important}
+    body section:not(:has(table)) { max-width: 50em}
+
+    td[colspan] {text-align: center}
+
+    </style>
+  </head>
+  <body>

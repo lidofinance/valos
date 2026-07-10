@@ -1,0 +1,130 @@
+section:
+  id: sec-controls-monitoring
+  title: Controls for Automated Monitoring
+controls:
+  - title: Log and Analyze Network Traffic
+    headingId: ctrl-log-and-analyze-network-traffic
+    requirements:
+      - id: req-log-traffic
+        statement: Node Operators MUST log network traffic, and analyze the logs for anomalous behavior
+    info:
+      - heading: Traffic log analysis helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS9
+              - SLS10
+              - SLS11
+              - SLS12
+              - SLS13
+              - SLS14
+              - SLS15
+            bullet: "-"
+          - risks:
+              - DOW1
+            bullet: "-"
+  - title: Log privileged access
+    headingId: ctrl-log-privileged-access
+    requirements:
+      - id: req-log-access
+        statement: Any operation that requires privileged access MUST be logged
+      - id: req-log-role-assignment
+        statement: Any assignment of a key, or assignment of a role to or removal of a role from a
+          particular key, MUST be logged
+        after: This includes monitoring software that has privileged access.
+    info:
+      - heading: Relevant external controls for privileged access logging
+        level: 5
+        entries:
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.18
+            bullet: "*"
+      - heading: Logging privileged access helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN1
+            bullet: "*"
+  - title: Log personnel changes
+    headingId: ctrl-log-personnel-changes
+    requirements:
+      - id: req-log-personnel
+        statement: Every change in the status of people who have access to any function of the Node, or
+          physical access to any hardware, MUST be logged
+    info:
+      - heading: Logging personnel changes helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN1
+            bullet: "*"
+          - risks:
+              - HCK3
+            bullet: "*"
+  - title: Log slashing events
+    headingId: ctrl-log-slashing-events
+    requirements:
+      - id: req-log-slashing
+        statement: Any event that results in slashing MUST be logged
+    info:
+      - heading: Logging slashing events helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS4
+              - SLS17
+              - SLS18
+              - SLS19
+              - SLS20
+            bullet: "*"
+          - risks:
+              - RER1
+              - RER3
+            bullet: "*"
+  - title: Monitor hardware and network performance
+    headingId: ctrl-monitor-hardware-and-network-performance
+    requirements:
+      - id: req-log-performance-maintenance
+        statement: Logs MUST provide a sufficiently detailed view of hardware and network performance to
+          enable upgrade needs to be forecast, and to alert if validators are operating with excess
+          latency
+        statementRaw: >-
+          Logs MUST provide a sufficiently detailed view of hardware and network performance to
+          enable upgrade needs to be forecast,
+
+          and to alert if validators are operating with excess latency
+        after: Tools such as [Zabbix](https://github.com/zabbix/zabbix) can also display a live feed of CPU
+          and memory usage of each compute instance.
+    info:
+      - heading: Relevant external controls for Monitoring
+        level: 5
+        entries:
+          - external:
+              standard: SOC2
+              ref: A 1.1
+            bullet: "-"
+          - external:
+              standard: SOC2
+              ref: CC 7.2
+            bullet: "-"
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.16
+            bullet: "-"
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.21
+            bullet: "-"
+      - heading: Monitoring hardware helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - DOW3
+              - DOW7
+              - DOW10
+              - DOW15
+            bullet: "*"
+          - risks:
+              - GIR4
+            bullet: "*"

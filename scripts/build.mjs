@@ -58,8 +58,10 @@ if (process.platform === 'linux') {
     log('aa-exec or `chrome` AppArmor profile unavailable; running respec without wrapper (Chrome sandbox may fail on Ubuntu 24+)');
   }
 }
+// --port pinned: the default (3000) collides with common local services
+// (Docker Desktop, dev servers), failing with EADDRINUSE.
 execSync(
-  `${aaExec}npx respec --src=valos-spec.html --out=dist/valos-spec.html --localhost --haltonerror`,
+  `${aaExec}npx respec --src=valos-spec.html --out=dist/valos-spec.html --localhost --port 3117 --haltonerror`,
   { stdio: 'inherit' },
 );
 
@@ -83,11 +85,16 @@ if (!beforeBase) {
 }
 log('rewrote W3C CDN refs to ./fixup.js and ./base.css');
 
-// 4. Extract inline executable script blocks and compute SHA-256 hashes for
-//    a hash-based CSP. Skip <script src="..."> (no inline body) and
-//    type="application/json" / "application/ld+json" (data, not executable).
+// 4. Verify inline executable scripts against the PINNED manifest, and build
+//    the CSP hash list from the manifest — never from whatever is found in
+//    the rendered output. An unexpected, missing, or altered inline script
+//    fails the build instead of getting its hash whitelisted. Skips
+//    <script src="..."> (no inline body) and application/(ld+)json (data).
+//    After an intentional change (e.g. a respec upgrade), regenerate with:
+//      node scripts/build.mjs --update-csp-manifest
+const MANIFEST_PATH = join(ROOT, 'scripts', 'csp-manifest.json');
 const scriptRe = /<script\b([^>]*)>([\s\S]*?)<\/script>/g;
-const hashes = [];
+const found = new Map(); // element id -> sha256 (base64)
 let m;
 while ((m = scriptRe.exec(html)) !== null) {
   const attrs = m[1];
@@ -95,17 +102,49 @@ while ((m = scriptRe.exec(html)) !== null) {
   if (/\bsrc\s*=/.test(attrs)) continue;
   if (/type\s*=\s*["']application\/(ld\+)?json["']/.test(attrs)) continue;
   if (body.trim() === '') continue;
-  const digest = createHash('sha256').update(body, 'utf8').digest('base64');
-  hashes.push(`'sha256-${digest}'`);
+  const idMatch = /\bid\s*=\s*"([^"]+)"/.exec(attrs);
+  if (!idMatch) {
+    throw new Error(
+      `Inline executable <script> without an id in rendered output — cannot pin. Attrs: ${attrs.slice(0, 80)}`,
+    );
+  }
+  if (found.has(idMatch[1])) throw new Error(`Duplicate inline script id: ${idMatch[1]}`);
+  found.set(idMatch[1], createHash('sha256').update(body, 'utf8').digest('base64'));
 }
-log(`hashed ${hashes.length} inline script block(s) for CSP`);
+
+if (process.argv.includes('--update-csp-manifest')) {
+  writeFileSync(
+    MANIFEST_PATH,
+    JSON.stringify(Object.fromEntries([...found.entries()].sort()), null, 2) + '\n',
+  );
+  log(`csp-manifest.json regenerated with ${found.size} script(s) — review and commit it`);
+}
+
+const manifest = JSON.parse(readFileSync(MANIFEST_PATH, 'utf8'));
+const manifestProblems = [];
+for (const [id, hash] of found) {
+  if (!(id in manifest)) manifestProblems.push(`unexpected inline script '${id}' (not in csp-manifest.json)`);
+  else if (manifest[id] !== hash) manifestProblems.push(`inline script '${id}' content differs from csp-manifest.json`);
+}
+for (const id of Object.keys(manifest)) {
+  if (!found.has(id)) manifestProblems.push(`pinned inline script '${id}' missing from rendered output`);
+}
+if (manifestProblems.length) {
+  throw new Error(
+    `CSP script manifest check failed:\n  ${manifestProblems.join('\n  ')}\n` +
+      `If this change is intentional (e.g. a respec upgrade), run: node scripts/build.mjs --update-csp-manifest`,
+  );
+}
+const hashes = Object.values(manifest).map((h) => `'sha256-${h}'`);
+log(`verified ${found.size} inline script(s) against csp-manifest.json`);
 
 // 5. Build hardened CSP and swap in for the source CSP meta tag.
 //    default-src: 'self' — closes image/iframe/fetch/media loads by default
 //                (tracking pixels, foreign frames, exfiltration fetches).
-//    script-src: 'self' for ./fixup.js, hashes for inlines, no 'unsafe-inline'.
+//    script-src: 'self' for ./fixup.js, manifest hashes for inlines,
+//                no 'unsafe-inline'.
 //    style-src:  'self' + 'unsafe-inline' (audit FINDING-05 was script-only;
-//                style hashing is out of scope for this PR).
+//                style hashing is out of scope).
 //    worker-src: 'self' blob: (ReSpec's highlighter worker uses a Blob URL).
 //    object-src 'none': no plugin containers; base-uri 'self': no <base href>
 //    link hijacking; form-action 'none': the page has no forms, so nothing
@@ -153,6 +192,12 @@ writeFileSync(outPath, html);
 // 6. Copy vendored assets into dist/.
 copyFileSync(join(VENDOR, 'fixup.js'), join(DIST, 'fixup.js'));
 copyFileSync(join(VENDOR, 'base.css'), join(DIST, 'base.css'));
+
+// 6b. Emit the machine-readable dataset (experimental). Importing assemble.mjs
+//     re-runs assembly + validation; buildDataset() returns the merged graph.
+const { buildDataset } = await import('./assemble.mjs');
+writeFileSync(join(DIST, 'valos.json'), JSON.stringify(buildDataset(), null, 2) + '\n');
+log('wrote dist/valos.json (experimental dataset export)');
 
 // 7. Copy deploy assets.
 copyFileSync(join(ROOT, 'LICENSE'), join(DIST, 'LICENSE'));

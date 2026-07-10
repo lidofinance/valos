@@ -1,0 +1,94 @@
+section:
+  id: sec-controls-environment
+  title: Controls for Environmental Threat Management
+controls:
+  - title: Manage Environmental Threats
+    headingId: ctrl-manage-environmental-threats
+    requirements:
+      - id: req-log-environment
+        statement: Node Operators SHOULD have processes in place to manage environmental threats
+        after: >-
+          This includes monitoring for such threats and physically hardened facilities (e.g. fire-
+          and flood-resistant server rooms),
+
+          and physically decentralized infrastructure. It can also incorporate the use of DVT or
+          related approaches to managing physical decentralization.
+    info:
+      - heading: Relevant external controls for environmental threats
+        level: 5
+        entries:
+          - external:
+              standard: ISO27001
+              ref: Annex A 7
+            bullet: "*"
+      - heading: Environmental threat management helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS14
+              - SLS15
+            bullet: "*"
+          - risks:
+              - DOW1
+              - DOW5
+              - DOW7
+              - DOW9
+            bullet: "*"
+  - title: Distribute Validators physically
+    headingId: ctrl-distribute-validators-physically
+    requirements:
+      - id: req-use-dvt
+        statement: Node Operators SHOULD implement failover validators in different physical locations
+    info:
+      - heading: Distributed failover validators help address the following risks
+        level: 5
+        entries:
+          - risks:
+              - DOW1
+              - DOW2
+              - DOW3
+              - DOW4
+              - DOW5
+              - DOW7
+              - DOW9
+            bullet: "*"
+  - title: Manage Equipment Lifecycles
+    headingId: ctrl-manage-equipment-lifecycles
+    requirements:
+      - id: req-manage-equipment-lifecycle
+        statement: Node Operators SHOULD have processes in place to manage equipment lifecycles
+        after: >-
+          This includes monitoring performance and performing preventive maintenance, upgrades, or
+          replacing equipment as appropriate,
+
+          as well as processes that ensure equipment is correctly retired including removing data
+          and any hardware-based authorization.
+    info:
+      - heading: Relevant external controls for equipment lifecycles
+        level: 5
+        entries:
+          - external:
+              standard: ISO27001
+              ref: Annex A 7
+            bullet: "*"
+      - heading: Equipment life-cycle management helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - DOW3
+              - DOW6
+              - DOW7
+              - DOW9
+              - DOW15
+              - DOW20
+              - DOW21
+            bullet: "*"
+          - risks:
+              - KEC1
+              - KEC3
+              - KEC6
+            bullet: "*"
+          - risks:
+              - HCK4
+              - HCK6
+            bullet: "*"
