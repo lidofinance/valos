@@ -1,0 +1,432 @@
+<script class="remove">
+
+function clean() {
+  const head = document.querySelector(".head");
+  const copyright = document.querySelector(".copyright");
+  if (head && copyright) head.removeChild(copyright);
+}
+
+function RiskTableMitigations() {
+  const mitigations = document.querySelectorAll('[id^="sec-mit-"]');
+
+  mitigations.forEach((mitigation) => {
+    // Build <li><a href="#id">text</a></li>
+    const li = document.createElement("li");
+    const link = document.createElement("a");
+
+    link.href = `#${mitigation.id}`;
+    link.textContent = mitigation.textContent || "";
+
+    li.appendChild(link);
+
+    // Find containing section safely
+    const section = mitigation.closest("section");
+    if (!section) return;
+
+    const info = section.querySelector(".info");
+    if (!info) return;
+
+    const riskLinks = info.querySelectorAll("a");
+
+    riskLinks.forEach((riskLink) => {
+      const hash = riskLink.hash;
+
+      if (!hash) return;
+
+      // Case 1: Individual risk reference (#risk-*)
+      if (hash.startsWith("#risk-")) {
+        const target = document.querySelector(`${hash} .autofill-mits`);
+        if (target) {
+          target.appendChild(li.cloneNode(true));
+        }
+        return;
+      }
+
+      // Case 2: "All risks"
+      const firstListItem = info.querySelector("li");
+      if (firstListItem && firstListItem.textContent === "All risks") {
+        const allTargets = document.querySelectorAll(".autofill-mits");
+        allTargets.forEach((target) => {
+          target.appendChild(li.cloneNode(true));
+        });
+        return;
+      }
+
+      // Case 3: Section-level risk reference (#sec-risks*)
+      if (hash.startsWith("#sec-risks")) {
+        const sectionTarget = document.querySelector(hash);
+        if (!sectionTarget) return;
+
+        const autofillTargets = sectionTarget
+          .closest("section")
+          ?.querySelectorAll(".autofill-mits");
+
+        if (!autofillTargets) return;
+
+        autofillTargets.forEach((target) => {
+          target.appendChild(li.cloneNode(true));
+        });
+      }
+    });
+  });
+}
+
+function ControlTableSummary() {
+  "use strict";
+
+  const controlsTable = document.createElement("table");
+  controlsTable.id = "summaryTable";
+
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+
+  const headers = [
+    "Control Group",
+    "Control(s)",
+    "Status",
+    "Comments",
+    "Risks",
+    "External Controls",
+  ];
+
+  headers.forEach((text) => {
+    const th = document.createElement("th");
+    th.textContent = text;
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
+  controlsTable.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+
+  // Avoid :has() to prevent compatibility warnings
+  const allSections = document.querySelectorAll("section:not([id^='controls'])");
+
+  allSections.forEach((section) => {
+    if (!section.querySelector("b[id^='req-']")) return;
+
+    const item = section.cloneNode(true);
+    const row = document.createElement("tr");
+
+    // -----------------------
+    // Control Group column
+    // -----------------------
+
+    const groupCell = document.createElement("th");
+    groupCell.scope = "row";
+
+    const headingLink = item.querySelector("a[href]");
+    const headingText = item.querySelector("b");
+
+    if (headingLink && headingText) {
+      const link = document.createElement("a");
+      link.href = headingLink.getAttribute('href');
+      link.textContent = headingText.textContent || "";
+      groupCell.appendChild(link);
+    }
+
+    row.appendChild(groupCell);
+
+    // -----------------------
+    // Controls column
+    // -----------------------
+
+    const controlsCell = document.createElement("td");
+    const reqParagraphs = item.querySelectorAll("p");
+
+    const relevantControls = Array.from(reqParagraphs).filter((p) =>
+      p.querySelector("[id^='req-']")
+    );
+
+    let controlsElement;
+
+    if (relevantControls.length === 1) {
+      controlsElement = document.createElement("p");
+
+      const reqLink = relevantControls[0].querySelector("a");
+      const boldText = relevantControls[0].querySelector("b");
+
+      if (reqLink && boldText) {
+        controlsElement.id = `summ-${reqLink.hash.substring(1)}`;
+
+        const bold = document.createElement("b");
+        bold.textContent = boldText.textContent || "";
+        controlsElement.appendChild(bold);
+      }
+    } else {
+      controlsElement = document.createElement("ul");
+
+      relevantControls.forEach((p) => {
+        const reqLink = p.querySelector("a");
+        const boldText = p.querySelector("b");
+        if (!reqLink || !boldText) return;
+
+        const li = document.createElement("li");
+        li.id = `summ-${reqLink.hash.substring(1)}`;
+
+        const bold = document.createElement("b");
+        bold.textContent = boldText.textContent || "";
+
+        li.appendChild(bold);
+        controlsElement.appendChild(li);
+      });
+    }
+
+    if (controlsElement) {
+      controlsCell.appendChild(controlsElement);
+    }
+
+    row.appendChild(controlsCell);
+
+    // -----------------------
+    // Status column
+    // -----------------------
+
+    const statusCell = document.createElement("td");
+    const select = document.createElement("select");
+
+    select.id = `status-${item.id}`;
+    select.name = select.id;
+
+    const statusOptions = [
+      { suffix: "NT", label: "Not Tested" },
+      { suffix: "P", label: "Implemented" },
+      { suffix: "NA", label: "Not Applicable (passes)" },
+      { suffix: "PI", label: "Partial / Incomplete (fails)" },
+      { suffix: "F", label: "Fails" },
+    ];
+
+    statusOptions.forEach(({ suffix, label }) => {
+      const option = document.createElement("option");
+      option.name = `${item.id}-${suffix}`;
+      option.textContent = label;
+      select.appendChild(option);
+    });
+
+    statusCell.appendChild(select);
+    row.appendChild(statusCell);
+
+    // -----------------------
+    // Comments column
+    // -----------------------
+
+    const commentsCell = document.createElement("td");
+    commentsCell.appendChild(document.createElement("textarea"));
+    row.appendChild(commentsCell);
+
+    // -----------------------
+    // Risks column
+    // -----------------------
+
+    const risksCell = document.createElement("td");
+    const risksHeader = item.querySelector("[id$='risks']");
+
+    if (risksHeader) {
+      const risksList = risksHeader.parentElement?.nextElementSibling;
+
+      if (risksList) {
+        risksCell.appendChild(risksList.cloneNode(true));
+      } else {
+        const fallback = document.createElement("p");
+        const bold = document.createElement("b");
+        bold.textContent = "All risks";
+        fallback.appendChild(bold);
+        risksCell.appendChild(fallback);
+      }
+    }
+
+    row.appendChild(risksCell);
+
+    // -----------------------
+    // External Controls column
+    // -----------------------
+
+    const externalCell = document.createElement("td");
+    const externalHeader = item.querySelector("[id^='relevant']");
+
+    if (externalHeader) {
+      const externalList =
+        externalHeader.parentElement?.nextElementSibling;
+
+      if (externalList) {
+        externalCell.appendChild(externalList.cloneNode(true));
+      }
+    }
+
+    row.appendChild(externalCell);
+
+    tbody.appendChild(row);
+  });
+
+  controlsTable.appendChild(tbody);
+
+  const summaryTarget = document.getElementById("sec-summary-of-controls");
+  if (summaryTarget) {
+    summaryTarget.appendChild(controlsTable);
+  }
+}
+
+  // All config options at https://respec.org/docs/
+  var respecConfig = {
+    noNetwork: true,
+    postProcess: [clean, RiskTableMitigations, ControlTableSummary],
+    subTitle: "Validator Operations Standard",
+    specStatus: "base",
+    latestVersion: "https://lidofinance.github.io/valos/valos-spec.html",
+    edDraftURI: "https://lidofinance.github.io/valos/valos-spec.html",
+    copyrightStart: "2026",
+      editors: [{ name: "Chaals Nevile", url: "mailto:chaals@fastmail.fm" }],
+    authors: [
+      { name: "This work builds on the gratefully acknowledged work of all those who contributed to the DUCK knowledge base."},
+      { name: "The following have contributed directly to the production of this specific version:"},
+      { name: "Sean Anderson"},
+      { name: "Ivan Ang"},
+      { name: "Antonio Bartulovic"},
+      { name: "Angus Eaton"},
+      { name: "Albert Heinle"},
+      { name: "Sreepriya Kalarikka"},
+      { name: "Seamus McNab"},
+      { name: "Oriol Padilla"},
+      { name: "Isidoros Passadis"},
+      { name: "Ivan Petkov"},
+      { name: "Gabriella S"},
+      { name: "CK Teo"},
+      { name: "Julian Ueding"},
+      { name: "Scott Waller"},
+      { name: "@dracaryspierce", url: "https://github.com/dracaryspierce"},
+      { name: "Sven Brekelmans"},
+      { name: "Lucas"},
+      { name: "Mehdi Zerouali"}
+    ],
+    github: "lidofinance/valos",
+    format: "markdown",
+    localBiblio: {
+      CORS: {
+        title: "Cross-Origin Resource Sharing",
+        href: "https://fetch.spec.whatwg.org/#http-cors-protocol",
+        status: "Living Standard",
+        publisher: "WHATWG"
+      },
+      CSP: {
+        title: "Content Security Policy Level 3",
+        href: "https://www.w3.org/TR/CSP3/",
+        status: "Candidate Recommendation",
+        publisher: "W3C"
+      },
+      DUCK: {
+        title: "DUCK Knowledge Base",
+        href: "https://duck-initiative.gitbook.io/d.u.c.k.-knowledge-base"
+      },
+      KMS: {
+        title: "BSSC Key Management Standard version 1",
+        authors: ["J Kemp","M Nesbitt", "eds."],
+        publisher: "Blockchain Standards Security Council",
+        date: "2025",
+        href: "https://specs.blockchainssc.org/kms/v1/"
+      },
+      CCSS: {
+        title: "CCSS v9.0 Table",
+        publisher: "C4, 2025",
+        href: "https://cryptoconsortium.org/ccss-table-v9/"
+      },
+      DVT: {
+        title: "Distributed Validator Technology",
+        publisher: "Ethereum Foundation",
+        href: "https://ethereum.org/staking/dvt/"
+      },
+      EIP3076: {
+        title: "Slashing Protection Interchange Format",
+        authors: ["Michael Sproul (@michaelsproul)","Sacha Saint-Leger (@sachayves)","Danny Ryan (@djrtwo)"],
+        date: "2020-10-27",
+        publisher: "Ethereum Foundation",
+        href: "https://eips.ethereum.org/EIPS/eip-3076"
+      },
+      ETHdiverse: {
+        title: "Ethereum Merge: Run the majority client at your own peril!",
+        authors: ["Dankrad Feist"],
+        date: "2022-03-24",
+        href: "https://dankradfeist.de/ethereum/2022/03/24/run-the-majority-client-at-your-own-peril.html"
+      },
+      CRYPTOFAIL: {
+        title: "OWASP Top 10: A01:2021 - Cryptographic Failures",
+        publisher: "OWASP",
+        date: "2021",
+        href: "https://owasp.org/Top10/A01_2021-Cryptographic_Failures/"
+      },
+      GDPR: {
+        title: "Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 \
+          on the protection of natural persons with regard to the processing of personal data \
+          and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)",
+        href: "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32016R0679",
+      },
+      ISO27001: {
+        title: "ISO IEC 27001:2022 Information security, cybersecurity and privacy protection — Information security management systems — Requirements, 3rd Ed.",
+        publisher: "ISO",
+        date: "2022",
+        href: "https://www.iso.org/standard/27001"
+      },
+      LighthouseAS: {
+        title: "Slashing Protection - Lighthouse Book",
+        publisher: "SigmaPrime",
+        href: "https://lighthouse-book.sigmaprime.io/validator_slashing_protection.html"
+      },
+      NIST800_115: {
+        title: "Technical Guide to Information Security Testing and Assessment",
+        authors: ["Karen Scarfone", "Murugiah Souppaya", "Amanda Cody", "Angela Orebaugh"],
+        publisher: "NIST",
+        date: "2008",
+        href: "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf"
+      },
+      NIST800_61: {
+        title: "Computer Security Incident Handling Guide (NIST SP 800-61 Rev. 2)",
+        publisher: "NIST",
+        date: "2012",
+        href: "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
+      },
+      OWASP_ACCESS_CONTROL: {
+        title: "OWASP Top 10: A01:2021 - Broken Access Control",
+        publisher: "OWASP",
+        date: "2021",
+        href: "https://owasp.org/Top10/A01_2021-Broken_Access_Control/"
+      },
+      OWASP_TOP10: {
+        title: "OWASP Top 10",
+        publisher: "OWASP",
+        date: "2021",
+        href: "https://owasp.org/www-project-top-ten/"
+      },
+      PREMORTEM: {
+        title: "How to Use Pre-mortems to Prevent Problems, Blunders, and Disasters",
+        authors: ["Shreyas Doshi"],
+        date: "2022",
+        href: "https://medium.com/@shreyashere/how-to-use-pre-mortems-to-prevent-problems-blunders-and-disasters-6ecc6df6e22a"
+      },
+      SBOM: {
+        title: "Software Bill of Materials (SBOM)",
+        publisher: "CISA",
+        date: "2024",
+        href: "https://www.cisa.gov/sbom"
+      },
+      SOC2: {
+        title: "2017 Trust Services Criteria for Security, Availability, Processing Integrity, Confidentiality, and Privacy (With Revised Points of Focus — 2022)",
+        href: "https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022",
+        publisher: "AICPA, 2022"
+      },
+      SSRF: {
+        title: "OWASP Top 10: A10:2021 - Server-Side Request Forgery (SSRF)",
+        publisher: "OWASP",
+        date: "2021",
+        href: "https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/"
+      },
+      WikipediaBG: {
+        title: "Blue Green Deployment",
+        publisher: "Wikipedia",
+        href: "https://en.wikipedia.org/wiki/Blue%E2%80%93green_deployment"
+      }
+    }
+  };
+</script>
+
+</body>
+</html>

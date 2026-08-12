@@ -1,0 +1,253 @@
+section:
+  id: sec-controls-access
+  title: Controls for Access Control
+  intro: >-
+    <div class="info">
+
+
+    ##### Relevant external controls for Access Management in General
+
+
+    * [[?OWASP_ACCESS_CONTROL]]
+
+    * [[?ISO27001]] Annex A 5.15
+
+    * [[?SOC2]] CC 6.1
+
+    </div>
+controls:
+  - title: Authentication required for services
+    headingId: ctrl-authentication-required-for-services
+    requirements:
+      - id: req-appropriate-authentication
+        statement: All services MUST require appropriate authentication privileges
+        after: For example, a Node does not respond to anonymous requests from an unknown user.
+    info:
+      - heading: Authenticating access to services helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN1
+            bullet: "*"
+          - risks:
+              - DOW4
+            bullet: "*"
+          - risks:
+              - KEC7
+            bullet: "*"
+          - risks:
+              - HCK1
+              - HCK2
+              - HCK3
+              - HCK4
+            bullet: "*"
+          - risks:
+              - GIR22
+            bullet: "*"
+  - title: Segment Networks to Limit Access
+    headingId: ctrl-segment-networks-to-limit-access
+    requirements:
+      - id: req-segment-networks
+        statement: Networks MUST be segmented, to restrict access to systems that are identified as needing it
+      - id: req-no-outside-requests
+        statement: Nodes MUST NOT respond to requests from outside a defined network, except those that are
+          explicitly defined as necessary
+        after: Fulfilling this requirement means maintaining a whitelist of individual services that are
+          authorized to respond to requests from broader networks.
+    info:
+      - heading: Relevant external controls for network segmentation
+        level: 5
+        entries:
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.22
+            bullet: "*"
+      - heading: Segmenting networks helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - DOW10
+            bullet: "*"
+          - risks:
+              - GIR9
+            bullet: "*"
+          - risks:
+              - HCK6
+            bullet: "*"
+  - title: Access to physical hardware is limited
+    headingId: ctrl-access-to-physical-hardware-is-limited
+    requirements:
+      - id: req-protect-server-locations
+        statement: Entry to physical server locations MUST require authorization
+        after: For example, a biometric scan or the use of a keycard.
+    info:
+      - heading: Limiting access to hardware helps address the following risks
+        level: 5
+        entries:
+          - text: "  * [DOW3](#risk-dow-3), [DOW4](#risk-dow-4)"
+          - text: "  * [HCK6](#risk-hck-6)"
+  - title: Least Privilege is applied to individuals and software
+    headingId: ctrl-least-privilege-is-applied-to-individuals-and-software
+    requirements:
+      - id: req-least-privilege
+        statement: Software MUST NOT run with, and a user MUST NOT have a higher level of privilege than
+          necessary
+        after: For example, check that software does not run as root, that users do not log in directly with
+          root privileges, and software and users are granted fine-grained access based on need
+          rather than broad-based access for simplicity.
+    info:
+      - heading: Least Privilege helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - DOW4
+              - DOW5
+              - DOW11
+              - DOW12
+              - DOW13
+              - DOW14
+            bullet: "*"
+          - risks:
+              - KEC7
+            bullet: "*"
+          - risks:
+              - HCK1
+              - HCK2
+              - HCK3
+              - HCK4
+            bullet: "*"
+          - risks:
+              - SPS0
+            bullet: "*"
+      - heading: Relevant external controls for Least Privilege
+        level: 5
+        entries:
+          - external:
+              standard: SOC2
+              ref: CC 6.3
+            bullet: "*"
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.2
+            bullet: "*"
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.18
+            bullet: "*"
+  - title: Regularly Review Access Rights Management
+    headingId: ctrl-regularly-review-access-rights-management
+    requirements:
+      - id: req-review-access-rights
+        statement: A review of Access Rights MUST take place regularly
+        after: >-
+          This covers both the processes and tools for granting and revoking access rights, and
+          verifying that they are effectively managing access rights
+
+          according to the relevant principles ([=Least Privilege=], [=Role-based Access Control=].
+
+          Best practice for this review includes:
+
+
+          - analyzing access logs for physical access to hardware, and ensuring authorized
+          individuals are not given access to hardware
+
+          - verifying access to signing keys is limited to individuals whose roles mean they need
+          it, and that all who need that access have it
+
+          - ensuring that processes are effectively followed and meet the Node Operator's business
+          needs
+
+          - verify that software is run in a way that minimizes its access
+    info:
+      - heading: Regular review of access rights helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS9
+              - SLS10
+              - SLS11
+              - SLS12
+              - SLS13
+            bullet: "*"
+          - risks:
+              - DOW16
+              - DOW17
+              - DOW18
+            bullet: "*"
+          - risks:
+              - GIR1
+              - GIR5
+              - GIR7
+            bullet: "*"
+      - heading: Relevant external controls for Access Rights Review
+        level: 5
+        entries:
+          - external:
+              standard: ISO27001
+              ref: Annex A 5.17
+            bullet: "*"
+          - external:
+              standard: ISO27001
+              ref: Annex A 5.18
+            bullet: "*"
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.18
+            bullet: "*"
+  - title: Protect Data in Transit and Storage
+    headingId: ctrl-protect-data-in-transit-and-storage
+    requirements:
+      - id: req-encrypt-data
+        statement: All data in transit MUST be encrypted
+        joinNext: ", "
+      - id: req-direct-transmission
+        statement: and SHOULD use the most direct transmission available
+      - id: req-store-encrypted
+        statement: All data "at rest" MUST be stored in encrypted form
+        after: >-
+          This covers all services that communicate data, such as Databases, Web servers, Load
+          balancers, Authentication systems, CI/CD pipeline tools, etc.
+
+
+          Best practices include ensuring that the latest version of TLS is being used, with secure
+          algorithms.
+
+
+          Current best practice includes assessing the cost and risk associated with moving to
+          quantum-safe cryptography, and appropriate timelines.
+    info:
+      - heading: Relevant external controls for encrypted data
+        level: 5
+        entries:
+          - text: "* [[?CRYPTOFAIL]]"
+          - external:
+              standard: SOC2
+              ref: CC 6.7
+            bullet: "*"
+      - heading: Data encryption helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS11
+              - SLS12
+              - SLS13
+            bullet: "*"
+          - risks:
+              - DOW18
+            bullet: "*"
+          - risks:
+              - KEC1
+              - KEC6
+              - KEC7
+              - KEC9
+            bullet: "*"
+          - risks:
+              - HCK1
+              - HCK2
+              - HCK3
+              - HCK4
+              - HCK6
+            bullet: "*"
+          - risks:
+              - GIR10
+            bullet: "*"

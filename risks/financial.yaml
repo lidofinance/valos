@@ -1,0 +1,50 @@
+section:
+  id: sec-risks-financial
+  title: Financial and Regulatory Risk
+  intro: These are risks explicitly arising from management of financial and regulatory compliance
+    processes. (Many other risk categories have a direct financial impact).
+columns:
+  - label: ID
+  - label: Risk Group
+  - label: Risk Vectors
+    width: 20%
+  - label: Risk Vector Description
+    width: 25%
+  - label: Relevant Mitigations
+risks:
+  - id: FIN1
+    group: Process
+    vector: Onboarding
+    description: Onboarded entities are not adequately vetted to ensure financial, operational,
+      regulatory, or reputational appropriateness, resulting in potential financial, legal, or
+      reputational damage
+  - id: FIN2
+    group: Infrastructure
+    vector: Deposit
+    description: Fiat and digital assets deposited are not received in the appropriate currency,
+      address, or fiat account, leading to financial loss
+  - id: FIN3
+    group: Infrastructure
+    vector: Deposit
+    description: Fiat and digital assets are not correctly processed and assets are misallocated to
+      individuals, entities, or operational addresses leading to financial loss
+  - id: FIN4
+    group: Process
+    vector: Withdrawal
+    description: Fiat and digital assets are not correctly disbursed to individuals, entities, or
+      addresses, leading to financial and reputational loss
+  - id: FIN5
+    group: Infrastructure
+    vector: Compounding
+    description: Staking rewards are not appropriately collected, governed, restaked, compounded, or
+      allocated to clients leading to financial loss
+  - id: FIN6
+    group: Process
+    vector: Reporting
+    description: Financial reporting requirements are not adhered to or inconsistently applied, leading
+      to regulatory, legal, and financial consequences
+  - id: FIN7
+    group: Process
+    vector: Up to date compliance
+    description: Failure to review relevant regulation and update compliance procedures leading to
+      financial, legal, and regulatory repercussions

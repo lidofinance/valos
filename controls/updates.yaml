@@ -1,0 +1,399 @@
+section:
+  id: sec-controls-updates
+  title: Controls for Development and Update Process
+controls:
+  - title: Develop Software as Secure by Design
+    headingId: ctrl-develop-software-as-secure-by-design
+    requirements:
+      - id: req-secure-development
+        statement: Code development MUST follow secure development processes to avoid introducing security
+          risks
+        after: This is a broad area. A few specific controls are included in this specification, but this
+          requirement is intended to ensure a general production philosophy.
+    info:
+      - heading: Relevant external controls for secure development
+        level: 5
+        entries:
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.25
+            bullet: "*"
+      - heading: Secure software development lifecycle (SSDLC) helps address the following risks
+        level: 5
+        entries:
+          - text: "* All [Slashing Risks](#sec-risks-slashing)"
+          - risks:
+              - DOW2
+              - DOW10
+              - DOW11
+              - DOW12
+              - DOW13
+              - DOW14
+              - DOW20
+            bullet: "*"
+          - risks:
+              - KEC7
+            bullet: "*"
+          - risks:
+              - HCK1
+              - HCK2
+              - HCK3
+              - HCK4
+              - HCK5
+            bullet: "*"
+          - risks:
+              - GIR6
+              - GIR10
+              - GIR11
+              - GIR13
+              - GIR14
+              - GIR15
+            bullet: "*"
+          - risks:
+              - SPS0
+            bullet: "*"
+  - title: Follow Update Procedures
+    headingId: ctrl-follow-update-procedures
+    requirements:
+      - id: req-document-update-process
+        statement: Node Operators MUST document procedures for updates to code
+    info:
+      - heading: Relevant external controls for managed software updates
+        level: 5
+        entries:
+          - external:
+              standard: SOC2
+              ref: CC 8.1
+            bullet: "*"
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.32
+            bullet: "*"
+      - heading: Managed software updates help address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS6
+              - SLS7
+            bullet: "*"
+          - risks:
+              - DOW2
+              - DOW11
+              - DOW12
+              - DOW13
+              - DOW14
+              - DOW19
+              - DOW20
+              - DOW21
+            bullet: "*"
+          - risks:
+              - GIR4
+              - GIR13
+              - GIR18
+              - GIR19
+            bullet: "*"
+          - risks:
+              - SPS0
+            bullet: "*"
+  - title: Use Code Repositories
+    headingId: ctrl-use-code-repositories
+    requirements:
+      - id: req-use-code-repo
+        statement: Source code MUST be managed in a repository
+      - id: req-dont-edit-prod
+        statement: All changes to deployed production code MUST be tested and reviewed before deployment
+        after: This covers all changes to code, including when it is necessary to roll back an upgrade.
+    info:
+      - heading: Using Code Repositories help address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS6
+              - SLS7
+            bullet: "*"
+          - risks:
+              - DOW2
+              - DOW11
+              - DOW12
+              - DOW13
+              - DOW14
+              - DOW19
+              - DOW20
+              - DOW21
+            bullet: "*"
+          - risks:
+              - GIR4
+              - GIR13
+              - GIR18
+              - GIR19
+              - GIR21
+            bullet: "*"
+          - risks:
+              - SPS0
+            bullet: "*"
+  - title: Check Third-party Code for Vulnerabilities before Updating
+    headingId: ctrl-check-third-party-code-for-vulnerabilities-before-updating
+    requirements:
+      - id: req-check-vulnerabilities
+        statement: Updates to third-party software MUST be checked for vulnerabilities before deployment
+        after: >-
+          This covers verifying that all software updates, including validator and other node
+          clients as well as specifically written custom code or updates,
+
+          have been audited to ensure they are not introducing known or new vulnerabilities.
+
+
+          Best practice is to perform both internal and independent external audit, and to ensure
+          the identity of the coders is known.
+
+          Likewise, in best practice third-party code developers are only given access to code they
+          need to do their work,
+
+          are held to high standards of confidentiality, and work with a well-defined set of
+          expectations.
+    info:
+      - heading: Relevant external controls for checking third-party software
+        level: 5
+        entries:
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.7
+            bullet: "*"
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.30
+            bullet: "*"
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.32
+            bullet: "*"
+          - external:
+              standard: SOC2
+              ref: CC 8.1
+            bullet: "*"
+      - heading: Checking third-party software helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN3
+              - FIN4
+              - FIN5
+              - FIN6
+            bullet: "*"
+          - risks:
+              - SLS6
+              - SLS7
+              - SLS17
+              - SLS18
+              - SLS19
+            bullet: "*"
+          - risks:
+              - DOW11
+              - DOW12
+              - DOW13
+              - DOW14
+            bullet: "*"
+          - risks:
+              - KEC7
+            bullet: "*"
+          - risks:
+              - HCK1
+            bullet: "*"
+          - risks:
+              - SPS0
+            bullet: "*"
+  - title: Verify Configuration on Update
+    headingId: ctrl-verify-configuration-on-update
+    requirements:
+      - id: req-check-config-on-update
+        statement: Software update procedures MUST include an assessment and application of configuration
+          settings
+    info:
+      - heading: Verifying configurations on update helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS7
+            bullet: "*"
+          - risks:
+              - DOW2
+              - DOW13
+              - DOW21
+            bullet: "*"
+          - risks:
+              - GIR3
+              - GIR15
+            bullet: "*"
+  - title: Validate Inputs and outputs
+    headingId: ctrl-validate-inputs-and-outputs
+    requirements:
+      - id: req-verify-inputs
+        statement: Code MUST verify that input is safe before operating on it
+      - id: req-valid-output
+        statement: Code MUST NOT produce invalid outputs
+      - id: req-protect-vs-ssrf
+        statement: Components SHOULD use [[[CORS]]] and [[[CSP]]] to protect against Server Side Request
+          Forgery
+        after: These requirements ensure that data passed between software components can be handled safely
+          by the receiving component. It includes data entered manually by users.
+    info:
+      - heading: External controls for validating data passed between components
+        level: 5
+        entries:
+          - text: "* [[?SSRF]]"
+          - external:
+              standard: SOC2
+              ref: PI 1.2
+            bullet: "*"
+          - external:
+              standard: SOC2
+              ref: PI 1.3
+            bullet: "*"
+      - heading: Data validation helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - HCK5
+            bullet: "*"
+          - risks:
+              - GIR16
+            bullet: "*"
+  - title: Ensure Good Test Coverage
+    headingId: ctrl-ensure-good-test-coverage
+    requirements:
+      - id: req-test-coverage
+        statement: Node Operators MUST have thorough test coverage of their software and operating procedures
+        after: >-
+          There is no magic percentage figure, but ideally unit tests and integration tests cover
+          every functionality and interaction
+
+          managed by code the Node Operator uses, whether self-managed or provided by a third party.
+    info:
+      - heading: Relevant external controls for test coverage
+        level: 5
+        entries:
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.29
+            bullet: "*"
+      - heading: Good test coverage helps address all risks
+        level: 5
+        entries: []
+  - title: Test All Interactions Impacted by Software Updates
+    headingId: ctrl-test-all-interactions-impacted-by-software-updates
+    requirements:
+      - id: req-reaudit-everything-impacted
+        statement: Updates MUST include an audit of all code and user interactions they impact
+        after: This means testing not just the new code deployed, but also existing code that interacts with
+          anything the update changes, to ensure that integration is not introducing a
+          vulnerability. This extends to non-blockchain code used to interact with the Validator,
+          where applicable.
+    info:
+      - heading: Testing all updated interactions helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS6
+              - SLS7
+            bullet: "*"
+          - risks:
+              - DOW2
+              - DOW11
+              - DOW12
+              - DOW13
+              - DOW14
+              - DOW19
+              - DOW20
+              - DOW21
+            bullet: "*"
+          - risks:
+              - GIR4
+              - GIR13
+              - GIR18
+              - GIR19
+              - GIR21
+            bullet: "*"
+          - risks:
+              - SPS0
+            bullet: "*"
+  - title: Deploy via staging test environments
+    headingId: ctrl-deploy-via-staging-test-environments
+    requirements:
+      - id: req-deploy-via-testnet
+        statement: Updates MUST be tested on a staging environment that as closely as possible matches the
+          proposed deployment environment before deployment as "production" on a live network
+    info:
+      - heading: Relevant external controls for pre-deployment testing
+        level: 5
+        entries:
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.31
+            bullet: "*"
+      - heading: Using test environments helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS6
+              - SLS7
+            bullet: "*"
+          - risks:
+              - DOW2
+              - DOW11
+              - DOW12
+              - DOW13
+              - DOW14
+              - DOW19
+              - DOW20
+              - DOW21
+            bullet: "*"
+          - risks:
+              - GIR4
+              - GIR11
+              - GIR13
+              - GIR18
+              - GIR19
+              - GIR21
+            bullet: "*"
+          - risks:
+              - SPS0
+            bullet: "*"
+  - title: Maintain Emergency Rollback Procedures
+    headingId: ctrl-maintain-emergency-rollback-procedures
+    requirements:
+      - id: req-enable-rollback
+        statement: Node Operators MUST have a process to enable emergency rollback of upgrades
+    info:
+      - heading: Emergency rollback helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN3
+              - FIN4
+              - FIN5
+              - FIN6
+            bullet: "*"
+          - risks:
+              - SLS6
+              - SLS7
+            bullet: "*"
+          - risks:
+              - DOW2
+              - DOW11
+              - DOW12
+              - DOW13
+              - DOW14
+              - DOW19
+              - DOW20
+              - DOW21
+            bullet: "*"
+          - risks:
+              - GIR4
+              - GIR13
+              - GIR18
+              - GIR19
+              - GIR21
+            bullet: "*"
+          - risks:
+              - SPS0
+            bullet: "*"

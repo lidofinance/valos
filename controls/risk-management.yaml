@@ -1,0 +1,105 @@
+section:
+  id: sec-controls-risk-management
+  title: Controls for Risk Management
+controls:
+  - title: Ensure Activities Support Operational Goals
+    headingId: ctrl-ensure-activities-support-operational-goals
+    requirements:
+      - id: req-document-process-relevant
+        statement: Node Operators MUST document how their processes and tools serve their business goals
+    info:
+      - heading: Relevant external Controls for aligning processes and tools with business goals
+        level: 5
+        entries:
+          - external:
+              standard: SOC2
+              ref: CC 5.2
+            bullet: "*"
+      - heading: Assessment of activities' relevance helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS1
+              - SLS2
+              - SLS3
+              - SLS4
+              - SLS5
+              - SLS11
+              - SLS12
+              - SLS13
+              - SLS14
+              - SLS15
+              - SLS17
+              - SLS18
+            bullet: "*"
+          - risks:
+              - DOW16
+              - DOW18
+            bullet: "*"
+          - risks:
+              - GIR5
+            bullet: "*"
+  - title: Assess Dependencies and Replacement Strategies and Costs
+    headingId: ctrl-assess-dependencies-and-replacement-strategies-and-costs
+    requirements:
+      - id: req-review-dependency-replacement
+        statement: Node Operators MUST review their dependencies on staff and external suppliers and how to
+          replace key staff or suppliers every year
+        after: External suppliers can change terms, shut down products or support, and key staff can leave
+          or be indisposed for long enough to impact business functions.
+    info:
+      - heading: Assessing dependency replacement helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN1
+            bullet: "-"
+          - risks:
+              - SLS6
+            bullet: "-"
+          - risks:
+              - DOW11
+              - DOW14
+              - DOW19
+              - DOW20
+            bullet: "-"
+          - risks:
+              - GIR24
+              - GIR25
+            bullet: "-"
+  - title: Document Risk Assessments
+    headingId: ctrl-document-risk-assessments
+    requirements:
+      - id: req-document-risk-assessment
+        statement: Node Operators MUST document their assessments of risks, and what risks they class as
+          acceptable
+    info:
+      - heading: Relevant external controls for risk assessment
+        level: 5
+        entries:
+          - external:
+              standard: SOC2
+              ref: CC 3.1
+            bullet: "*"
+      - heading: Internal risk assessment is an important part of addressing all risks
+        level: 5
+        entries: []
+  - title: Follow Processes
+    headingId: ctrl-follow-processes
+    requirements:
+      - id: req-follow-mitigation-process
+        statement: Node Operators MUST ensure that processes for risk mitigation are followed in practice
+        after: Best practice is to ensure that where possible, [processes are
+          automated](#process-automation)
+    info:
+      - heading: Following processes helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN1
+              - FIN2
+              - FIN3
+              - FIN4
+              - FIN5
+              - FIN6
+            bullet: "*"

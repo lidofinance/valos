@@ -1,0 +1,195 @@
+section:
+  id: sec-controls-tech-stack
+  title: Controls for Technology Stack
+controls:
+  - title: Keep Software Updated
+    headingId: ctrl-keep-software-updated
+    requirements:
+      - id: req-update-3p-software
+        statement: Node Operators MUST keep third-party software up to date
+        after: >-
+          This control does not imply that the latest available update is automatically applied,
+
+          rather that Node Operators have clear and effective mechanisms to ensure they are aware of
+          updates and apply them in accordance with their update management procedures,
+
+          taking into account the controls in <a href="#sec-controls-updates">Controls for
+          Development and Update Process</a>.
+
+
+          Best practice is to monitor software in use, to know when an update is available,
+
+          and to update as fast as possible while following procedures to manage those updates
+          securely.
+
+          In some cases, assessing an update will lead to a decision that there is no need to apply
+          a specific update, or a risk in doing so that outweighs the benefits.
+    info:
+      - heading: Updated software helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - DOW19
+            bullet: "*"
+          - risks:
+              - HCK4
+            bullet: "*"
+  - title: Anti-slashing Database
+    headingId: ctrl-anti-slashing-database
+    requirements:
+      - id: req-local-slashing-db
+        statement: Node Operators MUST have a persistent local anti-slashing database
+    info:
+      - heading: A local anti-slashing database helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS1
+              - SLS2
+              - SLS3
+              - SLS4
+              - SLS14
+              - SLS15
+              - SLS18
+              - SLS19
+            bullet: "*"
+  - title: Signature management
+    headingId: ctrl-signature-management
+    requirements:
+      - id: req-document-signature-requirements
+        statement: Node Operators MUST document signature requirements for high-value transactions,
+          including the definitions used to identify such transactions
+      - id: req-use-signature-management
+        statement: Node Operators SHOULD use signature management tools to help secure high-value transactions
+      - id: req-ensure-signature-continuity
+        statement: The primary and backup/failover versions of Signature management tools MUST implement
+          mechanisms to ensure data continuity
+    info:
+      - heading: Signature management helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS1
+              - SLS2
+              - SLS3
+              - SLS4
+              - SLS7
+              - SLS15
+            bullet: "*"
+          - risks:
+              - KEC6
+              - KEC9
+            bullet: "*"
+          - risks:
+              - GIR7
+              - GIR16
+            bullet: "*"
+  - title: Client Diversity
+    headingId: ctrl-client-diversity
+    requirements:
+      - id: req-client-diversity
+        statement: Node Operators MUST deploy at least 2 distinct client applications for any level of the
+          blockchain where at least 3 clients are available
+    info:
+      - heading: Client diversity helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS6
+              - SLS20
+            bullet: "*"
+          - risks:
+              - DOW2
+              - DOW11
+              - DOW12
+              - DOW13
+              - DOW14
+            bullet: "*"
+          - risks:
+              - GIR13
+              - GIR24
+            bullet: "*"
+  - title: Secure Devices
+    headingId: ctrl-secure-devices
+    requirements:
+      - id: req-dedicated-devices
+        statement: Devices that control critical functions MUST be dedicated to that purpose, and configured
+          with only the necessary software for their intended purpose
+        after: This applies to servers acting as validators, but also to devices authorized to access and
+          administer those servers remotely.
+    info:
+      - heading: Securing devices helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - DOW2
+            bullet: "*"
+          - risks:
+              - HCK1
+              - HCK2
+              - HCK3
+              - HCK4
+            bullet: "*"
+  - title: Validator Withdrawal
+    headingId: ctrl-validator-withdrawal
+    requirements:
+      - id: req-document-withdrawal-process
+        statement: Node Operators MUST implement processes to withdraw validators from a network in such a
+          way that they are not penalised for disappearing
+    info:
+      - heading: Managed validator withdrawal helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - SLS2
+            bullet: "*"
+          - risks:
+              - SPS1
+            bullet: "*"
+  - title: Manage Software and Hardware Configuration
+    headingId: ctrl-manage-software-and-hardware-configuration
+    requirements:
+      - id: req-document-configuration
+        statement: Node Operators MUST document configuration of software and hardware
+    info:
+      - heading: Relevant external controls for configuration management
+        level: 5
+        entries:
+          - external:
+              standard: SOC2
+              ref: CC 7.1
+            bullet: "*"
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.9
+            bullet: "*"
+      - heading: Configuration management helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN3
+              - FIN4
+              - FIN5
+              - FIN6
+            bullet: "*"
+          - risks:
+              - DOW12
+              - DOW13
+              - DOW14
+              - DOW20
+              - DOW21
+            bullet: "*"
+          - risks:
+              - KEC6
+              - KEC9
+            bullet: "*"
+          - risks:
+              - GIR3
+              - GIR18
+              - GIR19
+              - GIR20
+            bullet: "*"
+          - risks:
+              - RER1
+              - RER4
+            bullet: "*"

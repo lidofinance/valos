@@ -1,0 +1,104 @@
+section:
+  id: sec-risks-downtime
+  title: Downtime Risk
+  intro: >-
+    These risks are due to connectivity issues. Depending on the network these can lead to reduced
+    rewards, in effect an opportunity cost,
+
+    or to more direct financial penalties.
+columns:
+  - label: ID
+  - label: Risk Group
+  - label: Risk Vectors
+    width: 20%
+  - label: Risk Vector Description
+    width: 25%
+  - label: Relevant Mitigations
+risks:
+  - id: DOW1
+    group: Infrastructure
+    vector: "External: Operational Failure of Cloud Service Provider"
+    description: Cloud Downtime, malfunction
+  - id: DOW2
+    group: Infrastructure
+    vector: Operational Failure of own bare metal set-up due to malfunction software
+    description: Malfunction of software (e.g. validator client or third party software) leads to downtime
+  - id: DOW3
+    group: Infrastructure
+    vector: Operational Failure of own bare metal set-up due to malfunction hardware
+    description: Malfunction of hardware (e.g. physical network, computer system, CPU, RAM) leads to downtime
+  - id: DOW4
+    group: Infrastructure
+    vector: "External: Operational Failure of own bare metal set-up due to people (man-made)"
+    description: Employees are responsible for the downtime event (accidentally or intentionally)
+  - id: DOW5
+    group: Infrastructure
+    vector: "External: Operational Failure of own bare metal set-up due to natural causes"
+    description: A natural event (e.g. earthquake, flood, hurricane,...) leads to downtime
+  - id: DOW6
+    group: Infrastructure
+    vector: Failure to design for high availability
+    description: Having too few beacon nodes relative to validator clients, leading to:<br>- opportunity
+      costs<br>- slashing on some networks
+  - id: DOW7
+    group: Infrastructure
+    vector: "External: Internet connectivity"
+    description: Loss of infrastructure network connection due to:<br>- Sudden cloud outage<br>- Sudden
+      internet failure in on-premise machines<br>- Accidental firewall change locks out access.
+  - id: DOW8
+    retired:
+      mergedInto: DOW9
+  - id: DOW9
+    group: Infrastructure
+    vector: Power supply
+    description: Volatile power supply damages infrastructure or causes system downtime
+  - id: DOW10
+    group: Infrastructure
+    vector: "External: DDOS attack"
+    description: Systems unresponsive, slowed down, and compromised
+  - id: DOW11
+    group: Software
+    vector: Software Bug in the Validator Client
+    description: Downtime or accidental interpretation of dishonest behavior
+  - id: DOW12
+    group: Software
+    vector: Software Bug in the Validator Client (Intentional or accidental) through software update
+    description: New versions of a validator client that may cause errors that lead to
+      downtime<br>(Supply chain attack)
+  - id: DOW13
+    group: Software
+    vector: Software Bug in the Validator Client through software customization
+    description: <br>New versions of a validator client may cause errors that lead to downtime
+  - id: DOW14
+    group: Software
+    vector: Software Bug in third party software
+    description: <br>Third party software failure can lead to downtime of the whole system
+  - id: DOW15
+    group: Software
+    vector: Latency / Failure of relays
+    description: Latency / Failure of relays
+  - id: DOW16
+    retired:
+      replacedBy:
+        - HCK2
+  - id: DOW17
+    retired:
+      replacedBy:
+        - HCK3
+  - id: DOW18
+    retired:
+      replacedBy:
+        - HCK4
+  - id: DOW19
+    group: Software
+    vector: Running outdated validator software
+    description: The node operator is not updating its validator software
+  - id: DOW20
+    group: Software
+    vector: Validator client update incompatible with IT system
+    description: System downtime after validator client update caused by incompatibility
+  - id: DOW21
+    group: Software
+    vector: Updates take too long
+    description: System downtime caused by software update processes taking longer than planned, with no
+      failover capacity

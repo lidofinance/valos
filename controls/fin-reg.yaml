@@ -1,0 +1,42 @@
+section:
+  id: sec-controls-fin-reg
+  title: Controls for Financial and Regulatory Risk
+controls:
+  - title: Payment rails
+    headingId: ctrl-payment-rails
+    requirements:
+      - id: req-document-payment-rails
+        statement: Node Operators MUST document payment processes including currency and exchange details
+    info:
+      - heading: Payment rails help address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN2
+              - FIN3
+              - FIN4
+              - FIN5
+              - FIN6
+            bullet: "*"
+          - risks:
+              - HCK1
+            bullet: "*"
+          - risks:
+              - RER4
+            bullet: "*"
+  - title: Updated Regulatory Compliance
+    headingId: ctrl-updated-regulatory-compliance
+    requirements:
+      - id: req-review-regulatory-compliance
+        statement: Node Operators MUST review relevant regulation and update processes for compliance as
+          necessary at least quarterly
+    info:
+      - heading: Updated regulatory compliance helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN6
+            bullet: "*"
+          - risks:
+              - RER2
+            bullet: "*"

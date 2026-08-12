@@ -1,0 +1,115 @@
+section:
+  id: sec-risks-infra
+  title: General Infrastructure Risk
+  intro: Risks related to process errors, inefficiencies, and weak general infrastructure.
+columns:
+  - label: ID
+  - label: Risk Group
+  - label: Risk Vectors
+    width: 20%
+  - label: Risk Vector Description
+    width: 25%
+  - label: Relevant Mitigations
+risks:
+  - id: GIR1
+    retired:
+      replacedBy:
+        - HCK4
+  - id: GIR2
+    retired:
+      replacedBy:
+        - HCK2
+        - HCK3
+  - id: GIR3
+    group: Infrastructure
+    vector: Fix versions on every deploy
+    description: Downtime if a system needs to be just re-started if newest version is accidentally pulled
+  - id: GIR4
+    group: Process
+    vector: Insufficient monitoring/logging
+    description: "- Inability to learn from incidents<br>- Late detection of incidents<br>- insufficient
+      automation to react to incidents"
+  - id: GIR5
+    retired:
+      replacedBy:
+        - HCK3
+  - id: GIR6
+    group: Process
+    vector: No password rotation
+    description: "- Leak of passwords<br>- brute force"
+  - id: GIR7
+    group: Process
+    vector: Use of direct auth
+    description: Authentication information does not expire timely and can be used later.
+  - id: GIR8
+    retired:
+      replacedBy:
+        - HCK5
+  - id: GIR9
+    group: Infrastructure
+    vector: Failure to properly perform network segmentation
+    description: Having containers or nodes accessible from any IP addresses increases the attack vector
+      enormously
+  - id: GIR10
+    group: Infrastructure
+    vector: Lack of encrypted traffic between services and deployment scripts
+    description: Anyone on the network can sniff out packages with secrets included, and may be able to
+      steal passwords and tokens in this way
+  - id: GIR11
+    group: Infrastructure
+    vector: No separate tests and staging environments
+    description: Improper change management and testing of software updates "in production"
+  - id: GIR13
+    group: Infrastructure
+    vector: High Blast radius of software bug in overall system
+    description: A small error affects the whole system and all clients right away, instead of being
+      caught early with limited effect on the whole system.
+  - id: GIR14
+    group: Infrastructure
+    vector: Low Infrastructure provider security
+    description: Hacks through the apis of the infrastructure provider
+  - id: GIR15
+    group: Infrastructure
+    vector: CVE Monitoring
+    description: Attack on the system suddenly possible once published
+  - id: GIR16
+    group: People
+    vector: Human error
+    description: Anything a human can touch can go wrong
+  - id: GIR17
+    group: Process
+    vector: Use of non-hardened images
+    description: Attack on the system using the weakest link of a given node/container
+  - id: GIR18
+    group: Process
+    vector: Insufficient change management mechanisms in place
+    description: "- Downtime on update<br>- Slow down in reaction time to incident"
+  - id: GIR19
+    group: Process
+    vector: Lack of automation for deployment
+    description: "- Downtime on update<br>- Slow down in reaction time to incident"
+  - id: GIR20
+    group: Process
+    vector: Lack of testing (software and infrastructure)
+    description: "- Downtime on update<br>- Slow down in reaction time to incident"
+  - id: GIR21
+    group: Process
+    vector: Lack of enforced code review
+    description: "- Downtime on update<br>- Slow down in reaction time to incident"
+  - id: GIR22
+    group: Process
+    vector: Lack of Security training (password hygiene, phishing attacks, ...)
+    description: Employees spill secrets
+  - id: GIR23
+    group: Process
+    vector: Make-shift container orchestration procedures
+    description: Failure when e.g. failover is actually needed to be performed
+  - id: GIR24
+    group: Software
+    vector: Third party software and vendors
+    description: Suboptimal third-party software practices
+  - id: GIR25
+    group: People
+    vector: Centralized knowledge
+    description: If the infrastructure knowledge is not shared across the team, this could lead to a
+      heavy dependency on a single person

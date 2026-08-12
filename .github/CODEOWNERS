@@ -1,2 +1,23 @@
+# Per-folder expectations (the two ownership rules below are unchanged):
+#
+#   risks/         contributor-editable risk data (YAML)
+#   controls/      contributor-editable control data (YAML)
+#   mitigations/   contributor-editable mitigation prose (Markdown + frontmatter)
+#                  ^ these three are the external contribution surface; the build
+#                    guarantees they cannot inject executable output (field
+#                    escaping + allowlist linter + global id-uniqueness +
+#                    pinned inline-script manifest + hardened CSP).
+#   templates/     document skeleton (head/tail) and flow/ generated-content
+#                  placement — reviewed code, changes the whole document.
+#   scripts/       build, assemble, lint and verification code — reviewed code.
+#   vendor/        pinned third-party assets, checksum-verified — reviewed code.
+#   Webflow/       landing-page export (not contributor-facing) — reviewed;
+#                  hardened at build by scripts/process-webflow.mjs.
+#   assets/        images shipped with the spec — reviewed.
+#   docs/          contributor and design notes — reviewed.
+#   .github/       CI and workflows — reviewed code.
+#   root files     package.json, bs-config.cjs, valos-spec.html (generated),
+#                  README, LICENSE — reviewed code.
+
 * @lidofinance/lido-valset-nom
 .github @lidofinance/review-gh-workflows

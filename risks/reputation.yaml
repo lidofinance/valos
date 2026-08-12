@@ -1,0 +1,36 @@
+section:
+  id: sec-risks-reputation
+  title: Reputational Risk
+  intro: Risks that impact the reputation of a Node Operator, likely to lead potential and actual
+    customers to choose a different partner to work with.
+columns:
+  - label: ID
+  - label: Risk Group
+  - label: Risk Vectors
+    width: 20%
+  - label: Risk Vector Description
+    width: 25%
+  - label: Relevant Mitigations
+risks:
+  - id: RER1
+    group: Process
+    vector: Mismanagement during incident
+    description: Reputation damage due to mismanagement of slashing, downtime or access loss to keys
+  - id: RER2
+    group: People
+    vector: Negative appearance in public
+    description: Damage to reputation due to bad behavior in public
+  - id: RER3
+    group: Process
+    vector: Mismanagement of Post-Incident
+    description: Reputation damage due to mismanagement of Post-slashing, -downtime or access loss to keys
+  - id: RER4
+    group: Infrastructure
+    vector: Withdrawal
+    description: Staking withdrawal requests cannot be met efficiently, leading to delays in payment
+      processing causing reputational loss
+  - id: RER5
+    group: Process
+    vector: Poor Communication
+    description: Poor reputation or reputational damage due to insufficient operational communication
+      and overall transparency

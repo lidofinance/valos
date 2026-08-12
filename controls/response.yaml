@@ -1,0 +1,221 @@
+section:
+  id: sec-controls-response
+  title: Controls for Communication and Incident Response
+controls:
+  - title: Provide Operational Communication
+    headingId: ctrl-provide-operational-communication
+    requirements:
+      - id: req-regular-communication
+        statement: Node Operators SHOULD provide regular normal operational communication
+        after: >-
+          This covers general information similar to financial reporting, major changes in staffing
+          (overall size, key positions, strategic focus),
+
+          and operator-specific information such as governance of onchain systems, key third-party
+          relationships, software partnerships,
+
+          participation in standards-setting, and the like.
+
+
+          The purpose is to provide confidence to stakeholders that the Node Operator is effectively
+          managed, to enable them to understand the overall goals,
+
+          and to show operational strengths, and plans to address perceived weaknesses and strategic
+          threats.
+    info:
+      - heading: Operational communications help address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN6
+            bullet: "*"
+          - risks:
+              - RER5
+            bullet: "*"
+  - title: Document Adequate Incident Response Plans
+    headingId: ctrl-document-adequate-incident-response-plans
+    requirements:
+      - id: req-incident-response-plans
+        statement: The Node Operator MUST have documented [=Incident Response Plans=] corresponding to all
+          risks identified in this specification
+    info:
+      - heading: Relevant external controls for incident response
+        level: 5
+        entries:
+          - external:
+              standard: SOC2
+              ref: CC 7.4
+            bullet: "*"
+          - external:
+              standard: SOC2
+              ref: CC 9.1 of Trust Services Criteria
+            bullet: "*"
+      - heading: Incident Response Planning help address almost all risks
+        level: 5
+        entries: []
+  - title: Document Disaster Recovery Plans
+    headingId: ctrl-document-disaster-recovery-plans
+    requirements:
+      - id: req-disaster-recovery-plan
+        statement: The Node Operator MUST have documented [=Disaster Recovery Plans=] corresponding to risks
+          identified in this specification that lead to destruction of crucial data or loss of
+          assets
+        statementRaw: >-
+          The Node Operator MUST have documented [=Disaster Recovery Plans=] corresponding to risks
+          identified in this specification
+
+          that lead to destruction of crucial data or loss of assets
+    info:
+      - heading: Relevant external controls for disaster recovery plans
+        level: 5
+        entries:
+          - external:
+              standard: SOC2
+              ref: CC 7.5
+            bullet: "*"
+      - heading: Disaster recovery plans help address the following risks
+        level: 5
+        entries:
+          - risks:
+              - DOW1
+              - DOW2
+              - DOW3
+              - DOW4
+              - DOW5
+              - DOW10
+            bullet: "*"
+          - risks:
+              - GIR13
+              - GIR19
+            bullet: "*"
+          - risks:
+              - RER1
+              - RER4
+              - RER5
+            bullet: "*"
+  - title: Analyze Incidents
+    headingId: ctrl-analyze-incidents
+    requirements:
+      - id: req-revise-response-plans
+        statement: "[=Incident Response Plans=] and [=Disaster Recovery Plans=] MUST include revising the
+          relevant plans whenever they are activated, based on lessons learned"
+        statementRaw: >-
+          [=Incident Response Plans=]
+
+          and [=Disaster Recovery Plans=] MUST include revising the relevant plans whenever they are
+          activated, based on lessons learned
+        after: This covers both responses to real incidents and Simulated activation, or [=Pre-mortems=].
+    info:
+      - heading: Relevant external controls for analyzing security events
+        level: 5
+        entries:
+          - external:
+              standard: SOC2
+              ref: CC 7.3
+            bullet: "*"
+      - heading: Analyzing incidents helps address all risks
+        level: 5
+        entries: []
+  - title: Perform Regular Incident Response Simulations
+    headingId: ctrl-perform-regular-incident-response-simulations
+    requirements:
+      - id: req-run-incident-simulations
+        statement: Node Operators MUST perform a simulated Incident and activation of the associated
+          [=Incident Response Plan=] or [=Disaster Recovery Plans=] at least twice per year
+        statementRaw: >-
+          Node Operators MUST perform a simulated Incident and activation of the associated
+          [=Incident Response Plan=]
+
+          or [=Disaster Recovery Plans=] at least twice per year
+    info:
+      - heading: Incident simulations help address all risks
+        level: 5
+        entries: []
+  - title: Plan Incident Communication
+    headingId: ctrl-plan-incident-communication
+    requirements:
+      - id: req-communication-strategy
+        statement: Node Operators MUST document [=Incident Communication=] strategies or policies
+        after: This requirement includes internal and external communication, both during and after
+          incidents.
+    info:
+      - heading: Incident communications help address the following risks
+        level: 5
+        entries:
+          - risks:
+              - RER5
+            bullet: "*"
+  - title: Verify Counterparty Compliance
+    headingId: ctrl-verify-counterparty-compliance
+    requirements:
+      - id: req-verify-3rdparty-compliance
+        statement: Node Operators MUST verify that third parties providing services, or with whom the Node
+          Operator contracts, are in compliance with relevant standards (including this one) and
+          regulations
+        statementRaw: >-
+          Node Operators MUST verify that third parties providing services, or with whom the Node
+          Operator contracts,
+
+          are in compliance with relevant standards (including this one) and regulations
+        after: >-
+          This includes areas such as the uptime guarantees of cloud providers and other core
+          counterparties,
+
+          response times and Service Level Agreements, security procedures, and the like as well as
+          relevant regulatory compliance.
+    info:
+      - heading: Relevant external controls for counterparty verification
+        level: 5
+        entries:
+          - external:
+              standard: ISO27001
+              ref: Annex A 8.30
+            bullet: "*"
+          - external:
+              standard: SOC2
+              ref: CC 9.2
+            bullet: "*"
+      - heading: Counterparty verification helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN1
+            bullet: "*"
+          - risks:
+              - SLS9
+            bullet: "*"
+          - risks:
+              - DOW1
+              - DOW7
+              - DOW9
+              - DOW19
+            bullet: "*"
+          - risks:
+              - GIR5
+              - GIR14
+              - GIR22
+              - GIR24
+              - GIR25
+            bullet: "*"
+          - risks:
+              - SPS0
+            bullet: "*"
+          - risks:
+              - RER2
+              - RER5
+            bullet: "*"
+  - title: Manage Counterparty Relationship Lifecycles
+    headingId: ctrl-manage-counterparty-relationship-lifecycles
+    requirements:
+      - id: req-termination-procedures
+        statement: Service agreements MUST specify termination procedures and obligations
+    info:
+      - heading: Managing counterparty relationship lifecycles helps address the following risks
+        level: 5
+        entries:
+          - risks:
+              - FIN1
+            bullet: "*"
+          - risks:
+              - HCK3
+            bullet: "*"
