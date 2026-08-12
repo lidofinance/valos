@@ -233,14 +233,23 @@ let tail = read('templates/tail.html');
 
 // publishDate: last commit date of the spec sources; keeps renders reproducible
 // per commit instead of varying with file mtimes. Falls back to today.
+// %as (author date), not %cs: a rebase rewrites committer dates, which would
+// shift publishDate and desync the committed valos-spec.html from what this
+// script regenerates — failing the CI drift check on every rebase.
+// --no-show-signature: a user's global log.showSignature=true otherwise prepends
+// gpg verification lines to stdout, which land inside the respecConfig literal.
 let publishDate;
 try {
-  publishDate = execSync('git log -1 --format=%cs -- risks controls mitigations templates scripts', {
-    encoding: 'utf8',
-  }).trim();
+  publishDate = execSync(
+    'git log -1 --no-show-signature --format=%as -- risks controls mitigations templates scripts',
+    { encoding: 'utf8' },
+  ).trim();
 } catch {
   /* not a git checkout */
 }
+// Only trust a bare ISO date; any other shape means the output picked up noise
+// from local git config, and a malformed value would break respecConfig.
+if (!/^\d{4}-\d{2}-\d{2}$/.test(publishDate ?? '')) publishDate = undefined;
 if (!publishDate) publishDate = new Date().toISOString().slice(0, 10);
 if (!tail.includes('publishDate:')) {
   tail = tail.replace(/(\n\s*var respecConfig = \{)/, `$1\n    publishDate: "${publishDate}",`);
